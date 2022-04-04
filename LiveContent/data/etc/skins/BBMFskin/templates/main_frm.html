@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/main_frm.html 2.0 2019/05/22 21:01:47GMT milind Exp  $ -->
+<html lang="en">
+<head>
+<title>@TITLE@</title>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0" />
+
+<meta id="META_APPID" content="@APPID@"/>
+<meta id="META_APPNAME" content="@APPNAME@"/>
+<meta id="META_ID" content="@SESSION_ID@"/>
+<meta id="META_USER" content="@USER@"/>
+<meta id="META_USERGROUPNAME" content="@USER_GROUP@"/>
+<meta id="META_USERGROUP" content="@USER_GROUP@"/>
+<meta id="META_USERRIGHTS" content="@USER_RIGHTS@"/>
+<meta id="META_USER_CHANGEREASON" content="@USER_CHANGEREASON@"/>
+<meta id="META_USER_CHANGEHELPBTN" content="@USER_CHANGEHELPBTN@"/>
+<meta id="META_CHANGE_LEVEL" content="@CHANGE_LEVEL@"/>
+<meta id="META_COLLECTION" content="@COLLECTION@"/>
+<meta id="META_BOOK" content="@BOOK@"/>
+<meta id="META_COLALIAS" content="@COL_ALIAS@"/>
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@"/>
+<meta id="META_BOOKTYPE" content="@BOOK_TYPE@"/>
+<meta id="META_MODEL" content="@MODEL@"/>
+<meta id="META_CLIENT_CHECK" content="@CLIENT_CHECK@"/>
+<meta id="META_ISO_VIEW_RELEASE" content="@ISO_VIEW_RELEASE@"/>
+<meta id="META_CGM_CONTROL" content="@CGM_CONTROL@"/>
+<meta id="META_PUBNAME" content="@PUBNAME@"/>
+<meta id="META_PUBDATE" content="@PUBDATE@"/>
+<meta id="META_PUBNUMBER" content="@PUBNUMBER@"/>
+<meta id="META_CDVERSION" content="@CDVERSION@"/>
+<meta id="META_CONFIG_HELP_BTN" content="@CONFIG_HELP_BTN@"/>
+<meta id="META_USER_HIDE_HELP_BTN" content="@USER_HIDE_HELP_BTN@"/>
+<meta id="META_WCN_POPUP" content="@WCN_POPUP@"/>
+<meta id="META_MULTI_HOST" content="@MULTI_HOST@"/>
+<meta id="META_FIGURES_PATH" content="@FIGURES_PATH@"/>
+<meta id="META_MEDIA_PATH" content="@MEDIA_PATH@"/>
+<meta id="META_SYMBOLS_PATH" content="@SYMBOLS_PATH@"/>
+<meta id="META_CUSTOMER_MODE" content="@CUSTOMER_MODE@"/>
+<meta id="META_USER_SAVE_POSITION" content="@USER_SAVE_POSITION@"/>
+<meta id="META_AUTOSTART_DOCID" content="@AUTOSTART_DOCID@"/>
+<meta id="META_TITLE" content="@TITLE@"/>
+<meta id="META_MAIN_SESSION_ID" content="@MAIN_SESSION_ID@"/>
+<meta id="META_HASLARGETABLE" content="@HASLARGETABLE@"/>
+<meta id="META_SKIN" content="@SKIN@"/>
+<meta id="META_SKIN_ALT" content="@SKIN_ALT@"/>
+<meta id="META_LANG" content="@LANG@"/>
+<meta id="META_SHOW_STEPS_CHECKBOX" content="@SHOW_STEPS_CHECKBOX@"/>
+<meta id="META_SHOW_SECURITY_BANNERS" content="@SHOW_SECURITY_BANNERS@"/>
+<meta id="META_SHOW_PORTION_MARKING" content="@SHOW_PORTION_MARKING@"/>
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=skin.css"/>
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=jquery-ui.css"/>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery-ui.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.ui.touch-punch.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.json.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.highlight-3.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPortal.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvMetaFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvDebugger.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvHelpFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvControlFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPanelFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvBaseComponent.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvTOC.js"></script>
+
+<!-- LAM: 2020-10-02: range 
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=bbmfscripts/reviewcomments.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=bbmfscripts/xpath.js"></script>
+FYI: xpath.js reports a syntax error '<'
+-->
+<!-- / LAM: 2020-10-02: range -->
+
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvDocHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvHistory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvModalHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvApplicHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPrinter.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvMedia.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvResourceManager.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvSearch.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvCompatLib.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvUserPrefs.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvReports.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvExtensionLibrary.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvProcessdm.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvButtonMenuHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvEmergencyProcedures.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvLeftNav.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=splitter.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg-pan-zoom.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=hammer.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg.draw.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=dvl.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=Loco.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=html2canvas.js"></script>
+
+<script type="text/javascript">
+var CVPortal = new CV_Portal();
+
+function cvPortalInit() {
+	CVPortal.metaFactory().loadMetaData();
+	//add book type CSS:
+	CVPortal.loadDTDCSS();
+	CVPortal.registerBookWindow();
+	var metaLang = "en"
+	if (document.getElementById("META_LANG") && document.getElementById("META_LANG").content != "english" && document.getElementById("META_LANG").content != "") {
+		var metaLang = document.getElementById("META_LANG").content;
+	}
+	CVPortal.loadResources(metaLang);
+	CVPortal.panelFactory().loadPanels("main");
+	CVPortal.controlFactory().loadControls("main");
+	CVPortal.loadComponents("main");
+	CVPortal.panelFactory().initResize();
+	//if on tablet, hide TOC by default
+	if(CVPortal.components["cvResourceManager"].isTablet == true) CVPortal.components.cvTOC.togglePanel();
+	
+	setIssueAndDate(); // LAM
+	setUserName(); // LAM
+}
+<!-- LAM: 2021-11-11: Front cover -->
+function setIssueAndDate() {
+  // <span id="issuedateissue">Issue 1 (Draft)</span>; <span id="issuedatedate"></span>
+  // <meta id="META_PUBDATE" content="@PUBDATE@"/>
+  // <meta id="META_BOOK" content="pmc_spitfire_kcxr8_all01_01_en-us">
+  var issueDate = document.getElementById('frontpageissuedate');
+  if (issueDate) {
+    var xml = CVPortal.metaFactory().getPublicationsConfiguration();
+    if (xml) {
+      //var xmlText = new XMLSerializer().serializeToString(xml);
+      //console.info('xmlText : ' + xmlText);
+      var meta_book = document.getElementById("META_BOOK").content;
+      var book = xml.querySelector("results > reply > book-info > collection-item > book-item[name='" + meta_book + "']");
+      /*
+      <div id="frontpageissuedate" style="text-align: right; font-size: 11pt; margin-right: 12px;">
+      <span id="frontpageissuedateissue">Issue 1 (Draft)</span>; <span id="frontpageissuedatedate"></span>
+      </div>
+      */
+
+      issueDate = document.getElementById('frontpageissuedatedate');
+      var val = book.querySelector("configitem[name='PubDate.value'] > value");
+      if (val) {
+        val = val.textContent;
+        if (val.indexOf('/') > -1) {
+          var d = val.split("/");
+          val = d[2] + "-" + d[0] + "-" + d[1];
+        }
+        issueDate.innerHTML = val;
+      }
+
+      issueDate = document.getElementById('frontpageissuedateissue');
+      val = book.querySelector("configitem[name='change_level'] > value");
+      if (val) {
+        val = val.textContent;
+        if (('' + val) === '000' || ('' + val) === '00' || ('' + val) === '0') {
+          val = 'Initial issue';
+        } else {
+          try {
+            val = parseInt(val,10);
+          } catch(e) { }
+          val = 'Issue ' + val;
+        }
+        issueDate.innerHTML = val;
+      }
+    }
+  }
+}<!-- / LAM: 2021-11-11: Front cover -->
+// iconbuttonsRightM
+<!-- LAM: 2022-02-17: Set user name before 'iconbuttonsRightM' -->
+function setUserName() {
+	var myTarget = $("#iconbuttonsRightM");
+	if (myTarget) {
+		var metaUser = $("#META_USER").attr('content');
+		var metaUserGroup = $("#META_USERGROUPNAME").attr('content');
+		var thisStyle = 'color:#fff; font-size:14px; font-weight:bold; top:6px; bottom:0; left:0; right:0; margin:auto; position:relative';
+		$(myTarget).before('<span style="' + thisStyle + '">Welcome: ' + metaUser + ', ' + metaUserGroup + '</span>');
+	}
+}
+<!-- / LAM: 2022-02-17: Set user name before 'iconbuttonsRightM' -->
+</script>
+
+<script language="javascript" for="IsoViewCGM" event="InitFinished()">IsoInitFinished()</script>
+<script language="javascript" for="IsoViewCGM" event="HsHit(MouseBtn, RefID, Name, ViewPortName, ViewPortFile)">IsoHsHit(MouseBtn, RefID, Name, ViewPortName, ViewPortFile);</script>
+<script language="javascript" for="rhiModel" event="SelectionChanged(node, NodeName, Selected)">rhiSelectionChanged(node, NodeName, Selected)</script>
+<script language="javascript" for="rhiModel" event="SceneLoaded(OK)">rhiSceneLoaded(OK)</script>
+<script language='javascript' for='flashMovie' event='FSCommand(com, arg)'>FSCommand(com, arg);</script>
+<SCRIPT LANGUAGE="JavaScript"> function flashMovie_DoFSCommand(com, arg) { FSCommand(com, arg)}</SCRIPT>
+
+</head>
+<body class="hatched" onLoad="cvPortalInit();" onunload="CVPortal.unregisterBookWindow()">
+</body>
+</html>

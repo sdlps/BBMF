@@ -1,0 +1,33 @@
+/* $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/ie7.css 2.0 2019/05/22 21:01:42GMT milind Exp  $ */
+
+#buttonBar {
+	display: block;
+	/* overflow:auto; */
+	height: 42px;
+}
+
+.buttonGroup {
+	display: inline;
+	float:left;
+	overflow:auto;
+	padding: 0px;
+}
+
+.dark, .iconized, .highlightIcon {
+	position: relative;
+	/*
+	margin-top: 2px;
+	margin-bottom: 2px;
+	*/
+	margin-top: 4px;
+	margin-right: 0px;
+	width: 30px;
+	height: 37px;
+	/* background-image: url(@APPNAME@?target=resource&action=image&file_name=buttonBackLeft.png); */
+	display: inline;
+	float:left;
+}
+
+#iconbutton {
+	height: 42px;
+}

@@ -1,0 +1,38 @@
+<div id="shoppingCart" style="display:none">
+<div class="title">Shopping Cart<a href="#" onclick="document.getElementById('shoppingCart').style.display='none'"><span>X</span></a></div>
+<hr/>
+<div id="shoppingCartList"></div>
+<hr/>
+<div id="shoppingCartOrder"><input id="shoppingCartOrderOrderbtn" class="orderbtn" type="submit" value="Print Order" onclick="CVPortal.components.cvDocHandler.OrderParts();"></div>
+<script>
+dragElement(document.getElementById("shoppingCart"));
+function dragElement(el) {
+  var p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+	el.onmousedown = dragMouseDown;
+
+  function dragMouseDown(ev) {
+    ev = ev || window.event;
+    ev.preventDefault();
+    p3 = ev.clientX;
+    p4 = ev.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(ev) {
+    ev = ev || window.event;
+    ev.preventDefault();
+    p1 = p3 - ev.clientX;
+    p2 = p4 - ev.clientY;
+    p3 = ev.clientX;
+    p4 = ev.clientY;
+    el.style.top = (el.offsetTop - p2) + "px";
+    el.style.left = (el.offsetLeft - p1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script></div>

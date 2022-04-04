@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/panels.xml 2.0 2019/05/22 21:01:17GMT milind Exp  $ -->
+<layout>
+	<set id="main">
+		<panel id="modalBlocking" class="blockingPanel">
+			<description>The panel that will block the interface when the modal is popped...</description>
+			<height>na</height>
+			<width>na</width>
+		</panel>
+		<panel id="modalDialog" class="modalPanel">
+			<description>The panel that contains the entire modal dialog...</description>
+			<height>na</height>
+			<width>na</width>
+			<template>modalBase.html</template>
+			<panel id="modalContent" class="modalContent">
+				<description> the shared panel for the interior content of the modal</description>
+				<height>na</height>
+				<width>na</width>
+			</panel>
+		</panel>
+		<panel id="secondModalBlocking" class="secondBlockingPanel">
+			<description>The panel that will block the interface when the second modal is popped...</description>
+			<height>na</height>
+			<width>na</width>
+		</panel>
+		<panel id="secondModalDialog" class="secondModalPanel">
+			<description>The panel that contains the entire second modal dialog...</description>
+			<height>na</height>
+			<width>na</width>
+			<template>modalSecondBase.html</template>
+			<panel id="secondModalContent" class="modalContent">
+				<description> the shared panel for the interior content of the second modal</description>
+				<height>na</height>
+				<width>na</width>
+			</panel>
+		</panel>
+		
+		<panel id="full_page" class="full_page">
+			<height>100%</height>
+			<width>100%</width>
+			<!-- Publication security banner -->
+			<panel id="publicationSecBanner" class="sPanel">
+				<description>Publication security classification bar</description>
+				<height>18px</height>
+				<width>100%</width>
+				<template>publicationSecBanner.html</template>
+			</panel>
+			<panel id="primaryNav" class="sPanel">
+				<description>the toolbar below the menu that presents iconized controls</description>	
+				<height>31</height>
+				<width>100%</width>
+				<template>nav_primary.html</template>
+			</panel>
+			<panel id="toolbar" class="tabsPanel">
+				<description>small thin, container in top to hold all the tabs</description>
+				<height>80</height>
+				<width>100%</width>
+				<template>nav_secondary.html</template>
+			</panel>
+			<panel id="main_content">
+				<height>*</height>
+				<width>100%</width>
+				<panel id="body_container">
+					<height>*</height>
+					<width>100%</width>
+					<panel id="tocPanel" class="tocPanel" type="shared">
+						<description>container for TOC, figures, tables, act, and search (the nav bar)</description>
+						<height>*</height>
+						<width>350</width>
+						<template>cvTOC.html</template>
+						<relation target="mainContainer" orient="v" />
+					</panel>
+						
+					<panel id="mainContainer" class="containerPanel" type="container" >
+						<description></description>
+						<!--<relation target="tocPanel" orient="vertical"/>-->
+						<height>*</height>
+						<width>*</width>
+
+            <!-- LAM: 2020-11-25 new panel to show / hide shopping cart-->
+            <panel id="ipcShoppingCart" class="sPanel">
+              <description>Spares parts shopping cart</description>
+              <height>0</height><width>0</width>
+              <template>shoppingCart.html</template>
+            </panel><!-- / LAM: 2020-11-25 new panel to show / hide shopping cart-->
+
+            <!-- LAM: 2022-02-03 new panel to load Form 765 data-->
+            <panel id="panelForm765" class="sPanel">
+              <description>BUFR Form</description>
+              <height>0</height><width>0</width>
+              <template>panelForm765.html</template>
+            </panel><!-- / LAM: 2022-02-03 new panel to load Form 765 data -->
+
+            <!-- LAM: 2022-02-17 new panel to show progress during long tasks -->
+            <panel id="longTaskProgress" class="sPanel">
+              <description>Long task progress</description>
+              <height>0</height><width>0</width>
+              <template>longTaskProgress.html</template>
+            </panel><!-- LAM: 2022-02-17 new panel to show progress during long tasks -->
+
+            <!-- DM security banner -->
+            <panel id="dmSecurityBanner" class="sPanel">
+              <description>DM security banner</description>
+              <height>16px</height><!-- LAM: reduced from 18 to 16 to better fit text-->
+              <width>100%</width>
+              <template>dmSecBanner.html</template>
+            </panel>
+            <!-- LAM: 2020-10-01 new panel to show / hide review comments-->
+            <panel id="dmReviewComments" class="sPanel">
+              <description>DM review comments</description>
+              <height>0px</height><!--20px-->
+              <width>100%</width>
+              <template>dmReviewComments.html</template>
+            </panel><!-- / LAM: 2020-10-01 new panel to show / hide review comments-->
+
+						<panel id="graphicsPanel" class="zeroHeightPanel"><!--LAM: 2020-09-16: Default to vertical split-->
+							<description>a panel inside the maincontainer that holds graphic and its controls</description>
+			   <!-- <height>0</height><width>*</width><relation target="contentPanel" orient="h"/> LAM -->
+							<height>*</height><width>0</width><relation target="contentPanel" orient="v"/>
+						</panel>
+						<panel id="contentPanel" class="contentPanel" type="shared">
+							<description>text and stuff</description>
+							<height>*</height><width>*</width>
+						</panel>
+					</panel>
+				</panel>
+				<panel id="rightPanel" class="rightPanel">
+					<description> the shared panel for the interior content of the modal</description>
+					<height>100%</height>
+					<width>100%</width>
+					<template>cvRightPanel.html</template>
+				</panel>
+			</panel>
+<!--
+			<panel id="footerPanel" class="sPanel">
+				<height>35</height>
+				<width>100%</width>			
+				<template>cvFooter.html</template>
+			</panel>
+-->
+		</panel>
+	</set>
+	<set id="booklist">
+		<panel id="modalBlocking" class="blockingPanel">
+			<description>The panel that will block the interface when the modal is popped...</description>
+			<height>na</height>
+			<width>na</width>
+		</panel>
+		<panel id="modalDialog" class="modalPanel">
+			<description>The panel that contains the entire modal dialog...</description>
+			<height>na</height>
+			<width>na</width>
+			<template>modalBase.html</template>
+			<panel id="modalContent" class="modalContent">
+				<description> the shared panel for the interior content of the modal</description>
+				<height>na</height>
+				<width>na</width>
+			</panel>
+		</panel>
+		<panel id="secondModalBlocking" class="secondBlockingPanel">
+			<description>The panel that will block the interface when the second modal is popped...</description>
+			<height>na</height>
+			<width>na</width>
+		</panel>
+		<panel id="secondModalDialog" class="secondModalPanel">
+			<description>The panel that contains the entire second modal dialog...</description>
+			<height>na</height>
+			<width>na</width>
+			<template>modalSecondBase.html</template>
+			<panel id="secondModalContent" class="modalContent">
+				<description> the shared panel for the interior content of the second modal</description>
+				<height>na</height>
+				<width>na</width>
+			</panel>
+		</panel>
+	</set>
+	<set id="tearOff">
+		<!-- DM security banner -->
+		<panel id="dmSecurityBanner" class="sPanel">
+			<description>DM security banner</description>
+			<height>18px</height>
+			<width>100%</width>
+			<template>dmSecBanner.html</template>
+		</panel>
+		<panel id="mainContainer" class="containerPanel">
+			<description></description>
+			<height>*</height>
+			<width>*</width>
+			<panel id="graphicsPanel" class="sPanel">
+				<description>a panel to hold the graphic tearOff</description>
+				<height>*</height>
+				<width>*</width>
+			</panel>
+		</panel>	
+	</set>
+</layout>

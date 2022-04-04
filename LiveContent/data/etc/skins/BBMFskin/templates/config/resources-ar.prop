@@ -1,0 +1,831 @@
+﻿# $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/resources-ar.prop 2.0 2019/05/22 21:01:19GMT milind Exp  $
+## Messages, often warnings
+message.requiresDocumentOpen=لاستخدام هذا الخيار، يجب أن يكون لديك مستند مفتوح.
+message.confirmPublicationClose=هل تريد بالتأكيد إغلاق الدليل الفني؟
+message.cvPrinter.noFigures=لا توجد أرقام لطباعتها لهذا المستند.
+message.cvPrinter.noFigureSelected=لم يتم تحديد أي رقم لهذا المستند في الوقت الحالي، لأن المستند لا يحتوي على أرقام.
+
+## external links:
+messages.externalRef.noWebAddress=فشل تحميل عنوان ويب غير محدد.
+messages.externalRef.noRegistry=يتعذر تحديد موقع سجل الارتباط الخارجي.
+
+## ERRORS
+errors.noComponents={CVPortal} [ Fatal ] يتعذر تحديد موقع المجموعة المطلوبة من Components.xml!
+errors.failedLanguageLoad=فشل تحميل اللغة
+
+######################
+### MENU IETMS:
+######################
+menu.undefined=قائمة غير معرّفة
+## top level menu items:
+menu.logoff=الخروج
+
+menu.file=الملف
+menu.admin=الإدارة
+menu.user=المستخدم
+menu.help=تعليمات
+menu.annotations=التعليقات التوضيحية
+menu.print=طباعة
+menu.debug=تصحيح الأخطاء
+
+### ADMIN MENU
+menu.manageUsers=إدارة المستخدمين
+menu.invalidRefs=مراجع غير صالحة
+menu.currentInvalidRefs=المراجع الحالية غير الصالحة
+menu.invalidImgs=صور مفقودة
+menu.currentInvalidImgs=الصور المفقودة الحالية
+menu.auditTrail=مراجعة الحسابات
+
+## FILE MENU
+menu.home=الصفحة الرئيسية
+menu.forward=للأمام
+menu.back=رجوع
+
+## annotations:
+menu.addBookmark=إضافة إشارة مرجعية
+menu.addNote=إضافة ملاحظة
+
+## printing
+menu.printAllFigures=طباعة كافة الأشكال
+menu.printCurrentFigure=اطبع الشكل الحالي
+menu.printAll=طباعة النص والأرقام
+menu.printRefs=الطباعة باستخدام المستندات المرجعية
+
+## user menu
+menu.resourceManager=مدير الموارد
+menu.applic=حدد قابلية التطبيق
+menu.revisionHighlights=عرض النقاط البارزة للمراجعة
+menu.clearHistory=مسح المحفوظات
+menu.prefs=التفضيلات
+menu.suspend=تعليق واستئناف
+menu.skinAlt=البشرة المحمولة
+
+## help menus:
+menu.releaseNotes=लाइवसामग्री रिलीज़ नोट्स
+menu.company=लाइवसामग्री के बारे में
+menu.helpContents=मदद सामग्री
+
+## debug menu:
+menu.debugWindow=إظهار التصحيح
+menu.metaDebug=تصحيح الوجهة
+menu.componentDebug=تصحيح المكون
+menu.historyDebug=تصحيح التاريخ
+menu.showXML=إظهار XML
+menu.showHTML=إظهار HTML
+menu.showXSLFO=عرض XSL-FO
+menu.showMsgs=إظهار رسائل الخطأ XREF
+menu.hideMsgs=إخفاء رسائل الخطأ XREF
+
+## language:
+menu.language.set=حدد Language (اللغة)
+menu.language.en=الإنجليزية
+menu.language.fr=الفرنسية
+menu.language.he=Hebrew
+menu.language.hi=Hindi
+menu.language.ja=Japanese
+menu.language.ar=Arabic
+
+###############
+##   CONTROLS
+###############
+ctrl.back=رجوع
+ctrl.fwd=للأمام
+ctrl.home=الصفحة الرئيسية
+ctrl.split=رسومات العرض
+ctrl.graphic=الرسم فقط
+ctrl.doc=المستند فقط
+ctrl.settings=Settings (الإعدادات)
+ctrl.suspend=تعليق واستئناف
+ctrl.bookmarks=الإشارات المرجعية
+ctrl.prelReq=المتطلبات الأولية
+ctrl.notes=ملاحظات
+ctrl.attachments=المرفقات
+ctrl.history=التاريخ
+ctrl.refresh=تحديث
+ctrl.print=طباعة
+ctrl.install=تثبيت
+ctrl.find=أوجِدْ
+ctrl.clear=مسح
+ctrl.admin=المسؤول
+ctrl.config=التطبيق
+ctrl.tools=الأدوات
+ctrl.exit=الخروج
+ctrl.help=تعليمات
+ctrl.info=معلومات
+ctrl.next=التالي
+ctrl.prev=السابق
+ctrl.save=تعليق واستئناف
+ctrl.docinfo=معلومات المستند
+ctrl.show=معلومات تصحيح الأخطاء
+ctrl.desktop=عرض سطح المكتب
+ctrl.reports=التقارير
+ctrl.markup=هامش الربح
+ctrl.releaseNotes=ملاحظات الإصدار
+ctrl.userGuide=دليل المستخدم
+ctrl.about=حول
+ctrl.users=User Management (إدارة المستخدم)
+ctrl.position=حفظ الموقع
+ctrl.changes=قم بتمييز التغييرات
+ctrl.largeTableControls=مفاتيح التحكم في الطاولة الكبيرة
+ctrl.emergencyProcedures=إجراءات الطوارئ
+ctrl.leftPanel=قم بتبديل اللوحة اليسرى
+
+## troubleshooting steps
+ctrl.troubleshooting.next=الخطوة التالية
+ctrl.troubleshooting.prev=الخطوة السابقة
+
+###########
+#### Tabs
+###########
+tabs.toc=جدول المحتويات
+tabs.act=النشاط
+tabs.figs=الأشكال
+tabs.tables=الجداول
+tabs.main=المهمة
+tabs.refMat=المادة المرجعية
+tabs.matReq=المادة المطلوبة
+tabs.supportEq=معدات الدعم
+tabs.search=بحث
+
+## modal:
+ctrl.modal.close=Close (إغلاق)
+
+## search ctrls
+ctrl.search.start=&nbsp;
+ctrl.search.stop=توقف
+ctrl.search.clear=مسح البحث
+ctrl.search.hide=إغلاق البحث
+ctrl.search.adv=متوسط
+ctrl.search.branch=التصفية حسب تحديد جدول المحتويات
+ctrl.search.search=بحث
+ctrl.search.categorical=بحث قاطع
+ctrl.search.and=و
+ctrl.search.or=أو
+ctrl.search.near=بالقرب من
+ctrl.search.not=ولا
+ctrl.search.find=أوجِدْ
+ctrl.search.case=تجاهل الحالة
+ctrl.search.whole=الكلمات الكاملة فقط
+ctrl.search.advanced=بحث متقدم
+ctrl.search.simple=بحث بسيط
+ctrl.search.text=البحث في النص الكامل
+ctrl.search.save=تحميل بحث محفوظ
+ctrl.search.filter.start=يبدأ بـ
+ctrl.search.filter.contain=يحتوي على
+ctrl.search.filter.end=ينتهي بـ
+ctrl.search.highlight=تبديل التمييزات
+ctrl.search.toc=جدول المحتويات
+ctrl.search.results=نتائج البحث
+ctrl.search.toggleSearchTitles=ABC/123
+
+## media:
+ctrl.hideMedia=إلغاء التقسيم
+ctrl.showMedia=تقسيم
+ctrl.image.next=التالي
+ctrl.image.prev=السابق
+ctrl.image.tearOff=تمزّق
+ctrl.image.play=تشغيل
+ctrl.image.pause=توقف مؤقتًا
+ctrl.image.rewind=إرجاع
+ctrl.image.svgZoomIn=تكبير
+ctrl.image.svgZoomOut=تصغير
+ctrl.image.svgPanLeft=التحريك إلى اليسار
+ctrl.image.svgPanRight=التدوير إلى اليمين
+ctrl.image.svgPanUp=التحريك لأعلى
+ctrl.image.svgPanDown=التحريك لأسفل
+ctrl.image.svgReset=استعادة العرض الأصلي
+ctrl.image.showAllHotspots=إظهار كافة النقاط الفعالة
+ctrl.image.svgRedliningPencil=اسحب عنصر البطانة الحمراء
+ctrl.image.svgRedliningCircle=ارسم دائرة بطانة حمراء
+ctrl.image.svgRedliningRectangle=ارسم مستطيلاً محاطيًا للاحمرار
+ctrl.image.svgRedliningLine=ارسم خط البطانة الحمراء
+ctrl.image.svgRedliningAnnotation=أضف التعليقات التوضيحية المائلة إلى اللون الأحمر
+ctrl.image.svgDeleteRedliningAnnotation=احذف التبطين المائل للحمرة تعليق توضيحي
+ctrl.image.svgExportRedlining=تصدير البطانة الحمراء
+ctrl.image.svgRedlining=بطانة
+
+## rhi buttons:
+ctrl.rhistep.prev=تشغيل الخطوة السابقة
+ctrl.rhistep.next=قم بتشغيل الخطوة التالية
+ctrl.rhistep.curr=تشغيل الخطوة الحالية
+ctrl.rhistep.all=قم بتشغيل كل الخطوات
+ctrl.rhistep.pause=توقف مؤقتًا
+ctrl.rhistep.resume=استئناف
+ctrl.rhistep.list=سرد الخطوات
+ctrl.rhixray.on=تشغيل الأشعة السينية
+ctrl.rhixray.off=إيقاف تشغيل الأشعة السينية
+ctrl.rhi.wait=يُرجى الانتظار
+
+## toc:
+ctrl.toggleCodes=ABC / 123
+ctrl.hideToc=إخفاء جدول المحتويات
+ctrl.showToc=إظهار جدول المحتويات
+ctrl.justCodes=123
+ctrl.justTitles=ABC
+ctrl.syncToc=مزامنة جدول المحتويات
+
+## ok, cancels, etc
+ctrl.ok=حسنًا
+ctrl.cancel=إلغاء
+ctrl.media.save=حفظ
+
+## resource manager:
+ctrl.rm.goto=انتقل إلى
+ctrl.rm.edit=تحرير
+ctrl.rm.deleter=حذف
+ctrl.rm.deleteAll=حذف الكل
+ctrl.rm.exit=الخروج
+ctrl.rm.add=اجْمَعْ
+ctrl.rm.suspend=تعليق
+ctrl.rm.view=عرض
+ctrl.rm.resume=استئناف
+ctrl.rm.close=Close (إغلاق)
+ctrl.rm.print=طباعة
+
+######################
+### Static Texts
+######################
+static.location=الموقع:
+
+######################
+### Search Terms
+######################
+search.saveASearch=احفظ هذا البحث
+search.loadASearch=تحميل بحث محفوظ
+search.branch=بحث فرع جدول المحتويات
+
+######################
+### Update Server
+######################
+UpdateServer.check=تحقق من Update Server (خادم التحديث).
+UpdateServer.modalTitle=خادم التحديث التزايدي
+
+## step buttons:
+ctrl.step.next=الخطوة التالية
+ctrl.step.prev=الخطوة السابقة
+
+## flip panels button:
+ctrl.flipPanels=إعادة توجيه النص والرسومات
+
+## NV Harmonization: Anchor strings
+proc.closeReqCondsAnchor=خطّاف لإغلاق الحالات المطلوبة
+proc.commonInfoAnchor=نقطة تثبيت للحصول على معلومات عامة
+proc.faultStepAnchor=خطّاف لخطوة عزل الأعطال
+proc.prelReqCondsAnchor=مرساة للظروف المطلوبة التمهيدية
+proc.procStepAnchor=نقطة تثبيت للخطوة الإجرائية
+proc.safetyCondsAnchor=مرساة لظروف السلامة
+
+  ######################
+  ### keys for cvDocHandler.js
+  ######################
+
+alert.unable.toLocate.referenced.publication=يتعذر تحديد موقع المنشور المشار إليه
+alert.you.must.enter.aTerm.toFind=يجب إدخال مصطلح للبحث عنه.
+alert.unable.toLoad.theDocument.byDocID=يتعذر على {DocHandler} تحميل المستند بواسطة معرّف المستند:
+alert.please.enter.aValid.page.number.between =يرجى إدخال رقم صفحة صالح بين 1 و
+alert.unable.toLoad.document.broken.link=يتعذر على {DocHandler} تحميل المستند. لقد قمت بتنشيط رابط مكسور!
+alert.troubleshooting.session.is.already.active=جلسة استكشاف الأخطاء وإصلاحها نشطة بالفعل.\n\nيرجى إكمال جلسة استكشاف الأخطاء وإصلاحها الحالية قبل بدء جلسة جديدة.
+alert.skin.isUndefined1=البشرة
+alert.skin.isUndefined2=غير محدد
+alert.noData.module.selected=لم يتم تحديد أي وحدة بيانات. يجب أن تكون وحدة البيانات نشطة لعرض المتطلبات الأولية!
+alert.thisData.module.has.noPreliminary.requirements.information=لا تحتوي وحدة البيانات هذه على معلومات المتطلبات الأولية!
+alert.unable.toFind.part=يتعذر العثور على البند:
+alert.enter.search.term.toStart=أدخل مصطلح البحث للبدء.
+alert.find.noMatch.for.search.text=لا يوجد تطابق لـ
+alert.opera.browsers.not.supported=مستعرضات Opera غير معتمدة، عذرًا...
+alert.found.searchCount.occurrences1=تم العثور عليه
+alert.found.searchCount.occurrences2=مرات الحدوث
+alert.acknowledgeWarnings.button=حسنًا
+
+dm.modal.loading=جاري التحميل...
+
+publication.security.banner.classification.level=مستوى الأمان
+publication.security.banner.classification.level01=غير مصنّف
+publication.security.banner.classification.level02=مقيد
+publication.security.banner.classification.level03=سري
+publication.security.banner.classification.level04=سر
+publication.security.banner.classification.level05=سر كبير
+
+publication.security.banner.restriction.caveat=تحذير محكمة الطوارئ
+publication.security.banner.restriction.caveatCv51=للاستخدام الرسمي فقط
+publication.security.banner.restriction.caveatCv56=عيون الولايات المتحدة فقط
+publication.security.banner.restriction.caveatCv57=بيانات مقيدة
+publication.security.banner.restriction.caveatCv58=البيانات المقيدة سابقًا
+publication.security.banner.restriction.caveatCv59=لا
+publication.security.banner.restriction.caveatOther=غير ذلك
+
+publication.security.banner.distribution.statement=بيان التوزيع
+
+dm.security.banner.classification.level=مستوى الأمان
+dm.security.banner.classification.level01=غير مصنّف
+dm.security.banner.classification.level02=مقيد
+dm.security.banner.classification.level03=سري
+dm.security.banner.classification.level04=سر
+dm.security.banner.classification.level05=سر كبير
+
+dm.security.banner.restriction.caveat=تحذير محكمة الطوارئ
+dm.security.banner.restriction.caveatCv51=للاستخدام الرسمي فقط
+dm.security.banner.restriction.caveatCv56=عيون الولايات المتحدة فقط
+dm.security.banner.restriction.caveatCv57=بيانات مقيدة
+dm.security.banner.restriction.caveatCv58=البيانات المقيدة سابقًا
+dm.security.banner.restriction.caveatCv59=لا
+dm.security.banner.restriction.caveatOther=غير ذلك
+
+## set Title
+setTitle.acknowledgeWarnings.danger.cautions.notes=التحذيرات، والخطر، والتنبيهات، والملاحظات
+setTitle.applicability.modal.title=حدد قابلية التطبيق
+openTabletDocumentInfo.reference.materials=المواد المرجعية
+openTabletDocumentInfo.required.materials=المواد المطلوبة
+openTabletDocumentInfo.support.equipment=معدات الدعم
+
+######################
+### keys for cvResourceManager.js
+######################
+
+alert.file.with.thisName.isAlready.uploaded=تم تحميل ملف بهذا الاسم بالفعل لهذا المرفق!
+alert.toUse.thisOption.open.document=لاستخدام هذا الخيار، يجب أن يكون لديك مستند مفتوح.
+alert.select.anAnnotation.toEdit=يجب تحديد تعليق توضيحي لتحريره.
+alert.enter.title.for.theBookmark=يرجى إدخال عنوان الإشارة المرجعية
+alert.enter.title.for.theNote=يرجى إدخال عنوان للملاحظة
+alert.unable.toSelect.resource.type=يتعذر على {Resource Manager} تحديد نوع المورد:
+alert.suspendSession.unknown.resource.type.selected=تم تحديد نوع مورد غير معروف:
+alert.newResource.unable.toLocate.resource.type=يتعذر تحديد موقع نوع المورد المطلوب:
+alert.newResource.action.attempted.unknown.resource.type=تمت محاولة إجراء مورد جديد على نوع مورد غير معروف:
+alert.saveUser.username.already.exists=مستخدم من خلال اسم المستخدم هذا موجود بالفعل.
+alert.login.name.required.field=اسم تسجيل الدخول هو حقل مطلوب
+alert.password.must.be.four.characters.long=يجب أن تتألف كلمة المرور من 4 أحرف على الأقل
+alert.password.must.match.confirmation.password=يجب أن تتطابق كلمة المرور مع كلمة مرور التأكيد
+alert.select.user.group=يرجى تحديد مجموعة المستخدمين
+alert.first.last.name.required=الاسم الأول واسم العائلة هي حقول مطلوبة
+alert.email.required.field=البريد الإلكتروني هو حقل مطلوب
+alert.invalid.email.address=عنوان البريد الإلكتروني غير صالح
+alert.confirmation.email.must.match=يجب أن يتطابق البريد الإلكتروني للتأكيد مع البريد الإلكتروني.
+alert.select.object.to.goto=يجب تحديد كائن ليجوه.
+alert.select.resource.to.delete=يجب تحديد مورد لحذفه.
+alert.select.item.to.view=يجب تحديد عنصر لعرضه!
+alert.select.resource.to.action=يجب تحديد مورد إلى
+alert.fillIn.required.form.fields=يجب ملء كل حقول النموذج المطلوبة.
+
+confirm.delete.selected.user=هل تريد حذف المستخدم المحدد؟
+confirm.remove.selected.item=هل ترغب في إزالة العنصر المحدد؟
+confirm.delete.selected.audit.trail=هل تريد حذف سجل التدقيق المحدد؟
+confirm.delete.selected.form=هل تريد حذف النموذج المحدد؟
+confirm.delete.all.resources=هل ترغب في حذف كل هذه الموارد؟
+confirm.delete.selected.attachment=هل تريد حذف المرفق (المرفقات) المحدد (المحددة)؟
+
+  ## Title
+title.mode.add.new.note=إضافة ملاحظة جديدة
+title.mode.edit.note=تعديل الملاحظة
+title.mode.add.new.bookmark=إضافة إشارة مرجعية جديدة
+title.mode.edit.bookmark=تحرير الإشارة المرجعية
+title.table.list.user=المستخدم
+title.table.list.group=المجموعة
+title.table.list.type=النوع
+title.table.list.creator=منشئ المحتوى
+setTitle.cvModalHandler.resource.manager=مدير الموارد
+
+## text for HTML
+attach.toDiv.text.uploading=جاري التحميل...
+attach.edit.button=تحرير
+attach.delete.button=حذف
+resource.type.public=عام
+resource.type.annotation=تعليق توضيحي عام
+resourceList.msg.noAttachments=لا توجد مرفقات في هذا الوقت.
+resourceList.msg.noAnnotations=لا توجد تعليقات توضيحية في هذا الوقت.
+resourceList.msg.noNotes=لا توجد ملاحظات في الوقت الحالي.
+resourceList.msg.noBookmarks=لا توجد إشارات مرجعية في الوقت الحالي.
+audittrail.table.title.audit.trail.record=سجل المراجعة
+audittrail.msg.noAudit=ها هي لا توجد مسارات تدقيق في الوقت الحالي. لن يتم حفظ سجل التدقيق الحالي حتى تقوم بإغلاق إطار المنشور هذا.
+audittrail.msg.noSaved.instances=لا توجد مثيلات محفوظة لهذا النموذج.
+audittrail.msg.proced.step.checked=تم الفحص
+audittrail.msg.proced.step.unchecked=غير محدد
+suspendSession.tooltip.text.comment=التعليق:
+suspendSession.tooltip.text.current.document=المستند الحالي:
+suspendSession.tooltip.text.current.document.title=عنوان المستند الحالي:
+suspendSession.tooltip.text.saved.by=تم الحفظ بواسطة:
+suspendSession.tooltip.text.saved.at=تم الحفظ في:
+viewTabletNotesDialog.msg.toAdd.aNew.note.open.document=لإضافة ملاحظة جديدة، يجب أن يكون لديك مستند مفتوح.
+viewTabletBookmarkDialog.msg.toAdd.aNew.bookmark.open.document=لإضافة إشارة مرجعية جديدة، يجب أن يكون لديك مستند مفتوح.
+viewTabletAttachmentsDialog.msg.toAttach.file.open.document=لإرفاق ملف، يجب أن يكون لديك مستند مفتوح.
+openUserDialog.select.company=حدد شركة
+openUserDialog.mode.add.title=مستخدم جديد
+openUserDialog.mode.edit.title=تحرير المستخدم
+suspendSession.noData.module.open=لا توجد وحدة بيانات مفتوحة حاليًا. يجب أن تكون وحدة البيانات نشطة لتمكين Suspend!
+suspendSession.noData.module.selected=لم يتم تحديد أي وحدة بيانات. يجب أن تكون وحدة البيانات نشطة لتمكين Suspend!
+rhi.select.required.step=للتشغيل، يرجى تحديد الخطوة المطلوبة
+rhi.select.step.toPlay=حدد خطوة للتشغيل
+alert.rollback.successfully.completed=اكتملت الاستعادة بنجاح.
+alert.no.rollback.data=لا يحتوي الكتاب على بيانات التراجع.
+
+######################
+### keys for cvBookList.js
+######################
+
+alert.rollback.publication.failed1=التراجع عن المنشور،
+alert.rollback.publication.failed2=فشل.
+alert.select.zip.file=يرجى تحديد ملف مضغوط.
+alert.updates.successfully.installed=تم تثبيت التحديثات بنجاح.
+alert.password.undefined1=كلمة المرور المطلوبة غير معرّفة. تم تعيين كلمة مرور مؤقتة:
+alert.password.undefined2=يرجى تذكر تغيير كلمة المرور بعد تسجيل الدخول أو الاتصال بالمسؤول للحصول على المساعدة.
+alert.login.again=يرجى تسجيل الدخول مرة أخرى.
+
+confirm.rollback.toLast.good.known.state=هل ترغب في التراجع إلى آخر حالة معروفة؟
+
+## Title
+title.updating.publication=تحديث المنشور
+
+## text for HTML
+text.installing.updates=جارٍ تثبيت التحديثات...
+text.login.failed=فشل تسجيل الدخول: يتعذر الاتصال بالخادم.
+text.close=Close (إغلاق)
+text.update.failed.to.install=فشل تثبيت التحديث
+publications.msg.one.update.pending=هناك تحديث واحد معلق.
+publications.msg.count.updates.pending1=ها هي
+publications.msg.count.updates.pending2=التحديثات معلقة.
+publications.msg.currently.update.pending=هناك تحديث واحد معلّق حاليًا.
+publications.msg.currently.count.updates.pending1=هناك حالياً
+publications.msg.currently.count.updates.pending2=التحديثات معلقة.
+publications.msg.updateReady.info1=المشكلة
+publications.msg.updateReady.info2=تحديث تزايدي
+publications.msg.updateReady.info3=بتاريخ
+publications.msg.currently.no.pending.updates=لا توجد تحديثات معلقة حاليًا.
+warning.msg.beginning.incremental.update.process=بدء عملية التحديث التزايدي. الرجاء إغلاق كافة نوافذ المنشور.
+error.msg.displayed.for.time1=خطأ! سيتم عرض هذه الرسالة لـ
+error.msg.displayed.for.time2=ثوان
+error.msg.update.failed.unable.load.update.content=فشل التحديث. يتعذر تحميل محتوى التحديث.
+update.msg.successfully.installed.all=تم تثبيت كل التحديثات بنجاح.
+update.msg.attempted.install.all=تمت محاولة تثبيت كل التحديثات.
+update.msg.successfully.installed=تم تثبيت التحديثات بنجاح
+update.msg.successfully.installed.one=تم تثبيت التحديث بنجاح
+update.msg.failed.install=التحديثات التي فشل تثبيتها
+text.msg.displayed.for.time1=سيتم عرض هذه الرسالة لمدة
+text.msg.displayed.for.time2=ثوان
+text.msg.will.be.displayed.for.time1=سيتم عرض هذه الرسالة لـ
+text.msg.proceeding=متابعة
+
+#################################
+### keys for cvControlFactory.js
+#################################
+
+error.loadControls.unable.locate.requested.set=يتعذر على {Controls} [ Fatal ] تحديد موقع المجموعة المطلوبة من controls.xml!
+
+#################################
+### keys for cvHelpFactory.js
+#################################
+error.unable.locate.requested.help.resource=خطأ [ContentaView]، يتعذر تحديد موقع مورد التعليمات المطلوب.
+error.unable.locate.named.help.resource=خطأ [ContentaView]، يتعذر تحديد موقع مورد التعليمات المسمى
+
+#################################
+### keys for cvHistory.js
+#################################
+
+text.msg.currently.no.history=لا توجد معلومات محفوظات حاليًا.
+title.not.applic=غير قابل للتطبيق
+
+#################################
+### keys for cvMedia.js
+#################################
+
+alert.getMediaType.error=لم يتم تحميل الرسم بالكامل، أعد المحاولة لاحقًا
+alert.rhiInitContext.error=لم يتم تحميل الرسم، يرجى المحاولة لاحقًا
+
+confirm.wait.several.minutes=قد يستغرق ذلك بضع دقائق. هل تريد المتابعة؟
+
+text.loading=جاري التحميل...
+text.msg.activeCGM.browser.support1=عارض ActiveCGM غير معتمد في
+text.msg.activeCGM.browser.support2=يرجى استخدام عميل Internet Explorer مثبت عليه ActiveX ActiveCGM لعرض هذا الرسم، أو طباعة المستند.
+text.msg.IsoView.browser.support1=عارض IsoView غير معتمد في
+text.msg.IsoView.browser.support2=يرجى استخدام عميل Internet Explorer مثبت عليه IsoView لعرض هذا الرسم، أو اطبع المستند.
+text.msg.Mobilizer.browser.support1=إن عارض NGrain Mobilizer غير معتمد في
+text.msg.Mobilizer.browser.support2=يرجى استخدام عميل Internet Explorer مع تثبيت NGrain Mobilizer لعرض هذا الرسم.
+text.msg.rhiModel.browser.support1=عارض SAP ثلاثي الأبعاد Visual Enterprise غير معتمد في
+text.msg.rhiModel.browser.support2=يرجى استخدام عميل Internet Explorer مع تثبيت عارض SAP 3D Visual Enterprise لعرض ذلك الرسم.
+text.msg.rhiModel.viewer.not.installed1=إذا رأيت هذا النص، فلن يتم تثبيت عارض SAP 3D Visual Enterprise أو
+text.msg.rhiModel.viewer.not.installed2=لم تتم التهيئة. يرجى تنزيله وتثبيته. استخدم الارتباط التالي
+text.msg.rhiModel.viewer.not.installed3=إذا استمرت رسالة الخطأ هذه في الظهور، فتحقق من إعدادات الأمان
+text.msg.rhiModel.viewer.not.installed4=(يجب السماح باستخدام ActiveX) أو استخدم مستعرض ويب آخر
+text.msg.rhiModel.viewer.not.installed5=يفضل استخدام Microsoft Internet Explorer.
+text.rhiGetCurrStepDesc.no.description.orName.for.step=لا يوجد وصف أو اسم لتسلسل الخطوات
+text.rhiGetCurrStepDesc.no.description.for.step=لا يوجد وصف للخطوة المسماة
+text.listAllSteps.no.steps.defined=لم يتم تحديد أي خطوات في ملف RH
+
+#################################
+### keys for cvPanelFactory.js
+#################################
+
+alert.error.loadPanels=يتعذر على {اللوحات} [ Fatal ] تحديد موقع المجموعة المطلوبة من اللوحات.xml. تعيين
+
+#################################
+### keys for cvPrinter.js
+#################################
+
+alert.select.section.toPrint=يجب تحديد قسم واحد على الأقل في الجدول للطباعة.
+
+#################################
+### keys for cvProcessdm.js
+#################################
+
+alert.reverseThread.troubleshooting.session=أنت في بداية جلسة استكشاف الأخطاء وإصلاحها هذه ولا يمكنك الانتقال إلى عقدة سابقة.
+alert.fill.all.mandatory.fields=يجب ملء كل الحقول الإلزامية.
+
+text.current.node=هذه هي العقدة الحالية
+
+#################################
+### keys for cvSearch.js
+#################################
+alert.fill.search.term=تحتاج إلى تعبئة مصطلح بحث في حقل \"بحث\"
+alert.select.category.or.fullText=يجب تحديد فئة أو نص كامل لجهاز بحث.
+alert.unable.handle.unknown.search.result.category=يتعذر معالجة نتيجة بحث غير معروفة، للفئة
+alert.unable.handle.unknown.search.result.type=يتعذر معالجة نتيجة بحث غير معروفة، من النوع
+
+#################################
+### keys for cvSnippet_InvalidRefs.js
+#################################
+
+alert.unknown.report.type=نوع تقرير غير معروف.
+
+text.unknown.report.type=نوع تقرير غير معروف
+text.invalid.references.report.forCurrent.document=تقرير مراجع غير صالح للمستند الحالي
+text.missing.images.report.forCurrent.document=تقرير الصور المفقودة للمستند الحالي
+text.missing.images.list=قائمة صور مفقودة
+
+#################################
+### keys for cvEmergencyProcedures.js
+#################################
+text.msg.no.emergency.procedures=لا توجد إجراءات طوارئ.
+
+## key for XSL styles
+style.common.nonapplicdm=وحدة بيانات غير قابلة للتطبيق
+style.common.nonapplictext=لا تنطبق وحدة البيانات هذه على التكوين الحالي الذي حددته.
+style.common.dmapplic=قابلية تطبيق وحدة البيانات
+style.common.datarestrict=تقييد البيانات
+style.common.datarestricttext=سيتم نقل معلومات تقييد البيانات إلى هنا.
+style.common.supequip=معدات الدعم
+style.common.refmat=المواد المرجعية
+style.common.matreq=المواد المطلوبة
+style.common.prelreqs=المتطلبات الأولية
+style.common.reqsconds=الشروط المطلوبة
+style.common.dmtp=وحدة البيانات / المنشور الفني
+style.common.reqjobcomp=المتطلبات بعد إكمال المهمة
+style.common.dmc=رمز وحدة البيانات
+style.common.issueno=رقم الإصدار
+style.common.newdm=وحدة بيانات جديدة
+style.common.applic=التطبيق
+style.common.issuedate=تاريخ الإصدار
+style.common.secclass=تصنيف الأمان
+style.common.instructions=التعليمات
+style.common.distribution=التوزيع
+style.common.exportcontrol=مراقبة التصدير
+style.common.destruction=التدمير
+style.common.figure=الشكل
+style.common.hotspot=نقطة فعالة
+style.common.safecond=ظروف السلامة
+style.common.crossref=مرجع متقاطع
+style.common.warning=تحذير
+style.common.caution=تنبيه
+style.common.note=ملاحظة
+style.common.noforeigndisclosure=لا كشف خارجي
+style.common.geninfo=معلومات عامة
+style.common.aboutproced=حول هذا الإجراء
+style.common.reqperson=الأفراد المطلوبين
+style.common.personnel=الموظفون
+style.common.category=الفئة
+style.common.trade=التجارة
+style.common.esttime=الوقت المقدّر
+style.common.man=رجل
+style.common.asreq=حسب الحاجة.
+style.common.containdm=وحدة بيانات الحاوية
+style.common.selectrefdm=حدد المرجع التالي
+style.procedure.nosupply=لا حاجة إلى أي مستلزمات.
+style.procedure.nospare=لا يلزم قطع الغيار.
+style.procedure.procedure=الإجراء
+style.procedure.requirecomplete=المتطلبات بعد إكمال المهمة
+style.procedure.norequirement=لا توجد متطلبات.
+style.general.code=الرمز
+style.general.none=لا شيء
+style.general.name=الاسم
+style.general.identification=التعريف
+style.general.quantity=الكمية
+style.general.description=الوصف
+style.general.table=الجدول
+style.general.type=النوع
+style.general.supply=الإمداد
+style.matreq.supplies=المستلزمات
+style.matreq.spares=قطع الغيار
+style.supteqt.supportequipment=معدات الدعم
+style.refmat.referencedm=وحدات البيانات المرجعية
+style.refmat.noreferencedm=لا توجد وحدات بيانات مرجعية.
+style.refmat.dm=وحدة البيانات
+style.refmat.referencetp=المنشورات التقنية المشار إليها
+style.refmat.tp=المنشور الفني
+style.refmat.noreferencetp=لا توجد منشورات تقنية مرجعية.
+style.commontmpl.no=لا
+style.commontmpl.withid=مع المعرّف
+style.commontmpl.informaltable=جدول غير رسمي
+style.commontmpl.criticaljuncture=منعطف حاسم
+style.commontmpl.testingofsystem=اختبار النظام
+style.commontmpl.independentcheck=فحص مستقل
+style.commontmpl.maintenancegroundup=صيانة أرضية
+style.commontmpl.maintenancetestflight=رحلة اختبار الصيانة
+style.commontmpl.signaturerequired=التوقيع مطلوب
+style.commontmpl.taskcomplete=اكتملت المهمة
+style.ipc.itemno=رقم البند
+style.ipc.fig=الشكل
+style.ipc.indxsheetno=INDX/ورقة رقم
+style.ipc.rfs=RFs
+style.ipc.unitsperassy=الوحدات لكل مجموعة
+style.ipc.cage=القفص
+style.ipc.partnumber=رقم القطعة
+style.ipc.description=الوصف
+style.ipc.usableoncode=قابل للاستخدام على الكود
+style.ipc.srv=SRV
+style.ipc.smr=SMR
+style.ipc.mov=MOV
+style.ipc.item=العنصر
+style.ipc.unitsperassembly=الوحدات لكل مجموعة
+style.ipc.ncage=NCAGE
+style.ipc.partno=رقم البند
+style.ipc.nomenclature=التسمية
+style.fault.faultcode=كود العطل
+style.fault.endofdatamodule=نهاية وحدة البيانات
+style.fault.faultdescription=وصف العطل
+style.fault.faultisolationprocedure=إجراء عزل العطل
+style.fault.gotostep=انتقل إلى الخطوة
+style.fault.yes=نعم
+style.fault.no=لا
+style.fault.isolationprocedure=إجراء العزل
+style.fault.faultcondition=حالة العطل
+style.fault.faultcontext=سياق العطل
+style.fault.faultisolationtest=اختبار عزل العطل
+style.fault.testcodetype=رمز / نوع الاختبار
+style.fault.detect=الكشف
+style.fault.lru=LRU
+style.fault.mfc=MFC
+style.fault.isolatedetectedfault=عزل العطل المكتشف
+style.fault.locateandrepair=تحديد الموقع وإصلاحه
+style.fault.repair=إصلاح
+style.fault.testdescription=وصف الاختبار
+style.fault.testprocedure=إجراء الاختبار
+style.fault.isolate=عزل
+style.fault.test=اختبار
+style.fault.context=السياق
+style.fault.remarks=ملاحظات
+style.fault.fault=عطل
+style.schedule.timelimitsidentifier=Timelimits: المعرف
+style.general.equipment=المعدات
+style.schedule.pnr=PNR
+style.general.category=الفئة
+style.schedule.referencedtasks=المهام المرجعية
+style.schedule.limitinformation=معلومات الحد
+style.schedule.limitrange=نطاق الحد
+style.general.from=من
+style.schedule.trigger=المشغل
+style.schedule.groupno=رقم المجموعة
+style.schedule.componentassembly=المكون/المجموعة
+style.schedule.maintenancefunction=وظيفة الصيانة
+style.schedule.maintfunc=الصيانة الوظيفة
+style.schedule.maintenancelevel=مستوى الصيانة
+style.schedule.toolsandequipment=الأدوات والمعدات
+style.schedule.field=الحقل
+style.schedule.sust=SUST.
+style.schedule.c=ج
+style.schedule.f=و
+style.schedule.h=h
+style.schedule.d=د
+style.schedule.removeinstall=إزالة/تثبيت
+style.general.inspect=افحص
+style.general.service=الخدمة
+style.general.adjust=اضبط
+style.general.align=محاذاة
+style.general.calibrate=معايرة
+style.general.replace=استبدل
+style.general.repair=إصلاح
+style.general.overhaul=الترميم
+style.general.rebuild=إعادة البناء
+style.general.tasks=المهام
+style.schedule.notavailableforprojects=غير متوفر للمشاريع
+style.schedule.limittype=نوع الحد
+style.schedule.limitcondition=حالة الحد
+style.schedule.performonce=التنفيذ مرة واحدة
+style.schedule.oncondition=على الحالة
+style.schedule.performperiodically=قم بأداء المهام بشكل دوري
+style.schedule.unitofmeasure=وحدة القياس
+style.schedule.limitrangefrom=نطاق الحد من
+style.schedule.limitrangeto=حدد النطاق إلى
+style.schedule.threshold=الحد
+style.schedule.flighthours=ساعات الطيران
+style.schedule.flightcycles=رحلة جوية الدورات
+style.schedule.months=أشهر
+style.schedule.weeks=أسابيع
+style.schedule.years=السنوات
+style.schedule.days=أيام
+style.schedule.supersoniccycles=دورات أسرع من الصوت
+style.schedule.pressurecycles=دورات الضغط
+style.schedule.enginecycles=دورات المحرك
+style.schedule.enginechange=تغيير المحرك
+style.schedule.shopvisits=زيارات المتاجر
+style.schedule.apuchange=تغيير وحدة الطاقة الإضافية
+style.schedule.landinggearchange=تغيير ترس الهبوط
+style.schedule.wheelchange=تغيير العجلة
+style.schedule.enginestart=بدء تشغيل المحرك
+style.schedule.apuhours=ساعات وحدة APU
+style.schedule.enginehours=ساعات المحرك
+style.schedule.elapsedhours=الساعات المنقضية
+style.schedule.landings=الهبوط
+style.schedule.operatingcycles=دورات التشغيل
+style.schedule.operatinghours=ساعات التشغيل
+style.schedule.supersonichours=ساعات أسرع من الصوت
+style.schedule.acheck=&quot;&quot;&quot; تحقق من الأمر
+style.schedule.bcheck=&quot;&quot;&quot;&quot; تحقق من الأمر
+style.schedule.ccheck=&quot;&quot;&quot; تحقق
+style.schedule.dcheck=&quot;&quot;&quot; تحقق
+style.schedule.echeck=&quot;القُسامة؛ تحقق
+style.schedule.daily=يوميًا
+style.schedule.overnight=بين عشية وضحاها
+style.schedule.preflight=قبل الطيران
+style.schedule.routinecheck=الفحص الروتيني
+style.schedule.structuralccheck=&quot;فحص&quot; الهيكل
+style.schedule.servicecheck=فحص الخدمة
+style.schedule.transit=النقل
+style.schedule.kilometers=كيلومترات
+style.schedule.consumptionincubicmeter=الاستهلاك بالمتر المكعب
+style.schedule.consumptioninliter=استهلاك باللتر
+style.schedule.numberofshotseach=عدد الطلقات الإشعاعية - كل منها
+style.schedule.numberofshotsefc=عدد الطلقات الإشعاعية - شحن كامل مكافئ (EFC)
+style.general.notdefined=غير محدد
+style.schedule.inspection=الفحص
+style.schedule.inspectiontype=نوع التفتيش
+style.schedule.triggerreferencedtasks=تشغيل المهام المرجعية
+style.table.mustspecifythenumberofcolumns=خطأ: يجب أن تحدد جداول تراخيص وصول العملاء عدد الأعمدة.
+style.table.noconvertlengthfunctionavailable=لا تتوفر وظيفة التقارب Length.
+style.table.noadjustcolumnwidthsfunctionavailable=لا تتوفر وظيفة ضبط ColumnWidths.
+style.table.findintable=أوجِدْ في الجدولِ
+style.table.wholeword=كلمة كاملة
+style.table.matchcase=مطابقة حالة الأحرف
+style.table.currentsectiononly=القسم الحالي فقط
+style.table.result=النتيجة
+style.table.noapplicabledatathissection=لا توجد بيانات قابلة للتطبيق في هذا القسم.
+style.table.determinecolumnnumber=حدد رقم العمود الذي يحدث فيه إدخال معين
+style.table.ifan=إذا كان
+style.table.entry=الإدخال
+style.table.hasa=لديه
+style.table.or=أو
+style.table.attributethistemplate=السمة، هذا القالب
+style.table.determinenumberofthecolumn=سيحدد عدد الأعمدة التي يجب أن يحدث فيها الإدخال.
+style.table.forother=للغير
+style.table.nothingisreturned=س، لا شيء يعود.
+style.table.elementtobetested=العنصر الذي سيتم اختباره.
+style.table.the=ال
+style.table.returnsthecolumnnumber=يُرجع هذا القالب رقم العمود إذا أمكن تحديده،
+style.table.orzero=أو 0 (السلسلة الفارغة)
+style.checklist.checklistintervals=الفواصل الزمنية لقائمة التحقق
+style.checklist.interval=الفاصل الزمني
+style.checklist.equipmentnotavailable=المعدات غير متوفرة
+style.crew.if=إذا
+style.crew.elseif=وإلا إذا
+style.wiring.wirenumber=رقم السلك
+style.wiring.fromreference=من المرجع
+style.wiring.designator=المُعِّمِّم
+style.wiring.toreference=إلى مرجع
+style.wiring.wiretype=نوع السلك
+
+## LAM added for wiring
+style.wiring.equipdescrref=وصف المعدات:
+style.wiring.functionaldescrref=الوصف الوظيفي:
+style.wiring.harness=ضفيرة الأسلاك
+style.wiring.harnessinfo=معلومات حول طقم أحزمة الكرسي
+style.wiring.illustrationRef=الشكل التوضيحي، الرقم المرجعي:
+style.wiring.ref=المرجع
+style.wiring.references=المراجع
+style.wiring.wirecolour=لون السلك
+style.wiring.wireconnection=اتصال سلكي
+style.wiring.wiregauge=مقياس السلك
+style.wiring.wireinstallation=تركيب السلك
+style.wiring.wirenumber=رقم السلك
+style.wiring.wirepartnumber=رقم قطعة السلك
+## / LAM added for wiring
+
+style.expert.requiredsupplies=المستلزمات المطلوبة
+style.expert.requiredspares=قطع الغيار المطلوبة
+style.expert.safetyinstructions=تعليمات السلامة
+style.expert.nomen=الآن
+style.expert.qty=الكمية
+style.common.unverified=لم يتم التحقق المراجع
+style.common.references=
+style.common.noreferences=لا توجد مراجع
+style.common.step=الخطوة
+style.common.para=بارا
+style.template.note=ملاحظة
+style.template.dataoutofdate=قد تحتوي هذه الصفحة على بيانات قديمة. راجع أحدث IETM
+style.template.datapath=مسار البيانات
+style.template.destructionnotice=إشعار التدمير - بالنسبة للمستندات غير المصنفة والمحدودة، يتم إتلافها بأي طريقة تمنع الكشف عن المحتويات أو إعادة بناء المستند.
+style.template.ietmversion=إصدار IETM
+style.template.ietmdate=تاريخ IETM
+style.template.version=الإصدار
+style.template.pubdate=تاريخ الحانة
+style.template.dateprinted=تمت طباعة التاريخ
+style.template.pubnumber=رقم الحانة
+style.security.portionMarking.unclassified=(U)
+style.security.portionMarking.confidential=(ج)
+style.security.portionMarking.secret=(ق)
+style.security.portionMarking.topsecret=(TS)

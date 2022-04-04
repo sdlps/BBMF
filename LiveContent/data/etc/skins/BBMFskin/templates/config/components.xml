@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/components.xml 2.0 2019/05/22 21:01:15GMT milind Exp  $ -->
+<components>
+  <set id="main">
+    <component id="cvButtonMenu">
+      <item virtual="menu" target="menuBar" type="panel"/>
+      <item virtual="submenu" target="submenu" type="panel"/>
+      <!-- Top Nav Bar -->
+      <item virtual="homeButton" target="CVCtrl_home" type="control"/>
+      <item virtual="leftPanel" target="CVCtrl_leftPanel" type="control"/>
+      <item virtual="splitButton" target="CVCtrl_split" type="control"/>
+      <item virtual="graphicButton" target="CVCtrl_graphic" type="control"/>
+      <item virtual="docButton" target="CVCtrl_doc" type="control"/>
+      <item virtual="helpButton" target="CVCtrl_help" type="control"/>
+      <item virtual="searchButton" target="CVCtrl_search" type="control"/>
+    </component>
+    <component id="cvHistory">
+      <item virtual="back" target="CVCtrl_back" type="control"/>
+      <item virtual="forward" target="CVCtrl_forward" type="control"/>
+      <item virtual="historyPanel" target="tocPanel" type="panel"/>
+      <item virtual="showHistory" target="CVCtrl_history" type="control"/>
+      <item virtual="hideHistory" target="CVCtrl_hideHistory" type="control"/>
+      <prop id="maxLength">200</prop>
+    </component>
+    <component id="cvMedia">
+      <!-- NOT a shared panel, because cvMedia will NOT write to the data panel (only needs to be able to look at it) -->
+      <item virtual="data" target="contentPanel" type="panel"/>
+      <!-- graphics panel -->
+      <item virtual="prevRHIStep" target="CVCtrl_prevRHIStep" type="control"/>
+      <item virtual="currRHIStep" target="CVCtrl_currRHIStep" type="control"/>
+      <item virtual="nextRHIStep" target="CVCtrl_nextRHIStep" type="control"/>
+      <item virtual="allRHISteps" target="CVCtrl_allRHISteps" type="control"/>
+      <item virtual="listRHISteps" target="CVCtrl_listRHISteps" type="control"/>
+      <item virtual="onRHIXray" target="CVCtrl_onRHIXray" type="control"/>
+      <item virtual="offRHIXray" target="CVCtrl_offRHIXray" type="control"/>
+      <item virtual="waitRHI" target="CVCtrl_waitRHI" type="control"/>
+      <item virtual="pauseRHIStep" target="CVCtrl_pauseRHIStep" type="control"/>
+      <item virtual="resumeRHIStep" target="CVCtrl_resumeRHIStep" type="control"/>
+      <item virtual="media" target="graphicsPanel" type="panel"/>
+      <item virtual="container" target="mainContainer" type="panel"/>
+      <item virtual="hide" target="CVCtrl_hideMedia" type="control"/>
+      <item virtual="prevImage" target="CVCtrl_prevImage" type="control"/>
+      <item virtual="nextImage" target="CVCtrl_nextImage" type="control"/>
+      <item virtual="playAnim" target="CVCtrl_playAnim" type="control"/>
+      <item virtual="pauseAnim" target="CVCtrl_pauseAnim" type="control"/>
+      <item virtual="rewindAnim" target="CVCtrl_rewindAnim" type="control"/>
+      <item virtual="tearOff" target="CVCtrl_tearOff" type="control"/>
+      <item virtual="typeSelect" target="CVCtrl_selectType" type="control"/>
+      <item virtual="flipPanels" target="CV_flipPanels" type="control"/>
+      <item virtual="svgZoomIn" target="CVCtrl_svgZoomIn" type="control"/>
+      <item virtual="svgZoomOut" target="CVCtrl_svgZoomOut" type="control"/>
+      <item virtual="svgPanLeft" target="CVCtrl_svgPanLeft" type="control"/>
+      <item virtual="svgPanRight" target="CVCtrl_svgPanRight" type="control"/>
+      <item virtual="svgPanUp" target="CVCtrl_svgPanUp" type="control"/>
+      <item virtual="svgPanDown" target="CVCtrl_svgPanDown" type="control"/>
+      <item virtual="svgReset" target="CVCtrl_svgReset" type="control"/>
+      <item virtual="svgHighlightAllHotspots" target="CVCtrl_svgHighlightAllHotspots" type="control"/>
+      <item virtual="svgRedliningPencil" target="CVCtrl_svgRedliningPencil" type="control"/>
+      <item virtual="svgRedliningCircle" target="CVCtrl_svgRedliningCircle" type="control"/>
+      <item virtual="svgRedliningRectangle" target="CVCtrl_svgRedliningRectangle" type="control"/>
+      <item virtual="svgRedliningLine" target="CVCtrl_svgRedliningLine" type="control"/>
+      <item virtual="svgRedliningAnnotation" target="CVCtrl_svgRedliningAnnotation" type="control"/>
+      <item virtual="svgRedliningErase" target="CVCtrl_svgRedliningErase" type="control"/>
+      <item virtual="svgRedliningDownload" target="CVCtrl_svgRedliningDownload" type="control"/>
+      <item virtual="svgRedlining" target="CVCtrl_svgRedlining" type="control"/>
+      <prop id="tearOff">0</prop>
+      <!-- is this media operating in a tearOff environment? -->
+      <prop id="alwaysShowMedia">1</prop>
+      <!-- setting to automatically open media or not -->
+      <!-- resize simple images to 100% height of the graphic panel -->
+      <prop id="resize_simple_images">0</prop>
+      <!-- 1 = all simple images = 100% height of graphics pane -->
+      <!-- SVG hotspot display time in milliseconds 1000 ms = 1 sec  -->
+      <prop id="SVGHotspotDisplayTime">6000</prop>
+    </component>
+    <component id="cvModalHandler">
+      <item virtual="blocker" target="modalBlocking" type="panel"/>
+      <item virtual="modal" target="modalDialog" type="panel"/>
+      <item virtual="modalContent" target="modalContent" type="panel"/>
+      <item virtual="closeModal" target="CVCtrl_modalClose" type="control"/>
+      <item virtual="secondblocker" target="secondModalBlocking" type="panel"/>
+      <item virtual="secondmodal" target="secondModalDialog" type="panel"/>
+      <item virtual="secondmodalContent" target="secondModalContent" type="panel"/>
+      <item virtual="secondcloseModal" target="CVCtrl_secondModalClose" type="control"/>
+    </component>
+    <component id="cvPrinter">
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+    </component>
+    <component id="cvResourceManager">
+
+      <!--LAM:2022-02-16-->
+      <item extension="bbmf_cvResourceManager"/>
+      <!--/LAM:2022-02-16-->
+
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="secondpanel" target="secondModalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+      <item virtual="gotoButton" target="CVCtrl_gotoAnnot" type="control"/>
+      <item virtual="editButton" target="CVCtrl_editAnnot" type="control"/>
+      <item virtual="deleteButton" target="CVCtrl_deleteAnnot" type="control"/>
+      <item virtual="deleteAllButton" target="CVCtrl_deleteAllAnnot" type="control"/>
+      <item virtual="exitButton" target="CVCtrl_exitAnnot" type="control"/>
+    </component>
+    <component id="cvSearch">
+      <item virtual="searchPanel" target="tocPanel" type="panel"/>
+      <item virtual="searchTab" target="CVTab_search" type="control"/>
+      <item virtual="searchStart" target="CVCtrl_start" type="control"/>
+      <item virtual="searchStop" target="CVCtrl_stopSearch" type="control"/>
+      <item virtual="searchClear" target="CVCtrl_clear" type="control"/>
+      <item virtual="searchHighlight" target="CVCtrl_highlightSearch" type="control"/>
+      <item virtual="searchHide" target="CVCtrl_hideSearch" type="control"/>
+      <item virtual="searchToggleTOC" target="CVCtrl_toggleTOCSearch" type="control"/>
+      <item virtual="searchToggleFT" target="CVCtrl_toggleFTSearch" type="control"/>
+      <item virtual="searchToggleCat" target="CVCtrl_toggleCatSearch" type="control"/>
+      <item virtual="searchToggleResults" target="CVCtrl_toggleResultsSearch" type="control"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+      <item virtual="ww_panel" target="modalContent" type="panel"/>
+    </component>
+    <component id="cvTOC">
+
+      <!--LAM:2022-02-23-->
+      <item extension="bbmf_cvTOC"/>
+      <!--/LAM:2022-02-23-->
+
+      <item virtual="toc" target="tocPanel" type="panel"/>
+      <item virtual="btnbar" target="controlbar" type="panel"/>
+      <item virtual="syncToc" target="CV_syncToc" type="control"/>
+      <item virtual="toggleToc" target="CV_toggleToc" type="control"/>
+      <item virtual="tocTab" target="CVTab_toc" type="control"/>
+      <item virtual="toggleCodes" target="CV_toggleTocCodes" type="control"/>
+      <prop id="tocLevel">1</prop>
+      <!-- depth of TOC to load -->
+      <prop id="disableTOCHitCount">0</prop>
+      <!-- Setting to 1 will suppress hit count calc and display in TOC -->
+    </component>
+    <!--LAM:2021-10-13
+    <component id="cvEmergencyProcedures">
+      <item virtual="emergencyProcedurePanels" target="tocPanel" type="panel"/>
+      <item virtual="showEmergencyProcedures" target="CVCtrl_emergencyProcedures" type="control"/>
+      <item virtual="hideEmergencyProcedures" target="CVCtrl_hideEmergencyProcedures" type="control"/>
+    </component>
+    -->
+    <!--/LAM:2021-10-13-->
+    <component id="cvLeftNav">
+      <item virtual="leftNavPanel" target="tocPanel" type="panel"/>
+    </component>
+    <!-- <component id="reviewcomments"></component> -->
+    <component id="cvDocHandler">
+
+      <!--LAM:2022-02-02-->
+      <item extension="bbmf_cvDocHandler"/>
+      <!--/LAM:2022-02-02-->
+
+      <!-- panels -->
+      <item virtual="data" target="contentPanel" type="panel"/>
+      <item virtual="nav" target="tocPanel" type="panel"/>
+      <!-- btn bar -->
+      <item virtual="refresh" target="CVCtrl_refresh" type="control"/>
+      <item virtual="exit" target="CVCtrl_exit" type="control"/>
+      <item virtual="admin" target="CVCtrl_admin" type="control"/>
+      <item virtual="config" target="CVCtrl_config" type="control"/>
+      <item virtual="save" target="CVCtrl_save" type="control"/>
+      <item virtual="tools" target="CVCtrl_tools" type="control"/>
+      <item virtual="home" target="CVCtrl_home" type="control"/>
+      <item virtual="split" target="CVCtrl_split" type="control"/>
+      <item virtual="graphic" target="CVCtrl_graphic" type="control"/>
+      <item virtual="doc" target="CVCtrl_doc" type="control"/>
+      <item virtual="settings" target="CVCtrl_settings" type="control"/>
+      <item virtual="help" target="CVCtrl_help" type="control"/>
+      <item virtual="helpM" target="CVCtrl_helpM" type="control"/>
+      <item virtual="search" target="CVCtrl_search" type="control"/>
+      <item virtual="tablePaging" target="CVCtrl_TablePaging" type="control"/>
+      <item virtual="printDoc" target="CVCtrl_print" type="control"/>
+      <!-- Second Nav Bar -->
+      <item virtual="dmBack" target="CV_dmBack" type="control"/>
+      <item virtual="bookmarks" target="CV_bookmark" type="control"/>
+      <item virtual="suspend" target="CV_suspend" type="control"/>
+      <item virtual="attachments" target="CV_attachments" type="control"/>
+      <item virtual="bufr765forms" target="CV_bufr765forms" type="control"/><!--LAM:2022-02-16-->
+      <item virtual="revisions" target="CV_revisions" type="control"/>
+      <item virtual="prelReq" target="CV_prelReq" type="control"/>
+      <item virtual="notes" target="CV_notes" type="control"/>
+      <item virtual="applic" target="CV_applic" type="control"/>
+      <item virtual="dmForward" target="CV_dmForward" type="control"/>
+      <item virtual="users" target="CV_users" type="control"/>
+      <item virtual="position" target="CV_position" type="control"/>
+      <item virtual="changes" target="CV_changes" type="control"/>
+      <item virtual="signOut" target="CV_signOut" type="control"/>
+      <item virtual="reports" target="CV_reports" type="control"/>
+      <item virtual="markup" target="CV_markup" type="control"/>
+      <item virtual="releaseNotes" target="CV_releaseNotes" type="control"/>
+      <item virtual="userGuide" target="CV_userGuide" type="control"/>
+      <item virtual="about" target="CV_about" type="control"/>
+      <item virtual="showFO" target="CV_showFO" type="control"/>
+      <item virtual="showHTML" target="CV_showHTML" type="control"/>
+      <item virtual="showXML" target="CV_showXML" type="control"/>
+      <item virtual="debug" target="CV_debug" type="control"/>
+      <item virtual="revisionHighlight" target="CV_revisionHighlight" type="control"/>
+      <item virtual="currentRef" target="CV_currentRef" type="control"/>
+      <item virtual="invalidRef" target="CV_invalidRef" type="control"/>
+      <item virtual="missingImage" target="CV_missingImage" type="control"/>
+      <item virtual="auditTrail" target="CV_auditTrail" type="control"/>
+      <item virtual="printDocMenu" target="CV_printDoc" type="control"/>
+      <item virtual="printRefs" target="CV_printRefs" type="control"/>
+      <item virtual="printAllFigures" target="CV_printAllFigures" type="control"/>
+      <item virtual="printCurrentFigure" target="CV_printCurrentFigure" type="control"/>
+      <!-- resource list tabs -->
+      <item virtual="activity" target="CVTab_act" type="control"/>
+      <item virtual="figures" target="CVTab_fig" type="control"/>
+      <item virtual="tables" target="CVTab_tbl" type="control"/>
+      <!-- document tabs -->
+      <item virtual="docinfo" target="CVCtrl_DocInfo" type="control"/>
+      <!-- <item virtual="status" target="CVTab_status" type="control"/>-->
+      <item virtual="refmat" target="CVTab_refmat" type="control"/>
+      <!--<item virtual="datarest" target="CVTab_datarest" type="control"/>		-->
+      <item virtual="matreq" target="CVTab_matreq" type="control"/>
+      <item virtual="supteqt" target="CVTab_supteq" type="control"/>
+      <item virtual="main" target="CVTab_task" type="control"/>
+      <!-- next and prev step buttons -->
+      <item virtual="nextStep" target="CV_nextStep" type="control"/>
+      <item virtual="prevStep" target="CV_prevStep" type="control"/>
+      <!-- find buttons -->
+      <item virtual="findText" target="CVCtrl_find" type="control"/>
+      <!-- modal for finding -->
+      <item virtual="modalPanel" target="modalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+      <item virtual="closeModal" target="CVCtrl_modalClose" type="control"/>
+      <!-- troubelshooting buttons -->
+      <item virtual="pdmNext" target="CVCtrl_NextPDM" type="control"/>
+      <item virtual="pdmPrev" target="CVCtrl_PrevPDM" type="control"/>
+      <!-- Show or hide troubelshooting buttons. Default is hide. Set to 1 to show -->
+      <prop id="displayPDMButtons">0</prop>
+      <!-- display Document TOC int the TOC -->
+      <prop id="activityInTOC">1</prop>
+      <prop id="resourceTabList">activity|figures|tables</prop>
+      <!-- list of document tabs -->
+      <prop id="documentTabList">refmat|matreq|supteqt|main</prop>
+      <!-- list of document tabs -->
+      <!-- replace S1000D DMCs with DM Titles if the title is not provided -->
+      <prop id="S1000D_ReplaceDMCwithDMTitle">1</prop>
+      <!-- Show the Full IPC Parts List or Show a Single Item -->
+      <prop id="S1000D_IPC_ShowFullList">1</prop>
+      <!-- Automaticaly change figure in graphic_panel when landing on step with figure -->
+      <prop id="AutoLoadFigure">1</prop>
+      <prop id="iPadAutoLoadFigure">0</prop>
+      <!-- Encoding indicator for special char in xref - Set to 0 for ISO, 1 for UTF (default) -->
+      <prop id="UTFEncoding">1</prop>
+      <!-- NV Harmonization: 1=Undo dialog confirmation in PDM is required -->
+      <prop id="require_pdm_undo_confirm">1</prop>
+      <!-- NV Harmonization: 1=Stepping through a procedure within a PDM is required -->
+      <prop id="require_pdm_proc_stepping">1</prop>
+      <!-- NV Harmonization: 1=Show and stop at procanchor points in procedure -->
+      <prop id="show_procanchor_points">1</prop>
+      <!-- NV Harmonization: 1=Show and stop at stepanchor points in procedure -->
+      <prop id="show_stepanchor_points">1</prop>
+      <!-- Set timeout for loading large DM spinner in milliseconds 1000 ms = 1 sec  -->
+      <prop id="loadingMsgDisplayTime">500</prop>
+    </component>
+    <component id="cvApplicHandler">
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="clearButton" target="CVCtrl_clearApplic" type="control"/>
+    </component>
+    <component id="cvUserPrefs">
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+    </component>
+    <component id="cvReports">
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="okButton" target="CVCtrl_OK" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+    </component>
+  </set>
+  <set id="booklist">
+    <component id="cvModalHandler">
+      <item virtual="blocker" target="modalBlocking" type="panel"/>
+      <item virtual="modal" target="modalDialog" type="panel"/>
+      <item virtual="modalContent" target="modalContent" type="panel"/>
+      <item virtual="closeModal" target="CVCtrl_modalClose" type="control"/>
+    </component>
+    <component id="cvBookList">
+      <item virtual="panel" target="modalContent" type="panel"/>
+      <item virtual="installButton" target="CVCtrl_Install" type="control"/>
+      <item virtual="cancelButton" target="CVCtrl_cancel" type="control"/>
+      <prop id="showStatus">1</prop>
+    </component>
+  </set>
+  <set id="tearOff">
+    <component id="cvMedia">
+      <!-- NOT a shared panel, because cvMedia will NOT write to the data panel (only needs to be able to look at it) -->
+      <item virtual="data" target="contentPanel" type="panel"/>
+      <!-- graphics panel -->
+      <item virtual="prevRHIStep" target="CVCtrl_prevRHIStep" type="control"/>
+      <item virtual="currRHIStep" target="CVCtrl_currRHIStep" type="control"/>
+      <item virtual="nextRHIStep" target="CVCtrl_nextRHIStep" type="control"/>
+      <item virtual="allRHISteps" target="CVCtrl_allRHISteps" type="control"/>
+      <item virtual="listRHISteps" target="CVCtrl_listRHISteps" type="control"/>
+      <item virtual="onRHIXray" target="CVCtrl_onRHIXray" type="control"/>
+      <item virtual="offRHIXray" target="CVCtrl_offRHIXray" type="control"/>
+      <item virtual="waitRHI" target="CVCtrl_waitRHI" type="control"/>
+      <item virtual="pauseRHIStep" target="CVCtrl_pauseRHIStep" type="control"/>
+      <item virtual="resumeRHIStep" target="CVCtrl_resumeRHIStep" type="control"/>
+      <item virtual="media" target="graphicsPanel" type="panel"/>
+      <item virtual="container" target="mainContainer" type="panel"/>
+      <item virtual="hide" target="CVCtrl_hideMedia" type="control"/>
+      <item virtual="prevImage" target="CVCtrl_prevImage" type="control"/>
+      <item virtual="nextImage" target="CVCtrl_nextImage" type="control"/>
+      <item virtual="playAnim" target="CVCtrl_playAnim" type="control"/>
+      <item virtual="pauseAnim" target="CVCtrl_pauseAnim" type="control"/>
+      <item virtual="rewindAnim" target="CVCtrl_rewindAnim" type="control"/>
+      <item virtual="tearOff" target="CVCtrl_tearOff" type="control"/>
+      <item virtual="typeSelect" target="CVCtrl_selectType" type="control"/>
+      <item virtual="flipPanels" target="CV_flipPanels" type="control"/>
+      <item virtual="svgZoomIn" target="CVCtrl_svgZoomIn" type="control"/>
+      <item virtual="svgZoomOut" target="CVCtrl_svgZoomOut" type="control"/>
+      <item virtual="svgPanLeft" target="CVCtrl_svgPanLeft" type="control"/>
+      <item virtual="svgPanRight" target="CVCtrl_svgPanRight" type="control"/>
+      <item virtual="svgPanUp" target="CVCtrl_svgPanUp" type="control"/>
+      <item virtual="svgPanDown" target="CVCtrl_svgPanDown" type="control"/>
+      <item virtual="svgReset" target="CVCtrl_svgReset" type="control"/>
+      <item virtual="svgHighlightAllHotspots" target="CVCtrl_svgHighlightAllHotspots" type="control"/>
+      <item virtual="svgRedliningPencil" target="CVCtrl_svgRedliningPencil" type="control"/>
+      <item virtual="svgRedliningCircle" target="CVCtrl_svgRedliningCircle" type="control"/>
+      <item virtual="svgRedliningRectangle" target="CVCtrl_svgRedliningRectangle" type="control"/>
+      <item virtual="svgRedliningLine" target="CVCtrl_svgRedliningLine" type="control"/>
+      <item virtual="svgRedliningAnnotation" target="CVCtrl_svgRedliningAnnotation" type="control"/>
+      <item virtual="svgRedliningErase" target="CVCtrl_svgRedliningErase" type="control"/>
+      <item virtual="svgRedliningDownload" target="CVCtrl_svgRedliningDownload" type="control"/>
+      <item virtual="svgRedlining" target="CVCtrl_svgRedlining" type="control"/>
+      <prop id="tearOff">1</prop>
+      <!-- is this media operating in a tearOff environment? -->
+      <prop id="alwaysShowMedia">0</prop>
+      <!-- setting to automatically open media or not -->
+      <prop id="resize_simple_images">0</prop>
+      <!-- 1 = all simple images = 100% height of graphics pane -->
+      <!-- SVG hotspot display time in milliseconds 1000 ms = 1 sec  -->
+      <prop id="SVGHotspotDisplayTime">2500</prop>
+    </component>
+    <component id="cvResourceManager"/>
+  </set>
+</components>

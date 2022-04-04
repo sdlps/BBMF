@@ -1,0 +1,104 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/auditReport.html 2.0 2019/05/22 21:01:08GMT milind Exp  $ -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_COLALIAS" content="@COL_ALIAS@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_LABEL" content="@LABEL_NAME@">
+
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=skin.css"> </link>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+
+
+<script>
+
+function funcOnLoad() {
+	// alert(opener.CVPortal);
+	var CVPortal = opener.CVPortal;
+
+	// load the XML, style it and go on:
+	var url = CVPortal.components.cvResourceManager.auditReportXML;
+	// alert("URL: " + url);
+	$.ajax({
+		method: "GET",
+		dataType: "xml",
+		url: url,
+		async: true,
+		success: function(xml) {
+			//alert("!IN");
+			// run the audit style:
+			$("#AUDIT_REPORT").each(function() {
+				CVPortal.components.cvResourceManager.cvTransformXML(xml, "auditXSL", this);
+				//alert($(this).html());
+
+				$("div.search_event", this).each(function() {
+					var searchId = $(this).attr("searchLoadId");
+
+					if($("li.selected_result[@searchLoadId='"+searchId+"']", this).length < 1) {
+						$("li.no_result", this).show();
+						$("li.selected_result", this).hide();
+					} else {
+						$("li.selected_result", this).each(function() {
+							if($(this).attr("searchLoadId") == searchId) {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+						});
+					}
+				});
+
+				$("div.opendoc_event", this).each(function() {
+					var searchId = $(this).attr("docLoadId");
+
+					if($("li.selected_xref[@docLoadId='"+searchId+"']", this).length < 1) {
+						$("li.no_xrefs", this).show();
+						$("li.selected_xref", this).hide();
+					} else {
+						$("li.selected_xref", this).each(function() {
+							if($(this).attr("docLoadId") == searchId) {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+						});
+					}
+				});
+
+
+			});
+
+		}
+	});
+
+
+}
+
+</script>
+
+<title>XHTML Audit Trail Report</title>
+
+</head>
+<body onLoad="funcOnLoad()">
+
+<h2>XHTML Audit Trail Report</h2>
+<div id="AUDIT_REPORT">
+	<center>
+		<h3>Loading...</h3>
+		<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=processing.gif"/>
+	</center>
+</div>
+</div>
+</body>
+</html>

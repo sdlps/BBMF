@@ -1,0 +1,828 @@
+﻿# $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/resources-hi.prop 2.0 2019/05/22 21:01:19GMT milind Exp  $
+## Messages, often warnings
+message.requiresDocumentOpen=इस विकल्प का उपयोग करने के लिए, आपके पास एक खुला दस्तावेज़ होना आवश्यक है.
+message.confirmPublicationClose=क्या आप वाकई तकनीकी मैन्युअल बंद करना चाहते हैं?
+message.cvPrinter.noFigures=इस दस्तावेज़ के मुद्रण के लिए कोई आंकड़े नहीं हैं.
+message.cvPrinter.noFigureSelected=इस दस्तावेज़ के लिए वर्तमान में कोई आरेख चयनित नहीं है, क्योंकि दस्तावेज़ में चित्र नहीं हैं.
+
+## external links:
+messages.externalRef.noWebAddress=अनिर्धारित वेब पता लोड करने में विफल.
+messages.externalRef.noRegistry=बाह्य लिंक रजिस्ट्री का पता लगाने में असमर्थ.
+
+## ERRORS
+errors.noComponents={CVपोर्टल} [ Fatal ] घटकों.xml से अनुरोधित सेट का पता लगाने में असमर्थ!
+errors.failedLanguageLoad=भाषा लोड करने में विफल
+
+######################
+### MENU IETMS:
+######################
+menu.undefined=अनिर्धारित मेनू
+## top level menu items:
+menu.logoff=बाहर निकलें
+
+menu.file=फ़ाइल
+menu.admin=प्रशासन
+menu.user=उपयोगकर्ता
+menu.help=मदद
+menu.annotations=एनोटेशन
+menu.print=मुद्रित करें
+menu.debug=डीबग करें
+
+### ADMIN MENU
+menu.manageUsers=उपयोगकर्ताओं को प्रबंधित करें
+menu.invalidRefs=अमान्य संदर्भ
+menu.currentInvalidRefs=वर्तमान अमान्य संदर्भ
+menu.invalidImgs=गुम छवियाँ
+menu.currentInvalidImgs=वर्तमान गुम छवियाँ
+menu.auditTrail=ऑडिट ट्रेल
+
+## FILE MENU
+menu.home=घर
+menu.forward=अग्रेषित करें
+menu.back=वापस
+
+## annotations:
+menu.addBookmark=बुकमार्क जोड़ें
+menu.addNote=नोट जोड़ें
+
+## printing
+menu.printAllFigures=सभी आंकड़े मुद्रित करें
+menu.printCurrentFigure=वर्तमान चित्र मुद्रित करें
+menu.printAll=पाठ और चित्र मुद्रित करें
+menu.printRefs=संदर्भित डॉक् स के साथ मुद्रित करें
+
+## user menu
+menu.resourceManager=संसाधन प्रबंधक
+menu.applic=प्रयोज्यता का चयन करें
+menu.revisionHighlights=पुनरावलोकन हाइलाइट देखें
+menu.clearHistory=इतिहास साफ करें
+menu.prefs=प्राथमिकताएँ
+menu.suspend=निलंबित करें और फिर से शुरू करें
+menu.skinAlt=मोबाइल स्किन
+
+## help menus:
+menu.releaseNotes=लाइवसामग्री रिलीज़ नोट्स
+menu.company=लाइवसामग्री के बारे में
+menu.helpContents=मदद सामग्री
+
+## debug menu:
+menu.debugWindow=डीबग दिखाएँ
+menu.metaDebug=मेटा डीबग
+menu.componentDebug=घटक डीबग
+menu.historyDebug=इतिहास डीबग
+menu.showXML=XML दिखाएँ
+menu.showHTML=HTML दिखाएँ
+menu.showXSLFO=XSL-FO दिखाएँ
+menu.showMsgs=XREF त्रुटि संदेश दिखाएँ
+menu.hideMsgs=XREF त्रुटि संदेश छुपाएँ
+
+## language:
+menu.language.set=भाषा चुनें
+menu.language.en=अंग्रेजी
+menu.language.fr=फ़्रेंच
+
+###############
+##   CONTROLS
+###############
+ctrl.back=वापस
+ctrl.fwd=अग्रेषित करें
+ctrl.home=घर
+ctrl.split=ग्राफ़िक्स प्रदर्शित करें
+ctrl.graphic=केवल ग्राफ़िक
+ctrl.doc=केवल दस्तावेज़
+ctrl.settings=सेटिंग्स
+ctrl.suspend=निलंबित करें और फिर से शुरू करें
+ctrl.bookmarks=बुकमार्क
+ctrl.prelReq=प्रारंभिक आवश्यकताएँ
+ctrl.notes=नोट्स
+ctrl.attachments=अनुलग्नक
+ctrl.history=इतिहास
+ctrl.refresh=ताज़ा करें
+ctrl.print=मुद्रित करें
+ctrl.install=स्थापित करें
+ctrl.find=ढूँढें
+ctrl.clear=साफ़ करें
+ctrl.admin=व्यवस्थापक
+ctrl.config=प्रयोज्यता
+ctrl.tools=उपकरण
+ctrl.exit=बाहर निकलें
+ctrl.help=मदद
+ctrl.info=जानकारी
+ctrl.next=अगला
+ctrl.prev=पिछला
+ctrl.save=निलंबित करें और फिर से शुरू करें
+ctrl.docinfo=दस्तावेज़ निर्माण
+ctrl.show=डीबग इंफॉर्मेशन
+ctrl.desktop=डेस्कटॉप दृश्य
+ctrl.reports=रिपोर्ट
+ctrl.markup=मार्कअप
+ctrl.releaseNotes=नोट्स रिलीज़ करें
+ctrl.userGuide=उपयोगकर्ता मार्गदर्शिका
+ctrl.about=के बारे में
+ctrl.users=उपयोगकर्ता प्रबंधन
+ctrl.position=सुरक्षित करने की स्थिति
+ctrl.changes=परिवर्तन हाइलाइट करें
+ctrl.largeTableControls=बड़े तालिका नियंत्रण
+ctrl.emergencyProcedures=आपातकालीन प्रक्रियाएँ
+ctrl.leftPanel=बायाँ फलक टॉगल करें
+
+## troubleshooting steps
+ctrl.troubleshooting.next=अगला चरण
+ctrl.troubleshooting.prev=पिछला चरण
+
+###########
+#### Tabs
+###########
+tabs.toc=विषय सूची
+tabs.act=गतिविधि
+tabs.figs=चित्र
+tabs.tables=तालिकाएँ
+tabs.main=कार्य
+tabs.refMat=संदर्भ सामग्री
+tabs.matReq=सामग्री आवश्यक है
+tabs.supportEq=सहायता उपकरण
+tabs.search=खोजें
+
+## modal:
+ctrl.modal.close=बंद करें
+
+## search ctrls
+ctrl.search.start=&nbsp;
+ctrl.search.stop=बंद करें
+ctrl.search.clear=खोज साफ़ करें
+ctrl.search.hide=खोज बंद करें
+ctrl.search.adv=श्री
+ctrl.search.branch=विषय सूची चयन पर फ़िल्टर करें
+ctrl.search.search=खोजें
+ctrl.search.categorical=वर्गीकृत खोज
+ctrl.search.and=और
+ctrl.search.or=या
+ctrl.search.near=के निकट
+ctrl.search.not=और नहीं
+ctrl.search.find=ढूँढें
+ctrl.search.case=केस की उपेक्षा करें
+ctrl.search.whole=केवल पूरे शब्द
+ctrl.search.advanced=उन्नत खोज
+ctrl.search.simple=सरल खोज
+ctrl.search.text=पूर्ण-पाठ खोज
+ctrl.search.save=सहेजी गई खोज लोड करें
+ctrl.search.filter.start=से शुरू होता है
+ctrl.search.filter.contain=शामिल है
+ctrl.search.filter.end=के साथ समाप्त होता है
+ctrl.search.highlight=हाइलाइट टॉगल करें
+ctrl.search.toc=सामग्री तालिका
+ctrl.search.results=खोज परिणाम
+ctrl.search.toggleSearchTitles=एबीसी/123
+
+## media:
+ctrl.hideMedia=विभाजित नहीं
+ctrl.showMedia=विभाजित करें
+ctrl.image.next=अगला
+ctrl.image.prev=पिछला
+ctrl.image.tearOff=आंसू निकाल दें
+ctrl.image.play=चलाएँ
+ctrl.image.pause=विराम दें
+ctrl.image.rewind=रेविंड
+ctrl.image.svgZoomIn=ज़ूम इन करें
+ctrl.image.svgZoomOut=ज़ूम आउट करें
+ctrl.image.svgPanLeft=पैन शेष
+ctrl.image.svgPanRight=दाएं पैन करें
+ctrl.image.svgPanUp=ऊपर पैन करें
+ctrl.image.svgPanDown=नीचे पैन करें
+ctrl.image.svgReset=मूल दृश्य पुनर्स्थापित करें
+ctrl.image.showAllHotspots=सभी हॉटस्पॉट दिखाएँ
+ctrl.image.svgRedliningPencil=रेखांकन तत्व आरेखित करें
+ctrl.image.svgRedliningCircle=रेडलाइनिंग वृत्त आरेखित करें
+ctrl.image.svgRedliningRectangle=रेखांकन आयत आरेखित करें
+ctrl.image.svgRedliningLine=रेडलाइनिंग लाइन आरेखित करें
+ctrl.image.svgRedliningAnnotation=रेखांकन एनोटेशन जोड़ें
+ctrl.image.svgDeleteRedliningAnnotation=रेखांकन एनोटेशन हटाएँ
+ctrl.image.svgExportRedlining=रेखांकन निर्यात करें
+ctrl.image.svgRedlining=रेखांकन
+
+## rhi buttons:
+ctrl.rhistep.prev=पिछला चरण चलाएँ
+ctrl.rhistep.next=अगला चरण चलाएँ
+ctrl.rhistep.curr=वर्तमान चरण चलाएँ
+ctrl.rhistep.all=सभी कदम चलाएँ
+ctrl.rhistep.pause=विराम दें
+ctrl.rhistep.resume=फिर शुरू करें
+ctrl.rhistep.list=चरण सूचीबद्ध करें
+ctrl.rhixray.on=पर एक्सरे करें
+ctrl.rhixray.off=एक्सरे बंद
+ctrl.rhi.wait=कृपया प्रतीक्षा करें
+
+## toc:
+ctrl.toggleCodes=एबीसी/123
+ctrl.hideToc=विषय सूची छुपाएँ
+ctrl.showToc=विषय सूची दिखाएँ
+ctrl.justCodes=123
+ctrl.justTitles=एबीसी
+ctrl.syncToc=विषय सूची सिंक करें
+
+## ok, cancels, etc
+ctrl.ok=ठीक है
+ctrl.cancel=रद्द करें
+ctrl.media.save=सहेजें
+
+## resource manager:
+ctrl.rm.goto=पर जाएँ
+ctrl.rm.edit=संपादित करें
+ctrl.rm.deleter=हटाएँ
+ctrl.rm.deleteAll=सभी हटाएँ
+ctrl.rm.exit=बाहर निकलें
+ctrl.rm.add=जोड़ें
+ctrl.rm.suspend=निलंबित करें
+ctrl.rm.view=देखें
+ctrl.rm.resume=फिर शुरू करें
+ctrl.rm.close=बंद करें
+ctrl.rm.print=मुद्रित करें
+
+######################
+### Static Texts
+######################
+static.location=स्थान:
+
+######################
+### Search Terms
+######################
+search.saveASearch=यह खोज सहेजें
+search.loadASearch=सहेजी गई खोज लोड करें
+search.branch=सामग्री शाखा खोज तालिका
+
+######################
+### Update Server
+######################
+UpdateServer.check=अद्यतन सर्वर की जाँच करें.
+UpdateServer.modalTitle=वृद्धिशील अद्यतन सर्वर
+
+## step buttons:
+ctrl.step.next=अगला चरण
+ctrl.step.prev=पिछला चरण
+
+## flip panels button:
+ctrl.flipPanels=पाठ और ग्राफ़िक्स को पुनः ओरिएंट करें
+
+## NV Harmonization: Anchor strings
+proc.closeReqCondsAnchor=बंद करने के लिए आवश्यक शर्तों के लिए एंकर
+proc.commonInfoAnchor=कॉमन इंफॉर्मेशन के लिए लंगर लगाया
+proc.faultStepAnchor=त्रुटि पृथक्करण चरण के लिए एंकर
+proc.prelReqCondsAnchor=प्रारंभिक आवश्यक शर्तों के लिए लंगर
+proc.procStepAnchor=प्रक्रियात्मक चरण के लिए लंगर
+proc.safetyCondsAnchor=सुरक्षा स्थितियों के लिए एंकर
+
+######################
+### keys for cvDocHandler.js
+######################
+
+alert.unable.toLocate.referenced.publication=संदर्भित प्रकाशन का पता लगाने में असमर्थ
+alert.you.must.enter.aTerm.toFind=आपको ढूँढने के लिए कोई शब्द दर्ज करना होगा.
+alert.unable.toLoad.theDocument.byDocID=दस्तावेज़ को दस्तावेज़ ID द्वारा लोड करने में {Dदस्तावेज़ हैंडलर} असमर्थ:
+alert.please.enter.aValid.page.number.between =कृपया 1 और के बीच कोई मान्य पृष्ठ क्रमांक दर्ज करें
+alert.unable.toLoad.document.broken.link={दस्तावेज़ हैंडलर} दस्तावेज़ लोड करने में असमर्थ. आपने एक भंग लिंक सक्रिय कर दिया है!
+alert.troubleshooting.session.is.already.active=समस्या निवारण सत्र पहले से ही सक्रिय है.\n\nकृपया कोई नया सत्र प्रारंभ करने से पहले वर्तमान समस्या निवारण सत्र पूर्ण करें.
+alert.skin.isUndefined1=त्वचा
+alert.skin.isUndefined2=अनिर्धारित है
+alert.noData.module.selected=कोई डाटा मॉड्यूल चयनित नहीं। प्रारंभिक आवश्यकताएँ देखने के लिए डेटा मॉड्यूल सक्रिय होना आवश्यक है!
+alert.thisData.module.has.noPreliminary.requirements.information=इस डेटा मॉड्यूल में कोई प्रारंभिक आवश्यकताएँ जानकारी नहीं है!
+alert.unable.toFind.part=भाग ढूँढने में असमर्थ:
+alert.enter.search.term.toStart=प्रारंभ करने के लिए खोज शब्द प्रविष्ट करें
+alert.find.noMatch.for.search.text=के लिए कोई मेल नहीं ढूँढें
+alert.opera.browsers.not.supported=ओपेरा ब्राउज़र समर्थित नहीं है, क्षमा करें...
+alert.found.searchCount.occurrences1=मिला
+alert.found.searchCount.occurrences2=आवृत्तियाँ
+alert.acknowledgeWarnings.button=ठीक है
+
+dm.modal.loading=लोड हो रहा है...
+
+publication.security.banner.classification.level=सुरक्षा स्तर
+publication.security.banner.classification.level01=अवर्गीकृत
+publication.security.banner.classification.level02=प्रतिबंधित
+publication.security.banner.classification.level03=गोपनीय
+publication.security.banner.classification.level04=गुप्त
+publication.security.banner.classification.level05=शीर्ष गुप्त
+
+publication.security.banner.restriction.caveat=यूडीएफ़ केवियट करती है
+publication.security.banner.restriction.caveatCv51=केवल आधिकारिक उपयोग के लिए
+publication.security.banner.restriction.caveatCv56=केवल US की आँखें
+publication.security.banner.restriction.caveatCv57=प्रतिबंधित डाटा
+publication.security.banner.restriction.caveatCv58=पूर्व में प्रतिबंधित डाटा
+publication.security.banner.restriction.caveatCv59=NORN
+publication.security.banner.restriction.caveatOther=अन्य
+
+publication.security.banner.distribution.statement=वितरण कथन
+
+dm.security.banner.classification.level=सुरक्षा स्तर
+dm.security.banner.classification.level01=अवर्गीकृत
+dm.security.banner.classification.level02=प्रतिबंधित
+dm.security.banner.classification.level03=गोपनीय
+dm.security.banner.classification.level04=गुप्त
+dm.security.banner.classification.level05=शीर्ष गुप्त
+
+dm.security.banner.restriction.caveat=यूडीएफ़ केवियट करती है
+dm.security.banner.restriction.caveatCv51=केवल आधिकारिक उपयोग के लिए
+dm.security.banner.restriction.caveatCv56=केवल US की आँखें
+dm.security.banner.restriction.caveatCv57=प्रतिबंधित डाटा
+dm.security.banner.restriction.caveatCv58=पूर्व में प्रतिबंधित डाटा
+dm.security.banner.restriction.caveatCv59=NORN
+dm.security.banner.restriction.caveatOther=अन्य
+
+## set Title
+setTitle.acknowledgeWarnings.danger.cautions.notes=चेतावनी, खतरे, चेतावनी, नोट्स स्वीकार करें
+setTitle.applicability.modal.title=प्रयोज्यता का चयन करें
+openTabletDocumentInfo.reference.materials=संदर्भ सामग्री
+openTabletDocumentInfo.required.materials=आवश्यक सामग्री
+openTabletDocumentInfo.support.equipment=सहायता उपकरण
+
+######################
+### keys for cvResourceManager.js
+######################
+
+alert.file.with.thisName.isAlready.uploaded=इस अनुलग्नक के लिए इस नाम की एक फ़ाइल पहले से अपलोड की गई है!
+alert.toUse.thisOption.open.document=इस विकल्प का उपयोग करने के लिए, आपके पास एक खुला दस्तावेज़ होना आवश्यक है.
+alert.select.anAnnotation.toEdit=आपको संपादित करने के लिए किसी एनोटेशन का चयन करना आवश्यक है.
+alert.enter.title.for.theBookmark=कृपया बुकमार्क के लिए कोई शीर्षक दर्ज करें
+alert.enter.title.for.theNote=कृपया नोट के लिए एक शीर्षक दर्ज करें
+alert.unable.toSelect.resource.type={Resource Manager} संसाधन प्रकार का चयन करने में असमर्थ:
+alert.suspendSession.unknown.resource.type.selected=अज्ञात संसाधन प्रकार चयनित: 
+alert.newResource.unable.toLocate.resource.type=अनुरोधित संसाधन प्रकार का पता लगाने में असमर्थ:
+alert.newResource.action.attempted.unknown.resource.type=अज्ञात संसाधन प्रकार पर नई संसाधन क्रिया का प्रयास किया गया:
+alert.saveUser.username.already.exists=इस उपयोगकर्ता नाम का कोई उपयोगकर्ता पहले से मौजूद है.
+alert.login.name.required.field=लॉगिन नाम एक आवश्यक फ़ील्ड है
+alert.password.must.be.four.characters.long=पासवर्ड कम से कम 4 वर्ण लंबा होना चाहिए
+alert.password.must.match.confirmation.password=पासवर्ड पुष्टिकरण पासवर्ड से मेल खाना चाहिए
+alert.select.user.group=कृपया उपयोगकर्ता समूह का चयन करें
+alert.first.last.name.required=प्रथम और अंतिम नाम आवश्यक फ़ील्ड्स हैं
+alert.email.required.field=ई-मेल एक आवश्यक फ़ील्ड है
+alert.invalid.email.address=अमान्य ई-मेल पता
+alert.confirmation.email.must.match=पुष्टिकरण ईमेल ईमेल से मेल खाना आवश्यक है.
+alert.select.object.to.goto=पर जाने के लिए आपको किसी ऑब्जेक्ट का चयन करना होगा.
+alert.select.resource.to.delete=आपको हटाने के लिए किसी संसाधन का चयन करना होगा.
+alert.select.item.to.view=आपको देखने के लिए किसी आइटम का चयन करना होगा!
+alert.select.resource.to.action=आपको संसाधन का चयन करना होगा
+alert.fillIn.required.form.fields=आपको सभी आवश्यक प्रपत्र फ़ील्ड्स भरने होंगे.
+
+confirm.delete.selected.user=क्या आप चयनित उपयोगकर्ता को हटाना चाहते हैं?
+confirm.remove.selected.item=क्या आप चयनित आइटम को निकालना चाहेंगे?
+confirm.delete.selected.audit.trail=क्या आप चयनित ऑडिट ट्रेल को हटाना चाहते हैं?
+confirm.delete.selected.form=क्या आप चयनित प्रपत्र हटाना चाहते हैं?
+confirm.delete.all.resources=क्या आप इन सभी संसाधनों को हटाना चाहेंगे?
+confirm.delete.selected.attachment=चयनित अनुलग्नक(अनुलग्नकों) को हटाएँ?
+
+## Title
+title.mode.add.new.note=नया नोट जोड़ें
+title.mode.edit.note=नोट संपादित करें
+title.mode.add.new.bookmark=नया बुकमार्क जोड़ें
+title.mode.edit.bookmark=बुकमार्क संपादित करें
+title.table.list.user=उपयोगकर्ता
+title.table.list.group=समूह
+title.table.list.type=प्रकार
+title.table.list.creator=निर्माता
+setTitle.cvModalHandler.resource.manager=संसाधन प्रबंधक
+
+## text for HTML
+attach.toDiv.text.uploading=अपलोड हो रहा है...
+attach.edit.button=संपादित करें
+attach.delete.button=हटाएँ
+resource.type.public=सार्वजनिक
+resource.type.annotation=सार्वजनिक व्याख्या
+resourceList.msg.noAttachments=इस समय कोई अनुलग्नक नहीं हैं.
+resourceList.msg.noAnnotations=इस समय कोई टिप्पणी नहीं हैं.
+resourceList.msg.noNotes=इस समय कोई नोट्स नहीं हैं.
+resourceList.msg.noBookmarks=इस समय कोई बुकमार्क्स नहीं हैं।
+audittrail.table.title.audit.trail.record=ऑडिट ट्रेल रिकॉर्ड
+audittrail.msg.noAudit=इस समय कोई ऑडिट ट्रेल नहीं हैं. आपका वर्तमान ऑडिट ट्रेल तब तक सहेजा नहीं जाएगा जब तक आप इस प्रकाशन विंडो को बंद नहीं करते.
+audittrail.msg.noSaved.instances=इस प्रपत्र की कोई सहेजी गई आवृत्तियाँ नहीं हैं.
+audittrail.msg.proced.step.checked=चेक किया गया
+audittrail.msg.proced.step.unchecked=अनचेक किया गया
+suspendSession.tooltip.text.comment=टिप्पणी:
+suspendSession.tooltip.text.current.document=वर्तमान दस्तावेज़:
+suspendSession.tooltip.text.current.document.title=वर्तमान दस्तावेज़ शीर्षक:
+suspendSession.tooltip.text.saved.by=इसके द्वारा सहेजा गया:
+suspendSession.tooltip.text.saved.at=इस पर सहेजा गया:
+viewTabletNotesDialog.msg.toAdd.aNew.note.open.document=कोई नया नोट जोड़ने के लिए, आपके पास कोई खुला दस्तावेज़ होना आवश्यक है.
+viewTabletBookmarkDialog.msg.toAdd.aNew.bookmark.open.document=कोई नया बुकमार्क जोड़ने के लिए, आपके पास कोई खुला दस्तावेज़ होना आवश्यक है.
+viewTabletAttachmentsDialog.msg.toAttach.file.open.document=कोई फ़ाइल अनुलग्न करने के लिए, आपके पास कोई खुला दस्तावेज़ होना आवश्यक है.
+openUserDialog.select.company=कोई कंपनी चुनें
+openUserDialog.mode.add.title=नया उपयोगकर्ता
+openUserDialog.mode.edit.title=उपयोगकर्ता संपादित करें
+suspendSession.noData.module.open=वर्तमान में कोई डेटा मॉड्यूल खुला नहीं है. निलंबित करें सक्षम करने के लिए डेटा मॉड्यूल सक्रिय होना आवश्यक है!
+suspendSession.noData.module.selected=कोई डाटा मॉड्यूल चयनित नहीं। निलंबित करें सक्षम करने के लिए डेटा मॉड्यूल सक्रिय होना आवश्यक है!
+rhi.select.required.step=चलाने के लिए, कृपया आवश्यक चरण का चयन करें
+rhi.select.step.toPlay=चलाने के लिए कोई चरण चुनें
+alert.rollback.successfully.completed=रोलबैक सफलतापूर्वक पूर्ण हुआ.
+alert.no.rollback.data=पुस्तिका में कोई रोलबैक डेटा नहीं है.																																																										 
+
+######################
+### keys for cvBookList.js
+######################
+
+alert.rollback.publication.failed1=प्रकाशन के रोलबैक,
+alert.rollback.publication.failed2=विफल।
+alert.select.zip.file=कृपया कोई ज़िप फ़ाइल चुनें.
+alert.updates.successfully.installed=अद्यतन सफलतापूर्वक स्थापित किए गए.
+alert.password.undefined1=आवश्यक पासवर्ड अनिर्धारित है. अस्थायी पासवर्ड असाइन किया गया है:
+alert.password.undefined2=लॉगिन करने के बाद कृपया अपना पासवर्ड बदलना याद रखें या मदद के लिए अपने व्यवस्थापक से संपर्क करें.
+alert.login.again=कृपया फिर से लॉग इन करें.
+
+confirm.rollback.toLast.good.known.state=क्या आप अंतिम अच्छी ज्ञात स्थिति पर वापस जाना चाहेंगे?
+
+## Title
+title.updating.publication=प्रकाशन अद्यतन कर रहा है
+
+## text for HTML
+text.installing.updates=अद्यतन स्थापित किए जा रहे हैं...
+text.login.failed=लॉगिन विफल: सर्वर से संपर्क करने में असमर्थ.
+text.close=बंद करें
+text.update.failed.to.install=अपडेट स्थापित करने में विफल
+publications.msg.one.update.pending=1 अपडेट लंबित है।
+publications.msg.count.updates.pending1=हैं
+publications.msg.count.updates.pending2=अपडेट्स लंबित हैं।
+publications.msg.currently.update.pending=वर्तमान में 1 अपडेट लंबित है।
+publications.msg.currently.count.updates.pending1=वर्तमान में हैं
+publications.msg.currently.count.updates.pending2=अपडेट्स लंबित हैं।
+publications.msg.updateReady.info1=समस्या
+publications.msg.updateReady.info2=वृद्धिशील अद्यतन
+publications.msg.updateReady.info3=दिनांक
+publications.msg.currently.no.pending.updates=वर्तमान में कोई लंबित अद्यतन नहीं हैं.
+warning.msg.beginning.incremental.update.process=वृद्धिशील अद्यतन प्रक्रिया प्रारंभ कर रहा है. कृपया अपने सभी प्रकाशन वाइंडिंग बंद करें.
+error.msg.displayed.for.time1=त्रुटि! यह संदेश के लिए प्रदर्शित किया जाएगा
+error.msg.displayed.for.time2=सेकंड
+error.msg.update.failed.unable.load.update.content=अपडेट विफल। अपडेट सामग्री लोड करने में असमर्थ।
+update.msg.successfully.installed.all=सभी अद्यतन सफलतापूर्वक स्थापित किए गए.
+update.msg.attempted.install.all=सभी अपडेट्स स्थापित करने का प्रयास किया गया।
+update.msg.successfully.installed=अद्यतन सफलतापूर्वक स्थापित किए गए
+update.msg.successfully.installed.one=अपडेट सफलतापूर्वक स्थापित किया गया
+update.msg.failed.install=अद्यतन जो स्थापित करने में विफल रहे
+text.msg.displayed.for.time1=यह संदेश के लिए प्रदर्शित होगा
+text.msg.displayed.for.time2=सेकंड
+text.msg.will.be.displayed.for.time1=यह संदेश के लिए प्रदर्शित किया जाएगा
+text.msg.proceeding=आगे
+
+#################################
+### keys for cvControlFactory.js
+#################################
+
+error.loadControls.unable.locate.requested.set={नियंत्रण} [ Fatal ] नियंत्रणों से अनुरोधित सेट का पता लगाने में असमर्थ.xml!
+
+#################################
+### keys for cvHelpFactory.js
+#################################
+error.unable.locate.requested.help.resource=[ContentaView] त्रुटि, अनुरोधित मदद संसाधन का पता लगाने में असमर्थ.
+error.unable.locate.named.help.resource=[ContentaView] त्रुटि, नामित मदद संसाधन का पता लगाने में असमर्थ
+
+#################################
+### keys for cvHistory.js
+#################################
+
+text.msg.currently.no.history=वर्तमान में कोई इतिहास जानकारी नहीं है।
+title.not.applic=लागू नहीं
+
+#################################
+### keys for cvMedia.js
+#################################
+
+alert.getMediaType.error=ग्राफ़िक पूरी तरह लोड नहीं हुआ, बाद में पुनः प्रयास करें
+alert.rhiInitContext.error=ग्राफ़िक लोड नहीं किया गया, कृपया बाद में प्रयास करें
+
+confirm.wait.several.minutes=इसमें कुछ मिनट लग सकते हैं. जारी रखें?
+
+text.loading=लोड हो रहा है...
+text.msg.activeCGM.browser.support1=में सक्रिय सीजीएम व्यूअर समर्थित नहीं है
+text.msg.activeCGM.browser.support2=इस ग्राफ़िक को देखने या दस्तावेज़ को मुद्रित करने के लिए स्थापित सक्रिय सीजीएम ActiveX के साथ कृपया Internet Explorer क्लायंट का उपयोग करें.
+text.msg.IsoView.browser.support1=IsoView व्यूअर में समर्थित नहीं है
+text.msg.IsoView.browser.support2=कृपया इस ग्राफ़िक को देखने के लिए स्थापित IsView के साथ किसी Internet Explorer क्लाइंट का उपयोग करें या दस्तावेज़ मुद्रित करें.
+text.msg.Mobilizer.browser.support1=में Ngrain मोबाइल निर्माता व्यूअर समर्थित नहीं है
+text.msg.Mobilizer.browser.support2=इस ग्राफ़िक को देखने के लिए स्थापित किए गए Ngrain मोबाइल निर्माता के साथ कृपया Internet Explorer क्लायंट का उपयोग करें.
+text.msg.rhiModel.browser.support1=SAP 3D Visual Enterprise व्यूअर में समर्थित नहीं है
+text.msg.rhiModel.browser.support2=कृपया इस ग्राफ़िक को देखने के लिए स्थापित SAP 3D Visual Enterprise व्यूअर वाले Internet Explorer क्लायंट का उपयोग करें.
+text.msg.rhiModel.viewer.not.installed1=यदि आपको यह पाठ दिखाई देता है, तो SAP 3D Visual Enterprise व्यूअर स्थापित नहीं है या
+text.msg.rhiModel.viewer.not.installed2=प्रारंभ नहीं किया गया। कृपया इसे डाउनलोड और स्थापित करें. निम्न लिंक का उपयोग करें
+text.msg.rhiModel.viewer.not.installed3=यदि यह त्रुटि संदेश बनी रहती है, तो अपनी सुरक्षा सेटिंग्स जाँचें
+text.msg.rhiModel.viewer.not.installed4=(ActiveX की अनुमति होनी चाहिए) या अन्य वेब ब्राउज़र का उपयोग करें
+text.msg.rhiModel.viewer.not.installed5=Microsoft Internet Explorer का उपयोग करना पसंद किया जाता है.
+text.rhiGetCurrStepDesc.no.description.orName.for.step=चरण क्रम के लिए कोई वर्णन या नाम नहीं
+text.rhiGetCurrStepDesc.no.description.for.step=नामित चरण के लिए कोई वर्णन नहीं
+text.listAllSteps.no.steps.defined=RH फ़ाइल में कोई चरण निर्धारित नहीं हैं
+
+#################################
+### keys for cvPanelFactory.js
+#################################
+
+alert.error.loadPanels={पैनल्स} [ Fatal ] पैनल्स.xml से अनुरोधित सेट का पता लगाने में असमर्थ. सेट करें
+
+#################################
+### keys for cvPrinter.js
+#################################
+
+alert.select.section.toPrint= आपको मुद्रण के लिए तालिका में कम से कम एक अनुभाग का चयन करने की आवश्यकता है.
+
+#################################
+### keys for cvProcessdm.js
+#################################
+
+alert.reverseThread.troubleshooting.session=आप इस समस्या निवारण सत्र के प्रारंभ में हैं और किसी पिछले नोड पर नहीं जा सकते.
+alert.fill.all.mandatory.fields=आपको सभी अनिवार्य फ़ील्ड्स भरने की आवश्यकता है.
+
+text.current.node=यह वर्तमान नोड है
+
+#################################
+### keys for cvSearch.js
+#################################
+alert.fill.search.term=आपको \"खोजें\" फ़ील्ड में खोज शब्द भरने की आवश्यकता है
+alert.select.category.or.fullText=आपको अपनी खोज के लिए किसी श्रेणी या पूर्ण पाठ का चयन करना होगा.
+alert.unable.handle.unknown.search.result.category=श्रेणी के लिए, अज्ञात खोज परिणाम को हैंडल करने में असमर्थ
+alert.unable.handle.unknown.search.result.type=प्रकार के अज्ञात खोज परिणाम को हैंडल करने में असमर्थ
+
+#################################
+### keys for cvSnippet_InvalidRefs.js
+#################################
+
+alert.unknown.report.type=अज्ञात रिपोर्ट प्रकार.
+
+text.unknown.report.type=अज्ञात रिपोर्ट प्रकार
+text.invalid.references.report.forCurrent.document=वर्तमान दस्तावेज़ के लिए अमान्य संदर्भ रिपोर्ट
+text.missing.images.report.forCurrent.document=वर्तमान दस्तावेज़ के लिए गुम छवि रिपोर्ट
+																																												 
+text.missing.images.list=गुम छवि सूची
+
+#################################
+### keys for cvEmergencyProcedures.js
+#################################
+text.msg.no.emergency.procedures=कोई आपातकालीन प्रक्रियाएँ नहीं हैं.
+
+## key for XSL styles
+style.common.nonapplicdm=गैर लागू डेटा मॉड्यूल
+style.common.nonapplictext=यह डेटा मॉड्यूल आपके द्वारा चयनित वर्तमान कॉन्फ़िगरेशन पर लागू नहीं होता है.
+style.common.dmapplic=डेटा मॉड्यूल उपयुक्तता
+style.common.datarestrict=डेटा प्रतिबंध
+style.common.datarestricttext=डेटा प्रतिबंध जानकारी यहाँ जाएगी.
+style.common.supequip=सहायता उपकरण
+style.common.refmat=संदर्भ सामग्री
+style.common.matreq=सामग्री आवश्यक
+style.common.prelreqs=प्रारंभिक आवश्यकताएँ
+style.common.reqsconds=आवश्यक शर्तें
+style.common.dmtp=डेटा मॉड्यूल / तकनीकी प्रकाशन
+style.common.reqjobcomp=कार्य पूर्ण होने के बाद आवश्यकताएँ
+style.common.dmc=डेटा मॉड्यूल कोड
+style.common.issueno=जारी नहीं
+style.common.newdm=नया डेटा मॉड्यूल
+style.common.applic=प्रयोज्यता
+style.common.issuedate=जारी दिनांक
+style.common.secclass=सुरक्षा वर्गीकरण
+style.common.instructions=निर्देश
+style.common.distribution=वितरण
+style.common.exportcontrol=निर्यात नियंत्रण
+style.common.destruction=विनाश
+style.common.figure=चित्र
+style.common.hotspot=हॉटस्पॉट
+style.common.safecond=सुरक्षा स्थितियाँ
+style.common.crossref=परस्पर संदर्भ
+style.common.warning=चेतावनी
+style.common.caution=चेतावनी
+style.common.note=नोट
+style.common.noforeigndisclosure=कोई विदेशी खुलासा नहीं
+style.common.geninfo=जनरल इंफॉर्मेशन
+style.common.aboutproced=इस प्रक्रिया के बारे में
+style.common.reqperson=आवश्यक कार्मिक
+style.common.personnel=कार्मिक
+style.common.category=श्रेणी
+style.common.trade=व्यापार
+style.common.esttime=अनुमानित समय
+style.common.man=पुरुष
+style.common.asreq=आवश्यकतानुसार.
+style.common.containdm=कंटेनर डेटा मॉड्यूल
+style.common.selectrefdm=निम्न ताज़ा करने वाले का चयन किया गया
+style.procedure.nosupply=कोई आपूर्ति आवश्यक नहीं है.
+style.procedure.nospare=किसी भी पुर्जों की आवश्यकता नहीं है.
+style.procedure.procedure=कार्यविधि
+style.procedure.requirecomplete=कार्य पूर्ण होने के बाद आवश्यकताएँ
+style.procedure.norequirement=कोई आवश्यकताएँ नहीं हैं.
+style.general.code=कोड
+style.general.none=कोई नहीं
+style.general.name=नाम
+style.general.identification=पहचान
+style.general.quantity=मात्रा
+style.general.description=विवरण
+style.general.table=तालिका
+style.general.type=प्रकार
+style.general.supply=आपूर्ति
+style.matreq.supplies=आपूर्ति
+style.matreq.spares=स्पेसेस
+style.supteqt.supportequipment=सहायता उपकरण
+style.refmat.referencedm=संदर्भित डेटा मॉड्यूल्स
+style.refmat.noreferencedm=कोई संदर्भित डेटा मॉड्यूल नहीं.
+style.refmat.dm=डेटा मॉड्यूल
+style.refmat.referencetp=संदर्भित तकनीकी प्रकाशन
+style.refmat.tp=तकनीकी प्रकाशन
+style.refmat.noreferencetp=कोई संदर्भित तकनीकी प्रकाशन नहीं.
+style.commontmpl.no=नहीं
+style.commontmpl.withid=ID के साथ
+style.commontmpl.informaltable=अनौपचारिक तालिका
+style.commontmpl.criticaljuncture=नाजुक मोड़
+style.commontmpl.testingofsystem=सिस्टम का परीक्षण
+style.commontmpl.independentcheck=स्वतंत्र जाँच
+style.commontmpl.maintenancegroundup=रखरखाव ग्राउंड-अप
+style.commontmpl.maintenancetestflight=रखरखाव परीक्षण फ्लाइट
+style.commontmpl.signaturerequired=हस्ताक्षर आवश्यक
+style.commontmpl.taskcomplete=कार्य पूर्ण हुआ
+style.ipc.itemno=आइटम नहीं
+style.ipc.fig=चित्र
+style.ipc.indxsheetno=अनुक्रमणिका/पत्रक संख्या
+style.ipc.rfs=चयन का कारण
+style.ipc.unitsperassy=प्इकाई प्रति असेंबली
+style.ipc.cage=पिंजरा.
+style.ipc.partnumber=पार्ट नंबर
+style.ipc.description=विवरण
+style.ipc.usableoncode=कोड पर उपयोग करने योग्य
+style.ipc.srv=एसआरवी
+style.ipc.smr=SMM
+style.ipc.mov=मॉडल प्रकार
+style.ipc.item=आइटम
+style.ipc.unitsperassembly=इकाई प्रति असेंबली
+style.ipc.ncage=एनसीएजीई
+style.ipc.partno=भाग संख्या
+style.ipc.nomenclature=नामकरण
+style.fault.faultcode=त्रुटि कोड
+style.fault.endofdatamodule=डेटा मॉड्यूल की समाप्ति
+style.fault.faultdescription=त्रुटि विवरण
+style.fault.faultisolationprocedure=त्रुटि पृथक्करण प्रक्रिया
+style.fault.gotostep=चरण पर जाएँ
+style.fault.yes=हाँ
+style.fault.no=नहीं
+style.fault.isolationprocedure=पृथक्करण प्रक्रिया
+style.fault.faultcondition=खराबी की स्थिति
+style.fault.faultcontext=त्रुटि संदर्भ
+style.fault.faultisolationtest=त्रुटि पृथक्करण परीक्षण
+style.fault.testcodetype=परीक्षण कोड / प्रकार
+style.fault.detect=पता लगाएँ
+style.fault.lru=एलआरयू
+style.fault.mfc=एम.एफ.सी
+style.fault.isolatedetectedfault=पता लगाई गई खराबी अलग करें
+style.fault.locateandrepair=पता लगाएँ और सुधारें
+style.fault.repair=मरम्मत करें
+style.fault.testdescription=परीक्षण विवरण
+style.fault.testprocedure=परीक्षण प्रक्रिया
+style.fault.isolate=अलग-थलग
+style.fault.test=परीक्षण
+style.fault.context=संदर्भ
+style.fault.remarks=टिप्पणियां
+style.fault.fault=खराबी
+style.schedule.timelimitsidentifier=समय सीमा पहचानकर्ता: पहचानकर्ता
+style.general.equipment=उपकरण
+style.schedule.pnr=पीएनआर
+style.general.category=श्रेणी
+style.schedule.referencedtasks=संदर्भित कार्य
+style.schedule.limitinformation=सीमा निर्माण
+style.schedule.limitrange=सीमा सीमा
+style.general.from=से
+style.schedule.trigger=ट्रिगर
+style.schedule.groupno=समूह संख्या
+style.schedule.componentassembly=घटक/असेंबली
+style.schedule.maintenancefunction=रखरखाव का कार्य
+style.schedule.maintfunc=वादपत्र। अनुदान.
+style.schedule.maintenancelevel=रखरखाव स्तर
+style.schedule.toolsandequipment=उपकरण और उपकरण
+style.schedule.field=फ़ील्ड
+style.schedule.sust=स्स्ट.
+style.schedule.c=सी
+style.schedule.f=एफ
+style.schedule.h=एच
+style.schedule.d=डी
+style.schedule.removeinstall=निकालें/स्थापित करें
+style.general.inspect=निरीक्षण करें
+style.general.service=सेवा
+style.general.adjust=एडजस्ट करें
+style.general.align=संरेखित करें
+style.general.calibrate=कैलिब्रेट करें
+style.general.replace=बदलें
+style.general.repair=मरम्मत करें
+style.general.overhaul=ओवरहॉल करें
+style.general.rebuild=फिर से बनाएँ
+style.general.tasks=कार्य
+style.schedule.notavailableforprojects=प्रोजेक्ट्स के लिए उपलब्ध नहीं है
+style.schedule.limittype=सीमा प्रकार
+style.schedule.limitcondition=सीमा शर्त
+style.schedule.performonce=एक बार करें
+style.schedule.oncondition=शर्त पर
+style.schedule.performperiodically=समय-समय पर निष्पादित करें
+style.schedule.unitofmeasure=माप की इकाई
+style.schedule.limitrangefrom=सीमा इससे
+style.schedule.limitrangeto=सीमा को तक सीमित करें
+style.schedule.threshold=थ्रेशोल्ड
+style.schedule.flighthours=फ्लाइट घंटे
+style.schedule.flightcycles=उड़ान चक्र
+style.schedule.months=महीने
+style.schedule.weeks=सप्ताह
+style.schedule.years=वर्ष
+style.schedule.days=दिन
+style.schedule.supersoniccycles=सुपरसोनिक चक्र
+style.schedule.pressurecycles=प्रेशर चक्र
+style.schedule.enginecycles=इंजन चक्र
+style.schedule.enginechange=इंजन बदलें
+style.schedule.shopvisits=शॉप विजिट
+style.schedule.apuchange=सहायक पॉवर यूनिट परिवर्तन
+style.schedule.landinggearchange=लैंडिंग गियर बदलना
+style.schedule.wheelchange=पहिया बदल गया है
+style.schedule.enginestart=इंजन स्टार्ट
+style.schedule.apuhours=अप्पू घंटे
+style.schedule.enginehours=इंजन घंटे
+style.schedule.elapsedhours=बीते हुए घंटे
+style.schedule.landings=भूमि
+style.schedule.operatingcycles=संचालन चक्र
+style.schedule.operatinghours=परिचालन घंटे
+style.schedule.supersonichours=सुपरसोनिक घंटे
+style.schedule.acheck=A जाँचें
+style.schedule.bcheck=B जाँचें
+style.schedule.ccheck=C जाँचें
+style.schedule.dcheck=D जाँचें
+style.schedule.echeck=E जाँचें
+style.schedule.daily=प्रतिदिन
+style.schedule.overnight=रात में
+style.schedule.preflight=पूर्वनिर्मित
+style.schedule.routinecheck=रूटीन जांच
+style.schedule.structuralccheck=ससंरचनात्मक C जाँचें
+style.schedule.servicecheck=सेवा जांच
+style.schedule.transit=आवागमन
+style.schedule.kilometers=किलोमीटर
+style.schedule.consumptionincubicmeter=घन मीटर में खपत
+style.schedule.consumptioninliter=लीटर में खपत
+style.schedule.numberofshotseach=शॉट्स की संख्या - प्रत्येक
+style.schedule.numberofshotsefc=शॉट्स की संख्या - बराबर पूर्ण चार्ज (ई.एफ.सी.)
+style.general.notdefined=परिभाषित नहीं
+style.schedule.inspection=निरीक्षण
+style.schedule.inspectiontype=निरीक्षण प्रकार
+style.schedule.triggerreferencedtasks=संदर्भित कार्यों को ट्रिगर करें
+style.table.mustspecifythenumberofcolumns=त्रुटि: CALS तालिकाओं को स्तंभों की संख्या निर्दिष्ट करना आवश्यक है.
+style.table.noconvertlengthfunctionavailable=कोई भी कन्वर्टलेंग्थ फ़ंक्शन उपलब्ध नहीं है.
+style.table.noadjustcolumnwidthsfunctionavailable=के लिए कोई फ़ंक्शन उपलब्ध नहीं है adjustColumnWidths
+style.table.findintable=तालिका में ढूँढें
+style.table.wholeword=पूरा शब्द
+style.table.matchcase=केस मिलाएँ
+style.table.currentsectiononly=केवल वर्तमान अनुभाग
+style.table.result=परिणाम
+style.table.noapplicabledatathissection=इस अनुभाग में कोई लागू डेटा नहीं है.
+style.table.determinecolumnnumber=उस स्तंभ संख्या को निर्धारित करें जिसमें कोई दी गई प्रविष्टि आती है
+style.table.ifan=यदि कोई हो
+style.table.entry=प्रविष्टि
+style.table.hasa=है
+style.table.or=या
+style.table.attributethistemplate=विशेषता, यह टेम्पलेट
+style.table.determinenumberofthecolumn=उस स्तंभ की संख्या निर्धारित करेगा जिसमें प्रविष्टि होनी चाहिए.
+style.table.forother=अन्य के लिए
+style.table.nothingisreturned=स, कुछ भी लौटाया नहीं जाता।
+style.table.elementtobetested=वह तत्व जिसका परीक्षण किया जाना है.
+style.table.the=है
+style.table.returnsthecolumnnumber=यह टेम्पलेट स्तंभ संख्या लौटाता है यदि इसे निर्धारित किया जा सकता है,
+style.table.orzero=या 0 (रिक्त स्ट्रिंग)
+style.checklist.checklistintervals=चेकलिस्ट अंतराल
+style.checklist.interval=अंतराल
+style.checklist.equipmentnotavailable=उपकरण उपलब्ध नहीं है
+style.crew.if=यदि
+style.crew.elseif=और यदि
+style.wiring.wirenumber=तार नंबर
+style.wiring.fromreference=संदर्भ से
+style.wiring.designator=शब्दचित्र
+style.wiring.toreference=संदर्भ के लिए
+style.wiring.wiretype=तार प्रकार
+
+## LAM added for wiring
+style.wiring.equipdescrref=उपकरण का वर्णन:
+style.wiring.functionaldescrref=फंक्शनल डेस्क्स:
+style.wiring.harness=हार्नेस
+style.wiring.harnessinfo=हार्नेस जानकारी.
+style.wiring.illustrationRef=उदाहरण संदर्भ:
+style.wiring.ref=परिशोधित करें.
+style.wiring.references=संदर्भ
+style.wiring.wirecolour=तार का रंग
+style.wiring.wireconnection=तार कनेक्शन
+style.wiring.wiregauge=वायर गेज
+style.wiring.wireinstallation=तार लगाना
+style.wiring.wirenumber=तार नंबर
+style.wiring.wirepartnumber=वायर पार्ट नंबर
+## / LAM added for wiring
+
+style.expert.requiredsupplies=आवश्यक आपूर्तियाँ
+style.expert.requiredspares=आवश्यक कलपुर्जें
+style.expert.safetyinstructions=सुरक्षा निर्देश
+style.expert.nomen=सूचना प्रौद्योगिकी
+style.expert.qty=मात्रा
+style.common.unverified=असत्यापित
+style.common.references=संदर्भ
+style.common.noreferences=कोई संदर्भ नहीं
+style.common.step=चरण
+style.common.para=अनुच्छेद
+style.template.note=नोट
+style.template.dataoutofdate=इस पृष्ठ में वह डेटा हो सकता है जो पुराना हो. नवीनतम IETM देखें
+style.template.datapath=डेटा पथ
+style.template.destructionnotice=विनाश सूचना - अवर्गीकृत, सीमित दस्तावेज़ों के लिए, किसी भी ऐसी विधि द्वारा नष्ट करें जो सामग्री के प्रकटन या दस्तावेज़ के पुनर्निर्माण को रोकती हो.
+style.template.ietmversion=IETM संस्करण
+style.template.ietmdate=IETM दिनांक
+style.template.version=संस्करण
+style.template.pubdate=पब दिनांक
+style.template.dateprinted=तिथि प्रिंट की गई
+style.template.pubnumber=पब संख्या
+style.security.portionMarking.unclassified=(यू)
+style.security.portionMarking.confidential=(ग)
+style.security.portionMarking.secret=(स)
+style.security.portionMarking.topsecret=(टी)

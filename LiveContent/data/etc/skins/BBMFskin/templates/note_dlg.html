@@ -1,0 +1,87 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/note_dlg.html 2.0 2019/05/22 21:01:54GMT milind Exp  $ -->
+<meta id="META_MODE" content="@MODE@">
+<meta id="META_DOCID" content="@DOCID@">
+<meta id="META_OFFSET" content="@OFFSET@">
+<meta id="META_LOCATION" content="@LOCATION@">
+<meta id="META_NOTE_TITLE" content="@NOTE_TITLE@">
+<meta id="META_NOTE" content="@NOTE@">
+<meta id="META_USER_ID" content="@USER_ID@">
+<meta id="META_ANNOTID" content="@ANNOTID@">
+<meta id="META_ANNOT_CHANGEPUBLIC" content="@ANNOT_CHANGEPUBLIC@">
+<div class="resourceRightDialog">
+
+<table class="note_table" border="0" >
+	<tr align="center">
+		<td id="resourceTitle" style="display:none;" colspan="2"><div><img class="align-middle-v" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.item-comments.32.color.png"/><span>Notes</span></div></td>
+	</tr>
+	<tr align="center" height="30px">
+		<td  class="note_table_title_td" align="right">Title:</td>
+		<td align="left"  class="padding-left-5px">
+		<input class="note_table_title_input" maxlength="50" type="text" id="NOTE_TITLE" value="" size="50" nowrap onKeyDown="CVPortal.redirectEnter(event, '$(CVPortal.components.cvResourceManager.okButton.element).trigger(\'click\');');"></input>
+		<td><img style="display:none" cvHelpButton="1" align="right" valign="top" class="link" id="CS.HELPBTN" src="@APPNAME@?target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover(event)"
+			onmouseout="help_onmouseout(event)"
+			onclick="help_onclick('1016')"
+			ondrag="event.returnValue=false;"></td>
+	</tr>
+	<tr valign="top" >
+		<td class="note_table_title" align="right">Target:</td>
+		<td align="left" class="padding-left-5px width-810px">
+		<span id="LOCATION" class="verdana font-8pt bold">@LOCATION@</span></td>
+	</tr>
+	<tr height="10">
+		<td></td>
+		<td></td>
+	</tr>
+	<tr valign="top">
+		<td class="note_table_title" align="right">Note:</td>
+		<td align="left" class="padding-left-5px"><textarea class="note_table_title_textarea" id="NOTE" cols="70" rows="5" onKeyDown="CVPortal.redirectEnter(event, '$(CVPortal.components.cvResourceManager.okButton.element).trigger(\'click\');');"></textarea></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<input type="checkbox" name="checkbox" style="display:none" id="PUBLIC_CHECKBOX"/>
+			<span id="PUBLIC" class="note_table_public">Public Note</span>
+							<!-- attachment button... -->
+							<div cvControl="1" id="CVCtrl_attach" style="margin-top:2px;display:none;"><span> </span></div>
+
+		</td>
+	</tr>
+<!--	<tr>
+		<td></td>
+		<td style="padding-left:5px;">
+			<br/>
+			<div id="attach_container">
+				<div class="small_title">Attachments</div>
+				<br/>
+				<form id="ATTACH_FORM" target="ATTACH_IFRAME" name="ATTACH_FORM" action="@APPNAME@?target=attach&action=attach_save"
+					method="POST" enctype="multipart/form-data" onSubmit="CVPortal.components.cvResourceManager.attachFile(@ANNOTID@);">
+					<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+
+					<div id="attach_interface">
+						<span style="font-weight:bold">Attach File:</span>
+						<input type="file" id="attach_file" name="attach_file" size="40" />
+						<input type="submit" value="Attach"/>
+					</div>
+				</form>
+				<iframe width="300px" height="300px" src="@APPNAME@?target=resource&action=html&file_name=blank.html" id="ATTACH_IFRAME" name="ATTACH_IFRAME"></iframe>
+				<div id="attach_list"> </div>
+			</div>
+		</td>
+	</tr>-->
+</table>
+
+<br/>
+<span id="QUESTION" class="note_table_question"></span>
+<center>
+<!--<div style="padding:6pt;background-image: url(@HTTP_ROOT@/images/warning_bg.gif);margin-top:10;margin-bottom:10;width:270px;">
+<div style="background-color:white;border:2pt solid black;width:">
+<div style="text-align:center;font-weight:bold;">WARNING</div>
+
+<span style="font-family:Verdana;font-weight:bold;font-size:10pt;">Information contained in a note does not supersede the information contained in the document.</span>
+</div>-->
+<button type="button" cvControl="1" id="CVCtrl_OK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_cancel"><span></span></button>
+<br/>
+</center>
+</div>

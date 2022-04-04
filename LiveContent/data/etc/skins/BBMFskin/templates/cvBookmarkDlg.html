@@ -1,0 +1,49 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvBookmarkDlg.html 2.0 2019/05/22 21:01:24GMT milind Exp  $ -->
+
+
+<meta id="META_MODE" content="@MODE@">
+<meta id="META_DOCID" content="@DOCID@">
+<meta id="META_LOCATION" content="@LOCATION@">
+<meta id="META_OFFSET" content="@OFFSET@">
+<meta id="META_BM_TITLE" content="@BM_TITLE@">
+<meta id="META_USER_ID" content="@USER_ID@">
+<meta id="META_ANNOT_CHANGEPUBLIC" content="@ANNOT_CHANGEPUBLIC@">
+
+<table align="center" border="0">
+	<tr align="center" valign="middle" height="30">
+		<td class="bookmark_table_title_td" align="right">Title:</td>
+		<td align="left"  class="padding-left-5px"><input class="bookmark_table_input" maxlength="50" type="text" id="BM_TITLE"
+		value="@BM_TITLE@" nowrap></input></td>
+		<td><img style="display:none" align="right" valign="top" class="link" id="CS.HELPBTN" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover('help')"
+			onmouseout="help_onmouseout('help')"
+			onclick="help_onclick('1015')"
+			ondrag="event.returnValue=false;"></td>
+	</tr>
+	<tr valign="top">
+		<td class="bookmark_table_title" align="right">Target:</td>
+		<td align="left" class="padding-left-5px"><span id="LOCATION" class="bookmark_table_text">@LOCATION@</span></td>
+	</tr>
+</table>
+<br/>
+
+<table align="center" width="100%" cellpadding="0" cellspasing="0" valign="top">
+	<tr valign="middle">
+		<td class="width-15per" align="right"><input type="checkbox" name="checkbox" style="display:none" id="PUBLIC_CHECKBOX"/></td>
+		<td align="left">
+			<span id="PUBLIC" class="bookmark_table_text"></span>
+		</td>
+	</tr>
+</table>
+<br/>
+
+<table width="100%" cellpadding="0" cellspasing="0" valign="top">
+	<tr valign="top">
+		<td align="center"><span id="QUESTION" class="bookmark_table_title"></span></td>
+	</tr>
+</table>
+<br/>
+
+
+<button type="button" cvControl="1" id="CVCtrl_printOK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_printCancel"><span></span></button>

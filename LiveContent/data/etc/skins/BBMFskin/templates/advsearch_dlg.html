@@ -1,0 +1,45 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/advsearch_dlg.html 2.0 2019/05/22 21:01:04GMT milind Exp  $ -->
+<table border="0">
+	<tr align="center" valign="middle" height="30">
+		<td class="search_table_text" align="right">Find:</td>
+
+		<td align="left"  class="padding-left-5px"><input class="search_table_input" maxlength="50" type="text" id="term1" nowrap></input></td>
+
+		<td><img style="display:none" align="right" valign="top" class="link" id="CS.HELPBTN" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover('help')"
+			onmouseout="help_onmouseout('help')"
+			onclick="help_onclick('1023')"
+			ondrag="event.returnValue=false;"></td>
+	</tr>
+	<tr align="center" valign="middle" height="30">
+		<td></td>
+		<td align="left"  class="padding-left-5px">
+		<select id="op1" class="search_table_text">
+		<option value="and">and</option>
+		<option value="or">or</option>
+		<option value="andnot">and not</option>
+		<option value="near">near</option>
+		</select>
+		</td>
+		<td></td>
+	</tr>
+	<tr align="center" valign="middle" height="30">
+		<td class="search_table_text"  align="right">Find:</td>
+		<td align="left" class="padding-left-5px"><input class="search_table_input" maxlength="50" type="text" id="term2" nowrap></input></td>
+		<td></td>
+	</tr>
+	<tr valign="middle">
+		<td></td>
+		<td class="search_table_text" align="left"><input type="checkbox" id="ignore_case"/>Ignore Case</td>
+		<td></td>
+	</tr>
+	<tr valign="middle">
+		<td></td>
+		<td class="search_table_text" align="left"><input type="checkbox" id="whole_words_only"/>Whole words only</td>
+		<td></td>
+	</tr>
+</table>
+<br/>
+
+<button type="button" cvControl="1" id="CVCtrl_OK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_cancel"><span></span></button>

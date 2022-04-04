@@ -1,0 +1,54 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvGraphicControl.html 2.0 2019/05/22 21:01:26GMT milind Exp  $ -->
+<div>
+	<!-- next and previous -->
+	<div cvControl="1" id="CVCtrl_prevImage"/>
+	<div cvControl="1" id="CVCtrl_nextImage"/>
+
+	<div>
+		<div cvControl="1" id="CVCtrl_svgZoomIn"/>
+		<div cvControl="1" id="CVCtrl_svgZoomOut"/>
+		<div cvControl="1" id="CVCtrl_svgPanLeft"/>
+		<div cvControl="1" id="CVCtrl_svgPanRight"/>
+		<div cvControl="1" id="CVCtrl_svgPanUp"/>
+		<div cvControl="1" id="CVCtrl_svgPanDown"/>
+		<div cvControl="1" id="CVCtrl_svgReset"/>
+		<div cvControl="1" id="CVCtrl_svgHighlightAllHotspots"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningPencil"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningCircle"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningRectangle"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningLine"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningAnnotation"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningErase"/>
+		<div cvControl="1" id="CVCtrl_svgRedliningDownload"/>
+		<div cvControl="1" id="CVCtrl_svgRedlining"/>
+	</div>
+	
+	<div style="overflow:hidden;">
+		<!-- RHI and movie controls -->
+		<div cvControl="1" id="CVCtrl_prevRHIStep"/>
+		<div cvControl="1" id="CVCtrl_currRHIStep"/>
+		<div cvControl="1" id="CVCtrl_nextRHIStep"/>
+		<div cvControl="1" id="CVCtrl_listRHISteps"/>
+		<div cvControl="1" id="CVCtrl_allRHISteps"/>
+		<div cvControl="1" id="CVCtrl_pauseRHIStep"/>
+		<div cvControl="1" id="CVCtrl_resumeRHIStep"/>
+		<div id="CVCtrl_onRHIXray" style="display:none">X-Ray On</div>
+		<div id="CVCtrl_waitRHI" style="display:none">Wait...</div>
+		<div id="CVCtrl_offRHIXray" style="display:none">X-Ray Off</div>
+
+		<select onChange="CVPortal.components.cvMedia.changeGraphicType(event);" class="simpleFloat" id="CVCtrl_selectType" style="display:none"></select>
+
+		<div id="CVCtrl_playAnim"><img/></div>
+		<div id="CVCtrl_pauseAnim"><img/></div>
+		<div id="CVCtrl_rewindAnim"><img/></div>
+		<img cvHelpButton="1" class="link" id="CS.HELPBTN" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=help.gif"
+		style="display:none;float:right;"
+		onmouseover="help_onmouseover(event)"
+		onmouseout="help_onmouseout(event)"
+		onclick="help_onclick('1008')"/
+		ondrag="event.returnValue=false;">
+	</div>
+	
+</div>
+
+

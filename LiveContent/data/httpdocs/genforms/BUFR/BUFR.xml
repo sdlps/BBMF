@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<generic_form>
+<idstatus>
+	<name>BUFR</name>
+	<title>UFR ModF765 - BUFR</title>
+</idstatus>
+<content>
+	<text id="topgrid">|</text>
+	<text id="formName">MOD Format 765</text>
+	<text id="revStatement">Revised (Oct 19)</text>
+	<text id="ppq">50</text>
+	<title id="ufr">Unsatifactory Feature Report</title>
+	<title id="ufrsubtitle">(For Defence Air Environment Technical Information)</title>
+  <hidden id="lcsdmcxref"></hidden>
+  <div id="part0"><text id="formRef">Reference: MOD Poster 302 Series</text></div>
+  <div id="part1"><title>Part 1 - Originator</title>
+    <textinput id="origtitleaddress">Title / Address</textinput>
+    <textinput id="origdate">Date</textinput>
+    <textinput id="origReference">Reference</textinput>
+    <textinput id="origUnitPOC">Unit Point of Contact &amp; Ext</textinput>
+    <textinput id="origEmail">Email Address</textinput>
+  </div>
+  <div id="part2"><title>Affected Document (AP, DAP, Form etc.)</title>
+    <textinput id="docRefDmc">Technical Information (TI) Reference</textinput>
+    <textinput id="docRefIssueInw">Amendment/Revision/Issue State</textinput>
+    <textinput id="docRefTitle">Title</textinput>
+    <textinput id="docRefElementLevel">Element</textinput>
+    <textinput id="AircraftType">Ac Type</textinput>
+    <dropdown id="AircraftMark">Ac Mark</dropdown>
+    <textinput id="AircraftMarkOther">Other Types/Marks which may be affected</textinput>
+  </div>
+  <div id="part3"><title>Originator's Report</title>
+    <textinput id="report1">Unsatisfactory feature(s)</textinput>
+    <textinput id="report2">Recommended Change</textinput><!--(use continuation sheet(s) if necessary)-->
+    <confirm id="report3">I know of no other TI/Logistic Information System (ILS) that may be affected by this recommendation</confirm>
+    <confirm id="report4">Other TI/LIS affect/further effects have been reported at:</confirm>
+    <text id="report5">(eg MOD Form 765 or Remedy Record Ref) </text>
+  </div>
+  <div id="signature">
+    <textinput id="signature1">Signature</textinput>
+    <textinput id="signature2">Rank/Grade and Name</textinput>
+    <textinput id="signature3">Tel No</textinput>
+    <textinput id="signature4">Role email address</textinput>
+    <textinput id="signature5">Date</textinput>
+  </div>
+	<!--
+  <input onKeyDown="return false;" type="text" id="form_title" required="true" size="34"/>
+  -->
+<!--
+  *************************************************************************************************
+  * ||||||||||||||||||||||||||||||||||||||||||||||||||                             MOD Format 765 *
+  *                                                                              Revised (Oct 19) *
+  *                                                                                      PPQ = 50 *
+  * Unsatifactory Feature Report                                                                  *
+  * (For Defence Air Environment Technical Information)                                           *
+  * _____________________________________________________________________________________________ *
+  * | Reference: MOD Poster 302 Series                                                          | *
+  * _____________________________________________________________________________________________ *
+  * | Part 1 - Originator                                                                       | *
+  * | Title / Address                            Date                                           | *
+  * ||                                         | |               |                              | *
+  * ||                                         | Reference                                      | *
+  * ||                                         | |                                             || *
+  * ||                                         | Unit Point of Contact & Ext                    | *
+  * ||                                         | |                                             || *
+  * ||                                         | Email Address                                  | *
+  * ||                                         | |                                             || *
+  * |___________________________________________________________________________________________| *
+  * | Affected Document (AP, DAP, Form etc.)                                                    | *
+  * | Technical Information (TI) Reference       Amendment/Revision/Issue State                 | *
+  * ||                                         | |                                             || *
+  * | Title                                                                                     | *
+  * ||                                                                                         || *
+  * | Element                                                                                   | *
+  * ||                                                                                         || *
+  * | Ac Type            Ac Mark                 Other Types/Marks which may be affected        | *
+  * ||                 | |                    | |                                              || *
+  * _____________________________________________________________________________________________ *
+  * | Originator's Report                                                                       | *
+  * | Unsatisfactory feature(s)                                                                 | *
+  * ||                                                                                         || *
+  * ||                                                                                         || *
+  * ||                                                                                         || *
+  * | Recommended Change (use continuation sheet(s) if necessary)                               | *
+  * ||                                                                                         || *
+  * ||                                                                                         || *
+  * ||                                                                                         || *
+  * | X | | I know of no other TI/Logistic Information System (ILS) that may be affected by this recommendation | *
+  * | X | | Other TI/LIS affect/further *effects have been reported at:                         | *
+  * |       (eg MOD Form 765 or Remedy Record Ref)                                              | *
+  * |       |                                                                                  || *
+  * _____________________________________________________________________________________________ *
+  * |   Signature   |   Rank/Grade and Name   |    Tel No    |   Role email address   |  Date   | *
+  * |              | |                       | |            | |                      | |       ||*
+  *************************************************************************************************
+-->
+</content>
+</generic_form>

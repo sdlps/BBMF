@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>@TITLE@</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8"/>
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_VERSION" content="3.6.0.0">
+<meta id="META_BUILD_DATE" content="August 8, 2008">
+<meta id="META_CONFIG_HELP_BTN" content="@CONFIG_HELP_BTN@">
+<meta id="META_SKIN" content="@SKIN@"/>
+<meta id="META_SKIN_ALT" content="@SKIN_ALT@"/>
+
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+
+<!--
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=interface.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.dimensions.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.form.js"></script>
+-->
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPortal.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvMetaFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvDebugger.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvHelpFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvControlFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPanelFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvBaseComponent.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvModalHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvBookList.js"></script>
+
+<script type="text/javascript">
+
+var CVPortal = new CV_Portal();
+
+function cvPortalInit() {
+
+	CVPortal.metaFactory().loadMetaData();
+	CVPortal.loadResources("en");
+	// CVPortal.registerBooklist();
+	CVPortal.panelFactory().loadPanels("booklist");
+	CVPortal.controlFactory().loadControls("booklist");
+	CVPortal.loadComponents("booklist");
+	CVPortal.helpFactory().processHelpButtons("body");
+}
+
+</script>
+<link rel=stylesheet type="text/css" href="@APPNAME@?target=resource&action=html&file_name=skin.css">
+<style>
+#bbmfacceptance {
+	height:314px;
+	width:600px;
+	margin-top:0;
+}
+#login_content * h1 {
+  font-size:120%;
+  color:#fff;
+  border-bottom:0;
+  background-color:#5d8aa8; /* rgb(93,138,168) */
+  padding:12px;
+}
+#login_content * h2 {
+  font-size:90%;
+  color:black;
+  border-bottom:0;
+}
+#bbmfacceptance > p {
+  color:black;
+  font-size:80%;
+}
+#bbmfacceptance * li > p {
+  color:black;
+  font-size:80%;
+}
+</style>
+</head>
+
+<body class="login" onload="document.getElementById('username').focus(); cvPortalInit();">
+<!--
+<div id="login_background"><img  class="login_overlay" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=login_overlay.png" ondrag="event.returnValue=false;"/></div>
+-->
+<div id="login_content"><center>
+<h1>Battle of Britain Memorial Flight Maintenance Portal</h1>
+<table style="margin:auto; width:850px">
+<col width="250px">
+<col width="600px">
+<tr>
+<td align="center" valign="top">
+<img style="width:222px;height:300px" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=aircraft/Battle_of_Britain_Memorial_Flight_Crest.jpg"></img>
+<br/><br/><img style="width:222px;height:95px" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=aircraft/raf-logo.jpg"></img>
+</td>
+<td align="left" valign="top">
+<div id="bbmfacceptance" style="text-align:left;display:block">
+<h2>MoD Legal Notification Acceptance</h2>
+<p>The MoD provides this service for you to do your work. Please use it responsibly. You must comply with the following instructions, available on the Defence Intranet:-<ul>
+<li><p>The Acceptable Use Policy (AUP) documented as JSP740</p></li>
+<li><p>The MODNet Security Operating Procedures (SyOps)</p></li>
+<li><p>The MODNet Suite of Factsheets and Quick Reference Guides (QRGs)</p></li>
+</ul></p>
+<p>Unauthorised or inappropriate use of this service could be unlawful and may result in legal and/or disciplinary action. You should be aware that all activity associated with this service, including the use of cookies, may be monitored and recorded. If you do not accept the terms of use here, you must not continue with the log-on procedure.</p>
+<p>By pressing the 'OK' button you are agreeing to <b>ACCEPT</b> the following statements:-<ul>
+<li><p>I am authorised to access this service</p></li>
+<li><p>I will comply with the AUP and the Service's SyOps</p></li>
+<li><p>I have been made aware that my activity may be monitored and,</p></li>
+<li><p>I consent to the monitoring of my activity</p></li>
+</ul></p>
+<center>
+<button id="accept" name="accept" value="OK"
+  style="height:50px; width:200px; background-color:#5d8aa8; border:none; font-size:16px; color:#fff; font-weight:bold; cursor:pointer;"
+  onClick="document.querySelectorAll('div.splash')[0].style.display='block';document.querySelector('div#bbmfacceptance').style.display='none';"
+  >OK</button></center>
+</div>
+<div class="splash" style="display:none">
+<div class="fields">
+<table><tr>
+<td class="login_label">Username:</td>
+<td class="login_input"><input type="text" id="username" name="username" onKeyDown="CVPortal.redirectEnter(event, 'CVPortal.components.cvBookList.processLogin()');"/></td>
+</tr><tr>
+<td class="login_label">Password:</td>
+<td class="login_input"><input id="password" type="password" name="password" onKeyDown="CVPortal.redirectEnter(event, 'CVPortal.components.cvBookList.processLogin()');"/></td>
+</tr></table>
+<div class="login_button xref">
+<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=login_button_lcs.png" ondrag="event.returnValue=false;" onClick="CVPortal.components.cvBookList.processLogin();"/>
+</div>
+<div id="loginStatus" class="login_status" style="display:none;">Status</div>
+</div></div></td>
+</tr>
+</table>
+
+</center></div>
+
+</body></html>

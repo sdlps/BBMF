@@ -1,0 +1,48 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvUpdateServer.html 2.0 2019/05/22 21:01:36GMT milind Exp  $ -->
+<div id="CVUS_Login" class="update_server_container">
+	<h2 class="border-dashed-silver">ContentaView Update Server</h2>
+	<span style="color:green;">In order to check for and download updates<br/>
+	to your publications, please log into the Update Server.</span>
+
+	<div id="CVUS_Login_Error" style="display:none" class="error"> </div>
+
+	<table>
+		<tr>
+			<th align="right">User Name</th>
+			<td><input type="text" size="24" id="CV_US_username"/></td>
+		</tr>
+		<tr>
+			<th align="right">Password</th>
+			<td><input type="password" size="24" id="CV_US_password"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="button" value="Login" onClick="CVPortal.components.cvBookList.processLoginToUpdateServer();"/>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<br/>
+
+<div id="CVUS_InstallingUpdate" class="update_server_container">
+
+</div>
+
+
+<div id="CVUS_Updates" class="update_server_container">
+	<h2 class="border-dashed-silver">Pending Updates</h2>
+	<div class="error" id="CVUS_UpdateFailure"> </div>
+	<div style="display:none;" id="CV_UpdateStatus">
+	</div>
+	<br/>
+	<table width="800px">
+		<tr>
+			<td></td><td></td><td></td><td></td>
+		</tr>
+	</table>
+
+	<input type="button" onClick="CVPortal.components.cvBookList.processUpdatesFromServer();" value="Update Publications" style="display:none;" id="CVCtrl_processUpdates"/>
+	<input type="button" onClick="CVPortal.components.cvModalHandler.hideModal();" value="Ok" style="display:none;" id="CVCtrl_completeUpdates"/>
+
+</div>

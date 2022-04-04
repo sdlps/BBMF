@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/select.html 2.0 2019/05/22 21:01:59GMT milind Exp  $ -->
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>@TITLE@</title>
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_VERSION" content="5.9">
+<meta id="META_BUILD_DATE" content="Fri, 11 Dec 2020 11:36:40 EST">
+<meta id="META_S_TIMEOUT" content="@S_TIMEOUT@">
+<meta id="META_CONFIG_HELP_BTN" content="@CONFIG_HELP_BTN@">
+<meta id="META_USER_HIDE_HELP_BTN" content="@USER_HIDE_HELP_BTN@">
+<meta id="META_SAVE_POSITION" content="@SAVE_POSITION@">
+<meta id="META_LEFT_X" content="@LEFT_X@">
+<meta id="META_LEFT_Y" content="@LEFT_Y@">
+<meta id="META_WIN_HEIGHT" content="@WIN_HEIGHT@">
+<meta id="META_WIN_WIDTH" content="@WIN_WIDTH@">
+<meta id="META_SKIN" content="@SKIN@"/>
+<meta id="META_SKIN_ALT" content="@SKIN_ALT@"/>
+
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+<link rel="stylesheet" type="text/css" href="@APPNAME@?target=resource&action=html&file_name=skin.css"/>
+
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.highlight-3.js"></script>
+<!-- add session id for skin switch
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=interface.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.dimensions.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.form.js"></script>
+-->
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPortal.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvMetaFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvDebugger.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvHelpFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvControlFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPanelFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvBaseComponent.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvModalHandler.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvBookList.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvCompatLib.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvMedia.js"></script>
+<script type="text/javascript">
+
+var CVPortal = new CV_Portal();
+
+function cvPortalInit() {
+	CVPortal.metaFactory().loadMetaData();
+	CVPortal.loadResources("en");
+	CVPortal.registerBooklist();
+	CVPortal.panelFactory().loadPanels("booklist");
+	CVPortal.controlFactory().loadControls("booklist");
+	CVPortal.loadComponents("booklist");
+	CVPortal.helpFactory().processHelpButtons("body");
+	CVPortal.components.cvBookList.loadBooklist();
+	if (CVPortal.getBrowserType() == "WEBKIT") {
+		window.addEventListener("unload", function logData() {
+			var url = CVPortal.getURLwithBaseParams("date") + "&target=main&action=main_close";
+			navigator.sendBeacon(url, "");
+		});
+	} else {
+		window.addEventListener("beforeunload", function logData() {
+		CVPortal.unregisterBooklist();
+		});
+	}
+		
+}
+
+</script>
+</head>
+
+<body class="front" onLoad="cvPortalInit()" onResize="CVPortal.clientResize();">
+
+
+<div class="front-header">
+	<img alt="SDL" class="LCS-logo" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=lcs_white_logo.png">
+</div>
+
+<div>
+	<center>
+		<!--<img SRC="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=XyLogo.JPG" style="margin-top:20px;border:2pt solid black;" ondrag="event.returnValue=false;"/><br/>-->
+
+	<table width="80%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="center" colspan="2" valign="middle">
+				<!--<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=selectmodel.gif" ondrag="event.returnValue=false;"/>-->
+				<div id="updateServerLinkDiv" class="updateServerLinkBlock" style="display:none;">
+					<img id="CVCtrl_webupdate" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=webupdate.gif" class="simpleButton" onClick="javascript:CVPortal.components.cvBookList.openUpdateServerModal()"/>
+					<span id="updateServerLink" class="simpleButton" onClick="javascript:CVPortal.components.cvBookList.openUpdateServerModal()">Check the update server.  </span>
+				</div>
+			 </td>
+		</tr>
+				<tr>
+					<!-- replace the hard code by dynamic code that was create in Java code, MainHandler.java -->
+					<td class="BOOK-LIST">@BOOK_LIST@</td>
+					 <td valign="top">
+						<img valign="top" class="link" cvHelpButton="1" id="HELP" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=help.gif"
+								onmouseover="help_onmouseover(event)"
+								onmouseout="help_onmouseout(event)"
+								onclick="CVPortal.helpFactory().showHelp('1001')"
+								ondrag="event.returnValue=false;"
+								style="display:none;cursor:hand"/>
+					</td>
+				</tr>
+
+			</table>
+<br/>
+<br/>
+<div id="ERAC_MESSAGE_CONTAINER" style="display:none;" class="erac_message_container">
+	<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0">
+		<tr>
+			<td id="ERAC_MESSAGE" class="erac_message align-middle-v" align="center"></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

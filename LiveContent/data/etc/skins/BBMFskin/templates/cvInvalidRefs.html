@@ -1,0 +1,47 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvInvalidRefs.html 2.0 2019/05/22 21:01:30GMT milind Exp  $ -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_COLALIAS" content="@COL_ALIAS@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_LABEL" content="@LABEL_NAME@">
+
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvSnippet_InvalidRefs.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvCompatLib.js"></script>
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=skin.css">
+
+<title>Invalid References Report</title>
+
+</head>
+<body onLoad="onload_handler()">
+<!--
+<div style="float:right" id="help_container">
+		<img style="display:none" id="CS.HELPBTN" cvHelpButton="1" class="link"
+			src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&amp;action=image&amp;file_name=help.gif"
+			onclick="CVPortal.helpFactory().showHelp('1014')"
+			onmouseover="help_onmouseover(event)"
+			onmouseout="help_onmouseout(event)"
+			ondrag="event.returnValue=false;"/>
+</div>
+-->
+<div id="main_content" style="overflow:auto;">
+
+<center>
+	<h3>Loading...</h3>
+	<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=processing.gif"/>
+</center>
+</div>
+</body>
+</html>

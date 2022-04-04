@@ -1,0 +1,103 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/user_mgr_dlg.html 2.0 2019/05/22 21:02:13GMT milind Exp  $ -->
+<html>
+<head>
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_USER_COMPANY" content="@USER_COMPANY@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_COLALIAS" content="@COL_ALIAS@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<style>
+img{
+	cursor:hand;
+}
+</style>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=const.js"></script>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=utils.js"></script>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=user_mgr_dlg.js"></script>
+<title>User Manager</title>
+</head>
+<body background="@APPNAME@?target=resource&action=image&file_name=dlg_bgbtnbar.gif" rightmargin="0" leftmargin="0" topmargin="5" scroll="no" onload="load_handler()" onmouseover="onmouseoverDlg_handler()">
+<table  width="743"  border="0" background="@APPNAME@?target=resource&action=image&file_name=dlg_bgbtnbar.gif"  cellspacing="0" cellpadding="0">
+<tr height="45">
+<td>
+<div>
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_new.gif" id="new" alt="New user" 
+		onclick="new_handler()" 
+		onmouseover="mouseoverAction_handler()"
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"	
+		style="position:relative;left:10;top:4;"/>
+	
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_editd.gif" id="edit" alt="Edit user" 
+		onclick="edit_handler()" 
+		onmouseover="mouseoverAction_handler()"
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"	
+		style="position:relative;left:10;top:4;"/>
+
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_deleted.gif" id="delete" alt="Delete user" 
+		onclick="delete_handler()" 
+		onmouseover="mouseoverAction_handler()"
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"
+		style="position:relative;left:10;top:4;"/>
+
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_disabled.gif" id="disable" alt="Disable user(s)" 
+		onclick="disable_handler()" 
+		onmouseover="mouseoverAction_handler()"
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"
+		style="position:relative;left:10;top:4;display:none"/>
+
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_enabled.gif" id="enable" alt="Enable user(s)" 
+		onclick="enable_handler()" 
+		onmouseover="mouseoverAction_handler()"
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"
+		style="position:relative;left:10;top:4;display:none"/>
+	
+	<img src="@APPNAME@?target=resource&action=image&file_name=dlg_exit.gif" id="exit" alt="Exit user manager" 
+		onclick="exit_handler()"
+		onmouseover="mouseoverAction_handler()" 
+		onmouseout="mouseoutAction_handler()"
+		ondrag="event.returnvalue=false;"
+		style="position:relative;left:30;top:4;"/>
+</div>
+</td>
+</tr>
+</table>
+<table align="center" cellpadding=0 cellspacing=0>
+	<tr><td>
+	<table cellpadding=0 cellspacing=0>
+		<!-- the total of the columns width must be 20pt less then the width of the iframe-->
+		<tr>
+			<td width="22"></td>
+			<td><button id="LOGIN" style="font-family:verdana; font-weight:bold; font-size:10pt; height=25" onclick="onsort_handler('login')">Login</button></td>
+			<td><button id="GROUP" style="font-family:verdana; font-weight:bold; font-size:10pt; height=25" onclick="onsort_handler('group')">Group</button></td>
+			<td><button id="LAST_NAME" style="font-family:verdana; font-weight:bold; font-size:10pt; height=25" onclick="onsort_handler('last_name')">Last Name</button></td>
+			<td><button id="FIRST_NAME" style="font-family:verdana; font-weight:bold; font-size:10pt; height=25" onclick="onsort_handler('first_name')">First Name</button></td>
+			<td><button id="COMPANY" style="font-family:verdana; font-weight:bold; font-size:10pt; height=25" onclick="onsort_handler('company')">Company</button></td>
+		</tr>
+	</table>
+	</td></tr>
+	<tr align="center"><td>
+		<iframe src="@APPNAME@?target=resource&action=html&file_name=blank.html" id="DATAFRAME" width=740 height=330 frameborder="1" scrolling="yes">
+		</iframe>
+	</td></tr>
+</table>
+<table id="BOTTOMCONTROL">
+	<tr align="left" height="25" cellpadding=0 cellspacing=0>
+		<td valign="center" style="font-family:verdana;font-weight:bold;font-size:10pt;text-decoration:underline;cursor:hand;padding-left:5px;" onclick="checkAll()">Check All
+		</td>
+		<td align="right">-</td>
+		<td valign="center" style="font-family:verdana;font-weight:bold;font-size:10pt;text-decoration:underline;cursor:hand;" onclick="clearAll()">Clear All</td>
+	</tr>
+</table>
+</body>
+</html>
+

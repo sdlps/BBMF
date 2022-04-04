@@ -1,0 +1,75 @@
+<meta id="META_DOCID" content="@DOCID@">
+<meta id="META_ATTACH_ANNOTID" content="@ATTACH_ANNOTID@">
+<meta id="META_ANNOTID" content="@ANNOTID@">
+<meta id="META_ANNOT_CHANGEPUBLIC" content="@ATTACH_ANNOT_CHANGEPUBLIC@">
+
+<div class="width-60per">
+<table border="0">
+
+	<tr>
+		<td></td>
+		<td style="padding-left:10%;">
+			<div>
+				<br>
+				<span class="attachment_table_text">Target:</span>
+				<span id="title_target" class="attachment_title_text"></span>
+			</div>
+			<!-- add section -->
+			<div id="ATTACH_DIV">
+				<form id="ATTACH_FORM" target="ATTACH_IFRAME" name="ATTACH_FORM" action="@APPNAME@?target=attach&action=attach_save"
+					method="POST" enctype="multipart/form-data" onSubmit="CVPortal.components.cvResourceManager.attachFileNew(null, event);">
+					<div>&nbsp;<input type=hidden id="location"/></div>
+					<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+
+					<div id="attach_interface">
+						<span class="attachment_table_text">Attach File:</span>
+						<input id="FILE_NAME" name="FILE_NAME" size=40 type=file onchange="CVPortal.components.cvResourceManager.check_value('FILE_NAME', event)">
+						<!--<input type="file" id="attach_file" name="attach_file" size="40" />-->
+					</div>
+					<div>
+						<br>
+						<span class="attachment_table_text">Comments:</span>
+						<textarea id="COMMENTS" name="COMMENTS" class="attachment_comments" cols="70" rows="5"></textarea>
+					</div><br/>
+					<div>			
+						<input type="checkbox" name="checkbox" style="display:none" id="PUBLIC_CHECKBOX">
+						<span id="PUBLIC" class="attachment_title_text">Public</span>
+					</div><br/>
+					<div class="padding-left-40px"><button type="submit" value="Attach" disabled id="dlg_attachfile" onclick="CVPortal.components.cvResourceManager.attachFileNew(null, event)">Attach</button></div>
+
+				</form>
+				<div id="msg_edit" style="color:red; display:none;">The changes have been saved!</div>
+				<iframe style="display:none;" src="@APPNAME@?target=resource&action=html&file_name=blank.html" id="ATTACH_IFRAME" name="ATTACH_IFRAME"></iframe>
+				<div id="attach_list"> </div>
+			</div>
+			<!-- end add section -->
+			<!-- edit section -->
+			<div id="EDIT_ATTACH_DIV" style="display:none">
+				<br/>
+				<div id="edit_attach_interface">
+					<span class="attachment_table_text">Attach File:</span>
+					<input disabled name="EDIT_FILE_NAME" id="EDIT_FILE_NAME" size=40 maxlength=255>
+				</div>
+				<div><br>
+					<span class="attachment_table_text">Comments:</span>
+					<textarea name="EDIT_COMMENTS" oninput="CVPortal.components.cvResourceManager.check_value('EDIT_COMMENTS', event)" id="EDIT_COMMENTS" class="attachment_comments" cols="70" rows="5"></textarea>
+				</div><br/>
+				<div>			
+					<input type="checkbox" onchange="CVPortal.components.cvResourceManager.check_value('EDIT_PUBLIC_CHECKBOX', event)" style="display:none;" name="checkbox" id="EDIT_PUBLIC_CHECKBOX"/>
+					<span id="EDIT_PUBLIC" class="attachment_title_text">Public</span>
+				</div><br/><br/>
+					<div class="padding-left-40px">
+						<button type="submit" onclick="CVPortal.components.cvResourceManager.handle_edit_save()" disabled id="dlg_save" value="Save Change">Save Change</button>
+			&nbsp;&nbsp;<button type="submit" onclick="CVPortal.components.cvResourceManager.handle_edit_cancel()" id="dlg_cancel" value="Cancel">Cancel</button>
+						<input hidden id="attachid" value="">
+						<input hidden id="attachuser" value="admin">
+					</div>
+			</div>
+			<!-- end edit section -->
+		</td>
+	</tr>
+</table>
+
+
+
+</div>

@@ -1,0 +1,4801 @@
+/* $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/skin.css 1.101 2019/05/13 15:09:18GMT zyakubovych Exp  $ */
+
+/* global styles
+============================== */
+
+#navigationTabs, #documentTabs, .menuItem {
+	list-style: none;
+}
+
+#primaryNav {
+	border-bottom: 1px solid #587183;
+}
+
+.toolbar, #graphic_control {
+	border-bottom: 1px solid #587183;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toolbar_gradient.png) repeat-x scroll 0 0 #DAD8D3;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 24px;
+}
+
+.toolbar {
+	background-color: #EBEFF2;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 80px;
+}
+
+.hotspot {
+	border: 2px;
+	border-style: solid;
+	border-color: red;
+	font-weight: 900;
+	font-size: 110%;
+	fill: red !important;
+	fill-opacity: 0.5 !important;
+	stroke: red;
+}
+
+#toolbar.tabsPanel {
+	overflow: visible;
+}
+
+.toolbar_button {
+	height: 20px;
+	/* float: left; */
+	width: 24px;
+	margin-right: 4px;
+	margin-left: 4px;
+	margin-top: 2px;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.toolbar_buttonM {
+	height: 80px;
+	cursor: pointer;
+	_cursor: hand;
+	color: black;
+}
+
+.toolbar_button_rhi {
+	height: 24px;
+	/* float: left; */
+	width: 24px;
+	margin-right: 4px;
+	margin-left: 4px;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.toolbar_button_disabled {
+	/* float: left; */
+	width: 24px;
+	height: 20px;
+	margin-right: 4px;
+	margin-left: 4px;
+	margin-top: 2px;
+	pointer-events: none;
+}
+
+.toolbar_button_disabledM {
+	height: 80px;
+	pointer-events: none;
+	color: grey;
+}
+
+.toolbar_button_rhi_disabled {
+	/* float: left; */
+	width: 24px;
+	height: 24px;
+	margin-right: 4px;
+	margin-left: 4px;
+	pointer-events: none;
+}
+
+.toolbar_left {
+	float: left;
+}
+
+.toolbar_right {
+	float: right;
+}
+
+.toolbar_custom_button, .toolbar_custom_button_d {
+	margin-top: 6px;
+	width: 22px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.toolbar_custom_button {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=grey.remove-formatting-all.16.mono-bright.png) no-repeat;
+}
+
+.toolbar_custom_button_d {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=grey.remove-formatting-all.16.color.png) no-repeat;
+}
+
+#doc-tabs-dropdown {
+	position: relative;
+	z-index: 101;
+}
+
+.doc-tabs-icon-open {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=task_e.png) no-repeat;
+	height: 20px;
+	margin-top: 2px;
+	width: 24px;
+	float: right;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.doc-tabs-icon-close {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=task_d.png) no-repeat;
+	height: 20px;
+	margin-top: 2px;
+	width: 24px;
+	float: right;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.doc-tabs-icon-disable {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=task_d.png) no-repeat;
+	height: 20px;
+	margin-top: 2px;
+	width: 24px;
+	float: right;
+	cursor: default;
+}
+
+#documentTabs {
+	position: absolute;
+	right: 32px;
+	background: #ccc;
+	border: solid black;
+	border-width: 1px;
+	margin: 0;
+	display: none;
+	z-index: 75;
+	top: -8px;
+	padding-top: 6px;
+	padding-left: 4px;
+	padding-right: 4px;
+	height: 22px;
+}
+
+#documentTabs li {
+	margin-top: 2px;
+	font-weight: normal;
+	display: inline;
+	top: 8px;
+	height: 22px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-left: solid;
+	border-width: 1px;
+	border-color: darkslategrey;
+}
+
+#documentTabs li:first-child {
+	border-width: 0px;
+}
+
+#buttonLabel {
+	display: none;
+}
+
+#iconbuttons .highlight span {
+	text-align: center;
+	white-space: nowrap;
+	margin-right: 1px;
+}
+
+#iconbuttonsR {
+	text-align: center;
+	white-space: nowrap;
+	margin-right: 1px;
+	float: right;
+}
+
+.debugButtonGroup, #iconDebugButtons {
+	width: 40px;
+}
+
+#body_container {
+	clear: both;
+}
+
+#tocTabletControls {
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+
+#rightPanel {
+	position: absolute;
+	display: none;
+	/* top: 112px; */
+	bottom: 0;
+	right: 0px;
+	overflow: none;
+	z-index: 1001;
+	background-color: white;
+}
+
+#rightContainer {
+	height: 100%;
+	overflow: auto;
+	background-color: white;
+	-webkit-overflow-scrolling: touch;
+	padding-left: 15px;
+	position: relative;
+}
+
+/* #rightPanel #form_container { */
+	/*margin-left:auto;
+	margin-right:auto;*/
+/* } */
+
+/* #rightHeader {} */
+
+#rightTitle {
+	border-bottom: 1px darkgray solid;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 20px;
+	margin-left: -15px;
+	height: 1.2em;
+}
+
+#rightTools {
+	height: 60px;
+	margin-left: -15px;
+	border-bottom: 1px darkgray solid;
+}
+
+.rightItem {
+	text-align: center;
+	border-right: 1px darkgray solid;
+	/*margin: 0px 5px;*/
+	padding: 5px 0px;
+	min-width: 69px;
+}
+
+.rightItem.adminMenuItem {
+	margin-right: 0px;
+}
+
+#rightBody {
+	height: 80%;
+}
+
+/* on iPads and other small screens, needs to be smaller to fit with the fixed-size elements */
+
+@media all and (max-height:800px) {
+	#rightBody {
+		height: 70%;
+	}
+}
+
+#rightDialog {
+	float: right;
+	width: 70%;
+	height: 100%;
+	overflow: auto;
+}
+
+#rightList {
+	float: left;
+	width: 28%;
+	border-right: 1px darkgray solid;
+	height: 100%;
+	overflow: auto;
+}
+
+#rightFooter {
+	border-top: 1px darkgray solid;
+}
+
+#rightButtons {
+	right: 50px;
+	position: absolute;
+	padding-top: 10px;
+}
+
+.attach_edit, .attach_delete, .filename {
+	color: blue;
+	cursor: pointer;
+}
+
+.filename {
+	text-decoration: underline;
+}
+
+.panelCell {
+	display: table-cell;
+}
+
+#tocPanel {
+	overflow: visible;
+	padding-right: 19px;
+	box-sizing: border-box;
+}
+
+#cvTOC {
+	height: 100%;
+}
+
+.ui-resizable-handle.ui-resizable-e {
+	cursor: e-resize;
+	width: 17px;
+	-ms-touch-action: none;
+	right: 0px;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=splitter-vertical.png) center center no-repeat #F1F8FF;
+	border: 1px solid #B8B8B8;
+}
+
+.ui-resizable-handle.ui-resizable-s {
+	cursor: s-resize;
+	height: 9px;
+	-ms-touch-action: none;
+	bottom: 0px;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=splitter-horizontal.png) center center no-repeat #F1F8FF;
+	border: 1px solid #B8B8B8;
+}
+
+.ui-resizable {
+	position: relative;
+}
+
+.ui-resizable-handle {
+	position: absolute;
+	font-size: 0.1px;
+	display: block;
+	z-index: 99 !important;
+}
+
+.resourceRightDialog {
+	padding-bottom: 10px;
+}
+
+textarea {
+	resize: none;
+}
+
+.genericFormHeader {
+	margin-top: 5px;
+	display: none;
+}
+
+#form_container h2 {
+	display: none;
+}
+
+#resourceTitle {
+	font-weight: bold;
+	border-bottom: 2px solid lightgray;
+}
+
+#resourceTitle div {
+	margin-left: 5px;
+	float: left;
+}
+
+#resourceTitle div img {
+	margin-right: 5px;
+}
+
+.suspendTitle {
+	color: black;
+	font-size: 10pt;
+	font-weight: bold;
+	font-family: Verdana;
+	display: inline;
+	border-bottom: none;
+}
+
+.suspendHeader {
+	border-bottom: 2px solid lightgray;
+	margin-top: 10px;
+	padding-bottom: 5px;
+	display: none;
+}
+
+#ss_doc_title, #ss_docid, #ss_username, #ss_saved {
+	width: 80%;
+}
+
+#ss_save {
+	min-width: 80px;
+}
+
+#ss_resume, #ss_close {
+	width: 80px;
+}
+
+.prelReqHeader {
+	margin-top: 8px;
+	margin-left: 3px;
+}
+
+.prelReqHeader img {
+	margin-right: 3px;
+}
+
+.prelReqItem {
+	border-bottom: 1px solid lightgray;
+}
+
+.prelReqTitle {
+	padding: 10px;
+}
+
+.prelReqAccordion {
+	float: right;
+}
+
+.prelReqContent {
+	padding: 5px;
+	display: none;
+}
+
+.prelReqContent table {
+	border-collapse: collapse;
+}
+
+#buttonBar {
+	display: table-row;
+	height: 80px;
+}
+
+#buttonBarR {
+	display: table-row;
+	float: right;
+	height: 80px;
+}
+
+.buttonGroup {
+	display: table-cell;
+	padding: 0px;
+	width: 55px;
+}
+
+/* For Mobile */
+
+#buttonBarM {
+	display: table-row;
+}
+
+#buttonMenu, #infoButtonMenu, #auxButtonMenu, #prtButtonMenu {
+	display: table-row;
+	height: 80px;
+}
+
+/* For Mobile */
+
+.buttonGroupM {
+	display: table-cell;
+	padding: 0px;
+	width: 31px;
+	padding-left: 16px;
+	cursor: pointer;
+}
+
+.sButtonGroupM {
+	display: table-cell;
+	padding: 0px;
+	width: 31px;
+	padding-left: 16px;
+	height: 80px;
+	vertical-align: top;
+	text-align: center;
+	padding-top: 8px;
+}
+
+/* some devices aren't wide enough in portrait view to fit all the nav buttons, so reduce spacing a bit if page isn't wide enough */
+
+@media (max-width:960px) {
+	.sButtonGroupM {
+		padding-left: 8px;
+	}
+}
+
+.dark, .iconized, .highlightIcon {
+	position: relative;
+	margin-top: 8px;
+	margin-right: 0px;
+	width: 31px;
+	height: 31px;
+	display: inline-block;
+}
+
+.disableEvent {
+	pointer-events: none;
+}
+
+.iconized {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.navButton {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.buttonBox {
+	display: inline-block;
+}
+
+/* For Mobile */
+
+.navButtonM {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.sNavButtonM {
+	position: relative;
+	top: 30px;
+	left: 0px;
+	width: 87px;
+	height: 40px;
+	font-size: 6pt;
+	display: none;
+}
+
+.sNavButtonSVG {
+	position: relative;
+	top: 2px;
+	left: 0px;
+	width: 87px;
+	height: 80px;
+}
+
+.sNavButtonSVGText {
+	font-size: 10pt;
+	font-family: Verdana
+}
+
+/* For Mobile */
+
+.buttonBoxM, .sButtonBoxM {
+	display: inline-block;
+}
+
+#setupMenu, #infoMenu, #auxMenu, #rptMenu, #prtMenu {
+	position: absolute;
+	float: right;
+	top: 33px;
+	right: 9px;
+	height: 80px;
+	background-color: #FAFAFA;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #AAAAAA;
+	border-radius: 4px;
+	z-index: 1002;
+}
+
+#infoMenu {
+	right: 30px;
+}
+
+#auxMenu, #rptMenu {
+	top: 100px;
+	right: 60px;
+	z-index: 1006;
+}
+
+#rptMenu {
+	right: 115px;
+}
+
+#prtMenu {
+	float: left;
+	right: auto;
+	left: 180px;
+}
+
+.menuClose {
+	width: 14px;
+	height: 14px;
+	margin-top: 3px;
+	margin-right: 3px;
+	float: right;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: grey;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: grey;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: grey;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: grey;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 2px;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=lt_close.png) no-repeat;
+	background-position: 2px 2px;
+}
+
+.splitDisabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=template_16_mono.inactive.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.splitEnabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=template_16_mono.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.graphicDisabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=image.16.mono-bright.inactive.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.graphicEnabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=image.16.mono-bright.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.documentDisabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=document_16_mono.inactive.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.documentEnabled {
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=document_16_mono.png); */
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position: 0px 0px;
+}
+
+.menuBlank, .menuLauncher, .debugLauncher {
+	position: relative;
+	width: 20px;
+	height: 37px;
+	display: inline-block;
+	float: right;
+}
+
+.buttonMenu {
+	display: inline;
+	position: absolute;
+	background: lightgrey;
+	border: black 1px solid;
+	padding-top: 4px;
+	padding-left: 2px;
+	padding-right: 2px;
+	z-index: 101;
+	top: 28px;
+	height: 20px;
+}
+
+.menuItem {
+	display: inline;
+	text-align: left;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-left: solid;
+	border-width: 1px;
+	border-color: darkslategrey;
+}
+
+.menuItem:first-child {
+	border-width: 0px;
+}
+
+.menuLauncher {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menuarrow.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.debugLauncher {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=eye.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+	width: 30px;
+	height: 20px;
+	margin-top: 2px;
+	padding-right: 10px;
+}
+
+.menuBlank {
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#MAIN {
+    height: 100%;
+    width: 100%;
+    font-size: 0;
+}
+
+/* secondary nav buttons */
+
+.tbar_home {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=home.16.mono-bright.png) no-repeat;
+}
+
+.tbar_home_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=home.16.mono-bright.png) no-repeat;
+}
+
+.tbar_leftPanel {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toogle_toc_16.png) no-repeat;
+}
+
+.tbar_split {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=template_16_mono.png) no-repeat;
+}
+
+.tbar_split_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=template_16_mono.inactive.png) no-repeat;
+}
+
+.tbar_textonly {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=document_16_mono.png) no-repeat;
+}
+
+.tbar_textonly_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=document_16_mono.inactive.png) no-repeat;
+}
+
+.tbar_tearoff {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=image.16.mono-bright.png) no-repeat;
+}
+
+.tbar_tearoff_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=image.16.mono-bright.inactive.png) no-repeat;
+}
+
+.tbar_rotate {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=split_column_16_mono_vertical.png) no-repeat;
+}
+
+.tbar_rotate_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=split_column_16_mono_vertical.inactive.png) no-repeat !important;
+}
+
+.tbar_print {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=print_16_mono.png) no-repeat;
+}
+
+.tbar_print_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=print_16_mono.inactive.png) no-repeat !important;
+}
+
+/*.tbar_split     { background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=view1_e.png) no-repeat;}
+.tbar_split_off     { background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=view1_d.png) no-repeat;}*/
+
+.tbar_sync_toc {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=syny_toc_e.png) no-repeat;
+}
+
+.tbar_sync_toc_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=sync_toc_d.png) no-repeat;
+}
+
+.tbar_hide_toc {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toc_e.png) no-repeat;
+}
+
+.tbar_hide_toc_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toc_d.png) no-repeat;
+}
+
+.tbar_toc_codes {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toc_viewboth_e.png) no-repeat;
+}
+
+.tbar_toc_codes_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toc_viewboth_d.png) no-repeat;
+}
+
+.tbar_prev_proced {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=arrow_up_e.png) no-repeat;
+}
+
+.tbar_prev_proced_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=arrow_up_d.png) no-repeat;
+}
+
+.tbar_next_proced {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=arrow_down_e.png) no-repeat;
+}
+
+.tbar_next_proced_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=arrow_down_d.png) no-repeat;
+}
+
+.tbar_prev_pdm {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PDMBack.32.color-active.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_prev_pdm_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PDMBack.32.color-inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_next_pdm {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PDMNext.32.color.active.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_next_pdm_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PDMNext.32.color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+/*.tbar_table_paging { background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=lt_pagingwindow.png) no-repeat;}
+.tbar_table_paging_off { background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=lt_pagingwindow_d.png) no-repeat;}*/
+
+.tbar_table_paging {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=LargeTableControls-active.16x16.mono-bright.png) no-repeat;
+}
+
+.tbar_table_paging_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=LargeTableControls-inactive.16x16.mono-bright.png) no-repeat;
+}
+
+.tbar_table_search {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=lt_searchwindow.png) no-repeat;
+}
+
+.tbar_table_search_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=lt_searchwindow_d.png) no-repeat;
+}
+
+.tbar_history {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=history_32_color.png) no-repeat;
+	background-position-x: center;
+}
+
+.tbar_history_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=historyd.png) no-repeat;
+}
+
+.tbar_history_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=history.png) no-repeat;
+	background-position-x: center;
+}
+
+.tbar_forward {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=forw.png) no-repeat;
+}
+
+.tbar_forward_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=forwd.png) no-repeat;
+}
+
+.tbar_forward_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=forwm.png) no-repeat;
+}
+
+.tbar_refresh {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=refresh.png) no-repeat;
+}
+
+.tbar_refresh_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=refreshd.png) no-repeat;
+}
+
+.tbar_refresh_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=refreshm.png) no-repeat;
+}
+
+.tbar_admin {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=admin.png) no-repeat;
+}
+
+.tbar_admin_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=admind.png) no-repeat;
+}
+
+.tbar_admin_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=adminm.png) no-repeat;
+}
+
+.tbar_config {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=config.png) no-repeat;
+}
+
+.tbar_config_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=configd.png) no-repeat;
+}
+
+.tbar_config_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=configm.png) no-repeat;
+}
+
+.tbar_tools {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.png) no-repeat;
+}
+
+.tbar_tools_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toolsd.png) no-repeat;
+}
+
+.tbar_tools_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toolsm.png) no-repeat;
+}
+
+.tbar_save {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=save.png) no-repeat;
+}
+
+.tbar_save_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=saved.png) no-repeat;
+}
+
+.tbar_save_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=savem.png) no-repeat;
+}
+
+.tbar_show {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=eye.png) no-repeat;
+}
+
+.tbar_show_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=eye_d.png) no-repeat;
+}
+
+.tbar_show_highlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=eye_m.png) no-repeat;
+}
+
+.tbar_dm_back_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_disabled_back.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_dm_back {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_active_back.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_prev_step_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_disabled_up.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_prev_step {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_active_up.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_dm_forward_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_disabled.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_dm_forward {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_active.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_next_step_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_disabled_down.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_next_step {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=borderbutton_open_active_down.png) no-repeat;
+	background-position-x: center;
+	background-position: 22px 0px;
+}
+
+.tbar_bookmarks_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=marker.32.mono-dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_bookmarks {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=marker.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+/*
+.tbar_suspend_off { background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=workflow.start-activity.32-disabled.png) no-repeat; background-position-x: center;}
+*/
+
+.tbar_suspend_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=workflow.activity-instance-suspended.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_suspend {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=workflow.activity-instance-suspended.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_revisions_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=marker.32.mono-dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_revisions {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=marker.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_prelReq_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.view-frontend.32-disabled.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_prelReq {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.view-frontend.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_notes_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.item-comments.32-disabled.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_notes {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.item-comments.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_attachment {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=file-add.32.color.png) no-repeat;
+	background-position: 19px 0px;
+}
+
+.tbar_applic_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.item-counter.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_applic {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=tools.item-counter.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+.tbar_emergencyProcedures {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=emergency.32.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+
+/* LAM:2020-11-24 Shopping cart */
+.tbar_shoppingCart_some {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/ShoppingCart.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+.tbar_shoppingCart_empt {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/ShoppingCart_empty.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+/* / LAM:2020-11-24 Shopping cart */
+
+/* LAM:2022-01-28 BUFR form 
+*/
+.tbar_bufrform {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/BUFRform.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+/* / LAM:2022-01-28 BUFR form */
+
+.tbar_search {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=visitor-context-search-keyword.16.mono-bright.png) no-repeat;
+}
+
+.tbar_help {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=about.16.mono-bright.png) no-repeat;
+}
+
+.tbar_settings {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=settings.16.mono-bright.png) no-repeat;
+}
+
+/* Settings Menu Buttons */
+
+.tbar_desktop {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=device.desktop.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_users {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=users-preferences.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_position {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dashboard-locked.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_changes_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=Highlighting_Empty.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_changes {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=Highlighting_Full.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_sign_out {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=exit.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+/* Info Menu Buttons */
+
+.tbar_reports {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=segment.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_markup {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_markup_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_releaseNotes {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=task-history.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_userGuide {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=help.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_about {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=about.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+/* Markup Menu Buttons */
+
+.tbar_showFO {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_showFO_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_showHTML {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_showHTML_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_showXML {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_showXML_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=dita_map_16_mono_dark.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_debug {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=debug.16.color.active.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+/* Reports Menu Buttons */
+
+.tbar_revisionHighlight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=revision-highlight-report.16.active.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_revisionHighlight_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=revision-highlight-report.16.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_currentRef {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-documentum.online.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_currentRef_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-documentum.online.16.color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_invalidRef {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-documentum.offline.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_invalidRef_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-documentum.offline.16.color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_missingImage {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-media-manager.offline.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_missingImage_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-media-manager.offline.16.color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_auditTrail {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hosted-library-cmis.online.16.color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+/* Print Menu Buttons */
+
+.tbar_printDoc {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=print_16_color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+}
+
+.tbar_printRefs {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PrintChild_16_color.active.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_printRefs_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PrintChild_16_color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_printAllFigures {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PrintChild_16_color.active.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_printAllFigures_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=PrintChild_16_color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+.tbar_printCurrentFigure {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=print_16_color.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: black;
+}
+
+.tbar_printCurrentFigure_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=print_16_color.inactive.png) no-repeat;
+	background-position-x: center;
+	background-position: 26px 9px;
+	color: grey;
+}
+
+/* graphic toolbar buttons */
+
+.gbar_next {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=next_graphic_32_mono-dark_active.png) no-repeat;
+	background-size: 100%;
+	width: 24px;
+	height: 24px;
+	margin-top: 0px;
+}
+
+.gbar_next_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=next_graphic_32_mono-dark_inactive.png) no-repeat;
+	background-size: 100%;
+	width: 24px;
+	height: 24px;
+	margin-top: 0px;
+}
+
+.gbar_prev {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=prev_graphic_32_mono-dark_active.png) no-repeat;
+	background-size: 100%;
+	width: 24px;
+	height: 24px;
+	margin-top: 0px;
+}
+
+.gbar_prev_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=prev_graphic_32_mono-dark_inactive.png) no-repeat;
+	background-size: 100%;
+	width: 24px;
+	height: 24px;
+	margin-top: 0px;
+}
+
+/* SVG toolbar buttons */
+
+.svgControl {
+	width: 24px;
+	height: 24px;
+	margin-top: 1px;
+}
+
+.svgControl.svgPanButton {
+	width: 24px;
+	height: 24px;
+	margin-top: 1px;
+}
+
+.svg_zoomIn {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=zoom-in_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_zoomOut {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=zoom-out_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_panLeft {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=move_left_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_panRight {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=move_right_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_panUp {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=move_up_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_panDown {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=move_down_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+}
+
+.svg_Reset {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=home_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgHighlightAllHotspots {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=all_hotspot_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgHighlightAllHotspots.toolbar_button_disabled {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=all_hotspot_32_disable.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedliningPencil {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_pencil_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedliningCircle {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_circle_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedliningRectangle {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_rectangle_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedliningLine {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_line_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedliningAnnotation {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_annotation_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.redlining-annotation {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_annotation_32.png);
+	background-color: blue;
+	background-repeat: no-repeat;
+	display:block;
+	width: 32px;
+	height: 32px;
+	margin-top: 2px;
+}
+
+.svgRedliningErase {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_erase_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.toolbar_button_disabled.svgRedliningErase {
+	opacity: 0.5;
+}
+
+.svgRedliningDownload {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_download_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+.svgRedlining {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=redlining_32.png) no-repeat;
+	background-size: 100%;
+	margin-top: 2px;
+}
+
+/* SAP graphic toolbar controls */
+
+.gbar_rhi_prev {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=previous_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_prev_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=previous_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_play {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=play_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_play_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=play_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_next {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=next_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_next_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=next_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_all {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=play_all_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_all_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=play_all_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_pause {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=pause_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_pause_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=pause_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_list {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=list_32_mono-dark.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_list_off {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=list_32_mono-d.png) no-repeat;
+	background-size: 100%;
+	margin-top: 1px;
+}
+
+.gbar_rhi_xray {
+	background-color: #66CDAA;
+	color: black;
+	opacity: 0.7;
+}
+
+.gbar_rhi_xray_off {
+	background-color: lightgrey;
+	color: darkgray;
+	opacity: 0.7;
+}
+
+.gbar_rhi_wait {
+	background-color: lightYellow;
+	color: black;
+	opacity: 1.0;
+}
+
+.rhi_button {
+	width: 68px;
+	height: 18px;
+	padding-top: 5px;
+	font-size: 8pt;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid darkgray;
+	border-radius: 4px;
+	margin-left: 4px;
+}
+
+/* section headers */
+
+h2.ui_section {
+	background-color: #DAD8D3;
+	padding: 5px 10px;
+	color: #000;
+	font-weight: bold;
+	font-size: 1em;
+	margin-top: 15px;
+	width: 90%;
+}
+
+h2.ui_section_as_if_image {
+	padding-left: 30px;
+	height: 21px;
+}
+
+.tocPanel {
+	overflow: auto;
+	text-align: left;
+	background-color: #FAFAFA;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-right: 10px;
+	padding: 0px;
+	clear: left;
+	padding: 0pt 0pt 0pt 0pt;
+	float: left;
+	width: 100%;
+}
+
+.searchPanelM {
+	overflow: auto;
+	text-align: left;
+	background-color: #FAFAFA;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-right: 10px;
+	padding: 0px;
+	clear: left;
+	padding: 0pt 0pt 0pt 0pt;
+	float: left;
+	width: 95%;
+}
+
+.tabsPanel {
+	overflow: hidden;
+	float: left;
+	clear: both;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+	border: 0pt solid black;
+}
+
+body.hatched {
+	color: #333333;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	background-color: #F2F8FF;
+	margin: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+body {
+	color: #333333;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3 {
+	font-weight: bold;
+	padding: 10px 0 0 0;
+	margin: 0;
+}
+
+h1 {
+	font-size: 130%;
+	color: black;
+	border-bottom: 1px dashed silver;
+}
+
+h2 {
+	font-size: 110%;
+	color: black;
+	border-bottom: 1px dashed #e8e8e8;
+}
+
+h3 {
+	font-size: 100%;
+	color: #80a1cd;
+}
+
+a:link {
+	color: #3D82C7;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #234D76;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #234D76;
+	text-decoration: underline;
+}
+
+.small_title {
+	font-weight: bold;
+	font-size: 12pt;
+	border-bottom: 1px dashed silver;
+}
+
+button {
+	min-width: 50px;
+	margin-right: 4px;
+}
+
+/* header styles
+============================== */
+
+#header {
+	float: left;
+	width: 100%;
+	height: 31px;
+	color: #FFFFFF;
+	background-color: #454B53;
+	clear: left;
+	text-align: center;
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_header.png); */
+}
+
+#hamburgerBox {
+	float: left;
+	width: 31px;
+	height: 31px;
+	background-color: #296ACC;
+	clear: left;
+	text-align: center;
+	cursor: pointer;
+	/* display: inline; */
+	/* background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=frame.handle.closed.16x16.png); no-repeat; */
+}
+
+#hamburger {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-top: 8px;
+	margin-left: 8px;
+	background-color: #454B53;
+	clear: left;
+	text-align: center;
+	display: inline;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=frame.handle.closed.16x16.png);
+	background-repeat: no-repeat;
+}
+
+#headertop {
+	width: 100%;
+	float: left;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-topmiddle.gif);
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	height: 10px;
+}
+
+#headertopleft {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-topleft.gif);
+	height: 10px;
+	width: 51%;
+	float: left;
+	background-position: left bottom;
+	background-repeat: no-repeat;
+}
+
+#headertopright {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-topright.gif);
+	height: 10px;
+	width: 49%;
+	float: left;
+	background-position: right bottom;
+	background-repeat: no-repeat;
+}
+
+#headermiddle {
+	width: 100%;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-middleright.gif);
+	background-position: top right;
+	background-repeat: repeat-y;
+	float: left;
+	background-color: #d6d4ce;
+}
+
+#headermiddlecontent {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-middleleft.gif);
+	background-position: top left;
+	background-repeat: repeat-y;
+	width: 100%;
+	float: left;
+}
+
+#headerbottom {
+	width: 100%;
+	float: left;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-bottommiddle.gif);
+	background-position: top center;
+	background-repeat: no-repeat;
+	height: 10px;
+}
+
+#headerbottomleft {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-bottomleft.gif);
+	width: 51%;
+	float: left;
+	background-position: left top;
+	background-repeat: no-repeat;
+	height: 10px;
+}
+
+#headerbottomright {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=hbg-bottomright.gif);
+	width: 49%;
+	float: right;
+	background-position: right top;
+	background-repeat: no-repeat;
+	height: 10px;
+}
+
+#branding {
+	float: right;
+	width: 200px;
+}
+
+/* menu styles
+============================== */
+
+.menu {
+	margin-top: 0px;
+	margin-bottom: 2px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menu_bg.gif);
+	background-position: top left;
+	background-repeat: repeat-x;
+	padding-left: 6px;
+	padding-right: 6px;
+	float: left;
+	left: 0px;
+	height: 23px;
+	margin-left: 0px;
+}
+
+.menu_end {
+	margin: 0px;
+	float: left;
+	height: 23px;
+	width: 50px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menuend.gif);
+	background-repeat: no-repeat;
+}
+
+.menu_highlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menu-hover.gif);
+	background-repeat: repeat-x;
+	background-position: top left;
+	padding-bottom: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 3px;
+	cursor: default;
+	height: 23px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.menu_normal {
+	padding-bottom: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 3px;
+	cursor: default;
+	height: 23px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.menu_down {
+	height: 23px;
+	padding-bottom: 1px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 3px;
+	cursor: default;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menu_down.gif);
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+#menu ul {
+	margin-top: 0px;
+	margin-bottom: 2px;
+	padding-bottom: 6px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menu-right.gif);
+	background-position: bottom right;
+	padding-right: 20px;
+	padding-left: 5px;
+	float: left;
+	padding-top: 3px;
+	left: 0px;
+	margin-left: 0px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #8F999D;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu li {
+	background-repeat: repeat-x;
+	background-position: bottom;
+	display: inline;
+	color: #3A5969;
+	text-decoration: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 6px;
+	font-weight: bold;
+}
+
+#menu li:hover, #menu li a:focus {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=menu-hover.gif);
+}
+
+/* content styles
+============================== */
+
+#bodywrap {
+	width: 100%;
+	text-align: left;
+	float: left;
+	background-color: #FAFAFA;
+	margin-top: 5px;
+}
+
+#content {
+	text-align: left;
+	padding-top: 0;
+	padding-right: 20px;
+	padding-bottom: 0;
+	padding-left: 20px;
+	background-color: #FFFFFF;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #A9A9A9;
+	border-right-color: #93ADBA;
+	border-bottom-color: #A9A9A9;
+	border-left-color: #A9A9A9;
+	overflow: auto;
+	margin: 5px;
+	float: right;
+	left: 300px;
+}
+
+#contentbody p {
+	padding: 3px 0;
+	margin: 0;
+}
+
+#contentbody ul, #contentbody ol {
+	padding: 3px 0;
+	margin: 0 18px;
+	list-style: outside;
+}
+
+#contentbody img {
+	border: 0;
+	float: right;
+}
+
+/* left footer button styles
+============================== */
+
+/***** Disable Footer *****/
+
+#footerPanel {
+	visibility: hidden;
+	display: none;
+	height: 0px;
+}
+
+/***** END Disable Footer *****/
+
+.footerleft {
+	margin-top: 0px;
+	float: left;
+	/*	height: 30px; */
+	height: 0px;
+}
+
+/* right footer button styles
+============================== */
+
+.footerright {
+	margin-top: 00px;
+	height: 0px;
+	float: right;
+}
+
+.buttonEnabled {
+	font-size: 8pt;
+	display: inline;
+	width: 98px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.buttonDisabled {
+	font-size: 8pt;
+	display: inline;
+	color: #CCC;
+	float: left;
+	text-align: center;
+}
+
+.buttonHighlight {
+	font-size: 8pt;
+	display: inline;
+	font-weight: bold;
+	width: 98px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.buttonSmallEnabled {
+	font-size: 8pt;
+	display: inline;
+	text-decoration: underline;
+	font-weight: bold;
+	padding-top: 9px;
+	padding-bottom: 11px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=button_small.gif);
+	color: #3A5969;
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 8px;
+	float: left;
+	text-align: center;
+	padding-right: 5px;
+	margin-left: 5px;
+	cursor: pointer;
+	_cursor: hand;
+	vertical-align: middle;
+}
+
+.buttonSmallDisabled {
+	font-size: 8pt;
+	display: inline;
+	text-decoration: underline;
+	padding-top: 9px;
+	padding-bottom: 11px;
+	color: #3A5969;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=button__small_disabled.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 8px;
+	float: left;
+	text-align: center;
+	padding-right: 5px;
+	margin-left: 5px;
+	vertical-align: middle;
+}
+
+.buttonSmallHighlight {
+	font-size: 8pt;
+	display: inline;
+	text-decoration: underline;
+	padding-top: 9px;
+	padding-bottom: 11px;
+	color: #000000;
+	font-weight: bold;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=button_small-hover.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: 8px;
+	float: left;
+	text-align: center;
+	padding-right: 5px;
+	margin-left: 5px;
+	cursor: pointer;
+	_cursor: hand;
+	vertical-align: middle;
+}
+
+.float_left_icon {
+	cursor: pointer;
+	_cursor: hand;
+	float: left;
+	margin-left: 8px;
+	margin-top: 5px;
+}
+
+.float_left_icon_dark {
+	float: left;
+	margin-left: 8px;
+	margin-top: 5px;
+}
+
+/* icon buttons
+============================== */
+
+#iconbuttons {
+	float: left;
+	margin-top: 0px;
+	height: 80px;
+}
+
+#iconbuttons ul {
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#iconbuttons li {
+	display: inline;
+}
+
+#iconbuttons li .dark .iconized .highlightIcon {
+	text-align: center;
+	font-size: 8pt;
+	color: #666666;
+	text-decoration: none;
+	width: 30px;
+	float: left;
+	padding-bottom: 0px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-right: 0px;
+}
+
+#iconbuttons li span {
+	text-align: center;
+	font-size: 8pt;
+	color: #fff;
+	text-decoration: none;
+	width: 60px;
+	float: left;
+	padding-bottom: 0px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-right: 1px;
+	clear: left;
+}
+
+/* Mobile Menu Buttons */
+
+#iconbuttonsM {
+	float: left;
+	margin-left: 8px;
+	margin-top: 0px;
+}
+
+#iconbuttonsRightM {
+	float: right;
+	margin-right: 8px;
+	margin-top: 0px;
+}
+
+#iconbuttonsM ul {
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+#iconbuttonsM li {
+	display: inline;
+}
+
+#iconbuttonsM li .dark .iconized .highlightIcon {
+	text-align: center;
+	font-size: 8pt;
+	color: #666666;
+	text-decoration: none;
+	width: 30px;
+	float: left;
+	padding-bottom: 0px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-right: 0px;
+}
+
+#iconbuttonsM li span {
+	text-align: center;
+	font-size: 8pt;
+	color: #fff;
+	text-decoration: none;
+	width: 60px;
+	float: left;
+	padding-bottom: 0px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-right: 1px;
+	clear: left;
+}
+
+#iconbuttonsMenu, #infoIconbuttonsMenu, #auxIconbuttonsMenu, #rptIconbuttonsMenu, #prtIconbuttonsMenu {
+	margin-left: 8px;
+	margin-top: 0px;
+	height: 80px;
+	padding-right: 30px;
+	-moz-float-edge: margin-box;
+}
+
+.sPanel {
+	overflow: hidden;
+	margin-top: -35px;
+	height: 31px;
+	border: 0pt solid red;
+	float: left;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+}
+
+#menuBar {
+	display: none;
+}
+
+.zeroHeightPanel {
+	overflow: hidden;
+	border: 0pt solid red;
+	float: left;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+	height: 0px;
+	display: none;
+}
+
+.zeroWidthPanel {
+	overflow: hidden;
+	border: 0pt solid red;
+	float: left;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+	width: 0px;
+	display: none;
+}
+
+#contentPanel {
+	overflow: hidden;
+	float: left;
+	box-sizing: border-box;
+}
+
+#contentPanel.resizable-v {
+	padding-right: 18px;
+}
+
+#contentPanel .contentPanel {
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	height: 100%;
+	margin: 0pt 0pt 0pt 0pt;
+	background-color: #FFFFFF;
+	z-index: 3;
+}
+
+#MAIN_DIV {
+	padding: 10px
+}
+
+#MAIN_CONTENT {
+	overflow-x: hidden;
+}
+
+.containerPanel {
+	overflow: hidden;
+	border: 0pt solid black;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.hPanel {
+	overflow: hidden;
+	display: none;
+	float: left;
+	margin: 0pt 0pt 0pt 0pt;
+	padding: 0pt 0pt 0pt 0pt;
+}
+
+.right_vertical_orient_panel {
+	float: right;
+}
+
+/********************
+*  TOC Styles:
+********************/
+
+.tocItem {
+	font-weight: bold;
+	font-size: 10pt;
+	color: #212326;
+	cursor: pointer;
+	_cursor: hand;
+	margin-bottom: 2px;
+	white-space:nowrap;
+}
+
+.tocItem span img {}
+
+.tocItem span span {}
+
+.tocSelected {
+	margin-bottom: 2px;
+}
+
+.tocItem img {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.tocItem span {
+	font-size: 10pt;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.tocSelected span {
+	font-size: 10pt;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.tocItem span.normal {
+	color: #212326;
+}
+
+.tocSelected span.normal {
+	color: blue;
+}
+
+.tocItem span.titleBit {
+	color: #212326;
+}
+
+.tocSelected span.titleBit {
+	color: blue;
+}
+
+.tocItem span.codeBit {
+	color: brown;
+}
+
+.tocSelected span.codeBit {
+	color: #330099;
+}
+
+.counter {
+	font-size: 10pt;
+	color: red;
+	margin-left: 2px;
+}
+
+.tocContainer {
+	border: 0pt;
+	font-size: 10pt;
+	color: #212326;
+	background-color: #FAFAFA;
+	margin-left: 20px;
+}
+
+/******************
+* External Pub Refs in TOC
+* 	Uncomment to change display of
+*	Title and Code
+*
+#extitle {
+	color:blue;
+}
+
+#excode {
+	color: red;
+}
+********************/
+
+/*******************
+* MENU styles
+********************/
+
+.menu table {
+	border: 0pt;
+	padding: 0pt;
+	border-spacing: 0pt;
+}
+
+.menu table tr {
+	height: 23px;
+	vertical-align: middle;
+}
+
+.submenuContainer {
+	position: absolute;
+	top: 23px;
+	cursor: default;
+	z-index: 15;
+	overflow: auto;
+}
+
+.submenu {
+	background-color: #DDE1E6;
+	border: black 1px solid;
+	cursor: default;
+	display: none;
+}
+
+.submenu_normal {
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 6px;
+	padding-top: 2px;
+	z-index: 16;
+	background-color: #DDE1E6;
+	color: #212326;
+	cursor: default;
+}
+
+.submenu_disable {
+	color: gray;
+}
+
+.submenu_highlight {
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 6px;
+	padding-top: 2px;
+	z-index: 16;
+	color: #FFFFFF;
+	cursor: default;
+	background-color: #2972CC;
+	border-bottom: 2px outset;
+	border-left: 2px outset;
+	border-right: 2px outset;
+	border-top: 2px outset;
+}
+
+.submenu_down {
+	color: black;
+	border-bottom: white 2px inset;
+	border-left: white 2px inset;
+	border-right: white 2px inset;
+	border-top: white 2px inset;
+}
+
+/******************
+* Modal Styles
+*******************/
+
+.blockingPanel {
+	position: fixed;
+	background-color: #000;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1007;
+	opacity: 0.65;
+	display: none;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=65);
+}
+
+.secondBlockingPanel {
+	position: fixed;
+	background-color: gray;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 120;
+	opacity: 0.45;
+	display: none;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=45);
+}
+
+/***** IE6 Hack *****
+* html .blockingPanel {
+	position: absolute;
+}*/
+
+.modalPanel {
+	position: absolute;
+	background-color: transparent;
+	top: 50px;
+	left: 50px;
+	z-index: 1007;
+	overflow: hidden;
+	display: none;
+}
+
+.secondModalPanel {
+	position: absolute;
+	background-color: #FFFFFF;
+	top: 5px;
+	left: 40px;
+	border: 2pt solid black;
+	z-index: 121;
+	overflow: hidden;
+	display: none;
+}
+
+.modalTitle {
+	background: transparent;
+	overflow: auto;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 14pt;
+}
+
+.modalClose {
+	cursor: pointer;
+	_cursor: hand;
+	float: left;
+	margin-top: 2px;
+	overflow: hidden;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=modalClose.png) no-repeat;
+	display: table-cell;
+	padding: 0px;
+	height: 31px;
+	width: 2px;
+	padding-left: 16px;
+	cursor: pointer;
+}
+
+.modalContent {
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid black;
+	max-height: 80vh;
+	overflow-y: auto;
+}
+
+.smallPop {
+	position: absolute;
+	display: none;
+	z-index: 101;
+	border: 1pt solid black;
+	background-color: #959DA6;
+	color: #FFFFFF;
+	padding: 5px;
+	font-weight: bold;
+	clear: both;
+}
+
+/***********************
+* Annotation Styles
+************************/
+
+.selectedAnnotation {
+	cursor: pointer;
+	_cursor: hand;
+	background-color: #7c99a7;
+}
+
+.annotationIcon {
+	cursor: pointer;
+	_cursor: hand;
+	background-color: white;
+	margin-right: 20px;
+}
+.bbmfIcon { /* LAM:2022-02-17 */
+	cursor:pointer;
+	_cursor:hand;
+	background-color:white;
+	margin-right:10px;
+}
+
+/****************************
+* Graphic Styles by ID
+*
+*****************************/
+
+#graphic_main {
+	float: left;
+	width: 100%;
+	border: 1pt solid gray;
+	overflow: auto;
+}
+
+#graphic_title {
+	font-weight: bold;
+	width: 79%;
+	float: left;
+}
+
+#graphic_content {
+	min-height: 1px;
+	width: 79%;
+	float: left;
+	overflow: auto;
+}
+
+#graphic_legend {
+	float: right;
+	width: 20%;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	overflow: auto;
+}
+
+#graphic_control {
+	background-color: #DEE1E6;
+	width: 100%;
+	height: 44px;
+	float: left;
+	margin-top: 2px;
+	overflow: hidden;
+}
+
+.svgimage {
+	min-height: 1px;
+}
+
+canvas {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.simpleFloat {
+	float: left;
+	margin-left: 20pt;
+	margin-top: 5px;
+}
+
+.smallButtonFloat {
+	float: left;
+	margin-left: 20pt;
+	margin-top: 5px;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+/*****************************
+* Images
+******************************/
+
+.imageTitle {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-weight: bold;
+	color: black;
+	background-color: #FFFFE0;
+	text-align: center;
+	border-bottom: 1pt solid black;
+	border-right: 1pt solid black;
+	padding: 1pt;
+}
+
+.imageLegend {
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-weight: bold;
+	color: black;
+	background-color: #FFFFE0;
+	text-align: center;
+	border-left: 1pt solid black;
+	border-bottom: 2pt solid black;
+	padding: 1pt;
+}
+
+.graphicWarning {
+	padding: 20px;
+	width: 80%;
+	text-align: center;
+	color: green;
+	font-weight: bold;
+}
+
+.simpleButton {
+	cursor: pointer;
+	_cursor: hand;
+	color: blue;
+}
+
+.simpleClickable {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.resourceMgrList {
+	cursor: pointer;
+	_cursor: hand;
+	color: blue;
+	padding-top: 3px;
+	font-weight: bold;
+}
+
+/*****************************
+* Word Wheel ...
+******************************/
+
+.wwContainer {
+	border: 2pt solid gray;
+	width: 310px;
+	height: 380px;
+	overflow: auto;
+	padding: 5px;
+	max-height: 200px;
+}
+
+.wwItem {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+/*****************************
+* Search interface
+******************************/
+
+.searchHeader {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 12px;
+	margin-left: 9px;
+	position: relative;
+}
+
+#searchNav {
+	margin-left: 0px;
+	border-spacing: 0px;
+	/* border-collapse: collapse; */
+	margin-left: 6px;
+}
+
+.searchHeadNav {
+	width: 96%;
+	padding: 6px;
+	margin-right: 20px;
+	padding-bottom: 18px;
+	display: table-row;
+}
+
+.searchHeadDiv {
+	width: 96%;
+	padding: 6px;
+	display: table-row;
+	/* margin-right: 20px; */
+}
+
+#textSearch, #catSearch, #SEARCH_RESULTS {
+	margin-top: 8px;
+	padding-top: 10px;
+}
+
+#textSearch, #catSearch {
+	border-top-style: solid;
+	border-top-width: thin;
+	border-top-color: black;
+}
+
+#textSearch {
+	margin-left: 6px;
+}
+
+#searchHead {
+	font-weight: bold;
+	padding-right: 16px;
+}
+
+.searchClearButtonDisabled, .searchClearButtonEnabled, .searchClearButtonDisabled, .searchClearButtonHighlight, .searchHideButtonEnabled, .searchHideButtonHighlight, .searchHighlightButtonEnabled, .searchHighlightButtonHighlight, .searchToggleTOCButtonEnabled, .searchToggleTOCButtonHighlight, .searchToggleFTButtonEnabled, .searchToggleFTButtonHighlight, .searchToggleCatButtonEnabled, .searchToggleCatButtonHighlight, .searchToggleResultsButtonDisabled, .searchToggleResultsButtonEnabled, .searchToggleResultsButtonHighlight {
+	width: 87px;
+	height: 60px;
+	display: table-cell;
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	position: relative;
+}
+
+.searchToggleTOCButtonEnabled, .searchToggleTOCButtonHighlight, .searchToggleFTButtonEnabled, .searchToggleFTButtonHighlight, .searchToggleCatButtonEnabled, .searchToggleCatButtonHighlight, .searchToggleResultsButtonDisabled, .searchToggleResultsButtonEnabled, .searchToggleResultsButtonHighlight {
+	border-width: 1px;
+	border-style: solid;
+	border-color: grey;
+	padding-bottom: 6px;
+}
+
+.searchClearButtonEnabled, .searchClearButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=clear-search-active.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 39px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchClearButtonDisabled {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=clear-search-inactive.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 39px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+	cursor: default;
+}
+
+.searchHideButtonEnabled, .searchHideButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=clear.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 39px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchHighlightButtonEnabled, .searchHighlightButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=grey.remove-formatting-all.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 39px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchToggleTOCButtonEnabled, .searchToggleTOCButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=blueprint-hierarchy.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 34px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchToggleFTButtonEnabled, .searchToggleFTButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=visitor-context-result-type.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 34px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchToggleCatButtonEnabled, .searchToggleCatButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=category_16_color.png);
+	background-repeat: no-repeat;
+	background-position: 34px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchToggleResultsButtonEnabled, .searchToggleResultsButtonHighlight {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=where-used-active.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 34px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.searchToggleResultsButtonDisabled {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=where-used-inactive.16.color.png);
+	background-repeat: no-repeat;
+	background-position: 34px 10px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+	color: grey;
+	cursor: default
+}
+
+.selectedSearchButton {
+	background-color: Gainsboro;
+}
+
+.simpleSearch {
+	display: table-row;
+}
+
+.searchClear, .searchHide {
+	/* float: right; */
+}
+
+.searchButtonText {
+	margin-top: 25px;
+	height: 35px;
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	bottom: 3px;
+	font-size: 9pt;
+	color: inherit;
+}
+
+.nav2ButtonText {
+	margin-top: 35px;
+	height: 35px;
+	width: 68px;
+	/*
+	bottom: 0px;
+	position: absolute;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	*/
+	bottom: 3px;
+	font-size: 8pt;
+	text-align: center;
+	line-height: 12px;
+	color: inherit;
+}
+
+.searchButtonTextDisabled, .searchButtonDisabled {
+	color: grey;
+	cursor: default
+}
+
+.searchButtonEnabled {
+	color: black;
+	cursor: pointer;
+}
+
+#promptSearch1_1 {
+	cursor: default;
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+.searchButton {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=visitor-context-search-keyword_16_color.png);
+	background-repeat: no-repeat;
+	border: 1px solid grey;
+	background-color: white;
+	height: 22px;
+	background-position: center;
+	margin-left: -5px;
+}
+
+.advSearchSelect {
+	border: 1px solid grey;
+	background-color: white;
+	height: 22px;
+	margin-left: -4px;
+	font-family: Verdana;
+	font-size: 9pt;
+}
+
+#advSearchOptions {
+	vertical-align: top;
+	margin-bottom: 10px;
+}
+
+#idSearchInput1, #idSearchInput2 {
+	border: 1px solid grey;
+	background-color: white;
+	height: 16px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 10pt;
+	box-shadow: none;
+	width: 216px;
+	margin-left: 24px;
+}
+
+#idSearchInput1 {
+	margin-bottom: 7px;
+}
+
+#idSearchInput2 {
+	/* margin-left: 37px; */
+}
+
+@media (max-width:960px) {
+	#idSearchInput2, #idSearchInput1 {
+		margin-left:0;
+	}
+}
+
+#advSearchAdditions {
+	display: none;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-right: 6px;
+}
+
+#searchType {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-right: 6px;
+}
+
+.searchBranch {
+	padding-top: 6px;
+}
+
+.searchGutter {
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+#categoricalHead {
+	font-weight: bold;
+	margin-top: 9px;
+	padding-bottom: 6px;
+	/*
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: black;
+	*/
+}
+
+#catPillBox {
+	overflow: auto;
+}
+
+.catSearchPill {
+	background-color: white;
+	cursor: default;
+	border: 1px solid grey;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 9px;
+	margin-right: 4px;
+	margin-bottom: 8px;
+	/* white-space: nowrap; */
+	display: inline-block;
+}
+
+#catSearchCmd {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=visitor-context-search-keyword_16_color.png);
+	background-repeat: no-repeat;
+	background-color: white;
+	background-position: center;
+}
+
+.catPillLabel {
+	padding: 4px;
+	background-color: white;
+	line-height: 28px;
+}
+
+.catPillDelete {
+	cursor: default;
+	border-left: 1px solid grey;
+	padding-left: 4px;
+	padding-right: 4px;
+	line-height: 28px;
+}
+
+#catSearchExpression {
+	padding-bottom: 6px;
+	padding-right: 6px;
+}
+
+.catPillImg {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=mc.error.12.mono-dark.png);
+	background-repeat: no-repeat;
+	background-color: white;
+	background-position: center;
+	padding-top: 0px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	padding-right: 2px;
+	text-align: center;
+	vertical-align: middle;
+	margin-left: 2px;
+	line-height: 28px;
+}
+
+.catPillSearchCmd {
+	font-weight: bold;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-left: 18px;
+	padding-right: 18px;
+	line-height: 28px;
+}
+
+catSearchInput {
+	padding-left: 0px
+}
+
+#searchOptionBox {
+	cursor: default;
+	margin-top: 9px;
+}
+
+#searchFilter {
+	padding-top: 6px;
+}
+
+/*****************************
+* Search Results
+******************************/
+
+#simpleSearchContainer {
+	float: right;
+	width: 245px;
+	margin-right: 15px;
+}
+
+#simpleSearchContainer input {
+	float: left;
+	width: 210px;
+	font-family: Tahoma, Arial, Helvetica, "Nimbus Roman No9 L", sans-serif;
+	font-size: 9pt;
+	/* Nimbus Roman No9 L is a Linux font, added here along with the font size change to fix LCS-601 */
+}
+
+#simpleSearchContainer img {
+	float: left;
+	margin-top: 7px;
+	margin-left: 5px;
+}
+
+#simpleSearch {
+	margin-top: 4px;
+}
+
+#SEARCH_FORM {
+	padding-left: 0px;
+}
+
+.search_results_container {
+	clear: left;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.search_title {
+	cursor: pointer;
+	_cursor: hand;
+	font-weight: bold;
+	color: green;
+}
+
+.search_hit {
+	cursor: pointer;
+	_cursor: hand;
+	margin-top: 10px;
+}
+
+.search_hit_total {
+	cursor: pointer;
+	_cursor: hand;
+	font-weight: bold;
+	color: brown;
+}
+
+.search_fragment {
+	margin-left: 15px;
+	color: #AAAAAA;
+}
+
+.search_keyword {
+	color: #888800;
+}
+
+.search_result_group {
+	font-weight: normal;
+	color: black;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+.highlight {
+	background-color: #99AAEE;
+}
+
+.search_partition_pager {
+	cursor: pointer;
+	_cursor: hand;
+	font-weight: bold;
+	color: blue;
+	margin-top: 10px;
+	margin-bottom: 4px;
+}
+
+.search_partition_pager span {
+	color: blue;
+}
+
+.search_partition_pager_disabled {
+	color: gray !important;
+	cursor: default !important;
+	_cursor: default !important;
+}
+
+#searchHighlightControl {
+	display: none;
+	float: right;
+}
+
+#searchHighlightIcon {
+	float: left;
+}
+
+.toggleSearchTitles {
+	margin-left: 24px;
+	color: blue;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.showTitle {
+	display: inline;
+}
+
+.hideTitle {
+	display: none;
+}
+
+.showDMC {
+	display: inline;
+	color: brown;
+}
+
+.hideDMC {
+	display: none;
+	color: brown;
+}
+
+.showSpace {
+	display: inline;
+}
+
+.hideSpace {
+	display: none;
+}
+
+@media (max-height:750px) {
+	.searchHeader {
+		border-spacing: 6px;
+	}
+	.searchClearButtonDisabled, .searchClearButtonEnabled, .searchClearButtonDisabled, .searchClearButtonHighlight, .searchHideButtonEnabled, .searchHideButtonHighlight, .searchHighlightButtonEnabled, .searchHighlightButtonHighlight, .searchToggleTOCButtonEnabled, .searchToggleTOCButtonHighlight, .searchToggleFTButtonEnabled, .searchToggleFTButtonHighlight, .searchToggleCatButtonEnabled, .searchToggleCatButtonHighlight, .searchToggleResultsButtonDisabled, .searchToggleResultsButtonEnabled, .searchToggleResultsButtonHighlight {
+		height: 55px;
+	}
+	#catSearch {
+		margin-top: 1px;
+		padding-top: 2px;
+	}
+	#categoricalHead {
+		margin-top: 2px;
+		padding-bottom: 1px;
+	}
+	#catSearchExpression {
+		padding-bottom: 3px;
+	}
+	.searchBranch {
+		padding-top: 2px;
+	}
+	#searchFilter {
+		padding-top: 2px;
+	}
+	#searchOptionBox {
+		margin-top: 5px;
+	}
+}
+
+/*****************************
+* Legends
+******************************/
+
+.legendMain {
+	text-align: left;
+}
+
+/*****************************
+* Applic
+******************************/
+
+.filter_display {
+	border: 1pt solid brown;
+}
+
+/*****************************
+* Simple Text Styles:
+******************************/
+
+.error {
+	font-weight: bold;
+	color: red;
+}
+
+.warning_text {
+	font-weight: bold;
+	color: orange;
+}
+
+.bravo {
+	font-weight: bold;
+	color: green;
+}
+
+.normal {
+	font-weight: normal;
+	color: black;
+}
+
+.label {
+	font-weight: bold;
+}
+
+/*****************************
+* CV reports styles
+******************************/
+
+.invalidRef {
+	font-weight: bold;
+	color: red;
+}
+
+.report_container {
+	margin-left: 40px;
+	margin-top: 20px;
+}
+
+.chgHighlights {
+	display: none;
+	font-weight: 400;
+}
+
+.chgEID {
+	margin-left: 20px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: blue;
+	font-size: 10pt;
+	display: table-row;
+}
+
+.chgType {
+	width: 55px;
+	color: brown;
+	display: inline;
+	text-align: left;
+	text-transform: uppercase;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.chgText {
+	padding-left: 4px;
+	display: inline;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.chgDoc {
+	margin-top: 6px;
+	margin-bottom: 0px;
+	font-weight: 400;
+	font-size: 10pt;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.chgSource {
+	margin-left: 18px;
+	margin-top: 32px;
+}
+
+.chgImage {
+	float: left;
+	height: 20px;
+	width: 20px;
+	margin-left: 0px;
+	padding: 0px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=plus.png);
+}
+
+.chgImageOpen {
+	float: left;
+	height: 20px;
+	width: 20px;
+	margin-left: 0px;
+	padding: 0px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=minus.png);
+}
+
+/*****************************
+* activityInTOC support (for DocHandler)
+******************************/
+
+.activityList span.normal {
+	color: green;
+}
+
+/*****************************
+* APPLICABILITY TABLES:
+******************************/
+
+.applicTable {
+	border-collapse: collapse;
+	margin: 5px 0;
+	padding: 0;
+	border: 1px solid #B7CAF6;
+	font-size: 100%;
+}
+
+th.applicTable, td.applicTable {
+	border: 1px solid #B7CAF6;
+	margin: 0;
+	padding: 5px;
+	vertical-align: top;
+	text-align: left;
+}
+
+th.applicTable {
+	background: #E7ECFD;
+	text-align: center;
+	color: #192666;
+	font-weight: bold;
+}
+
+/*****************************
+* STEP PAGING:
+******************************/
+
+.stepLabel {
+	float: left;
+	background-color: #FFFFFF;
+	padding: 0px;
+	border: 0pt;
+}
+
+.stepLabelHighlight {
+	float: left;
+	background-color: #99CCFF;
+	border: 1pt solid black;
+}
+
+/*****************************
+* LARGE TABLES:
+******************************/
+
+#currceid {
+	width: 360px;
+	margin-top: 5px;
+	border: 1px solid black;
+	background-color: white;
+	padding: 5px 5px;
+	position: fixed;
+	top: 26px;
+	right: 148px;
+	text-align: center;
+	display: none;
+	z-index: 100;
+}
+
+#findDialog {
+	width: 360px;
+	text-align: center;
+	position: fixed;
+	margin-top: 5px;
+	padding: 5px 5px;
+	top: 68px;
+	right: 148px;
+	background-color: white;
+	border: 1px black solid;
+	display: none;
+	z-index: 100;
+}
+
+#ltp_first, #ltp_last, #ltp_next, #ltp_prev, #lt_prev, #lt_next, #dlg_find {
+	margin: 8px;
+}
+
+#ltp_first:disabled, #ltp_next:disabled, #ltp_prev:disabled, #ltp_last:disabled {
+	cursor: default;
+}
+
+.largeTableClose {
+	display: none;
+}
+
+/*****************************
+* WCN POPUPS
+******************************/
+
+.wcn_holder {
+	width: 600px
+}
+
+/*****************************
+* RESIZING / SPLITTING:
+******************************/
+
+.vsplitbar {
+	width: 5px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=resizev.gif);
+	background-position: left top;
+}
+
+.hsplitbar {
+	height: 5px;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=resizeh.gif);
+	background-position: left top;
+}
+
+.resize_disabled {
+	cursor: default !important;
+	background: #CCCCCC !important;
+}
+
+/* =============================================================
+ * 06. Login
+ * ============================================================= */
+
+.login {
+	height: 100%;
+	margin:12px;
+	overflow: hidden;
+  background-color:#fff;
+  /*
+	overflow: auto;
+  */
+}
+
+#login_background {
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	position: fixed;
+	z-index: 0;
+}
+
+#login_background img {
+	height: 100%;
+}
+
+#login_content {
+  text-align:center;
+	width: 100%;
+	height: 100%;
+	color:black;
+  /*
+	z-index: 2;
+	position: absolute;
+  */
+}
+
+.login table {
+	width: 100%;
+	border: none;
+	border-spacing: 0px;
+	padding: 0px;
+}
+
+.login .splash {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=login_dialog_lcs.png);
+	background-repeat: no-repeat;
+	height: 314px;
+	width: 424px;
+	margin-top: 100px;
+}
+
+.login .fields {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 85px;
+}
+
+.login .fields div {
+	margin-bottom: 5px;
+}
+
+.login .fields .field input {
+	width: 150px;
+}
+
+.login .fields .field select {
+	width: 160px;
+}
+
+.login_label {
+	text-align: right;
+}
+
+.login_input {
+	text-align: left;
+}
+
+.login_input input {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.login_button {
+	margin-top: 15px;
+}
+
+.login_status {
+	margin-right: auto;
+	margin-left: auto;
+	width: 424px;
+}
+
+.xref {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.clickable {
+	cursor: pointer;
+	_cursor: hand;
+}
+
+.front-header {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_header.png);
+	width: 100%;
+	height: 75px;
+	color: #fff;
+}
+
+.section-header {
+	background-color: #ccc;
+	padding: 5px;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.section-header td {
+	padding-left: 5px;
+	text-align: left;
+}
+
+/* ========================================
+
+	Resource Manager
+
+========================================== */
+
+.adminMenuBar {
+	border-bottom: 0px;
+	margin: 0;
+	margin-bottom: 10px;
+	padding-bottom: 0;
+	overflow: auto;
+	clear: both;
+}
+
+.adminMenuItem {
+	cursor: pointer;
+	_cursor: hand;
+	padding: 5px;
+	float: left;
+	margin-right: 5px;
+	overflow: auto;
+}
+
+.adminMenuItem:hover, .resourceMgrList:hover {
+	background-color: #C6DEFF;
+}
+
+.resourceMgrList {
+	padding: 3px;
+	cursor: pointer;
+	_cursor: hand;
+}
+
+#resourceContents td, #resourceContents th {
+	text-align: left;
+}
+
+/* Generic table styles */
+
+.rowEven {
+	background-color: #EIE3E5;
+}
+
+.rowOdd {
+	background-color: #F5F7FA;
+}
+
+/************************/
+
+/* MAIN NAV BAR STYLES */
+
+/************************/
+
+.main-nav-bars-box {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 320px;
+	background: #fff;
+	border-top: 2px solid black;
+}
+
+#main-nav-bars {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#main-nav-bars li {
+	margin: 0;
+	padding: 5px 0 0 5px;
+	height: 24px;
+	background: #ccc;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_inactiveslider.png);
+}
+
+#TOC_MAIN_TREE {
+	padding-left: 2px;
+	padding-top: 10px;
+	line-height: 21px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.tocTabletTitleToggleButtonEnabled, .tocTabletSyncButtonEnabled {
+	width: 160px;
+	height: 42px;
+	display: table-cell;
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: 72px 6px;
+	background-position-x: center;
+	background-position-y: 10px;
+	background-color: #FAFAFA;
+}
+
+.tocTabletTitleToggleButtonEnabled {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=decodecolumns.16.color.png);
+}
+
+.tocTabletSyncButtonEnabled {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=refresh_16_color-306.png);
+}
+
+#tocTabletTitleToggleText, #tocTabletSyncText {
+	bottom: 0px;
+	justify-content: center;
+}
+
+/* activity levels in the TOC -- small padding increases */
+
+.activity_level1, .activity_level2, .activity_level3, .activity_level4, .activity_level5, .activity_level6 {
+	padding-left: 16px;
+}
+
+.activityList {
+	margin-left: 16px;
+}
+
+/* tab styles
+============================== */
+
+/* ################## NEW TAB ########################## */
+
+/* ****************************
+.header_tab_active {
+**************************** */
+
+.readyTab {
+	cursor: pointer;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=slider_selected.png) !important;
+	/*
+	color: blue;
+	text-decoration: underline;
+*/
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* ****************************
+.header_tab_inactive {
+**************************** */
+
+.darkTab {
+	color: #666666;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* ****************************
+.header_tab_text:hover {
+**************************** */
+
+.highlightTab {
+	cursor: pointer;
+	color: blue;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_activeslider.png) !important;
+}
+
+.highlightTab:hover {
+	cursor: pointer;
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_activeslider.png) !important;
+}
+
+/* ****************************
+.header_tab_text {
+**************************** */
+
+.tabListLeft {
+	color: #41464c;
+	text-decoration: none;
+	font-weight: Bold;
+	font-size: 10pt;
+}
+
+.tabListRight {
+	color: #41464c;
+	text-decoration: none;
+	font-weight: Bold;
+	font-size: 10pt;
+	z-index: 75;
+}
+
+.collection-book-row td {
+	padding: 5px;
+	font-size: 10pt;
+	text-align: left;
+}
+
+.collection-book-link {
+	color: blue;
+	text-decoration: underline;
+	_cursor: hand;
+	cursor: pointer;
+}
+
+.LCS-logo {
+	padding-top: 17px;
+	padding-left: 19px;
+}
+
+#location-bar {
+	clear: both;
+	text-align: left;
+	padding: 0 25px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+#location-bar span {
+	font-size: 8pt;
+}
+
+#cvDocHandler table tr td {
+	height: 100%;
+}
+
+.MKBOOK {
+	padding: 0 10px;
+}
+
+.MKBOOK h1 {
+	border-bottom: 2px solid black;
+	font-size: 12pt;
+	text-align: left;
+}
+
+.MKBOOK h2 {
+	background-color: #CCCCCC;
+	border: medium none;
+	font-size: 10pt;
+	margin-bottom: 5px;
+	margin-top: 10px;
+	padding: 10px;
+	text-align: left;
+}
+
+.MKBOOK .tocItem {
+	margin-left: 5px;
+	font-weight: normal;
+}
+
+.tocItem .invalidRef {
+	font-weight: normal;
+}
+
+.missing, .noimages {
+	margin: 10px;
+}
+
+.missing {
+	padding: 5px;
+	font-size: 10pt;
+	border: none;
+	background-color: #ccc;
+	margin-top: 10px;
+}
+
+.noimages {
+	font-size: 10pt;
+	margin-top: 0;
+	padding: 0;
+	margin-left: 15px;
+}
+
+.prefcheckbox {
+	float: left;
+	padding-left: 20px;
+	padding-right: 5px;
+}
+
+.preflabel {
+	float: left;
+	font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.ui-autocomplete {
+	z-index: 100 !important;
+}
+
+/******************** BEGIN GENERAL styles ******************************************/
+
+.verdana {
+	font-family: Verdana;
+}
+
+.font-8pt {
+	font-size: 8pt;
+}
+
+.font-9pt {
+	font-size: 9pt;
+}
+
+.font-10pt {
+	font-size: 10pt;
+}
+
+.font-12pt {
+	font-size: 12pt;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.padding-left-40px {
+	padding-left: 40px;
+}
+
+.padding-left-5px {
+	padding-left: 5px;
+}
+
+.marg-top-5 {
+	margin-top: 5px;
+}
+
+.marg-bottom-5 {
+	margin-bottom: 5px;
+}
+
+.marg-left-5 {
+	margin-left: 5px;
+}
+
+.marg-right-5 {
+	margin-right: 5px;
+}
+
+.width-15per {
+	width: 15%;
+}
+
+.width-60per {
+	width: 60%;
+}
+
+.width-90per {
+	width: 90%;
+}
+
+.width-95per {
+	width: 95%;
+}
+
+.width-140px {
+	width: 140px;
+}
+
+.width-500px {
+	width: 500px;
+}
+
+.width-810px {
+	width: 810px;
+}
+
+.align-middle-v {
+	vertical-align: middle;
+}
+
+.text-align-l {
+	text-align:left;
+}
+
+.border-dashed-silver {
+	border-bottom: 1px dashed silver;
+}
+
+.border-bottom-black {
+	border-bottom:1pt solid black;
+}
+
+.f-none {
+	float: none;
+}
+
+.f-right {
+	float: right;
+}
+
+.f-left {
+	float: left;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+/******************** END GENERAL styles ******************************************/
+
+/*** select.html ***/
+
+.updateServerLinkBlock {
+	width: 80%;
+	background-color: #BCE954;
+	padding: 20px;
+	border: 2pt solid green;
+}
+
+.erac_message_container {
+	background-color: #4477AA;
+	border-style: groove;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/*** cvMedia.js ***/
+
+.rhi_do_step {
+	color:blue;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.rhi_content {
+	height:100px;
+	width:500px;
+	overflow:auto;
+	border-top: solid 1px gray;
+}
+
+/*** cvTOC.js ***/
+
+.toc_processing {
+	background-color:white;
+	border:2pt solid black;
+	margin:40pt;
+}
+
+/****** adsearch_dlg.html, cvAdvSearch.html *******/
+.search_table_text {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.search_table_input {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	width: 90%;
+}
+
+/****** attachment_dlg.html *******/
+
+.attachment_table_text {
+	font-family: Verdana;
+	font-size: 9pt;
+}
+
+.attachment_title_text {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.attachment_comments {
+	font-family: Verdana;
+	font-size: 8pt;
+	width: 95%;
+}
+
+ 
+/********* book_in_update.html ********/
+
+.update_book {
+	font-family: Verdana;
+	font-size: 10pt;
+}
+
+/******* bookmark_dlg.html, cvBookmarkDlg.html ***********/
+
+.bookmark_table {
+	margin-top: 5px;
+}
+
+.bookmark_table_title {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.bookmark_table_title_td {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+	width: 15%;
+}
+
+.bookmark_table_text {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.bookmark_text_location {
+	padding-left: 5px;
+	width: 810px;
+}
+
+.bookmark_table_input {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	width: 90%;
+}
+
+/******** cvUpdateServer.html ********/
+
+.update_server_container {
+	width: 500px;
+}
+
+/******** find_dlg.html ********/
+
+.find_table_title {
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+/****** install_updates_dlg.html ****/
+
+.install_updates_form {
+	width:600px;
+}
+
+.install_updates_form_table {
+	margin-bottom: 5px;
+}
+
+.install_updates_form_title {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+/***** note_dlg.html ******/
+
+.note_table {
+	margin-top: 5px;
+}
+
+.note_table_title_td {
+	font-family: Verdana;
+	font-size: 9pt;
+	width: 15%;
+}
+
+.note_table_title_input {
+	font-family: Verdana;
+	font-size: 8pt;
+	width: 210px;
+}
+
+.note_table_title {
+	font-family: Verdana;
+	font-size: 9pt;
+}
+
+.note_table_title_textarea {
+	font-family: Verdana;
+	font-size: 8pt;
+	width: 95%;
+}
+
+.note_table_public {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.note_table_question {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+/**** svg_find_dlg.html ****/
+
+.svg_find_title {
+	font-family: Verdana;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.svg_find_text {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.svg_find_srchterm {
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	width: 60%;
+}
+
+/***** unknown.html ****/
+.unsupported_action {
+	font-family: Verdana;
+	font-size: 10pt;
+}
+
+.unsupported_action_h1 {
+	font-size: 12pt;
+}
+
+/**** user_dlg.html *****/
+
+.user_table {
+	margin-bottom: 5px;
+}
+
+.user_table_title {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.user_table_text {
+	font-family: Verdana;
+	font-size: 8pt;
+}
+
+.user_table_field {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+	width: 140px;
+}
+
+/******* wordwheel_dlg.html ******/ 
+
+.wordwheel_table_title {
+	font-family: Verdana;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+.wordwheel_table_input {
+	font-family: Verdana;
+	font-size: 10pt;
+	font-weight: bold;
+	width: 270px;
+}
+
+/******* SVG redlining styles ******/ 
+.redlining-elem {
+	fill: red;
+	fill-opacity: 0;
+	stroke: red;
+	stroke-width: 7;
+	cursor: pointer;
+}
+
+.redlining-elem#highlight {
+	stroke: #9f1f1f;
+}
+
+#annotationPopup {
+	background: #f7f8fa;
+	padding: 10px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	box-shadow: 0px 4px 8px #888888;
+	border: 1px solid #B8B8B8;
+	text-align: right;
+}
+
+#annotationPopup textarea {
+	display: block;
+	resize: both;
+    width: 250px;
+    height: 100px;
+	margin-bottom: 10px;
+	border: 1px solid #B8B8B8;
+}
+
+.svg-pan-zoom_viewport {
+	width: 100%;
+}
+
+.annotation-text {
+	fill: #000;
+}
+
+/******* SVG redlining styles ******/ 
+
+/*****  Security banners and portion marking *****/
+
+.portion-marking {
+	font-size: inherit;
+	display: none;
+}
+
+#publicationSecBanner {
+	display: none;
+	text-align: center;
+}
+
+#dmSecurityBanner {
+	display: none;
+	text-align: center;
+}
+
+/* start Font style, text color for security banners */
+#pubSecBanner {
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#dmSecBanner {
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+/* end Font style, text color for security banners */
+
+/* start backgound color for security banners */
+.security-pub-banner   { background-color:gray; }
+.security-pub-banner01 { background-color:gray; }
+.security-pub-banner01 { background-color:green; }
+.security-pub-banner02 { background-color:#3947a5; }
+.security-pub-banner03 { background-color:#f99f86; }
+.security-pub-banner04 { background-color:#da2c2c; }
+.security-pub-banner05 { background-color:#af38a1; }
+
+.security-dm-banner   { background-color:gray; }
+.security-dm-banner01 { background-color:green; }
+.security-dm-banner02 { background-color:#3947a5; }
+.security-dm-banner03 { background-color:#f99f86; }
+.security-dm-banner04 { background-color:#da2c2c; }
+.security-dm-banner05 { background-color:#af38a1; }
+/* LAM overrides */
+#dmSecBanner > span.dmSecurityInfo {
+	background-color:yellow;
+	color:#000;
+	padding-left:6px;
+	padding-right:6px;
+}
+/*
+dmBannerContainer.children[0].innerHTML = '<span class="dmSecurityInfo">' + dh.dmSecurityInfo + '</span>'; // LAM revised
+<div class="sPanel security-dm-banner security-dm-banner01 caveat-dm-banner" id="dmSecurityBanner" style="width: 1275px; height: 16px; display: block;">
+<div id="dmSecBanner"></div></div>
+
+<div class="sPanel security-dm-banner security-dm-banner01 caveat-dm-bannercv67" id="dmSecurityBanner" style="width: 1275px; height: 16px; display: block;"><div id="dmSecBanner"><span class="dmSecurityInfo">DATA MODULE NOT YET VALIDATED</span></div>
+</div>
+*/
+.caveat-dm-banner { 
+	background-color:white;
+}
+.caveat-dm-banner01 { 
+	background-color:green;
+}
+.caveat-dm-banner01::before { 
+	content:'Unrestricted';
+  font-weight:bold;
+  color:white;
+}
+.caveat-dm-bannercv67 { 
+	background-image:url(@HTTP_ROOT@/images/caution_bg.gif);
+}
+/* end backgound color for security banners */
+
+/* History list */
+#innerHistory {
+	overflow: auto;
+}
+
+#innerHistory .tocItem {
+    margin: 10px 5px 5px;
+	font-weight: normal;
+}
+#innerHistory .tocItem img {
+	margin-right: 5px;
+}
+.close_left_panel_active {
+	text-align: right;
+	padding: 7px 9px;
+	border-bottom: 1px solid gray;
+	cursor: pointer;
+}
+
+.no-history {
+	text-align: center;
+	margin-top: 15px;
+}
+
+#modalDialog .wcn_holder {
+	max-height: 373px;
+	overflow: auto;
+	padding: 0 5px;
+	max-width: 950px;
+}
+
+#cvDocHandler {
+	position: relative;
+}
+
+#emergency_procedures {
+	overflow: auto;
+}
+
+#emergency_procedures .tocItem {
+	font-weight: normal;
+	margin: 10px 5px 5px;
+}
+
+#emergency_procedures .tocItem img {
+    margin-right: 5px;
+}
+
+#emptyEmergencyProcedures {
+	margin: 10px;
+	text-align: center;
+}
+
+.revisions_link {
+	color: blue;
+	text-decoration: underline;
+}
+
+.revisions_link:hover {
+	text-decoration: none;
+}
+
+.revisions_link_visited {
+	color: purple;
+}
+
+/* START Left Navigation items styles */
+#cvLeftNav .sButtonGroupM {
+	display: block;
+    width: auto;
+    height: auto;
+    padding: 0;
+}
+
+#cvLeftNav .toolbar_buttonM {
+    background-position-y: center;
+    background-repeat: no-repeat;
+	background-position-x: 15px;
+    height: auto;
+    padding: 17px 0;
+	border-bottom: 1pt solid #AAAAAA;
+    width: 100%;
+}
+#cvLeftNav .toolbar_buttonM .nav2ButtonText {
+	margin-top: 0;
+	margin-left: 40px;
+    font-size: 11pt;
+    height: auto;
+    width: auto;
+    text-align: left;
+}
+
+#cvLeftNav .tbar_history {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=task-history.16.color.png);
+}
+
+#cvLeftNav .tbar_applic {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=applicability_16.color.png);
+}
+
+#cvLeftNav .tbar_suspend {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=workflow.activity-instance-suspended.16.color.png);
+}
+
+#cvLeftNav .tbar_attachment {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=file-add.16.color.png);
+}
+
+/* LAM:2022-02-16: BUFR form icon */
+#cvLeftNav .tbar_burf765 {
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/bufr765.16.png);
+}
+
+/* END  Left Navigation items styles */
+
+.loader {
+	border: 10px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 10px solid #999999;
+	width: 50px;
+	height: 50px;
+	-webkit-animation: spin 1s linear infinite; /* Safari */
+	animation: spin 1s linear infinite;
+	margin-bottom: 10px;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  
+
+  .highlightRM {
+	background-color: rgb(153, 204, 255);
+  }
+	
+/* LAM: Shopping Cart
+<div id="shoppingCart" style="display:none">Shopping Cart</div>
+<div id="shoppingCart" style="display:none">
+<div class="title">Shopping Cart<span>X</span></div>
+</div>
+*/
+#shoppingCart {
+	position:absolute;
+	width:300px;
+	left:450px;
+	top:20px;
+	height:415px;
+	display:block;
+	z-index:600;
+	background:#5d8aa8;
+	border: 1px solid black;
+	margin:0;
+	padding:5px;
+	text-align:center;
+	cursor:move;
+}
+#shoppingCart > div.title {
+	font-weight:bold;
+	color:white;
+	margin-top:5px;
+	margin-bottom:20px;
+}
+#shoppingCart > hr {
+	border-top: 1px solid white;
+}
+#shoppingCart > div.title * span {
+	background:rgb(163,188,205);
+	border: 1px solid white;
+	padding:5px 15px 5px 15px;
+	float:right;
+	color:white;
+	font-weight:bold;
+}
+#shoppingCart > #shoppingCartList {
+	border: 1px solid white;
+	height:300px;
+	overflow:scroll;
+}
+#shoppingCartList > table * th,
+#shoppingCartList > table * td {
+	font-size:11px;
+	color:white;
+	text-align:left;
+	vertical-align:top;
+}
+#shoppingCartOrder > input#shoppingCartOrderOrderbtn {
+	background-color:white;
+	width:100%;
+	cursor:pointer;
+	padding:12px;
+}
+#shoppingCartOrder > input#shoppingCartOrderOrderbtn[disabled] {
+	cursor:not-allowed;
+}
+
+#reviewcommentmsg {
+	position:absolute;
+	width:calc(100% - 550px);
+	right:100px;
+	left:450px;
+	top:400px;
+	height:80px;
+	display:none;
+	z-index:800;
+	background:#ddd;
+	border: 1px solid black;
+	margin:0;
+	padding:5px;
+	text-align: center;
+	opacity:0.95;
+	cursor:move;
+}
+div.reviewcommentmsgheader, span.reviewcommentmsgheader {
+	cursor:hand;
+	background:#eee;
+	padding:6px;
+	margin-bottom:12px;
+}
+div.reviewcommentmsg > table > tbody > tr > td {
+	text-align:left;
+}
+
+#reviewcommentcapture {
+	position:absolute;
+	width:calc(100% - 950px);
+	right:300px;
+	left:650px;
+	top:200px;
+	height:300px;
+	display:none;
+	z-index:800;
+	background:#ddd;
+	border: 1px solid black;
+	margin:0;
+	padding:5px;
+	text-align:center;
+	opacity:1.00;
+}
+div.reviewcommentcapture > table > tbody > tr > td {
+	text-align:left;
+}
+
+input#commenttitle,
+input#commentmsg,
+select#commenttype {
+	width:400px;
+}
+
+#form765container {
+	position:absolute;
+	width:700px;
+	height:820px;
+	left:450px;
+	top:20px;
+	display:block;
+	z-index:1101; /* Index must be greater than 1001 to sit in front on RightPanel */
+	background:#eee;
+	border: 2px solid #333;
+	margin:0;
+	padding:5px;
+	text-align:center;
+	cursor:move;
+}
+#panelForm765 > div.title * span {
+	background:rgb(163,188,205);
+	border: 1px solid white;
+	padding:5px 15px 5px 15px;
+	float:right;
+	color:white;
+	font-weight:bold;
+}
+
+table.Form765 * td {
+	vertical-align:top;
+}
+
+#longTaskProgressContainer {
+  z-index:1999; position:absolute;
+} 
+#loaderMsg { 
+  z-index:2001; position:absolute;
+  width:220px; height:220px; 
+  display:table;
+} 
+span#loaderMsgTxt {
+  display:table-cell;
+  text-align:center; vertical-align:middle; /* Neither of these properties are being applied in FF */
+  width:220px; height:220px;
+  color:#666;
+  font-size:16px;
+}
+#loader { 
+  z-index:2000; position:absolute;
+  border:12px solid #f3f3f3; 
+  border-radius:50%; 
+  border-top: 12px solid #444444; 
+  width:300px; height:300px; 
+  background-color:#fff; /* rgb(93,138,168)*/
+  animation: loaderspin 1s linear infinite; 
+} 
+@keyframes loaderspin { 
+  100% { 
+    transform:rotate(360deg); 
+  } 
+} 
+.center { 
+  position:absolute; 
+  top:0; bottom:0; left:0; right:0;
+  margin:auto; 
+}
+/* / LAM overrides */

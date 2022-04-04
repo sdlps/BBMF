@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wietm>
+  <configuration>
+    <configitem name="UniqueCDIdentifier"><value>BBMF_IETP</value></configitem>
+    <configitem name="ReconcileDate"><value>2021-10-26 16:37:52</value></configitem>
+    <configitem name="app.resource_jarname_ext"><value></value></configitem>
+    <configitem name="app.resource_jarname_misc"><value></value></configitem>
+    <configitem name="app.resource_jarname"><value></value></configitem>
+    <configitem name="app.working_dir"><value></value></configitem>
+    <configitem name="app.log_directory"><value></value></configitem>
+    <configitem name="app.skin_name"><value>BBMFskin</value></configitem>
+    <configitem name="app.httpd_root"><value></value></configitem><!--{LiveContent Data Dir}\bbmfcustom\etc-->
+    <configitem name="app.docs_root"><value></value></configitem><!-- {LiveContent Data Dir}\bbmfcustom\httpdocs -->
+    <configitem name="Client_OldVersion"><value>DENY</value></configitem>
+    <configitem name="Client_AutoUpgrade"><value>0</value></configitem>
+    <!-- configitem name="app.skin_name_alt"><value>CarbonM</value></configitem -->
+    <configitem name="pdf.param_list"><value>ietm_version;ietm_date;PubNumber;PubName;PubIssue;PubDate;</value></configitem>
+    <configitem name="ietm_version.name"><value>IETMVersion</value></configitem>
+    <configitem name="ietm_version.value"><value>Version 5.9</value></configitem>
+    <configitem name="ietm_date.name"><value>IETMDate</value></configitem>
+    <configitem name="ietm_date.value"><value>December 11, 2020</value></configitem>
+    <configitem name="PubNumber.name"><value>PubNumber</value></configitem>
+    <configitem name="PubName.name"><value>PubName</value></configitem>
+    <configitem name="PubIssue.name"><value>PubIssue</value></configitem>
+    <configitem name="PubDate.name"><value>PubDate</value></configitem>
+    <!-- Disable WCN, 1 = disable, 0 = enable     <configitem name="ietm.disable_wcn"><value>1</value></configitem>-->    <!-- CGM Control, 1 = activeCGM, 2 = isoview, 3 = vizex control from larson cgm -->
+    <configitem name="ietm.cgm_control"><value>2</value></configitem>
+  </configuration>
+  <collectionslist>
+    <collection name="BBMF_IETP">
+      <configitem name="dir"><value></value></configitem>
+      <configitem name="http_name"><value>BBMF_HTTP</value></configitem>
+      <booklist>
+        <book name="pmc_chipmunk_kcxr8_all01_01_en-us">
+          <configitem name="bookTextDB"><value>pmc_chipmunk_kcxr8_all01_01_en-us.pdm</value></configitem>
+          <configitem name="bookTitle"><value>CHIPMUNK AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="bookModel"><value>CHIPMUNK</value></configitem>
+          <configitem name="bookDescription"><value>CHIPMUNK AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="PubDate.value"><value>09/16/2020</value></configitem><!--<configitem name="PubDate.value"><value>2020-09-16</value></configitem>-->
+          <configitem name="PubIssue.value"><value>000</value></configitem>
+          <configitem name="IssueAuthority"><value/></configitem>
+          <configitem name="PubVolume.value"><value>01</value></configitem>
+          <configitem name="search"><value>systtlSearch;tpcttlSearch;fgrttlSearch;tblttlSearch;pnrSearch;dfpSearch;mfcSearch;docidSearch</value></configitem>
+          <configitem name="change_level"><value>000</value></configitem>
+          <configitem name="PubNumber.value"><value>PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US</value></configitem>
+          <configitem name="front_matter_html"><value>front.html</value></configitem>
+        </book>
+        <book name="pmc_dakota_kcxr8_all01_01_en-us">
+          <configitem name="bookTextDB"><value>pmc_dakota_kcxr8_all01_01_en-us.pdm</value></configitem>
+          <configitem name="bookTitle"><value>DAKOTA AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="bookModel"><value>DAKOTA</value></configitem>
+          <configitem name="bookDescription"><value>DAKOTA AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="PubDate.value"><value>09/16/2020</value></configitem><!--<configitem name="PubDate.value"><value>2020-09-16</value></configitem>-->
+          <configitem name="PubIssue.value"><value>000</value></configitem>
+          <configitem name="IssueAuthority"><value/></configitem>
+          <configitem name="PubVolume.value"><value>01</value></configitem>
+          <configitem name="search"><value>systtlSearch;tpcttlSearch;fgrttlSearch;tblttlSearch;pnrSearch;dfpSearch;mfcSearch;docidSearch</value></configitem>
+          <configitem name="change_level"><value>000</value></configitem>
+          <configitem name="PubNumber.value"><value>PMC-DAKOTA-KCXR8-ALL01-01_EN-US</value></configitem>
+          <configitem name="front_matter_html"><value>front.html</value></configitem>
+        </book>
+        <book name="pmc_hurricane_kcxr8_all01_01_en-us">
+          <configitem name="bookTextDB"><value>pmc_hurricane_kcxr8_all01_01_en-us.pdm</value></configitem>
+          <configitem name="bookTitle"><value>HURRICANE AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="bookModel"><value>HURRICANE</value></configitem>
+          <configitem name="bookDescription"><value>HURRICANE AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="PubDate.value"><value>09/16/2020</value></configitem><!--<configitem name="PubDate.value"><value>2020-09-16</value></configitem>-->
+          <configitem name="PubIssue.value"><value>000</value></configitem>
+          <configitem name="IssueAuthority"><value/></configitem>
+          <configitem name="PubVolume.value"><value>01</value></configitem>
+          <configitem name="search"><value>systtlSearch;tpcttlSearch;fgrttlSearch;tblttlSearch;pnrSearch;dfpSearch;mfcSearch;docidSearch</value></configitem>
+          <configitem name="change_level"><value>000</value></configitem>
+          <configitem name="PubNumber.value"><value>PMC-HURRICANE-KCXR8-ALL01-01_EN-US</value></configitem>
+          <configitem name="front_matter_html"><value>front.html</value></configitem>
+        </book>
+        <book name="pmc_lancaster_kcxr8_all01_01_en-us">
+          <configitem name="bookTextDB"><value>pmc_lancaster_kcxr8_all01_01_en-us.pdm</value></configitem>
+          <configitem name="bookTitle"><value>LANCASTER AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="bookModel"><value>LANCASTER</value></configitem>
+          <configitem name="bookDescription"><value>LANCASTER AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="PubDate.value"><value>09/16/2020</value></configitem><!--<configitem name="PubDate.value"><value>2020-09-16</value></configitem>-->
+          <configitem name="PubIssue.value"><value>000</value></configitem>
+          <configitem name="IssueAuthority"><value/></configitem>
+          <configitem name="PubVolume.value"><value>01</value></configitem>
+          <configitem name="search"><value>systtlSearch;tpcttlSearch;fgrttlSearch;tblttlSearch;pnrSearch;dfpSearch;mfcSearch;docidSearch</value></configitem>
+          <configitem name="change_level"><value>000</value></configitem>
+          <configitem name="PubNumber.value"><value>PMC-LANCASTER-KCXR8-ALL01-01_EN-US</value></configitem>
+          <configitem name="front_matter_html"><value>front.html</value></configitem>
+        </book>
+        <book name="pmc_spitfire_kcxr8_all01_01_en-us">
+          <configitem name="bookTextDB"><value>pmc_spitfire_kcxr8_all01_01_en-us.pdm</value></configitem>
+          <configitem name="bookTitle"><value>SPITFIRE AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="bookModel"><value>SPITFIRE</value></configitem>
+          <configitem name="bookDescription"><value>SPITFIRE AIRCRAFT MAINTENANCE MANUAL AND ILLUSTRATED PARTS BREAKDOWN</value></configitem>
+          <configitem name="PubDate.value"><value>03/01/2021</value></configitem>
+          <configitem name="PubIssue.value"><value>000</value></configitem>
+          <configitem name="IssueAuthority"><value/></configitem>
+          <configitem name="PubVolume.value"><value>01</value></configitem>
+          <configitem name="search"><value>systtlSearch;tpcttlSearch;fgrttlSearch;tblttlSearch;pnrSearch;dfpSearch;mfcSearch;docidSearch</value></configitem>
+          <configitem name="change_level"><value>000</value></configitem>
+          <configitem name="PubNumber.value"><value>PMC-SPITFIRE-KCXR8-ALL01-01_EN-US</value></configitem>
+          <configitem name="front_matter_html"><value>front.html</value></configitem>
+        </book>
+      </booklist>
+    </collection>
+  </collectionslist>
+</wietm>

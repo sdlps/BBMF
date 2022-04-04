@@ -1,0 +1,110 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/user_dlg.html 2.0 2019/05/22 21:02:12GMT milind Exp  $ -->
+<meta id="META_USER" content="@USER@">
+<meta id="META_USER_COMP_CODE" content="@USER_COMP_CODE@">
+<meta id="META_USER_COMPANY" content="@USER_COMPANY@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_MODE" content="@MODE@">
+<meta id="META_USER_ID" content="@USER_ID@">
+<meta id="META_LOGIN_NAME" content="@LOGIN_NAME@">
+<meta id="META_PASSWORD" content="@PASSWORD@">
+<meta id="META_USER_GROUP" content="@GROUP_NAME@">
+<meta id="META_LAST_NAME" content="@LAST_NAME@">
+<meta id="META_FIRST_NAME" content="@FIRST_NAME@">
+<meta id="META_MIDDLE_NAME" content="@MIDDLE_NAME@">
+<meta id="META_COMP_CODE" content="@COMP_CODE@">
+<meta id="META_COMPANY" content="@COMPANY@">
+<meta id="META_EMAIL" content="@EMAIL@">
+<meta id="META_EXP_DATE" content="@EXP_DATE@">
+<meta id="META_REMINDER" content="@REMINDER@">
+
+<table align="center" border="0" cellpadding="0" cellspasing="0" class="user_table">
+	<tr height="40">
+		<td class="user_table_title" align="right">Login Name:</TD>
+		<td align="left"  class="padding-left-5px">
+		<input type="hidden" id="USER_ID" value="@USER_ID@">
+		<input type="hidden" id="ORIG_LOGINNAME" value="@LOGIN_NAME@">
+		<input class="user_table_field" maxlength="20" type="text" id="LOGIN_NAME" tabindex="1" value="@LOGIN_NAME@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+
+		<td class="user_table_title" align="right">Company Code:</td>
+		<td class="padding-left-5px"><select class="user_table_field" id="COMP_CODE" onchange="change_handler()" tabindex="8"></select></td>
+		<td></td>
+	</tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">Password:</td>
+		<td class="padding-left-5px"><input class="user_table_field" type="password" id="PASSWORD" tabindex="2" value="@PASSWORD@"></input></td>
+		<td class="user_table_text"><nobr>&nbsp;* (at least 4 characters)</nobr></td>
+
+		<td class="user_table_title" align="right">Company:</td>
+		<td  class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="COMPANY" value="@COMPANY@" tabindex="9"></input></td>
+	   	<td></td>
+	</tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">Confirm Password:</td>
+		<td class="padding-left-5px"><input class="user_table_field" type="password" id="CONF_PASSWORD" tabindex="3" value="@PASSWORD@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+
+		<td class="user_table_title" align="right">E-mail:</td>
+		<td class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="EMAIL" tabindex="10" value="@EMAIL@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+	</tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">User Group:</td>
+		<td  class="padding-left-5px">
+		<input type="hidden" id="ORIG_GROUP_NAME" value="@GROUP_NAME@">
+		<select class="user_table_field" id="USER_GROUP" tabindex="4"></select></td>
+		<td class="user_table_text">&nbsp;*</td>
+
+	  	<td class="user_table_title" align="right">Confirm <nobr>E-mail:</nobr></td>
+		<td  class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="CONF_EMAIL" tabindex="11" value="@EMAIL@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+	</tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">Last Name:</td>
+		<td class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="LAST_NAME" tabindex="5" value="@LAST_NAME@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+
+		<td class="user_table_title" style="display:none;" align="right">Expiration Date</nobr></td>
+		<td class="padding-left-5px" style="display:none;"><input class="user_table_field" maxlength="50" type="text" id="EXP_DATE" tabindex="12"></input></td>
+		<td class="user_table_text" style="display:none;"></td></tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">First Name:</td>
+		<td class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="FIRST_NAME" tabindex="6" value="@FIRST_NAME@"></input></td>
+		<td class="user_table_text">&nbsp;*</td>
+
+		<td class="user_table_title" style="display:none;" align="right">Reminder</td>
+		<td class="padding-left-5px" style="display:none;"><input class="user_table_field" maxlength="50" type="text" id="REMINDER" value="30" tabindex="13"></input></td>
+		<td class="user_table_title" style="display:none;"><nobr>&nbsp;days</nobr></td>
+	</tr>
+	<tr height="40">
+		<td class="user_table_title" align="right">Middle Name:</td>
+		<td class="padding-left-5px"><input class="user_table_field" maxlength="50" type="text" id="MIDDLE_NAME" tabindex="7" value="@MIDDLE_NAME@"></input></td>
+		<td colspan="4"></td>
+	</tr>
+	<tr height="10">
+	</tr>
+</table>
+
+<table id="BOTTOMCONTROL" cellpadding="0" cellspasing="0" border="0" align="center">
+	<tr >
+	<td width="21%" valign="bottom" align="left" class="user_table_text">* Required field</td>
+	<td align="right">
+		<input type="button" value="Save" onclick="CVPortal.components.cvResourceManager.saveUser();"/>
+		<!--<img src="@APPNAME@?target=resource&action=image&file_name=dlg_save.gif" id="dlg_save" alt="Save"
+		onclick="onOk_handler()"
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/>-->
+		</td>
+		<td width="40"></td>
+		<td align="left">
+		<input type="button" value="Cancel" onclick="CVPortal.components.cvResourceManager.closeForm();"/>
+		<!--<img src="@APPNAME@?target=resource&action=image&file_name=dlg_cancel.gif" id="dlg_cancel" alt="Cancel"
+		onclick="onCancel_handler()"
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/>-->
+		</td>
+	<td width="21%"></td>
+	</tr>
+</table>

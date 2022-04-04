@@ -1,0 +1,45 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/svg_find_dlg.html 2.0 2019/05/22 21:02:05GMT milind Exp  $ -->
+<html>
+<head>
+<meta id="META_CALLER" content="@CALLER@">
+
+<title>Find</title>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=const.js"></script>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=svg_find_dlg.js"></script>
+</head>
+<body background="@APPNAME@?target=resource&action=image&file_name=dlg_bg.gif" onLoad="load_handler()" rightmargin="5" leftmargin="5" topmargin="5" scroll="no">
+
+<table width="100%" >
+<tr height="40px"><td colspan="4">
+<span><label class="svg_find_title">Find What: </label></span>
+<span><input id="SRCHTERM" tabindex="0" type="text"  class="svg_find_srchterm" onKeyDown="check_key()"></span>
+</td></tr>
+<tr height="20px"><td colspan="4">
+<input id="WITHCASE" type="checkbox" class="svg_find_text">
+<label class="svg_find_text">Match Case</label>
+</td></tr>
+<!--tr height="20px"><td colspan="4">
+<input id="WHOLEWORD" type="checkbox"  style="font-family:Verdana;font-weight:bold;font-size:8pt;">
+<label style="font-family:Verdana;font-weight:bold;font-size:8pt;">Whole Word</label>
+</td></tr-->
+<tr id="BOTTOMCONTROL" height="40px">
+
+<td align="right" width="50%" style="padding-right:10px"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_find.gif" id="dlg_find" alt="Find" 
+		class="pointer"
+		onclick="click_find()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+
+<td align="left" width="50%" style="padding-left:10px"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_close.gif" id="dlg_close" alt="Close Dialog" 
+		class="pointer"
+		onclick="click_close()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+</tr></table>
+</span>
+</body>
+</html>

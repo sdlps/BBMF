@@ -1,0 +1,109 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/attachments.html 2.0 2019/05/22 21:01:06GMT milind Exp  $ -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_COLALIAS" content="@COL_ALIAS@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_BOOKTYPE" content="@BOOK_TYPE@">
+<meta id="META_MODEL" content="@MODEL@">
+<meta id="META_USER_ID" content="@USER_ID@">
+<meta id="META_ANNOT_CHANGEPUBLIC" content="@ANNOT_CHANGEPUBLIC@">
+<style>
+img{
+	cursor:hand;
+}
+</style>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=attachments.js"></script>
+<link rel=stylesheet type="text/css" href="@APPNAME@?target=resource&action=style&file_name=attachments.css">
+</head>
+<body onload="onload_handler()" bgcolor="#F0E68C">
+
+<div id="MAIN_div">
+
+<div id="ATTACH_FORM">
+
+<form id="ATCH_FORM" action="@APPNAME@?target=attach&action=attach_save" method=post enctype="multipart/form-data" onsubmit="onsubmit_handler()">
+
+<table border="0">
+<tr>
+<td><b>Filename: </b></td>
+<td>
+<input name="FILE_NAME" size=40 type=file onpropertychange="check_value()">
+</td>
+</tr>
+
+<tr>
+<td><b>Comments: </b></td>
+<td><input name="COMMENTS" size=40 maxlength=255></td>
+</tr>
+
+<tr>
+<td></td>
+<td><br><img src="@APPNAME@?target=resource&action=image&file_name=dlg_attachfiled.gif" id="dlg_attachfile" alt="Attach File"
+		class="pointer"
+		onclick="onAttach_handler()"
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+</tr>
+
+</table>
+
+</form>
+
+</div>
+
+<hr/>
+
+<div id="ATTACH_LIST">
+</div>
+</div>
+
+
+<div id="EDIT_div" style="display:none">
+<table border="0">
+<tr>
+<td><b>Filename: </b></td>
+<td><input disabled name="EDIT_FILE_NAME" size=40 maxlength=255></td>
+</tr>
+
+<tr>
+<td><b>Comments: </b></td>
+<td><input name="EDIT_COMMENTS" size=40></td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+<table cellpadding="10">
+<tr>
+<td><img src="@APPNAME@?target=resource&action=image&file_name=dlg_save.gif" id="dlg_save" alt="Save Changes"
+		class="pointer"
+		onclick="handle_edit_save()"
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+<td><img src="@APPNAME@?target=resource&action=image&file_name=dlg_cancel.gif" id="dlg_cancel" alt="Cancel"
+		class="pointer"
+		onclick="handle_edit_cancel()"
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+</tr>
+</table>
+</td>
+</tr>
+
+</div>
+
+</body>
+</html>

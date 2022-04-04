@@ -1,0 +1,51 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/bookmark_dlg.html 2.0 2019/05/22 21:01:13GMT milind Exp  $ -->
+<div>
+<meta id="META_MODE" content="@MODE@">
+<meta id="META_DOCID" content="@DOCID@">
+<meta id="META_LOCATION" content="@LOCATION@">
+<meta id="META_OFFSET" content="@OFFSET@">
+<meta id="META_BM_TITLE" content="@BM_TITLE@">
+<meta id="META_USER_ID" content="@USER_ID@">
+<meta id="META_ANNOT_CHANGEPUBLIC" content="@ANNOT_CHANGEPUBLIC@">
+<meta id="META_ANNOTID" content="@ANNOTID@">
+
+<div class="resourceRightDialog">
+<table class="bookmark_table" border="0">
+	<tr align="center">
+		<td id="resourceTitle" style="display:none;" colspan="2"><div><img class="align-middle-v" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=marker.32.color.png"/><span>Bookmarks</span></div></td>
+	</tr>
+	<tr align="center" valign="middle" height="30">
+		<td class="bookmark_table_title_td" align="right">Title:</td>
+		<td align="left" class="padding-left-5px">
+
+		<input maxlength="50" style="width:80%;" type="TEXT" id="BM_TITLE" value="" onKeyDown="CVPortal.redirectEnter(event, '$(CVPortal.components.cvResourceManager.okButton.element).trigger(\'click\');');"></td>
+		<td><img style="display:none" align="right" valign="top" class="link" id="CS.HELPBTN" cvHelpButton="1" src="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover(event)"
+			onmouseout="help_onmouseout(event)"
+			onclick="CVPortal.helpFactory().showHelp('1015')"
+			ondrag="event.returnValue=false;"></td>
+	</tr>
+	<tr valign="top">
+		<td class="bookmark_table_title" align="right">Target:</td>
+		<td align="left" class="bookmark_text_location">
+			<span id="LOCATION" class="bookmark_table_text">@LOCATION@</span>
+		</td>
+	</tr>
+
+	<tr>
+		<td></td>
+		<td>
+			<input type="checkbox" name="checkbox" style="display:none" id="PUBLIC_CHECKBOX"/>
+			<span id="PUBLIC" class="bookmark_table_text">Public Bookmark</span>
+		</td>
+	</tr>
+</table>
+
+<span id="QUESTION" class="bookmark_table_title"></span></td>
+<br/>
+
+<button type="button" cvControl="1" id="CVCtrl_OK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_cancel"><span></span></button>
+
+<br/>
+</div>

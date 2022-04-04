@@ -1,0 +1,5 @@
+<user_group>
+<id>superuser</id>
+<group_name>SUPERUSER</group_name>
+<rights>11</rights>
+</user_group>

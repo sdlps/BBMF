@@ -1,0 +1,133 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvGraphicTearoff.html 2.0 2019/05/22 21:01:27GMT milind Exp  $ -->
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>LiveContent Graphic Tear Off</title>
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0" />
+<meta id="META_APPID" content="@APPID@"/>
+<meta id="META_APPNAME" content="@APPNAME@"/>
+<meta id="META_ID" content="@SESSION_ID@"/>
+<meta id="META_USER" content="@USER@"/>
+<meta id="META_USERGROUPNAME" content="@USER_GROUP@"/>
+<meta id="META_USERGROUP" content="@USER_GROUP@"/>
+<meta id="META_USERRIGHTS" content="@USER_RIGHTS@"/>
+<meta id="META_USER_CHANGEREASON" content="@USER_CHANGEREASON@"/>
+<meta id="META_USER_CHANGEHELPBTN" content="@USER_CHANGEHELPBTN@"/>
+<meta id="META_CHANGE_LEVEL" content="@CHANGE_LEVEL@"/>
+<meta id="META_COLLECTION" content="@COLLECTION@"/>
+<meta id="META_BOOK" content="@BOOK@"/>
+<meta id="META_COLALIAS" content="@COL_ALIAS@"/>
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@"/>
+<meta id="META_BOOKTYPE" content="@BOOK_TYPE@"/>
+<meta id="META_MODEL" content="@MODEL@"/>
+<meta id="META_CLIENT_CHECK" content="@CLIENT_CHECK@"/>
+<meta id="META_ISO_VIEW_RELEASE" content="@ISO_VIEW_RELEASE@"/>
+<meta id="META_CGM_CONTROL" content="@CGM_CONTROL@"/>
+<meta id="META_PUBNAME" content="@PUBNAME@"/>
+<meta id="META_PUBDATE" content="@PUBDATE@"/>
+<meta id="META_PUBNUMBER" content="@PUBNUMBER@"/>
+<meta id="META_CDVERSION" content="@CDVERSION@"/>
+<meta id="META_CONFIG_HELP_BTN" content="@CONFIG_HELP_BTN@"/>
+<meta id="META_USER_HIDE_HELP_BTN" content="@USER_HIDE_HELP_BTN@"/>
+<meta id="META_WCN_POPUP" content="@WCN_POPUP@"/>
+<meta id="META_MULTI_HOST" content="@MULTI_HOST@"/>
+<meta id="META_FIGURES_PATH" content="@FIGURES_PATH@"/>
+<meta id="META_MEDIA_PATH" content="@MEDIA_PATH@"/>
+<meta id="META_SYMBOLS_PATH" content="@SYMBOLS_PATH@"/>
+<meta id="META_CUSTOMER_MODE" content="@CUSTOMER_MODE@"/>
+<meta id="META_USER_SAVE_POSITION" content="@USER_SAVE_POSITION@"/>
+<meta id="META_AUTOSTART_DOCID" content="@AUTOSTART_DOCID@"/>
+<meta id="META_TITLE" content="@TITLE@"/>
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=skin.css"/>
+
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery.highlight-3.js"></script>
+<!--
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=interface.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery.dimensions-min.js"></script>
+-->
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvPortal.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvMetaFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvDebugger.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvHelpFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvControlFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvPanelFactory.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvBaseComponent.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvCompatLib.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvResourceManager.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvMedia.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=splitter.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg-pan-zoom.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=hammer.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg.min.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=svg.draw.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=dvl.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=Loco.js"></script>
+<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=html2canvas.js"></script>
+
+<script type="text/javascript">
+
+var CVPortal = new CV_Portal();
+var openingWindow;
+var myLang="en";
+function cvPortalInit() {
+	CVPortal.metaFactory().loadMetaData();
+	CVPortal.loadDTDCSS();
+	openingWindow = opener;
+	//steal the metaFactory:
+	CVPortal._metaFactory = openingWindow.CVPortal.metaFactory();
+	var metaLang =CVPortal.metaFactory().get("META_LANG");
+	if (typeof metaLang !== "undefined" && metaLang !== "null" && metaLang !== "english") {
+		myLang = metaLang;
+	}
+	CVPortal.loadResources(myLang);
+	CVPortal.panelFactory().loadPanels("tearOff");
+	CVPortal.controlFactory().loadControls("tearOff");
+	CVPortal.loadComponents("tearOff");
+	CVPortal.panelFactory().initResize();
+
+	//
+	//hide the tearoff and resize buttons:
+	if(CVPortal.components.cvMedia.tearOff.element.style) {
+		CVPortal.components.cvMedia.tearOff.element.style.display = "none";
+	}
+
+	// remember the DOCID we loaded under (for hotspotting)
+	CVPortal.components.cvMedia.tearOffDocId = openingWindow.CVPortal.components.cvDocHandler.current.docId;
+
+	CVPortal.components.cvMedia.legendXSL = openingWindow.CVPortal.components.cvMedia.legendXSL;
+
+	// get security classification
+	CVPortal.components.cvMedia.dmBannerSecurityClass = openingWindow.CVPortal.components.cvDocHandler.dmBannerSecurityClass;
+	CVPortal.components.cvMedia.dmSecurityInfo = openingWindow.CVPortal.components.cvDocHandler.dmSecurityInfo;
+	CVPortal.components.cvMedia.showSecurityBanners = openingWindow.CVPortal.components.cvDocHandler.showSecurityBanners;
+	CVPortal.components.cvMedia.showPortionMark = openingWindow.CVPortal.components.cvDocHandler.showPortionMarking;
+	CVPortal.components.cvMedia.docPanel = openingWindow.CVPortal.components.cvDocHandler.docPanel;
+	CVPortal.components.cvMedia.docType = openingWindow.CVPortal.components.cvDocHandler.current.docType;
+	CVPortal.components.cvMedia.docHandlerId = openingWindow.CVPortal.components.cvDocHandler.id;
+
+	//load our graphics:
+	// alert('getting XML from parent window');
+//	var figLegendChild = CVPortal.components.cvMedia.figLegend;
+	CVPortal.components.cvMedia.isParent=false;
+	CVPortal.components.cvMedia.figLegend =openingWindow.CVPortal.components.cvMedia.figLegend;
+	var targetXML = openingWindow.CVPortal.components.cvMedia.mediaxml;
+	CVPortal.components.cvMedia.loadMedia(targetXML, true);
+	// alert('setCurrentGraphic()');
+	CVPortal.components.cvMedia.setCurrentGraphic(openingWindow.CVPortal.components.cvMedia.currentGraphic);
+}
+</script>
+
+
+<script language="javascript" for="IsoViewCGM" event="InitFinished()">IsoInitFinished()</script>
+<script language="javascript" for="IsoViewCGM" event="HsHit(MouseBtn, RefID, Name, ViewPortName, ViewPortFile)">IsoHsHit(MouseBtn, RefID, Name, ViewPortName, ViewPortFile);</script>
+
+</head>
+<body class="hatched" onLoad="cvPortalInit()">
+
+<!--<span onClick="CVPortal.cvDebugger().openDebugWindow();" class="simpleButton">[ Debug ]</span>-->
+</body>
+</html>

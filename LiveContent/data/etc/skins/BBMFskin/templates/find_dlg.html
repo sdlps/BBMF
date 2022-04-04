@@ -1,0 +1,65 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/find_dlg.html 2.0 2019/05/22 21:01:39GMT milind Exp  $ -->
+<html>
+<head>
+
+<meta id="META_CALLER" content="@CALLER@">
+
+<title>Find</title>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=const.js"></script>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=utils.js"></script>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=find_dlg.js"></script>
+</head>
+<body background="@APPNAME@?target=resource&action=image&file_name=dlg_bg.gif" onLoad="load_handler()" rightmargin="5" leftmargin="5" topmargin="5" scroll="no">
+
+<table width="100%" >
+<tr height="40px"><td colspan="4">
+<span><label class="find_table_title">Find What: </label></span>
+<span><input id=SRCHTERM tabindex="0" type=text  class="verdana bold font-9pt width-60per" onKeyDown="check_key()"></span>
+</td>
+
+<td><img style="display:none" align="right" valign="top" class="link" id="CS.HELPBTN" src="@APPNAME@?target=resource&action=image&file_name=help.gif" 
+			onmouseover="help_onmouseover('help')"
+			onmouseout="help_onmouseout('help')" 
+			onclick="help_onclick('1022')"
+			ondrag="event.returnValue=false;"></td></tr>
+<tr height="40px"><td colspan="4">
+<input id=WITHCASE type=checkbox  class="find_table_title">
+<label class="find_table_title">Whole Word</label>
+</td></tr>
+<tr id="BOTTOMCONTROL" height="40px">
+
+<td align="center" width="25%"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_find.gif" id="dlg_find" alt="Find" 
+		class="pointer"
+		onclick="click_find()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+
+
+<td align="center" width="25%"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_prev.gif" id="dlg_prev" alt="Previous Match" 
+		class="pointer"
+		onclick="click_prev()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+
+<td align="center" width="25%"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_next.gif" id="dlg_next" alt="Next Match" 
+		class="pointer"
+		onclick="click_next()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+<td align="center" width="25%"><img src="@APPNAME@?target=resource&action=image&file_name=dlg_close.gif" id="dlg_close" alt="Close Dialog" 
+		class="pointer"
+		onclick="click_close()" 
+		onmouseover="mouseover_handler()"
+		onmouseout="mouseout_handler()"
+		ondrag="event.returnValue=false;"/></td>
+
+</tr></table>
+</span>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/toc_search.html 2.0 2019/05/22 21:02:08GMT milind Exp  $ -->
+
+	<div id="searchControls">
+		<div class="searchHeader">
+			<div class="searchHeadDiv">
+				<div id="CVCtrl_clear" cvControl="1"/>
+				<div id="CVCtrl_highlightSearch" cvControl="1"/>
+				<div id="CVCtrl_hideSearch" cvControl="1"/>
+			</div>
+		</div>
+		<div class="searchHeader" id="searchNav">
+			<div class="searchHeadNav">
+				<div id="CVCtrl_toggleTOCSearch" cvControl="1"/>
+				<div id="CVCtrl_toggleFTSearch" cvControl="1"/>
+				<div id="CVCtrl_toggleCatSearch" cvControl="1"/>
+				<div id="CVCtrl_toggleResultsSearch" cvControl="1"/>
+			</div>
+		</div>
+	</div>
+
+<div id="bodywrap">
+  <!-- IE in strict mode.. .seems to need both tags - strange but true... -->
+  <input id="META_SEARCH_LIST" value="@SEARCH_LIST@" type="hidden"/>
+  <meta id="META_SEARCH_LIST" content="@SEARCH_LIST@"/>
+ 	<!-- Localization via cvSearch.js, cvResourceManager.js and resources-XX.prop -->
+ 
+<div id="SEARCH_FORM">
+
+	<!-- simple search interface -->
+	<div class="searchGutter" id="textSearch">
+		<div id="promptSearch1_1" />
+		<input id="idSearchInput1" type="TEXT" onKeyDown="CVPortal.redirectEnter(event, 'CVPortal.components.cvSearch.startSearch();');" onChange="CVPortal.components['cvSearch'].updateSearchUI();">
+		<!-- span id="categoryOption"><input type="checkbox" id="andCategories" title="Filter search results by limiting result set to categories including all search terms">AND</span -->
+		<span id="advSearchOptions">
+			<select id="op1" class="advSearchSelect">
+				<option value="and" id="advSearchAnd"></option>
+				<option value="or" id="advSearchOr"></option>
+				<option value="andnot" id="advSearchNot"></option>
+				<option value="near" id="advSearchNear"></option>
+			</select>
+		<input id="idSearchInput2" type="TEXT" onKeyDown="CVPortal.redirectEnter(event, 'CVPortal.components.cvSearch.startSearch();');" onChange="CVPortal.components['cvSearch'].updateSearchUI();">
+		</span>
+		<button type="button" cvControl="1" id="CVCtrl_start"><span></span></button>
+
+		<!-- more advanced controls -->
+		<!--
+		<button type="button" cvControl="1" id="CVCtrl_stopSearch"><span></span></button>
+		-->
+
+		<!-- More advanced search options -->
+		<div id="advSearchAdditions">
+			<form name="searchForm">
+				<input style="display:none" type="checkbox" id="ignore_case" checked="check" disabled="disabled"/>
+				<label style="display:none" for="ignore_case" id="searchCasePrompt"></label>
+				<input type="checkbox" id="whole_words_only"/>
+				<label for="whole_words_only" id="searchWholePrompt"></label>
+			</form>
+		</div>
+
+		<!-- Selector for search type -->
+		<div id="searchType">
+			<form name="searchForm">
+				<input type="radio" name="searchTypeSelect" id="searchSimpleSelect" value="simple" checked="checked" onClick="CVPortal.components.cvSearch.buildScope();"/>
+				<label for="searchSimpleSelect" id="searchSimplePrompt"></label>
+				<input type="radio" name="searchTypeSelect" id="searchAdvancedSelect" value="advanced" onClick="CVPortal.components.cvSearch.buildScope();"/>
+				<label for="searchAdvancedSelect" id="searchAdvancedPrompt"></label>
+			</form>
+		</div>
+		
+		<!-- NATO: add checkbox for TOC filtering (SDL tperry 2013/03/19) -->
+		<div class="searchBranch">
+			<input type="checkbox" name="branchSearchCB" id="branchSearchCB" onClick="CVPortal.components['cvSearch'].searchType('branch');"/>
+			<span id="branchSearchPrompt"/>
+			<span>:&nbsp;</span>
+			<span id="TOCFilterTitle1" class="TOCFilterTitle"> </span>
+		</div>
+
+		<!-- ever present help button -->
+		<!-- Help interface disabled
+		<img style="display:none;vertical-align:bottom;" cvHelpButton="1" class="link" id="CS.HELPBTN"
+			src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover(event)"
+			onmouseout="help_onmouseout(event)"
+			onclick="help_onclick('1021')"
+			ondrag="event.returnValue=false;"/>
+		-->
+	</div>
+
+	<!-- advanced search options -->
+	<!--
+	<h2 class="ui_section clickable" id="CVCtrl_advSearch" onClick="CVPortal.components.cvSearch.showAdvSearch();">
+		<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=plus.png"/>
+		Advanced Search
+	</h2>
+	-->
+	<!-- advanced search options -->
+	<!-- categorical search options -->
+	<div class="searchGutter" id="catSearch">
+		<div id="catSearchSelector">
+			<!-- div id="catPillBox" / -->
+			<div id="categoricalHead"/>
+			<!-- div id="catSearchExpression" style="display: none" -->
+			<div id="catSearchExpression" style="visibility: hidden">
+				<input type="radio" name="catAndOrSelect" id="catAndSelect" value="catAnd"/>
+				<label for="catAndSelect" id="catAndPrompt"></label>
+				<input type="radio" name="catAndOrSelect" id="catOrSelect" value="catOr" checked="checked"/>
+				<label for="catOrSelect" id="catOrPrompt"></label>
+			</div>
+		
+			<div  class="searchBranch">
+				<input type="checkbox" name="branchSearchCB" id="catbranchSearchCB" onClick="CVPortal.components['cvSearch'].searchType('branch');"/>
+				<span id="catBranchSearchPrompt"/>
+				<span>:&nbsp;</span>
+				<span id="TOCFilterTitle2" class="TOCFilterTitle"> </span>
+			</div>
+			<!-- Selector for categorical search filter -->
+			<div id="searchFilter">
+				<form name="catFilter">
+					<input type="radio" name="searchFilterSelect" id="searchFilterStart" value="filterStart"/>
+					<label for="searchFilterStart" id="searchFilterStartPrompt"></label>
+					<input type="radio" name="searchFilterSelect" id="searchFilterContain" value="filterContain" checked="checked"/>
+					<label for="searchFilterContain" id="searchFilterContainPrompt"></label>
+					<input type="radio" name="searchFilterSelect" id="searchFilterEnd" value="filterEnd"/>
+					<label for="searchFilterEnd" id="searchFilterEndPrompt"></label>
+				</form>
+			</div>
+
+			<!-- div style="margin-left:20px;margin-top:10px;" -->
+			<div>
+				<div id="mainSearchOption" style="cursor:default;">
+				<!--
+				<div id="mainSearchOption" style="cursor:default;display:none;">
+						<form name="searchForm">
+							<span id="fullTextSearch"><input type="radio" name="searchTypeRadio" checked="checked" onClick="CVPortal.components['cvSearch'].searchType('fullText');">Full Text</span><br/>
+							<span id="globalSearch"><input  type="radio" name="searchTypeRadio" onClick="CVPortal.components['cvSearch'].searchType('global');">Search All Categories</span><br/>
+							<span style="visibility: hidden" id="restrictedSearch"><input  type="radio" name="searchTypeRadio" checked="checked" onClick="CVPortal.components['cvSearch'].searchType('restricted');">Categorical</span>
+					</form>
+				-->
+
+					<div id="searchOptionBox">
+						<table border="0" id="searchCatContainer">
+							<!-- this is filled dynamically by JavaScript -->
+						</table>
+					</div>	
+				</div>
+			</div>	
+		</div>
+		<div id="catPillBox">
+			<span class="catSearchPill"><span class="catPillSearchCmd" id="catSearchCmd" onClick="CVPortal.components.cvSearch.startCatSearch();"/>&nbsp;</span>
+		</div>
+	</div>
+	<hr/>
+	<span id="SavedSearchLink" class="simpleButton searchGutter"> </span>
+
+	<div class="search_results_container" id="SEARCH_RESULTS"></div>
+		<!-- results get inserted here -->
+	</div>
+
+
+</div>

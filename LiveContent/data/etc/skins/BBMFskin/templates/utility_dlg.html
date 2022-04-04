@@ -1,0 +1,31 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/utility_dlg.html 2.0 2019/05/22 21:02:15GMT milind Exp  $ -->
+<html>
+<head>
+<title>Utility Dialog</title>
+<script language="JavaScript" src="@APPNAME@?target=resource&action=script&file_name=utility_dlg.js"></script>
+</head>
+<body background="@APPNAME@?target=resource&action=image&file_name=dlg_bg.gif" onLoad="onload_handler();" rightmargin="15" leftmargin="15" topmargin="10" scroll="no">
+<center><button id="print_pdf" style="width:200;height=25" onclick="printAllPdf()">Export All Documents</button></center>
+<br/>
+<center><button id="print_pdf" style="width:200;height=25" onclick="viewHTML()">View HTML</button></center>
+<br/>
+<center><button id="print_pdf" style="width:200;height=25" onclick="viewXslFo()">View XSL:FO</button></center>
+<br/>
+<center><button id="print_pdf" style="width:200;height=25" onclick="showJavaScriptConsole()">JavaScript Console</button></center>
+<br/>
+<center><button id="goto_ceid" style="width:200;height=25" onclick="goToCEID()">Go to CEID</button></center>
+<br/>
+<center><button id="print_allbooks_pdf" style="width:200;height=25" onclick="printAllBooksPdf()">Export All Books</button></center>
+<br/>
+<center><button id="internal_test" style="width:200;height=25" onclick="runInternalTest()">Internal Test</button></center>
+
+<table id="BOTTOMCONTROL" cellpadding="0" cellspasing="0" border="0" width="100%" align="center">
+	<tr>
+	<td>
+	</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

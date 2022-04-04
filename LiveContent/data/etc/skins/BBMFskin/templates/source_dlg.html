@@ -1,0 +1,51 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/source_dlg.html 2.0 2019/05/22 21:02:04GMT milind Exp  $ -->
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_COLALIAS" content="@COL_ALIAS@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_LABEL" content="@LABEL_NAME@">
+
+<link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
+
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvSnippet_RevisionHighlights.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=cvCompatLib.js"></script>
+<link rel="stylesheet" type="text/css" href="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=html&file_name=skin.css">
+
+<title>Revision Highlights Report</title>
+
+</head>
+<body onLoad="onload_handler()">
+<div class="MKBOOK" style="overflow:auto;">
+	<h1>Revision Highlights Report</h1>
+
+	<!--
+	<table>
+	<tr><td>
+		<h3>Select Version:</h3>
+	</td><td>
+		<select id="level_selector" onChange="selectChangeLevel(event)">
+			<option value="@CHANGE_LEVEL@">@CHANGE_LEVEL@</option>
+		</select>
+	</td>
+	</tr></table>
+	-->
+	
+  	<div id="alphabet" style="display: none"> </div>
+
+  	<div id="changeLevels" style="display: none"> </div>
+  	<div id="main_content"></div>
+</div>
+</body>
+</html>

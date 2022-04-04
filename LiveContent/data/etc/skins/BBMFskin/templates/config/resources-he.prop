@@ -1,0 +1,830 @@
+﻿# $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/resources-he.prop 2.0 2019/05/22 21:01:19GMT milind Exp  $
+## Messages, often warnings
+message.requiresDocumentOpen=כדי להשתמש באפשרות זו, דרוש לך מסמך פתוח.
+message.confirmPublicationClose=האם אתה בטוח שברצונך לסגור את המדריך הטכני?
+message.cvPrinter.noFigures=אין איורים להדפסה עבור מסמך זה.
+message.cvPrinter.noFigureSelected=לא נבחר איור עבור מסמך זה, מאחר שהמסמך אינו מכיל איורים.
+
+## external links:
+messages.externalRef.noWebAddress=טעינת כתובת אינטרנט לא מוגדרת נכשלה.
+messages.externalRef.noRegistry=לא ניתן לאתר את רישום הקישורים החיצוני.
+
+## ERRORS
+errors.noComponents=ל- {CVPortal} [ Fatal ] אין אפשרות לאתר את הערכה המבוקשת מ- components.xml!
+errors.failedLanguageLoad=טעינת השפה נכשלה
+
+######################
+### MENU IETMS:
+######################
+menu.undefined=תפריט לא מוגדר
+## top level menu items:
+menu.logoff=יציאה
+
+menu.file=קובץ
+menu.admin=ניהול
+menu.user=משתמש
+menu.help=עזרה
+menu.annotations=ביאורים
+menu.print=הדפס
+menu.debug=אתר באגים
+
+### ADMIN MENU
+menu.manageUsers=נהל משתמשים
+menu.invalidRefs=הפניות לא חוקיות
+menu.currentInvalidRefs=הפניות לא חוקיות נוכחיות
+menu.invalidImgs=תמונות חסרות
+menu.currentInvalidImgs=תמונות חסרות נוכחיות
+menu.auditTrail=נתיב ביקורת
+
+## FILE MENU
+menu.home=בית
+menu.forward=העבר
+menu.back=אחורה
+
+## annotations:
+menu.addBookmark=הוסף סימנייה
+menu.addNote=הוסף הערה
+
+## printing
+menu.printAllFigures=הדפס את כל המספרים
+menu.printCurrentFigure=הדפס את החוברת הנוכחית
+menu.printAll=הדפס טקסט ואיורים
+menu.printRefs=הדפס עם מסמכים שיש להם הפניה אליהם
+
+## user menu
+menu.resourceManager=מנהל משאבים
+menu.applic=בחר אפשרות יישום
+menu.revisionHighlights=הצג נקודות מרכזיות של מהדורות
+menu.clearHistory=נקה היסטוריה
+menu.prefs=העדפות
+menu.suspend=השהיה וחידוש פעולה
+menu.skinAlt=עור נייד
+
+## help menus:
+menu.releaseNotes=הערות למוצר iveContent
+menu.company=אודות תוכן עניינים
+menu.helpContents=תוכן עזרה
+
+## debug menu:
+menu.debugWindow=הצג איתור באגים
+menu.metaDebug=איתור באגים במטה-נתונים
+menu.componentDebug=איתור באגים ברכיב
+menu.historyDebug=איתור באגים בהיסטוריה
+menu.showXML=הצג XML
+menu.showHTML=הצג HTML
+menu.showXSLFO=הצג XSL-FO
+menu.showMsgs=הצג הודעות שגיאה xref
+menu.hideMsgs=הסתר הודעות שגיאה מסוג xref
+
+## language:
+menu.language.set=בחר שפה
+menu.language.en=אנגלית
+menu.language.fr=צרפתית
+menu.language.he=Hebrew
+menu.language.hi=Hindi
+menu.language.ja=Japanese
+menu.language.ar=Arabic
+
+###############
+##   CONTROLS
+###############
+ctrl.back=אחורה
+ctrl.fwd=העבר
+ctrl.home=בית
+ctrl.split=הצג גרפיקה
+ctrl.graphic=גרפיקה בלבד
+ctrl.doc=מסמך בלבד
+ctrl.settings=הגדרות
+ctrl.suspend=השהיה וחידוש פעולה
+ctrl.bookmarks=סימניות
+ctrl.prelReq=דרישות ראשוניות
+ctrl.notes=הערות
+ctrl.attachments=קבצים מצורפים
+ctrl.history=היסטוריה
+ctrl.refresh=רענן
+ctrl.print=הדפס
+ctrl.install=התקן את
+ctrl.find=חפש
+ctrl.clear=נקה
+ctrl.admin=מנהל מערכת
+ctrl.config=ישימות
+ctrl.tools=כלים
+ctrl.exit=יציאה
+ctrl.help=עזרה
+ctrl.info=מידע
+ctrl.next=הבא
+ctrl.prev=הקודם
+ctrl.save=השהיה וחידוש פעולה
+ctrl.docinfo=פרטי מסמך
+ctrl.show=איתור באגים במידע
+ctrl.desktop=תצוגת שולחן עבודה
+ctrl.reports=דוחות
+ctrl.markup=סימון
+ctrl.releaseNotes=הערות מוצר
+ctrl.userGuide=מדריך למשתמש
+ctrl.about=אודות
+ctrl.users=ניהול משתמשים
+ctrl.position=שמור מיקום
+ctrl.changes=סמן שינויים
+ctrl.largeTableControls=פקדי טבלה גדולה
+ctrl.emergencyProcedures=הליכי חירום
+ctrl.leftPanel=החלף מצב של לוח שמאלי
+
+## troubleshooting steps
+ctrl.troubleshooting.next=השלב הבא
+ctrl.troubleshooting.prev=השלב הקודם
+###########
+#### Tabs
+###########
+tabs.toc=תוכן עניינים
+tabs.act=פעילות
+tabs.figs=מספרים
+tabs.tables=טבלאות
+tabs.main=משימה
+tabs.refMat=חומר עזר
+tabs.matReq=החומר נדרש
+tabs.supportEq=ציוד תמיכה
+tabs.search=חיפוש
+
+## modal:
+ctrl.modal.close=סגור את
+
+## search ctrls
+ctrl.search.start=&כף;
+ctrl.search.stop=עצור
+ctrl.search.clear=נקה את החיפוש
+ctrl.search.hide=סגור את החיפוש
+ctrl.search.adv=מראש
+ctrl.search.branch=סנן לפי בחירת תוכן עניינים
+ctrl.search.search=חיפוש
+ctrl.search.categorical=חיפוש לפי קטגוריות
+ctrl.search.and=ו-
+ctrl.search.or=או
+ctrl.search.near=קרוב ל-
+ctrl.search.not=ולא
+ctrl.search.find=חפש
+ctrl.search.case=התעלם מאותיות רישיות
+ctrl.search.whole=מילים שלמות בלבד
+ctrl.search.advanced=חיפוש מתקדם
+ctrl.search.simple=חיפוש פשוט
+ctrl.search.text=חיפוש בטקסט מלא
+ctrl.search.save=טען חיפוש שמור
+ctrl.search.filter.start=מתחיל ב-
+ctrl.search.filter.contain=מכיל
+ctrl.search.filter.end=מסתיים ב-
+ctrl.search.highlight=הבהבי פנייה
+ctrl.search.toc=תוכן עניינים
+ctrl.search.results=תוצאות חיפוש
+ctrl.search.toggleSearchTitles=ABC/123
+
+## media:
+ctrl.hideMedia=ביטול פיצול
+ctrl.showMedia=פיצול
+ctrl.image.next=הבא
+ctrl.image.prev=הקודם
+ctrl.image.tearOff=דמעה
+ctrl.image.play=הפעלה
+ctrl.image.pause=השהה
+ctrl.image.rewind=הרץ אחורה
+ctrl.image.svgZoomIn=הגדלה
+ctrl.image.svgZoomOut=הקטנת התצוגה
+ctrl.image.svgPanLeft=תנועה פנורמית שמאלה
+ctrl.image.svgPanRight=תנועה פנורמית ימינה
+ctrl.image.svgPanUp=תנועה פנורמית כלפי מעלה
+ctrl.image.svgPanDown=תנועה פנורמית כלפי מטה
+ctrl.image.svgReset=שחזר תצוגה מקורית
+ctrl.image.showAllHotspots=הצג את כל הנקודות החמות
+ctrl.image.svgRedliningPencil=צייר רכיב אדום
+ctrl.image.svgRedliningCircle=צייר עיגול אדום
+ctrl.image.svgRedliningRectangle=צייר מלבן אדום
+ctrl.image.svgRedliningLine=צייר קו אדום
+ctrl.image.svgRedliningAnnotation=הוסף ביאור אדום
+ctrl.image.svgDeleteRedliningAnnotation=מחק קו אדום ביאור
+ctrl.image.svgExportRedlining=ייצא אדמדלי
+ctrl.image.svgRedlining=סידור
+
+## rhi buttons:
+ctrl.rhistep.prev=הפעל את השלב הקודם
+ctrl.rhistep.next=הפעל את השלב הבא
+ctrl.rhistep.curr=הפעל את השלב הנוכחי
+ctrl.rhistep.all=בצע את כל השלבים
+ctrl.rhistep.pause=השהה
+ctrl.rhistep.resume=חידוש פעולה
+ctrl.rhistep.list=שלבי רשימה
+ctrl.rhixray.on=רנטגן מופעל
+ctrl.rhixray.off=קרן כבויה
+ctrl.rhi.wait=נא המתן
+
+## toc:
+ctrl.toggleCodes=ABC / 123
+ctrl.hideToc=הסתר תוכן עניינים
+ctrl.showToc=הצג תוכן עניינים
+ctrl.justCodes=123
+ctrl.justTitles=א"ב
+ctrl.syncToc=סנכרן תוכן עניינים
+
+## ok, cancels, etc
+ctrl.ok=בסדר
+ctrl.cancel=ביטול
+ctrl.media.save=שמור
+
+## resource manager:
+ctrl.rm.goto=גוטו
+ctrl.rm.edit=ערוך
+ctrl.rm.deleter=מחק
+ctrl.rm.deleteAll=מחק הכל
+ctrl.rm.exit=יציאה
+ctrl.rm.add=הוסף
+ctrl.rm.suspend=השעה
+ctrl.rm.view=תצוגה
+ctrl.rm.resume=חידוש פעולה
+ctrl.rm.close=סגור את
+ctrl.rm.print=הדפס
+
+######################
+### Static Texts
+######################
+static.location=מיקום:
+
+######################
+### Search Terms
+######################
+search.saveASearch=שמור חיפוש זה
+search.loadASearch=טען חיפוש שמור
+search.branch=חיפוש ענף תוכן עניינים
+
+######################
+### Update Server
+######################
+UpdateServer.check=בדוק את שרת העדכונים.
+UpdateServer.modalTitle=שרת עדכון מצטבר
+
+## step buttons:
+ctrl.step.next=השלב הבא
+ctrl.step.prev=השלב הקודם
+
+## flip panels button:
+ctrl.flipPanels=כיוון טקסט וגרפיקה מחדש
+
+## NV Harmonization: Anchor strings
+proc.closeReqCondsAnchor=עוגן לסגירה של התנאים הנדרשים
+proc.commonInfoAnchor=עוגן למידע משותף
+proc.faultStepAnchor=עגן לשלב הבידוד של תקלה
+proc.prelReqCondsAnchor=עוגן עבור תנאים נדרשים ראשוניים
+proc.procStepAnchor=עוגן לצעד פרוצדורלי
+proc.safetyCondsAnchor=עגן עבור תנאי בטיחות
+
+######################
+### keys for cvDocHandler.js
+######################
+
+alert.unable.toLocate.referenced.publication=לא ניתן לאתר פרסום שבוצעה אליו הפניה
+alert.you.must.enter.aTerm.toFind=עליך להזין מונח לחיפוש.
+alert.unable.toLoad.theDocument.byDocID=ל- {DocHandler} אין אפשרות לטעון את המסמך לפי מזהה מסמך:
+alert.please.enter.aValid.page.number.between =הזן מספר דף חוקי בין 1 ל-
+alert.unable.toLoad.document.broken.link=ל- {DocHandler} אין אפשרות לטעון את המסמך. הפעלת קישור מנותק!
+alert.troubleshooting.session.is.already.active=הפעלת פתרון בעיות כבר פעילה.\n\nהשלם את הפעלת פתרון הבעיות הנוכחית לפני שתתחיל הפעלה חדשה.
+alert.skin.isUndefined1=עור
+alert.skin.isUndefined2=אינו מוגדר
+alert.noData.module.selected=לא נבחר מודול נתונים. מודול הנתונים חייב להיות פעיל כדי להציג את הדרישות המקדמיות!
+alert.thisData.module.has.noPreliminary.requirements.information=למודול נתונים זה אין מידע דרישות ראשוניות!
+alert.unable.toFind.part=לא ניתן למצוא חלק:
+alert.enter.search.term.toStart=הזן מונח חיפוש להפעלה.
+alert.find.noMatch.for.search.text=לא נמצאו התאמות עבור
+alert.opera.browsers.not.supported=דפדפני האופרה אינם נתמכים, מצטערים...
+alert.found.searchCount.occurrences1=נמצא
+alert.found.searchCount.occurrences2=מופעים
+alert.acknowledgeWarnings.button=בסדר
+
+dm.modal.loading=טוען...
+
+publication.security.banner.classification.level=רמת אבטחה
+publication.security.banner.classification.level01=לא מסווג
+publication.security.banner.classification.level02=מוגבל
+publication.security.banner.classification.level03=סודי
+publication.security.banner.classification.level04=סודי
+publication.security.banner.classification.level05=סוד עליון
+
+publication.security.banner.restriction.caveat=אזהרה
+publication.security.banner.restriction.caveatCv51=לשימוש רשמי בלבד
+publication.security.banner.restriction.caveatCv56=בעיניים שלנו בלבד
+publication.security.banner.restriction.caveatCv57=נתונים מוגבלים
+publication.security.banner.restriction.caveatCv58=נתונים מוגבלים בעבר
+publication.security.banner.restriction.caveatCv59=נופורן
+publication.security.banner.restriction.caveatOther=אחר
+
+publication.security.banner.distribution.statement=הצהרת הפצה
+
+dm.security.banner.classification.level=רמת אבטחה
+dm.security.banner.classification.level01=לא מסווג
+dm.security.banner.classification.level02=מוגבל
+dm.security.banner.classification.level03=סודי
+dm.security.banner.classification.level04=סודי
+dm.security.banner.classification.level05=סוד עליון
+
+dm.security.banner.restriction.caveat=אזהרה
+dm.security.banner.restriction.caveatCv51=לשימוש רשמי בלבד
+dm.security.banner.restriction.caveatCv56=בעיניים שלנו בלבד
+dm.security.banner.restriction.caveatCv57=נתונים מוגבלים
+dm.security.banner.restriction.caveatCv58=נתונים מוגבלים בעבר
+dm.security.banner.restriction.caveatCv59=נופורן
+dm.security.banner.restriction.caveatOther=אחר
+
+## set Title
+setTitle.acknowledgeWarnings.danger.cautions.notes=אשר את האזהרות, הסכנה, האזהרות, ההערות
+setTitle.applicability.modal.title=בחר אפשרות יישום
+openTabletDocumentInfo.reference.materials=חומרי עזר
+openTabletDocumentInfo.required.materials=חומרים נדרשים
+openTabletDocumentInfo.support.equipment=ציוד תמיכה
+
+######################
+### keys for cvResourceManager.js
+######################
+
+alert.file.with.thisName.isAlready.uploaded=קובץ בשם זה כבר נטען עבור קובץ מצורף זה!
+alert.toUse.thisOption.open.document=כדי להשתמש באפשרות זו, דרוש לך מסמך פתוח.
+alert.select.anAnnotation.toEdit=עליך לבחור ביאור לעריכה.
+alert.enter.title.for.theBookmark=הזן כותרת עבור הסימנייה
+alert.enter.title.for.theNote=הזן כותרת עבור ההערה
+alert.unable.toSelect.resource.type=ל- {Resource Manager} אין אפשרות לבחור סוג משאב:
+alert.suspendSession.unknown.resource.type.selected=סוג משאב לא ידוע נבחר:
+alert.newResource.unable.toLocate.resource.type=אין אפשרות לאתר את סוג המשאב המבוקש:
+alert.newResource.action.attempted.unknown.resource.type=נעשה ניסיון לבצע פעולה של משאב חדש בסוג משאב לא ידוע:
+alert.saveUser.username.already.exists=משתמש בשם משתמש זה כבר קיים.
+alert.login.name.required.field=שם כניסה הוא שדה חובה
+alert.password.must.be.four.characters.long=הסיסמה חייבת להיות באורך של 4 תווים לפחות
+alert.password.must.match.confirmation.password=הסיסמה חייבת להתאים לסיסמת האישור
+alert.select.user.group=בחר קבוצת משתמשים
+alert.first.last.name.required=שם פרטי ושם משפחה הם שדות נדרשים
+alert.email.required.field=דואר אלקטרוני הוא שדה נדרש
+alert.invalid.email.address=כתובת דואר אלקטרוני לא חוקית
+alert.confirmation.email.must.match=הודעת אישור בדואר אלקטרוני חייבת להתאים לדואר אלקטרוני.
+alert.select.object.to.goto=עליך לבחור אובייקט כדי לעבור.
+alert.select.resource.to.delete=עליך לבחור משאב למחיקה.
+alert.select.item.to.view=עליך לבחור פריט להצגה!
+alert.select.resource.to.action=עליך לבחור משאב ל-
+alert.fillIn.required.form.fields=עליך למלא את כל שדות טופס נדרשים.
+
+confirm.delete.selected.user=האם ברצונך למחוק את המשתמש שנבחר?
+confirm.remove.selected.item=האם ברצונך להסיר את הפריט שנבחר?
+confirm.delete.selected.audit.trail=האם ברצונך למחוק את נתיב הביקורת שנבחר?
+confirm.delete.selected.form=האם ברצונך למחוק את הטופס שנבחר?
+confirm.delete.all.resources=האם ברצונך למחוק את כל המשאבים הללו?
+confirm.delete.selected.attachment=למחוק קבצים מצורפים שנבחרו?
+
+## Title
+title.mode.add.new.note=הוסף חדש הערה
+title.mode.edit.note=ערוך הערה
+title.mode.add.new.bookmark=הוסף סימנייה חדשה
+title.mode.edit.bookmark=ערוך סימנייה
+title.table.list.user=משתמש
+title.table.list.group=קבוצה
+title.table.list.type=הקלד
+title.table.list.creator=יוצר
+setTitle.cvModalHandler.resource.manager=מנהל משאבים
+
+## text for HTML
+attach.toDiv.text.uploading=מעלה...
+attach.edit.button=ערוך
+attach.delete.button=מחק
+resource.type.public=ציבורי
+resource.type.annotation=ביאור ציבורי
+resourceList.msg.noAttachments=אין קבצים מצורפים כרגע.
+resourceList.msg.noAnnotations=אין ביאורים בשלב זה.
+resourceList.msg.noNotes=אין כרגע הערות.
+resourceList.msg.noBookmarks=אין סימניות כרגע.
+audittrail.table.title.audit.trail.record=נתיב ביקורת הקלט
+audittrail.msg.noAudit=אין נתיבי ביקורת כעת. נתיב הביקורת הנוכחי שלך לא יישמר עד שתסגור חלון פרסום זה.
+audittrail.msg.noSaved.instances=אין מופעים שמורים של טופס זה.
+audittrail.msg.proced.step.checked=נבדק
+audittrail.msg.proced.step.unchecked=לא מסומן
+suspendSession.tooltip.text.comment=הערה:
+suspendSession.tooltip.text.current.document=מסמך נוכחי:
+suspendSession.tooltip.text.current.document.title=כותרת המסמך הנוכחי:
+suspendSession.tooltip.text.saved.by=נשמר על-ידי:
+suspendSession.tooltip.text.saved.at=נשמר ב:
+viewTabletNotesDialog.msg.toAdd.aNew.note.open.document=כדי להוסיף הערה חדשה, דרוש לך מסמך פתוח.
+viewTabletBookmarkDialog.msg.toAdd.aNew.bookmark.open.document=כדי להוסיף סימניה חדשה, דרוש לך מסמך פתוח.
+viewTabletAttachmentsDialog.msg.toAttach.file.open.document=כדי לצרף קובץ, דרוש לך מסמך פתוח.
+openUserDialog.select.company=בחר חברה
+openUserDialog.mode.add.title=משתמש חדש
+openUserDialog.mode.edit.title=ערוך משתמש
+suspendSession.noData.module.open=אין מודול נתונים פתוח כעת. מודול הנתונים חייב להיות פעיל כדי לאפשר השהיה!
+suspendSession.noData.module.selected=לא נבחר מודול נתונים. מודול הנתונים חייב להיות פעיל כדי לאפשר השהיה!
+rhi.select.required.step=להשמעה, בחר את השלב הדרוש
+rhi.select.step.toPlay=בחר שלב להפעלה
+
+######################
+### keys for cvBookList.js
+######################
+
+alert.rollback.successfully.completed=ההחזרה לאחור הושלמה בהצלחה.
+alert.no.rollback.data=לספר אין נתוני חזרה לאחור.
+alert.rollback.publication.failed1=את החזרה של הפרסום,
+alert.rollback.publication.failed2=נכשל.
+alert.select.zip.file=בחר קובץ Zip.
+alert.updates.successfully.installed=העדכונים הותקנו בהצלחה.
+alert.password.undefined1=הסיסמה הנדרשת אינה מוגדרת. הוקצתה סיסמה זמנית:
+alert.password.undefined2=זכור לשנות את הסיסמה לאחר הכניסה או פנה למנהל המערכת לקבלת עזרה.
+alert.login.again=היכנס שוב.
+
+confirm.rollback.toLast.good.known.state=האם ברצונך לחזור למצב הידוע האחרון?
+
+## Title
+title.updating.publication=מעדכן את הפרסום
+
+## text for HTML
+text.installing.updates=מתקין עדכונים...
+text.login.failed=הכניסה נכשלה: לא ניתן ליצור קשר עם השרת.
+text.close=סגור את
+text.update.failed.to.install=התקנת העדכון נכשלה
+publications.msg.one.update.pending=קיים עדכון אחד בהמתנה.
+publications.msg.count.updates.pending1=יש
+publications.msg.count.updates.pending2=עדכונים ממתינים.
+publications.msg.currently.update.pending=קיים כעת עדכון אחד בהמתנה.
+publications.msg.currently.count.updates.pending1=קיימים כעת
+publications.msg.currently.count.updates.pending2=עדכונים ממתינים.
+publications.msg.updateReady.info1=בעיה
+publications.msg.updateReady.info2=עדכון מצטבר
+publications.msg.updateReady.info3=מיושן
+publications.msg.currently.no.pending.updates=אין כעת עדכונים ממתינים.
+warning.msg.beginning.incremental.update.process=מתחיל תהליך עדכון מצטבר. סגור את כל חלונות הפרסום.
+error.msg.displayed.for.time1=שגיאה! הודעה זו תוצג עבור
+error.msg.displayed.for.time2=שניות
+error.msg.update.failed.unable.load.update.content=העדכון נכשל. לא ניתן לטעון תוכן עדכון.
+update.msg.successfully.installed.all=כל העדכונים הותקנו בהצלחה.
+update.msg.attempted.install.all=נעשה ניסיון להתקין את כל העדכונים.
+update.msg.successfully.installed=העדכונים הותקנו בהצלחה
+update.msg.successfully.installed.one=העדכון הותקן בהצלחה
+update.msg.failed.install=עדכונים שלא ניתן להתקין
+text.msg.displayed.for.time1=הודעה זו תוצג עבור
+text.msg.displayed.for.time2=שניות
+text.msg.will.be.displayed.for.time1=הודעה זו תוצג עבור
+text.msg.proceeding=הליך
+
+#################################
+### keys for cvControlFactory.js
+#################################
+
+error.loadControls.unable.locate.requested.set=ל- {Controls} [ Fatal ] אין אפשרות לאתר את הערכה המבוקשת מפקדים.xml!
+
+#################################
+### keys for cvHelpFactory.js
+#################################
+error.unable.locate.requested.help.resource=שגיאה [תצוגת תוכן], לא ניתן לאתר משאב עזרה נדרש.
+error.unable.locate.named.help.resource=[תצוגת_תוכן] שגיאה, לא ניתן לאתר משאב עזרה בעל שם
+
+#################################
+### keys for cvHistory.js
+#################################
+
+text.msg.currently.no.history=אין כרגע מידע היסטוריה.
+title.not.applic=לא ישים
+
+#################################
+### keys for cvMedia.js
+#################################
+
+alert.getMediaType.error=הגרפיקה לא נטענה במלואה, נסה שוב מאוחר יותר
+alert.rhiInitContext.error=הגרפיקה לא נטענה, נסה מאוחר יותר
+
+confirm.wait.several.minutes=פעולה זו עשויה להימשך מספר דקות. האם להמשיך?
+
+text.loading=טוען...
+text.msg.activeCGM.browser.support1=מציג ActiveSync אינו נתמך ב-
+text.msg.activeCGM.browser.support2=נא השתמש בלקוח Internet Explorer שבו מותקן ActiveX של ActiveSync כדי להציג פריט גרפיקה זה, או כדי להדפיס את המסמך.
+text.msg.IsoView.browser.support1=מציג IsoView אינו נתמך ב-
+text.msg.IsoView.browser.support2=נא השתמש בלקוח Internet Explorer שבו מותקן IsoView כדי להציג גרפיקה זו, או להדפיס את המסמך.
+text.msg.Mobilizer.browser.support1=מציג הניידות של NGriשן אינו נתמך ב-
+text.msg.Mobilizer.browser.support2=השתמש בלקוח Internet Explorer שמותקן בו NGrian Mobilizer כדי להציג את הגרפיקה.
+text.msg.rhiModel.browser.support1=מציג חזותי של SAP 3D אינו נתמך ב-
+text.msg.rhiModel.browser.support2=נא השתמש בלקוח Internet Explorer שבו מותקן מציג Visual Enterprise של SAP 3D כדי להציג זאת גרפיקה.
+text.msg.rhiModel.viewer.not.installed1=אם טקסט זה מופיע, מציג Visual Enterprise Viewer התלת-ממדי של SAP אינו מותקן או
+text.msg.rhiModel.viewer.not.installed2=לא אותחל. הורד והתקן אותו. השתמש בקישור הבא
+text.msg.rhiModel.viewer.not.installed3=אם הודעת שגיאה זו ממשיכה להופיע, בדוק את הגדרות האבטחה שלך
+text.msg.rhiModel.viewer.not.installed4=(יש להתיר שימוש ב- ActiveX) או השתמש בדפדפן אינטרנט אחר
+text.msg.rhiModel.viewer.not.installed5=מומלץ להשתמש ב- Microsoft Internet Explorer.
+text.rhiGetCurrStepDesc.no.description.orName.for.step=אין תיאור או שם עבור רצף שלבים
+text.rhiGetCurrStepDesc.no.description.for.step=לא קיים תיאור עבור שלב בשם
+text.listAllSteps.no.steps.defined=לא הוגדרו שלבים בקובץ RH
+
+#################################
+### keys for cvPanelFactory.js
+#################################
+
+alert.error.loadPanels=ל- {panels} [ fatal] אין אפשרות לאתר את הערכה המבוקשת מ- panels.xml. הגדר
+
+#################################
+### keys for cvPrinter.js
+#################################
+
+alert.select.section.toPrint=עליך לבחור מקטע אחד לפחות בטבלה להדפסה.
+
+#################################
+### keys for cvProcessdm.js
+#################################
+
+alert.reverseThread.troubleshooting.session=אתה נמצא בתחילת הפעלה זו של פתרון בעיות ואינך יכול לעבור לצומת קודם.
+alert.fill.all.mandatory.fields=עליך למלא את כל שדות החובה.
+
+text.current.node=זהו הצומת הנוכחי
+
+#################################
+### keys for cvSearch.js
+#################################
+alert.fill.search.term=עליך למלא מונח חיפוש בשדה \"חפש\"
+alert.select.category.or.fullText=עליך לבחור קטגוריה או טקסט מלא עבור ה שלך חיפוש.
+alert.unable.handle.unknown.search.result.category=אין אפשרות לטפל בתוצאת חיפוש לא ידועה, עבור קטגוריה
+alert.unable.handle.unknown.search.result.type=אין אפשרות לטפל בתוצאת חיפוש לא ידועה, מסוג
+
+#################################
+### keys for cvSnippet_InvalidRefs.js
+#################################
+
+alert.unknown.report.type=סוג דוח לא ידוע.
+
+text.unknown.report.type=סוג דוח לא ידוע
+text.invalid.references.report.forCurrent.document=דוח הפניות לא חוקי עבור המסמך הנוכחי
+text.missing.images.report.forCurrent.document=דוח תמונות חסר עבור המסמך הנוכחי
+text.missing.images.list=רשימת תמונות חסרה
+
+#################################
+### keys for cvEmergencyProcedures.js
+#################################
+text.msg.no.emergency.procedures=אין הליכי חירום.
+
+## key for XSL styles
+style.common.nonapplicdm=מודול נתונים לא ישים
+style.common.nonapplictext=מודול נתונים זה אינו ישים לתצורה הנוכחית שבחרת.
+style.common.dmapplic=אפשרות יישום מודול נתונים
+style.common.datarestrict=הגבלת נתונים
+style.common.datarestricttext=מידע על הגבלת נתונים יהיה כאן.
+style.common.supequip=ציוד תמיכה
+style.common.refmat=חומרי עזר
+style.common.matreq=חומרים נדרשים
+style.common.prelreqs=דרישות ראשוניות
+style.common.reqsconds=תנאים דרושים
+style.common.dmtp=מודול נתונים / פרסום טכני
+style.common.reqjobcomp=דרישות לאחר השלמת משימה
+style.common.dmc=קוד מודול נתונים
+style.common.issueno=מספר הנפקה
+style.common.newdm=מודול נתונים חדש
+style.common.applic=ישימות
+style.common.issuedate=תאריך הנפקה
+style.common.secclass=סיווג אבטחה
+style.common.instructions=הוראות
+style.common.distribution=הפצה
+style.common.exportcontrol=פקד ייצוא
+style.common.destruction=הרס
+style.common.figure=איור
+style.common.hotspot=נקודה חמה
+style.common.safecond=תנאי בטיחות
+style.common.crossref=הפניה מקושרת
+style.common.warning=אזהרה
+style.common.caution=זהירות
+style.common.note=הערה
+style.common.noforeigndisclosure=אין גילוי חוץ
+style.common.geninfo=מידע כללי
+style.common.aboutproced=אודות הליך זה
+style.common.reqperson=אנשי צוות דרושים
+style.common.personnel=כוח אדם
+style.common.category=קטגוריה
+style.common.trade=מסחרי
+style.common.esttime=זמן משוער
+style.common.man=גבר
+style.common.asreq=כנדרש.
+style.common.containdm=מודול נתוני גורם מכיל
+style.common.selectrefdm=בחר את ההחזר הבא
+style.procedure.nosupply=אין צורך באספקה.
+style.procedure.nospare=אין צורך בחלקי חילוף.
+style.procedure.procedure=פרוצדורה
+style.procedure.requirecomplete=דרישות לאחר השלמת משימה
+style.procedure.norequirement=אין דרישות.
+style.general.code=קוד
+style.general.none=אין
+style.general.name=שם
+style.general.identification=זיהוי
+style.general.quantity=כמות
+style.general.description=תיאור
+style.general.table=טבלה
+style.general.type=הקלד
+style.general.supply=אספקה
+style.matreq.supplies=אספקה
+style.matreq.spares=חלקים חלופיים
+style.supteqt.supportequipment=ציוד תמיכה
+style.refmat.referencedm=מודולי נתונים שאליהם בוצעה הפניה
+style.refmat.noreferencedm=אין מודולי נתונים שאליהם בוצעה הפניה.
+style.refmat.dm=מודול נתונים
+style.refmat.referencetp=פרסומים טכניים שאליהם בוצעה הפניה
+style.refmat.tp=פרסום טכני
+style.refmat.noreferencetp=אין פרסומים טכניים שאליהם בוצעה הפניה.
+style.commontmpl.no=לא
+style.commontmpl.withid=עם מזהה
+style.commontmpl.informaltable=טבלה לא רשמית
+style.commontmpl.criticaljuncture=חיתוך קריטי
+style.commontmpl.testingofsystem=בדיקת המערכת
+style.commontmpl.independentcheck=בדיקה בלתי תלויה
+style.commontmpl.maintenancegroundup=תחזוקת הקרקע
+style.commontmpl.maintenancetestflight=בדיקת תחזוקה
+style.commontmpl.signaturerequired=נדרשת חתימה
+style.commontmpl.taskcomplete=המשימה הושלמה
+style.ipc.itemno=לא פריט
+style.ipc.fig=איור
+style.ipc.indxsheetno=INDX/גיליון מס
+style.ipc.rfs=RFS
+style.ipc.unitsperassy=יחידות לכל ASSY
+style.ipc.cage=כלוב
+style.ipc.partnumber=מספר חלק
+style.ipc.description=תיאור
+style.ipc.usableoncode=ניתן לשימוש בקוד
+style.ipc.srv=SRV
+style.ipc.smr=SMR
+style.ipc.mov=מוב
+style.ipc.item=פריט
+style.ipc.unitsperassembly=יחידות לכל הרכבה
+style.ipc.ncage=NCAGE
+style.ipc.partno=חלק לא
+style.ipc.nomenclature=טבע
+style.fault.faultcode=קוד תקלה
+style.fault.endofdatamodule=קצה מודול הנתונים
+style.fault.faultdescription=תיאור תקלה
+style.fault.faultisolationprocedure=הליך בידוד תקלות
+style.fault.gotostep=עבור לשלב
+style.fault.yes=כן
+style.fault.no=לא
+style.fault.isolationprocedure=הליך בידוד
+style.fault.faultcondition=מצב תקלה
+style.fault.faultcontext=הקשר לקוי
+style.fault.faultisolationtest=בדיקת בידוד תקלות
+style.fault.testcodetype=קוד / סוג בדיקה
+style.fault.detect=זהה
+style.fault.lru=LRU
+style.fault.mfc=MFC
+style.fault.isolatedetectedfault=הבידוד זוהה כתקלה
+style.fault.locateandrepair=אתר ותקן
+style.fault.repair=תקן
+style.fault.testdescription=תיאור בדיקה
+style.fault.testprocedure=הליך בדיקה
+style.fault.isolate=בודד
+style.fault.test=בדיקה
+style.fault.context=הקשר
+style.fault.remarks=הערות
+style.fault.fault=תקלה
+style.schedule.timelimitsidentifier=ציר זמן: מזהה
+style.general.equipment=ציוד
+style.schedule.pnr=PNR
+style.general.category=קטגוריה
+style.schedule.referencedtasks=משימות שמתבצעת אליהן הפניה
+style.schedule.limitinformation=הגבל מידע
+style.schedule.limitrange=הגבל טווח
+style.general.from=מאת
+style.schedule.trigger=גורם מפעיל
+style.schedule.groupno=מספר קבוצה
+style.schedule.componentassembly=רכיב/הרכבה
+style.schedule.maintenancefunction=פונקציית תחזוקה
+style.schedule.maintfunc=מינט. פונך.
+style.schedule.maintenancelevel=רמת תחזוקה
+style.schedule.toolsandequipment=כלים וציוד
+style.schedule.field=שדה
+style.schedule.sust=תאוות.
+style.schedule.c=ג
+style.schedule.f=ו
+style.schedule.h=H
+style.schedule.d=ד
+style.schedule.removeinstall=הסר/התקן
+style.general.inspect=בדוק
+style.general.service=שירות
+style.general.adjust=התאם
+style.general.align=ישר
+style.general.calibrate=כייל
+style.general.replace=החלף
+style.general.repair=תקן
+style.general.overhaul=שיפוץ כללי
+style.general.rebuild=בנה מחדש
+style.general.tasks=משימות
+style.schedule.notavailableforprojects=לא זמין עבור פרוייקטים
+style.schedule.limittype=סוג מגבלה
+style.schedule.limitcondition=תנאי מגבלה
+style.schedule.performonce=בצע פעם אחת
+style.schedule.oncondition=במצב
+style.schedule.performperiodically=לבצע מעת לעת
+style.schedule.unitofmeasure=יחידת מידה
+style.schedule.limitrangefrom=הגבל טווח מ-
+style.schedule.limitrangeto=הגבל טווח ל-
+style.schedule.threshold=סף
+style.schedule.flighthours=שעות טיסה
+style.schedule.flightcycles=טיסה מחזורים
+style.schedule.months=חודשים
+style.schedule.weeks=שבועות
+style.schedule.years=שנים
+style.schedule.days=ימים
+style.schedule.supersoniccycles=מחזורי על-קולית
+style.schedule.pressurecycles=מחזורי לחץ
+style.schedule.enginecycles=מחזורי המנוע
+style.schedule.enginechange=שינוי מנוע
+style.schedule.shopvisits=ביקור בחנויות
+style.schedule.apuchange=החלפת יחידת ספק כוח נוספת
+style.schedule.landinggearchange=החלפת הילוכים בנחיתה
+style.schedule.wheelchange=שינוי גלגל
+style.schedule.enginestart=הנעת המנוע
+style.schedule.apuhours=שעות APU
+style.schedule.enginehours=שעות המנוע
+style.schedule.elapsedhours=שעות קלנדרות
+style.schedule.landings=לנדינגס
+style.schedule.operatingcycles=מחזורי הפעלה
+style.schedule.operatinghours=שעות עבודה
+style.schedule.supersonichours=שעות על-קולית
+style.schedule.acheck=&נקודה;שאלות; בדיקה
+style.schedule.bcheck=&נקודה;שאלות; בדיקה
+style.schedule.ccheck=&נקודות;שאלות; בדיקה
+style.schedule.dcheck=&נקודות;&נקודה; בדיקה
+style.schedule.echeck=&נקודות;שאלות; בדוק
+style.schedule.daily=מדי יום
+style.schedule.overnight=לילה
+style.schedule.preflight=משקפים
+style.schedule.routinecheck=בדיקה שגרתית
+style.schedule.structuralccheck=&מבנית;שאלות;בדיקה
+style.schedule.servicecheck=בדיקת שירות
+style.schedule.transit=העברה
+style.schedule.kilometers=קילומטרים
+style.schedule.consumptionincubicmeter=צריכת מד מעוקב
+style.schedule.consumptioninliter=צריכה בליטר
+style.schedule.numberofshotseach=מספר תמונות - כל אחת מהן
+style.schedule.numberofshotsefc=מספר תמונות - חיוב מלא שווה ערך (EFC)
+style.general.notdefined=לא הוגדר
+style.schedule.inspection=בדיקה
+style.schedule.inspectiontype=סוג בדיקה
+style.schedule.triggerreferencedtasks=גורם מפעיל משימות שיש אליהן הפניה
+style.table.mustspecifythenumberofcolumns=שגיאה: על טבלאות CAL לציין את מספר העמודות.
+style.table.noconvertlengthfunctionavailable=אין פונקציית ממיר LtengtLth זמינה.
+style.table.noadjustcolumnwidthsfunctionavailable=אין פונקציית רוחב עמודות מתכוונן זמינה.
+style.table.findintable=חפש בטבלה
+style.table.wholeword=המילה כולה
+style.table.matchcase=התאם רישיות
+style.table.currentsectiononly=המקטע הנוכחי בלבד
+style.table.result=תוצאה
+style.table.noapplicabledatathissection=אין נתונים ישימים בסעיף זה.
+style.table.determinecolumnnumber=קבע את מספר העמודה שבה מופיע ערך נתון
+style.table.ifan=אם יש
+style.table.entry=רשומה
+style.table.hasa=יש לו
+style.table.or=או
+style.table.attributethistemplate=תכונה, תבנית זו
+style.table.determinenumberofthecolumn=יקבע את מספר העמודה שבה יש להזין את הערך.
+style.table.forother=עבור אחרים
+style.table.nothingisreturned=ה, לא מוחזר דבר.
+style.table.elementtobetested=רכיב שיש לבדוק.
+style.table.the=ה
+style.table.returnsthecolumnnumber=תבנית זו מחזירה את מספר העמודה אם ניתן לקבוע אותו,
+style.table.orzero=או 0 (המחרוזת הריקה)
+style.checklist.checklistintervals=מרווחי זמן של רשימת פעולות לביצוע
+style.checklist.interval=מרווח זמן
+style.checklist.equipmentnotavailable=אין ציוד זמין
+style.crew.if=אם
+style.crew.elseif=אחרת, אם
+style.wiring.wirenumber=מספר החוט
+style.wiring.fromreference=מתוך הפניה
+style.wiring.designator=מעצבים
+style.wiring.toreference=לעיון
+style.wiring.wiretype=סוג החוט
+
+## LAM added for wiring
+style.wiring.equipdescrref=ציוד דסק:
+style.wiring.functionaldescrref=שולחן עבודה:
+style.wiring.harness=רתמה
+style.wiring.harnessinfo=פרטי ריתמה.
+style.wiring.illustrationRef=השתקפות איור:
+style.wiring.ref=הפניה
+style.wiring.references=הפניות
+style.wiring.wirecolour=צבע החוט
+style.wiring.wireconnection=חיבור חוטים
+style.wiring.wiregauge=מד חוטים
+style.wiring.wireinstallation=התקנת חוטים
+style.wiring.wirenumber=מספר החוט
+style.wiring.wirepartnumber=מספר חלק החוט
+## / LAM added for wiring
+
+style.expert.requiredsupplies=ציוד נדרש
+style.expert.requiredspares=תרשימים זולים נדרשים
+style.expert.safetyinstructions=הוראות בטיחות
+style.expert.nomen=NoMEN
+style.expert.qty=כמות
+style.common.unverified=לא אומת
+style.common.references=הפניות
+style.common.noreferences=אין הפניות
+style.common.step=שלב
+style.common.para=פיסקה
+style.template.note=הערה
+style.template.dataoutofdate=דף זה עשוי להכיל נתונים שאינם עדכניים. עיין ב- IETM העדכני ביותר
+style.template.datapath=נתיב נתונים
+style.template.destructionnotice=הודעת השמדה - עבור מסמכים לא מסווגים ומוגבלים, השמדה בכל שיטה שתמנע גילוי תכנים או שחזור של המסמך.
+style.template.ietmversion=גירסת IETM
+style.template.ietmdate=תאריך של IETM
+style.template.version=גירסה
+style.template.pubdate=תאריך פאב
+style.template.dateprinted=תאריך הדפסה
+style.template.pubnumber=מספר פאב
+style.security.portionMarking.unclassified=(U)
+style.security.portionMarking.confidential=(ג)
+style.security.portionMarking.secret=(s)
+style.security.portionMarking.topsecret=(TTS)

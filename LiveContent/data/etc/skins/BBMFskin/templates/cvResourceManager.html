@@ -1,0 +1,43 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/cvResourceManager.html 2.0 2019/05/22 21:01:32GMT milind Exp  $ -->
+<div style="width:710px;height:450px">
+	<div id="resourceMenu" style="width:702px; _width:700px; overflow:hidden;clear:both;border:1pt solid gray;height:30px;">
+
+		<div cvResourceAction="1" id="action_new" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.newResource()";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=add.png"/> ctrl.rm.add
+		</div>
+		<div cvResourceAction="1" id="action_suspend" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.newResource()";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=add.png"/> ctrl.rm.suspend
+		</div>
+		<div cvResourceAction="1" id="action_view_xml" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.viewResource(true)";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=search_ico.png"/> ctrl.rm.view
+		</div>
+		<div cvResourceAction="1" id="action_edit" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.editResource('edit')";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=edit.png"/> ctrl.rm.edit
+		</div>
+		<div cvResourceAction="1" id="action_resume" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.editResource('resume')";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=edit.png"/> ctrl.rm.resume
+		</div>
+		<div cvResourceAction="1" id="action_goto" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.goToResource()";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=goto.png"/> ctrl.rm.goto
+		</div>
+		<div cvResourceAction="1" id="action_print" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.printResource()";>
+		<img src="@APPNAME@?target=resource&action=image&file_name=print_ico.png"/> ctrl.rm.print
+		</div>
+		<div cvResourceAction="1" id="action_delete" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.deleteResource()";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=delete.png"/> ctrl.rm.deleter
+		</div>
+		<div cvResourceAction="1" id="action_deleteAll" style="display:none;" class="adminMenuItem" onClick="CVPortal.components.cvResourceManager.deleteAllResources()";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=delete.png"/> ctrl.rm.deleteAll
+		</div>
+		<div class="adminMenuItem" id="action_close" onClick="CVPortal.components.cvResourceManager.closeResourceManager(true)";>
+			<img src="@APPNAME@?target=resource&action=image&file_name=cancel.png"/> ctrl.rm.close
+		</div>
+	</div>
+
+	<div style="padding-left:0px;border:1pt solid gray;margin-bottom:20px;float:left;width:200px;height:400px;overflow:auto;" id="resourceTypeList">
+	</div>
+
+	<div style="border:1pt solid gray;margin-bottom:20px;float:left;width:500px;height:400px;overflow:auto;padding:0pt;" id="resourceContents">
+	</div>
+
+</div>

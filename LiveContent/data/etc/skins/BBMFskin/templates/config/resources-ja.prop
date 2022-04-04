@@ -1,0 +1,816 @@
+﻿# $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/resources-ja.prop 2.0 2019/05/22 21:01:19GMT milind Exp  $
+## Messages, often warnings
+message.requiresDocumentOpen=このオプションを使用するには、ドキュメントを開いておく必要があります。
+message.confirmPublicationClose=テクニカルマニュアルを閉じてもよろしいですか？
+message.cvPrinter.noFigures=この文書に印刷する数字はありません。
+message.cvPrinter.noFigureSelected=このドキュメントには現在図が選択されていません。 ドキュメントに図がないため。
+
+## external links:
+messages.externalRef.noWebAddress=未定義の Web アドレスをロードできませんでした。
+messages.externalRef.noRegistry=外部リンクレジストリが見つかりません。
+
+## ERRORS
+errors.noComponents={CVPortal}[FATAL] components.xml から要求されたセットが見つかりません。
+errors.failedLanguageLoad=言語のロードに失敗しました
+
+######################
+### MENU IETMS:
+######################
+menu.undefined=未定義のメニューです
+## top level menu items:
+menu.logoff=終了します
+
+menu.file=ファイル（ File ）
+menu.admin=管理
+menu.user=ユーザー
+menu.help=ヘルプ（ Help ）
+menu.annotations=注釈
+menu.print=印刷（ Print ）
+menu.debug=デバッグ
+
+### ADMIN MENU
+menu.manageUsers=ユーザーを管理します
+menu.invalidRefs=無効な参照です
+menu.currentInvalidRefs=現在の無効な参照です
+menu.invalidImgs=画像が見つかりません
+menu.currentInvalidImgs=現在の画像が見つかりません
+menu.auditTrail=監査証跡
+
+## FILE MENU
+menu.home=ホーム
+menu.forward=転送（ Forward ）
+menu.back=戻る
+
+## annotations:
+menu.addBookmark=ブックマークを追加します
+menu.addNote=メモを追加します
+
+## printing
+menu.printAllFigures=すべての図を印刷します
+menu.printCurrentFigure=現在の図を印刷します
+menu.printAll=テキストと図を印刷します
+menu.printRefs=参照ドキュメントを使用して印刷します
+
+## user menu
+menu.resourceManager=リソースマネージャ
+menu.applic=適用可能性を選択します
+menu.revisionHighlights=リビジョンのハイライトを表示します
+menu.clearHistory=履歴をクリアします
+menu.prefs=プリファレンス（ Preferences ）
+menu.suspend=サスペンドとレジューム
+menu.skinAlt=可動スキン
+
+## help menus:
+menu.releaseNotes=LiveContent リリースノート
+menu.company=バージョン情報 LiveContent
+menu.helpContents=ヘルプの目次
+
+## debug menu:
+menu.debugWindow=デバッグを表示
+menu.metaDebug=メタデバッグ
+menu.componentDebug=コンポーネントのデバッグ
+menu.historyDebug=履歴デバッグ
+menu.showXML=XML を表示します
+menu.showHTML=HTML を表示します
+menu.showXSLFO=XSL-FO を表示します
+menu.showMsgs=XREF エラーメッセージを表示します
+menu.hideMsgs=XREF エラーメッセージを非表示にします
+
+## language:
+menu.language.set=言語を選択します
+menu.language.en=英語
+menu.language.fr=フランス語
+menu.language.he=Hebrew
+menu.language.hi=Hindi
+menu.language.ja=Japanese
+menu.language.ar=Arabic
+
+###############
+##   CONTROLS
+###############
+ctrl.back=戻る
+ctrl.fwd=転送（ Forward ）
+ctrl.home=ホーム
+ctrl.split=グラフィックスを表示します
+ctrl.graphic=グラフィックのみ
+ctrl.doc=ドキュメントのみ
+ctrl.settings=設定
+ctrl.suspend=サスペンドとレジューム
+ctrl.bookmarks=ブックマーク
+ctrl.prelReq=予備要件
+ctrl.notes=注
+ctrl.attachments=添付ファイル
+ctrl.history=履歴
+ctrl.refresh=更新（ Refresh ）
+ctrl.print=印刷（ Print ）
+ctrl.install=をインストールします
+ctrl.find=検索（ Find ）
+ctrl.clear=消去（ Clear ）
+ctrl.admin=管理者
+ctrl.config=適用可能性
+ctrl.tools=ツール
+ctrl.exit=終了します
+ctrl.help=ヘルプ（ Help ）
+ctrl.info=情報
+ctrl.next=次へ
+ctrl.prev=前へ
+ctrl.save=サスペンドとレジューム
+ctrl.docinfo=ドキュメント情報
+ctrl.show=デバッグ情報
+ctrl.desktop=デスクトップビュー
+ctrl.reports=レポート
+ctrl.markup=マークアップ
+ctrl.releaseNotes=リリースノート
+ctrl.userGuide=ユーザーガイド
+ctrl.about=バージョン情報
+ctrl.users=ユーザー管理
+ctrl.position=位置を保存します
+ctrl.changes=変更を強調表示します
+ctrl.largeTableControls=ラージテーブルコントロール
+ctrl.emergencyProcedures=緊急時の手順
+ctrl.leftPanel=左パネルを切り替えます
+
+## troubleshooting steps
+ctrl.troubleshooting.next=次のステップ
+ctrl.troubleshooting.prev=前のステップ
+###########
+#### Tabs
+###########
+tabs.toc=目次
+tabs.act=アクティビティ
+tabs.figs=図
+tabs.tables=表
+tabs.main=タスク
+tabs.refMat=参照材料（ Reference Material ）
+tabs.matReq=材料が必要です
+tabs.supportEq=サポート機器
+tabs.search=検索
+
+## modal:
+ctrl.modal.close=を閉じます
+
+## search ctrls
+ctrl.search.start=&nbsp;
+ctrl.search.stop=停止します
+ctrl.search.clear=検索をクリアします
+ctrl.search.hide=検索を閉じます
+ctrl.search.adv=高度
+ctrl.search.branch=TOC 選択のフィルタ
+ctrl.search.search=検索
+ctrl.search.categorical=カテゴリ検索
+ctrl.search.and=および
+ctrl.search.or=または
+ctrl.search.near=近傍（ Near ではなく
+ctrl.search.not=ではなく
+ctrl.search.find=検索（ Find ）
+ctrl.search.case=大文字と小文字を区別しない
+ctrl.search.whole=単語全体のみ
+ctrl.search.advanced=高度な検索
+ctrl.search.simple=簡易検索
+ctrl.search.text=全文検索
+ctrl.search.save=保存した検索をロードします
+ctrl.search.filter.start=で始まります
+ctrl.search.filter.contain=を含む
+ctrl.search.filter.end=で終了します
+ctrl.search.highlight=ハイライトを切り替えます
+ctrl.search.toc=目次
+ctrl.search.results=検索結果（ Search Results ）
+ctrl.search.toggleSearchTitles=ABC/123
+
+## media:
+ctrl.hideMedia=分割解除
+ctrl.showMedia=分割（ Split ）
+ctrl.image.next=次へ
+ctrl.image.prev=前へ
+ctrl.image.tearOff=切り離し（ Tear Off ）
+ctrl.image.play=再生
+ctrl.image.pause=一時停止
+ctrl.image.rewind=巻き戻し
+ctrl.image.svgZoomIn=ズームインします
+ctrl.image.svgZoomOut=ズームアウトします
+ctrl.image.svgPanLeft=左にパン
+ctrl.image.svgPanRight=右にパン（ Pan Right
+ctrl.image.svgPanUp=上にパン
+ctrl.image.svgPanDown=下にパンします
+ctrl.image.svgReset=元のビューを復元します
+ctrl.image.showAllHotspots=すべてのホットスポットを表示します
+ctrl.image.svgRedliningPencil=レッドライニングエレメントを描画します
+ctrl.image.svgRedliningCircle=赤いライニングの円を描きます
+ctrl.image.svgRedliningRectangle=赤い長方形を描画します
+ctrl.image.svgRedliningLine=レッドラインを描画します
+ctrl.image.svgRedliningAnnotation=レッドライニング注釈を追加します
+ctrl.image.svgDeleteRedliningAnnotation=レッドライニングを削除します 注釈
+ctrl.image.svgExportRedlining=レッドライニングをエクスポートします
+ctrl.image.svgRedlining=レッドライニング
+
+## rhi buttons:
+ctrl.rhistep.prev=前のステップを再生します
+ctrl.rhistep.next=次のステップを再生します
+ctrl.rhistep.curr=現在のステップを再生します
+ctrl.rhistep.all=すべてのステップを再生します
+ctrl.rhistep.pause=一時停止
+ctrl.rhistep.resume=再開
+ctrl.rhistep.list=ステップをリストします
+ctrl.rhixray.on=X 線照射オン
+ctrl.rhixray.off=X 線オフ
+ctrl.rhi.wait=お待ちください
+
+## toc:
+ctrl.toggleCodes=ABC/123
+ctrl.hideToc=TOC を非表示にする
+ctrl.showToc=目次を表示します
+ctrl.justCodes=123
+ctrl.justTitles=ABC
+ctrl.syncToc=目次を同期します
+
+## ok, cancels, etc
+ctrl.ok=わかりました
+ctrl.cancel=キャンセル（ Cancel ）
+ctrl.media.save=保存（ Save ）
+
+## resource manager:
+ctrl.rm.goto=移動（ Goto
+ctrl.rm.edit=編集（ Edit ）
+ctrl.rm.deleter=削除（ Delete ）
+ctrl.rm.deleteAll=すべて削除（ Delete All ）
+ctrl.rm.exit=終了します
+ctrl.rm.add=追加（ Add ）
+ctrl.rm.suspend=サスペンド
+ctrl.rm.view=表示（ View ）
+ctrl.rm.resume=再開
+ctrl.rm.close=を閉じます
+ctrl.rm.print=印刷（ Print ）
+
+######################
+### Static Texts
+######################
+static.location=場所：
+
+######################
+### Search Terms
+######################
+search.saveASearch=この検索を保存します
+search.loadASearch=保存した検索をロードします
+search.branch=目次ブランチ検索
+
+######################
+### Update Server
+######################
+UpdateServer.check=アップデートサーバを確認します。
+UpdateServer.modalTitle=差分アップデートサーバ
+
+## step buttons:
+ctrl.step.next=次のステップ
+ctrl.step.prev=前のステップ
+
+## flip panels button:
+ctrl.flipPanels=テキストとグラフィックの方向を変更します
+
+## NV Harmonization: Anchor strings
+proc.closeReqCondsAnchor=必要な条件を閉じるためのアンカー
+proc.commonInfoAnchor=共通情報のアンカー
+proc.faultStepAnchor=不具合特定ステップのアンカー
+proc.prelReqCondsAnchor=暫定的な必須条件のアンカー
+proc.procStepAnchor=手順ステップのアンカー
+proc.safetyCondsAnchor=安全条件のアンカー
+
+######################
+### keys for cvDocHandler.js
+######################
+alert.unable.toLocate.referenced.publication=参照されているパブリケーションが見つかりません
+alert.you.must.enter.aTerm.toFind=検索するには用語を入力する必要があります。
+alert.unable.toLoad.theDocument.byDocID=｛ DocHandler ｝ ドキュメントをドキュメント ID でロードできません：
+alert.please.enter.aValid.page.number.between =1 ～ の有効なページ番号を入力してください
+alert.unable.toLoad.document.broken.link=｛ DocHandler ｝ ドキュメントをロードできません。 分断したリンクが活動化されました。
+alert.troubleshooting.session.is.already.active=トラブルシューティングセッションはすでにアクティブです。 新しいトラブルシューティングセッションを開始する前に、現在のトラブルシューティングセッションを完了してください。
+alert.skin.isUndefined1=皮膚
+alert.skin.isUndefined2=は未定義です
+alert.noData.module.selected=データモジュールが選択されていません。 予備要件を表示するには、データモジュールがアクティブである必要があります。
+alert.thisData.module.has.noPreliminary.requirements.information=このデータモジュールには、事前要件情報はありません。
+alert.unable.toFind.part=パーツが見つかりません：
+alert.enter.search.term.toStart=開始する検索語を入力します。
+alert.find.noMatch.for.search.text=一致するものが見つかりません
+alert.opera.browsers.not.supported=Opera ブラウザはサポートされていません。申し訳ありません
+alert.found.searchCount.occurrences1=が見つかりました
+alert.found.searchCount.occurrences2=オカレンス
+alert.acknowledgeWarnings.button=わかりました
+
+dm.modal.loading=ロード中 ...
+
+publication.security.banner.classification.level=セキュリティレベル
+publication.security.banner.classification.level01=未分類
+publication.security.banner.classification.level02=制限あり
+publication.security.banner.classification.level03=社外秘
+publication.security.banner.classification.level04=秘密
+publication.security.banner.classification.level05=トップシークレット
+
+publication.security.banner.restriction.caveat=注意事項を定義しないでください
+publication.security.banner.restriction.caveatCv51=公式使用のみ
+publication.security.banner.restriction.caveatCv56=米国の目のみ
+publication.security.banner.restriction.caveatCv57=制限付きデータ
+publication.security.banner.restriction.caveatCv58=以前は制限付きデータ
+publication.security.banner.restriction.caveatCv59=注記
+publication.security.banner.restriction.caveatOther=その他
+
+publication.security.banner.distribution.statement=配布ステートメント
+
+dm.security.banner.classification.level=セキュリティレベル
+dm.security.banner.classification.level01=未分類
+dm.security.banner.classification.level02=制限あり
+dm.security.banner.classification.level03=社外秘
+dm.security.banner.classification.level04=秘密
+dm.security.banner.classification.level05=トップシークレット
+
+dm.security.banner.restriction.caveat=注意事項を定義しないでください
+dm.security.banner.restriction.caveatCv51=公式使用のみ
+dm.security.banner.restriction.caveatCv56=米国の目のみ
+dm.security.banner.restriction.caveatCv57=制限付きデータ
+dm.security.banner.restriction.caveatCv58=以前は制限付きデータ
+dm.security.banner.restriction.caveatCv59=注記
+dm.security.banner.restriction.caveatOther=その他
+
+## set Title
+setTitle.acknowledgeWarnings.danger.cautions.notes=警告、危険、注意、メモを確認します
+setTitle.applicability.modal.title=適用可能性を選択します
+openTabletDocumentInfo.reference.materials=参考資料
+openTabletDocumentInfo.required.materials=必要な資料
+openTabletDocumentInfo.support.equipment=サポート機器
+
+######################
+### keys for cvResourceManager.js
+######################
+alert.file.with.thisName.isAlready.uploaded=この名前のファイルはすでにこの添付ファイルにアップロードされています。
+alert.toUse.thisOption.open.document=このオプションを使用するには 開いているドキュメントが必要です。
+alert.select.anAnnotation.toEdit=編集するアノテーションを選択する必要があります
+alert.enter.title.for.theBookmark=ブックマークのタイトルを入力してください
+alert.enter.title.for.theNote=メモのタイトルを入力してください
+alert.unable.toSelect.resource.type=｛ Resource Manager ｝ リソースタイプを選択できません：
+alert.suspendSession.unknown.resource.type.selected=不明なリソースタイプが選択されました：
+alert.newResource.unable.toLocate.resource.type=要求されたリソースタイプが見つかりません :
+alert.newResource.action.attempted.unknown.resource.type=不明なリソースタイプに対して新しいリソースアクションが試行されました :
+alert.saveUser.username.already.exists=このユーザー名のユーザーはすでに存在します。
+alert.login.name.required.field=[ ログイン名 ] は必須フィールドです
+alert.password.must.be.four.characters.long=パスワードは 4 文字以上にする必要があります
+alert.password.must.match.confirmation.password=パスワードは確認パスワードと一致している必要があります
+alert.select.user.group=ユーザーグループを選択してください
+alert.first.last.name.required=名と姓 は必須フィールドです
+alert.email.required.field=電子メールは必須フィールドです
+alert.invalid.email.address=電子メールアドレスが無効です
+alert.confirmation.email.must.match=確認メールはメールと一致する必要があります。
+alert.select.object.to.goto=移動するオブジェクトを選択する必要があります。
+alert.select.resource.to.delete=削除するリソースを選択する必要があります。
+alert.select.item.to.view=表示する項目を選択してください。
+alert.select.resource.to.action=にリソースを選択する必要があります
+alert.fillIn.required.form.fields=すべてのを入力する必要があります 必須のフォームフィールドです。
+
+confirm.delete.selected.user=選択したユーザーを削除しますか？
+confirm.remove.selected.item=選択した項目を削除しますか？
+confirm.delete.selected.audit.trail=選択した監査記録を削除しますか？
+confirm.delete.selected.form=選択したフォームを削除しますか？
+confirm.delete.all.resources=これらのリソースをすべて削除しますか？
+confirm.delete.selected.attachment=選択した添付ファイルを削除しますか？
+
+## Title
+title.mode.add.new.note=新規追加（ Add New ） 注
+title.mode.edit.note=注記編集（ Edit Note ）
+title.mode.add.new.bookmark=新しいブックマークを追加します
+title.mode.edit.bookmark=ブックマークを編集します
+title.table.list.user=ユーザー
+title.table.list.group=グループ
+title.table.list.type=タイプ（ Type ）
+title.table.list.creator=作成者
+setTitle.cvModalHandler.resource.manager=リソースマネージャ
+
+## text for HTML
+attach.toDiv.text.uploading=アップロード中 ...
+attach.edit.button=編集（ Edit ）
+attach.delete.button=削除（ Delete ）
+resource.type.public=パブリック
+resource.type.annotation=パブリック注釈
+resourceList.msg.noAttachments=現時点では添付ファイルはありません。
+resourceList.msg.noAnnotations=現時点では注釈はありません。
+resourceList.msg.noNotes=現時点ではメモはありません。
+resourceList.msg.noBookmarks=現時点ではブックマークはありません。
+audittrail.table.title.audit.trail.record=監査証跡 記録します
+audittrail.msg.noAudit=現時点では監査証跡はありません。 現在の監査記録は ' このパブリケーションウィンドウを閉じるまで保存されません
+audittrail.msg.noSaved.instances=このフォームの保存済みインスタンスはありません。
+audittrail.msg.proced.step.checked=確認しました
+audittrail.msg.proced.step.unchecked=オフ
+suspendSession.tooltip.text.comment=コメント：
+suspendSession.tooltip.text.current.document=現在のドキュメント：
+suspendSession.tooltip.text.current.document.title=現在のドキュメントタイトル：
+suspendSession.tooltip.text.saved.by=保存者：
+suspendSession.tooltip.text.saved.at=保存先：
+viewTabletNotesDialog.msg.toAdd.aNew.note.open.document=新しいメモを追加するには、ドキュメントを開いておく必要があります。
+viewTabletBookmarkDialog.msg.toAdd.aNew.bookmark.open.document=新しいブックマークを追加するには 開いているドキュメントが必要です。
+viewTabletAttachmentsDialog.msg.toAttach.file.open.document=ファイルを添付するには、開いているドキュメントが必要です。
+openUserDialog.select.company=会社を選択します
+openUserDialog.mode.add.title=新規ユーザー
+openUserDialog.mode.edit.title=ユーザーを編集します
+suspendSession.noData.module.open=現在開いているデータモジュールはありません。 サスペンドを有効にするには、データモジュールがアクティブである必要があります。
+suspendSession.noData.module.selected=データモジュールが選択されていません。 サスペンドを有効にするには、データモジュールがアクティブである必要があります。
+rhi.select.required.step=再生するには、必要な手順を選択してください
+rhi.select.step.toPlay=再生するステップを選択します
+
+######################
+### keys for cvBookList.js
+######################
+alert.rollback.successfully.completed=ロールバックが正常に完了しました。
+alert.no.rollback.data=ブックにロールバックデータがありません。
+alert.rollback.publication.failed1=パブリケーションのロールバック
+alert.rollback.publication.failed2=失敗しました。
+alert.select.zip.file=zip ファイルを選択してください。
+alert.updates.successfully.installed=アップデートは正常にインストールされました。
+alert.password.undefined1=必須パスワードが定義されていません。 一時パスワードが割り当てられました：
+alert.password.undefined2=ログイン後にパスワードを変更するか、管理者に問い合わせてください。
+alert.login.again=もう一度ログインしてください。
+
+confirm.rollback.toLast.good.known.state=最後の正常な既知の状態にロールバックしますか？
+
+## Title
+title.updating.publication=パブリケーションを更新中
+
+## text for HTML
+text.installing.updates=アップデートをインストールしています
+text.login.failed=ログインに失敗しました： サーバーに接続できません。
+text.close=を閉じます
+text.update.failed.to.install=アップデートのインストールに失敗しました
+publications.msg.one.update.pending=1 件の更新が保留中です。
+publications.msg.count.updates.pending1=あります
+publications.msg.count.updates.pending2=更新は保留中です。
+publications.msg.currently.update.pending=現在 1 件の更新が保留中です。
+publications.msg.currently.count.updates.pending1=現在あります
+publications.msg.currently.count.updates.pending2=更新は保留中です。
+publications.msg.updateReady.info1=問題
+publications.msg.updateReady.info2=差分更新
+publications.msg.updateReady.info3=日付
+publications.msg.currently.no.pending.updates=現在、保留中のアップデートはありません。
+warning.msg.beginning.incremental.update.process=増分更新プロセスを開始しています。 パブリケーションウィンドウをすべて閉じてください。
+error.msg.displayed.for.time1=エラー！ このメッセージはに表示されます
+error.msg.displayed.for.time2=秒
+error.msg.update.failed.unable.load.update.content=更新に失敗しました。 更新コンテンツをロードできません。
+update.msg.successfully.installed.all=すべての更新が正常にインストールされました
+update.msg.attempted.install.all=すべてのアップデートをインストールしてみた。
+update.msg.successfully.installed=アップデートが正常にインストールされました
+update.msg.successfully.installed.one=アップデートが正常にインストールされました
+update.msg.failed.install=インストールに失敗したアップデート
+text.msg.displayed.for.time1=このメッセージはのために表示されます
+text.msg.displayed.for.time2=秒
+text.msg.will.be.displayed.for.time1=このメッセージはに表示されます
+text.msg.proceeding=続行します
+
+#################################
+### keys for cvControlFactory.js
+#################################
+error.loadControls.unable.locate.requested.set=｛ Controls ｝ [FATAL] controls.xml から要求されたセットが見つかりません。
+
+#################################
+### keys for cvHelpFactory.js
+#################################
+error.unable.locate.requested.help.resource=[ContentaView] エラー。要求されたヘルプリソースが見つかりません。
+error.unable.locate.named.help.resource=[ContentaView] エラー。名前付きヘルプリソースが見つかりません
+
+#################################
+### keys for cvHistory.js
+#################################
+text.msg.currently.no.history=現在、履歴情報はありません。
+title.not.applic=該当なし
+
+#################################
+### keys for cvMedia.js
+#################################
+alert.getMediaType.error=グラフィックが完全にロードされていません。後で再試行してください
+alert.rhiInitContext.error=グラフィックがロードされていません。後でやり直してください
+confirm.wait.several.minutes=これには数分かかる場合があります。 続行しますか？
+text.loading=ロード中 ...
+text.msg.activeCGM.browser.support1=ActiveCGM ビューアはではサポートされていません
+text.msg.activeCGM.browser.support2=このグラフィックを表示するには 'ActiveCGM ActiveX がインストールされた Internet Explorer クライアントを使用するか ' ドキュメントを印刷してください
+text.msg.IsoView.browser.support1=ISOVIEW ビューアーは、ではサポートされていません
+text.msg.IsoView.browser.support2=この図を表示するには、 IsoView がインストールされた Internet Explorer クライアントを使用してください。 または、ドキュメントを印刷します。
+text.msg.Mobilizer.browser.support1=NGrain Mobilizer ビューアはではサポートされていません
+text.msg.Mobilizer.browser.support2=このグラフィックを表示するには、 NGrain Mobilizer がインストールされた Internet Explorer クライアントを使用してください。
+text.msg.rhiModel.browser.support1=SAP 3D Visual Enterprise Viewer は、ではサポートされていません
+text.msg.rhiModel.browser.support2=これを表示するには、 SAP 3D Visual Enterprise Viewer がインストールされた Internet Explorer クライアントを使用してください グラフィック。
+text.msg.rhiModel.viewer.not.installed1=このテキストが表示された場合は、 SAP 3D Visual Enterprise Viewer がインストールされていません
+text.msg.rhiModel.viewer.not.installed2=初期化されていませ ダウンロードしてインストールしてください。 次のリンクを使用します
+text.msg.rhiModel.viewer.not.installed3=このエラーメッセージが引き続き表示される場合は、セキュリティ設定を確認してください
+text.msg.rhiModel.viewer.not.installed4=（ ActiveX を許可する必要があります） または、別の Web ブラウザを使用します
+text.msg.rhiModel.viewer.not.installed5=Microsoft Internet Explorer を使用することをお勧めします。
+text.rhiGetCurrStepDesc.no.description.orName.for.step=ステップシーケンスの説明または名前がありません
+text.rhiGetCurrStepDesc.no.description.for.step=という名前のステップの説明がありません
+text.listAllSteps.no.steps.defined=RH ファイルにステップが定義されていません
+
+#################################
+### keys for cvPanelFactory.js
+#################################
+alert.error.loadPanels=｛ Panels ｝ [Fatal] panels.xml から要求されたセットが見つかりません。 セット
+
+#################################
+### keys for cvPrinter.js
+#################################
+alert.select.section.toPrint=印刷するには、表で少なくとも 1 つのセクションを選択する必要があります。
+
+#################################
+### keys for cvProcessdm.js
+#################################
+alert.reverseThread.troubleshooting.session=このトラブルシューティングセッションの開始時に、前のノードには移動できません。
+alert.fill.all.mandatory.fields=すべての必須フィールドに入力する必要があります。
+text.current.node=これは現在のノードです
+
+#################################
+### keys for cvSearch.js
+#################################
+alert.fill.search.term=[ 検索 ] フィールドに検索語を入力する必要があります
+alert.select.category.or.fullText=のカテゴリまたはフルテキストを選択する必要があります 検索。
+alert.unable.handle.unknown.search.result.category=カテゴリの不明な検索結果を処理できません
+alert.unable.handle.unknown.search.result.type=不明な検索結果を処理できません。 タイプ
+
+#################################
+### keys for cvSnippet_InvalidRefs.js
+#################################
+alert.unknown.report.type=不明なレポートタイプです。
+text.unknown.report.type=不明なレポートタイプです
+text.invalid.references.report.forCurrent.document=現在のドキュメントの参照レポートが無効です
+text.missing.images.report.forCurrent.document=現在のドキュメントの画像が見つかりませんレポート
+text.missing.images.list=画像リストがありません
+
+#################################
+### keys for cvEmergencyProcedures.js
+#################################
+text.msg.no.emergency.procedures=緊急時の手順はありません。
+
+## key for XSL styles
+style.common.nonapplicdm=該当しないデータモジュール
+style.common.nonapplictext=このデータモジュールは、選択した現在の設定には適用できません。
+style.common.dmapplic=データモジュールの適用可能性
+style.common.datarestrict=データ制限
+style.common.datarestricttext=データ制限情報はここにあります。
+style.common.supequip=サポート機器
+style.common.refmat=参考資料
+style.common.matreq=必要な材料
+style.common.prelreqs=予備要件
+style.common.reqsconds=必須条件
+style.common.dmtp=データモジュール / テクニカルパブリケーション
+style.common.reqjobcomp=ジョブ完了後の要件
+style.common.dmc=データモジュールコード
+style.common.issueno=発行番号
+style.common.newdm=新しいデータモジュール
+style.common.applic=適用可能性
+style.common.issuedate=発行日
+style.common.secclass=セキュリティ分類
+style.common.instructions=指示
+style.common.distribution=配布
+style.common.exportcontrol=輸出規制
+style.common.destruction=破壊
+style.common.figure=図
+style.common.hotspot=ホットスポット
+style.common.safecond=安全条件
+style.common.crossref=相互参照
+style.common.warning=警告
+style.common.caution=注意
+style.common.note=注
+style.common.noforeigndisclosure=外国語による開示はありません
+style.common.geninfo=一般情報
+style.common.aboutproced=この手順について
+style.common.reqperson=必要な担当者
+style.common.personnel=担当者
+style.common.category=カテゴリ（ Category ）
+style.common.trade=取引
+style.common.esttime=推定時間
+style.common.man=人
+style.common.asreq=必要に応じて。
+style.common.containdm=コンテナデータモジュール
+style.common.selectrefdm=次の refdm を選択しました
+style.procedure.nosupply=サプライ品は必要ありません。
+style.procedure.nospare=スペアは必要ありません。
+style.procedure.procedure=手順
+style.procedure.requirecomplete=ジョブ完了後の要件
+style.procedure.norequirement=必要ありません。
+style.general.code=コード
+style.general.none=なし
+style.general.name=名前
+style.general.identification=識別
+style.general.quantity=数量
+style.general.description=説明
+style.general.table=表
+style.general.type=タイプ（ Type ）
+style.general.supply=供給
+style.matreq.supplies=サプライ品
+style.matreq.spares=スペア
+style.supteqt.supportequipment=サポート機器
+style.refmat.referencedm=参照されるデータモジュール
+style.refmat.noreferencedm=参照されているデータモジュールがありません
+style.refmat.dm=データモジュール
+style.refmat.referencetp=参照されている技術資料
+style.refmat.tp=技術資料
+style.refmat.noreferencetp=参照されている技術資料はありません
+style.commontmpl.no=いいえ
+style.commontmpl.withid=ID 付き
+style.commontmpl.informaltable=非公式のテーブル
+style.commontmpl.criticaljuncture=臨界接合
+style.commontmpl.testingofsystem=システムのテスト
+style.commontmpl.independentcheck=独立チェック（ Independent Check ）
+style.commontmpl.maintenancegroundup=メンテナンスの準備
+style.commontmpl.maintenancetestflight=メンテナンステストフライト
+style.commontmpl.signaturerequired=署名が必要です
+style.commontmpl.taskcomplete=タスクが完了しました
+style.ipc.itemno=品目番号
+style.ipc.fig=図
+style.ipc.indxsheetno=INDX / シート番号
+style.ipc.rfs=RFS
+style.ipc.unitsperassy=アセンブリあたりのユニット数
+style.ipc.cage=ケージ
+style.ipc.partnumber=部品番号
+style.ipc.description=説明
+style.ipc.usableoncode=コードで使用可能
+style.ipc.srv=サービス
+style.ipc.smr=SMR
+style.ipc.mov=MOV
+style.ipc.item=項目
+style.ipc.unitsperassembly=アセンブリあたりの単位
+style.ipc.ncage=NCAGE
+style.ipc.partno=品目番号
+style.ipc.nomenclature=名称
+style.fault.faultcode=故障コード
+style.fault.endofdatamodule=データモジュールの終了
+style.fault.faultdescription=不具合の説明
+style.fault.faultisolationprocedure=不具合の特定手順
+style.fault.gotostep=手順に進みます
+style.fault.yes=はい
+style.fault.no=いいえ
+style.fault.isolationprocedure=分離手順
+style.fault.faultcondition=障害状態
+style.fault.faultcontext=障害コンテキスト
+style.fault.faultisolationtest=障害分離テスト
+style.fault.testcodetype=テストコード / タイプ
+style.fault.detect=検出
+style.fault.lru=LRU
+style.fault.mfc=MFC
+style.fault.isolatedetectedfault=検出された障害を特定します
+style.fault.locateandrepair=検索と修復
+style.fault.repair=修復（ Repair ）
+style.fault.testdescription=テストの説明
+style.fault.testprocedure=テスト手順
+style.fault.isolate=分離
+style.fault.test=テスト
+style.fault.context=コンテキスト
+style.fault.remarks=備考
+style.fault.fault=故障
+style.schedule.timelimitsidentifier=Timelimits: 識別子
+style.general.equipment=機器
+style.schedule.pnr=PNR
+style.general.category=カテゴリ（ Category ）
+style.schedule.referencedtasks=参照されるタスク
+style.schedule.limitinformation=制限情報
+style.schedule.limitrange=境界範囲（ Limit Range ）
+style.general.from=開始
+style.schedule.trigger=トリガー
+style.schedule.groupno=グループ番号
+style.schedule.componentassembly=構成部品 / アセンブリ（ Component/Assembly
+style.schedule.maintenancefunction=メンテナンス機能
+style.schedule.maintfunc=保守 機能
+style.schedule.maintenancelevel=メンテナンスレベル
+style.schedule.toolsandequipment=工具および機器
+style.schedule.field=フィールド
+style.schedule.sust=スト。
+style.schedule.c=C
+style.schedule.f=F
+style.schedule.h=H
+style.schedule.d=D
+style.schedule.removeinstall=取り外し / 取り付け
+style.general.inspect=点検します
+style.general.service=サービス
+style.general.adjust=調整します
+style.general.align=整列（ Align ）
+style.general.calibrate=キャリブレーションします
+style.general.replace=交換します
+style.general.repair=修復（ Repair ）
+style.general.overhaul=オーバーホール
+style.general.rebuild=再構築
+style.general.tasks=タスク
+style.schedule.notavailableforprojects=プロジェクトでは使用できません
+style.schedule.limittype=境界タイプ
+style.schedule.limitcondition=制限条件
+style.schedule.performonce=1 回実行します
+style.schedule.oncondition=オンの状態
+style.schedule.performperiodically=定期的に実行します
+style.schedule.unitofmeasure=測定単位（ Unit of Measure ）
+style.schedule.limitrangefrom=制限範囲はからです
+style.schedule.limitrangeto=範囲をに制限します
+style.schedule.threshold=しきい値
+style.schedule.flighthours=フライト時間
+style.schedule.flightcycles=フライト サイクル
+style.schedule.months=月
+style.schedule.weeks=週
+style.schedule.years=年
+style.schedule.days=日
+style.schedule.supersoniccycles=超音速サイクル
+style.schedule.pressurecycles=圧力サイクル
+style.schedule.enginecycles=エンジンサイクル
+style.schedule.enginechange=エンジン交換
+style.schedule.shopvisits=来店数
+style.schedule.apuchange=補助電源ユニットの交換
+style.schedule.landinggearchange=ランディングギアチェンジ
+style.schedule.wheelchange=ホイール交換
+style.schedule.enginestart=エンジン始動
+style.schedule.apuhours=APU 時間
+style.schedule.enginehours=エンジン時間
+style.schedule.elapsedhours=経過時間
+style.schedule.landings=着陸
+style.schedule.operatingcycles=動作サイクル
+style.schedule.operatinghours=営業時間
+style.schedule.supersonichours=超音速時
+style.schedule.acheck=&quot;A&quot; チェックボックスをオンにします
+style.schedule.bcheck=&quot;B&quot; チェックボックスをオンにします
+style.schedule.ccheck=&quot;C&quot; チェックボックスをオンにします
+style.schedule.dcheck=&quot;D&quot; チェックボックスをオンにします
+style.schedule.echeck=&quot;E&quot; を確認します
+style.schedule.daily=毎日
+style.schedule.overnight=夜通し
+style.schedule.preflight=プリフライト
+style.schedule.routinecheck=定期点検
+style.schedule.structuralccheck=構造 &quot;C&quot; チェック
+style.schedule.servicecheck=サービスチェック
+style.schedule.transit=トランジット
+style.schedule.kilometers=キロメートル
+style.schedule.consumptionincubicmeter=消費量（立方メートル）
+style.schedule.consumptioninliter=消費量（リットル）
+style.schedule.numberofshotseach=ショット数 - 各
+style.schedule.numberofshotsefc=ショット数 - 等価フルチャージ（ EFC ）
+style.general.notdefined=定義されていません
+style.schedule.inspection=点検
+style.schedule.inspectiontype=検査タイプ
+style.schedule.triggerreferencedtasks=トリガ参照タスク
+style.table.mustspecifythenumberofcolumns=エラー： CALS テーブルでは、列数を指定する必要があります。
+style.table.noconvertlengthfunctionavailable=convertLength 関数は使用できません。
+style.table.noadjustcolumnwidthsfunctionavailable=利用可能な adjustColumnWidths 関数がありません。
+style.table.findintable=テーブルで検索（ Find in Table ）
+style.table.wholeword=単語全体
+style.table.matchcase=大文字と小文字を区別する
+style.table.currentsectiononly=現行セクションのみ
+style.table.result=結果（ Result ）
+style.table.noapplicabledatathissection=このセクションには、該当するデータはありません。
+style.table.determinecolumnnumber=特定のエントリが発生するカラム番号を決定します
+style.table.ifan=の場合
+style.table.entry=エントリ
+style.table.hasa=にはがあります
+style.table.or=または
+style.table.attributethistemplate=属性。このテンプレート
+style.table.determinenumberofthecolumn=は、エントリが発生する列の番号を決定します。
+style.table.forother=その他の場合
+style.table.nothingisreturned=S 、何も返されない。
+style.table.elementtobetested=テストするエレメント。 。
+style.table.the=。
+style.table.returnsthecolumnnumber=このテンプレートでは、列番号を確認できる場合は、その列番号が返されます。
+style.table.orzero=または 0 ( 空の文字列 )
+style.checklist.checklistintervals=チェックリスト間隔
+style.checklist.interval=間隔
+style.checklist.equipmentnotavailable=機器が使用できません
+style.crew.if=もし
+style.crew.elseif=else if
+style.wiring.wirenumber=ワイヤ番号
+style.wiring.fromreference=参照から（ From Reference ）
+style.wiring.designator=デジグネータ
+style.wiring.toreference=参照へ（ To Reference ）
+style.wiring.wiretype=ワイヤタイプ（ Wire Type ）
+
+## LAM added for wiring
+style.wiring.equipdescrref=設備名称：
+style.wiring.functionaldescrref=機能名称：
+style.wiring.harness=ハーネス（ Harness ）
+style.wiring.harnessinfo=ハーネス情報
+style.wiring.illustrationRef=図参照：
+style.wiring.ref=参照
+style.wiring.references=参照（ References ）
+style.wiring.wirecolour=ワイヤの色
+style.wiring.wireconnection=ワイヤ接続（ Wire Connection ）
+style.wiring.wiregauge=ワイヤゲージ
+style.wiring.wireinstallation=ワイヤの取り付け
+style.wiring.wirenumber=ワイヤ番号
+style.wiring.wirepartnumber=ワイヤパーツ番号
+## / LAM added for wiring
+
+style.expert.requiredsupplies=必要なサプライ品
+style.expert.requiredspares=必要なスペア
+style.expert.safetyinstructions=安全にお使いいただくために
+style.expert.nomen=注
+style.expert.qty=数量
+style.common.unverified=未検証
+style.common.references=参照（ References ）
+style.common.noreferences=参照がありません
+style.common.step=ステップ
+style.common.para=パラメータ
+style.template.note=注
+style.template.dataoutofdate=このページには、古いデータが含まれている場合があります。 最新の IETM を参照してください
+style.template.datapath=データパス
+style.template.destructionnotice=破棄通知 - 機密扱いされていない限定されたドキュメントの場合は、コンテンツの開示やドキュメントの再構築を防止する方法で破棄します。
+style.template.ietmversion=IETM バージョン
+style.template.ietmdate=IETM 日付
+style.template.version=バージョン
+style.template.pubdate=公開日
+style.template.dateprinted=印刷日
+style.template.pubnumber=Pub 番号
+style.security.portionMarking.unclassified=（ U ）
+style.security.portionMarking.confidential=（ C ）
+style.security.portionMarking.secret=（ S ）
+style.security.portionMarking.topsecret=（ TS ）

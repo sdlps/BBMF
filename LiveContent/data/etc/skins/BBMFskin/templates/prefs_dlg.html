@@ -1,0 +1,45 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/prefs_dlg.html 2.0 2019/05/22 21:01:55GMT milind Exp  $ -->
+
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+<meta id="META_HTTPROOT" content="@HTTP_ROOT@">
+<meta id="META_USER_CHANGEREASON" content="@USER_CHANGEREASON@">
+<meta id="META_USER_HIDE_HELP_BTN" content="@USER_HIDE_HELP_BTN@">
+<meta id="META_USER_SAVE_POSITION" content="@USER_SAVE_POSITION@">
+
+
+<table border="0" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td colspan="2">
+			<img style="display:none" cvHelpButton="1" align="right" class="link" id="CS.HELPBTN" src="@APPNAME@?target=resource&action=image&file_name=help.gif"
+			onmouseover="help_onmouseover(event)"
+			onmouseout="help_onmouseout(event)"
+			onclick="help_onclick('1020')"
+			ondrag="event.returnValue=false;">
+		</td>
+	</tr>
+	<tr>
+		<td class="prefcheckbox"><input type=checkbox id="CHANGEREASON"/></td>
+		<td class="preflabel">Disable Highlighting Changes</td>
+	</tr>
+	<tr>
+		<td class="prefcheckbox"><input type="checkbox" name="checkbox" disabled="disabled" id="HIDEHELPBTN" /></td>
+		<td class="preflabel" id="QUESTION">
+			<span class="preflabel" id="helpBtnText" style="cursor:default" disabled="disabled">Hide Help Buttons</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="prefcheckbox"><input type=checkbox id="SAVEPOSITION"/></td>
+		<td class="preflabel">Save Window Position</td>
+	</tr>
+</table>
+<br/><br/>
+
+
+<button type="button" cvControl="1" id="CVCtrl_OK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_cancel"><span></span></button>
+<br/>

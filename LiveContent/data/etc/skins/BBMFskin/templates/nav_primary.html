@@ -1,0 +1,177 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/nav_primary.html 2.0 2019/05/22 21:01:51GMT milind Exp  $ -->
+<div id="header">
+	<div id="hamburgerBox" onclick="CVPortal.components.cvLeftNav.toggleLeftNav();">
+		<div id="hamburger"/>
+	</div>
+	<div id="iconbuttonsM">
+		<div id="buttonBarM">
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_home" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_leftPanel" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_split" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_doc" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_graphic" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_print" style="display:none"/>
+			</div>
+			<div class="buttonGroupM" style="display:none">
+				<div class="buttonBoxM" id="CVCtrl_printTable" style="display:none"/>
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CV_flipPanels" style="display:none" />
+			</div>
+		</div>
+	</div>
+	<div id="iconbuttonsRightM">
+		<div id="buttonBarM">
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_TablePaging" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_search" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_help" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_helpM" style="display:none" />
+			</div>
+			<div class="buttonGroupM">
+				<div class="buttonBoxM" id="CVCtrl_settings" style="display:none" />
+			</div>
+		</div>
+	</div>
+</div>
+<div id="setupMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.toggleSettingsMenu();' />
+	<div id="iconbuttonsMenu">
+		<div id="buttonMenu">
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_position"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_changes"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_users"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_signOut"/>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="infoMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.toggleInfoMenu();' />
+	<div id="infoIconbuttonsMenu">
+		<div id="infoButtonMenu">
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_reports"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_markup"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_releaseNotes"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_userGuide"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_about"/>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="auxMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.hideMenu("auxMenu");' />
+	<div id="auxIconbuttonsMenu">
+		<div id="auxButtonMenu">
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_showFO"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_showHTML"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_showXML"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_debug"/>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="rptMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.hideMenu("rptMenu");' />
+	<div id="rptIconbuttonsMenu">
+		<div id="rptButtonMenu">
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_revisionHighlight"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_currentRef"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_invalidRef"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_missingImage"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_auditTrail"/>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="prtMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.hideMenu("prtMenu");' />
+	<div id="prtIconbuttonsMenu">
+		<div id="prtButtonMenu">
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_printDoc"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_printRefs"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_printAllFigures"/>
+			</div>
+			<div class="sButtonGroupM">
+				<div class="sButtonBoxM" id="CV_printCurrentFigure"/>
+			</div>
+		</div>
+	</div>
+ </div>
+
+<!--LAM:2020-11-25, doesn't get added to secondary navigation
+<div id="shoppingCartMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.hideMenu("shoppingCartMenu");' />
+	<div id="shoppingCartIconbuttonsMenu">
+		<div id="shoppingCartButtonMenu">
+			<div class="sButtonGroupM"><div class="sButtonBoxM" id="CV_showShoppingCart"/></div>
+			<div class="sButtonGroupM"><div class="sButtonBoxM" id="CV_orderShoppingCart"/></div>
+		</div>
+	</div>
+ </div>
+-->
+
+<!--LAM:2022-01-28
+<div id="bufrFormMenu" style="display:none">
+	<div class="menuClose" onClick='CVPortal.components.cvDocHandler.hideMenu("bufrFormMenu");' />
+	<div id="bufrFormIconbuttonsMenu">
+		<div id="bufrFormButtonMenu">
+			<div class="sButtonGroupM"><div class="sButtonBoxM" id="CV_showbufrform"/></div>
+		</div>
+	</div>
+ </div>
+-->

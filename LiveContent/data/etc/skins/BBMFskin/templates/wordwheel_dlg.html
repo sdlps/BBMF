@@ -1,0 +1,24 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/wordwheel_dlg.html 2.0 2019/05/22 21:02:16GMT milind Exp  $ -->
+
+<table border="0" cellpadding="5" cellspasing="5" class="marg-bottom-5">
+	<tr>
+		<td class="wordwheel_table_title" align="right">Find</td>
+		<td align="left" class="padding-left-5px">
+
+		<input class="wordwheel_table_input" maxlength="100" type="TEXT" id="WW_FIND" nowrap onkeyup="CVPortal.components['cvSearch'].wwOptionUpdate(event);"></input></td>
+	</tr>
+</table>
+
+<div id="ww_frame" class="wwContainer"></div>
+
+<table height="50">
+	<tr id="TOOBIGLIST" valign="center" align="center" style="display:none">
+		<td class="wordwheel_table_title" style="color:red">The list is too large and not shown fully!!!<br/>Please keep typing to narrow down your search.
+		</td>
+	</tr>
+</table>
+
+<button type="button" cvControl="1" id="CVCtrl_OK"><span></span></button>
+<button type="button" cvControl="1" id="CVCtrl_cancel"><span></span></button>
+
+<br/>

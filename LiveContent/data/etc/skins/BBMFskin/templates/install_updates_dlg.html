@@ -1,0 +1,41 @@
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/install_updates_dlg.html 2.0 2019/05/22 21:01:43GMT milind Exp  $ -->
+<meta id="META_APPID" content="@APPID@">
+<meta id="META_APPNAME" content="@APPNAME@">
+<meta id="META_ID" content="@SESSION_ID@">
+<meta id="META_USER" content="@USER@">
+<meta id="META_USERGROUP" content="@USER_GROUP@">
+<meta id="META_COLLECTION" content="@COLLECTION@">
+<meta id="META_BOOK" content="@BOOK@">
+
+<div id="install_form" class="install_updates_form">
+
+<form id="IMPORT_FORM" name="IMPORT_FORM" target="UTILITY_FRM" action="@APPNAME@?target=update&action=prepare_updates"
+	method="POST" enctype="multipart/form-data"> <!-- onSubmit="CVPortal.components.cvBookList.installUpdates('@COLLECTION@', '@BOOK@');">-->
+	<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+
+	<table align="center" border="0" cellpadding="0" cellspasing="0" class="install_updates_form_table">
+		<tr><td colspan="2" align="center" class="install_updates_form_title">
+			Please select zip file containing updates.
+		</td></tr>
+
+		<tr height="10"><td></td></tr>
+		<tr>
+			<td><b>Filename: </b></td>
+			<td><input id="FILE_NAME" name="FILE_NAME" type="file" size="40" onpropertychange="CVPortal.components.cvBookList.assertZip(event);"/></td>
+		</tr>
+	</table>
+
+<iframe style="display:none;" src="@APPNAME@?target=resource&action=html&file_name=blank.html" id="UTILITY_FRM" name="UTILITY_FRM"></iframe>
+
+<div style="text-align:center">
+	<input type="button" value="Install Updates" onClick="CVPortal.components.cvBookList.prepareUpdates('@COLLECTION@', '@BOOK@');">
+	<input type="button" onClick="CVPortal.components.cvBookList.finishUpdates();" value="Cancel"/>
+<!--	<div cvControl="1" id="CVCtrl_Install"><span>Install</span></div>
+	<div cvControl="1" id="CVCtrl_cancel"><span>Cancel</span></div>-->
+</div>
+</form>
+</div>
+
+<div id="message_div" style="display:none;">
+
+</div>

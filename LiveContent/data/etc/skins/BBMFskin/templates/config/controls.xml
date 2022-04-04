@@ -1,0 +1,2096 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/controls.xml 2.0 2019/05/22 21:01:16GMT milind Exp  $ -->
+<controls>
+  <set id="main">  
+    <control id="CVCtrl_home" type="icon" child="true">      
+      <disabled className="tbar_home dark"/>            
+      <enabled className="tbar_home iconized" default="1"/>        
+      <highlight className="tbar_home highlightIcon"/>  
+      <onclick>CVPortal.components.cvDocHandler.loadHome();</onclick>
+      <text>ctrl.home</text>    
+    </control>
+    <control id="CVCtrl_leftPanel" type="icon" child="true">      
+      <disabled className="tbar_leftPanel dark"/>            
+      <enabled className="tbar_leftPanel iconized" default="1"/>        
+      <highlight className="tbar_leftPanel highlightIcon"/>  
+      <onclick>CVPortal.components.cvTOC.togglePanel();</onclick>
+      <text>ctrl.leftPanel</text>    
+    </control>        
+    <control id="CVCtrl_split" type="icon" child="true">
+      <disabled className="tbar_split_off dark" default="1">      
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="tbar_split iconized">  
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <highlight className="tbar_split highlightIcon"/>
+      <onclick>CVPortal.components['cvMedia'].showMediaPanel();</onclick>
+      <text>ctrl.split</text>
+    </control>
+    <control id="CVCtrl_graphic" type="icon" child="true">
+      <disabled  className="tbar_tearoff_off dark" default="1">      
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="tbar_tearoff iconized">  
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <highlight className="tbar_tearoff highlightIcon"/>
+      <onclick>CVPortal.components['cvMedia'].tearOffGraphic();</onclick>
+      <text>ctrl.graphic</text>
+    </control>
+    <control id="CVCtrl_doc" type="icon" child="true">
+      <disabled className="tbar_textonly_off dark" default="1">      
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="tbar_textonly iconized">  
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <highlight className="tbar_textonly highlightIcon"/>
+      <onclick>CVPortal.components['cvMedia'].hideMediaPanel(this);</onclick>
+      <text>ctrl.doc</text>
+    </control>
+    <control id="CVCtrl_TablePaging" type="icon" child="true">
+      <disabled className="tbar_table_paging_off dark disableEvent" default="1">      
+        <condition name="hasLargeTable" status="false"/>
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="tbar_table_paging iconized">
+        <condition name="hasLargeTable" status="true"/>
+      </enabled>
+      <highlight className="tbar_table_paging highlightIcon"/>
+      <shown>
+        <condition name="largeTablesIETM" status="true"/>
+      </shown>
+      <hidden default="1">
+        <condition name="largeTablesIETM" status="false"/>
+      </hidden>
+      <onclick>CVPortal.components['cvDocHandler'].largeTableDialog();</onclick>
+      <text>ctrl.largeTableControls</text>
+    </control>
+    <control id="CVCtrl_settings" type="icon" child="true">
+      <disabled className="tbar_settings dark"/>      
+      <enabled className="tbar_settings iconized" default="1"/>  
+      <highlight className="tbar_settings highlightIcon"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleSettingsMenu();</onclick>
+      <text>ctrl.settings</text>
+    </control>
+    <control id="CVCtrl_search" type="icon" child="true">
+      <disabled className="tbar_search dark"/>      
+      <enabled className="tbar_search iconized" default="1"/>  
+      <highlight className="tbar_search highlightIcon"/>
+      <onclick>CVPortal.components.cvSearch.showSearch();</onclick>
+      <text>ctrl.search.search</text>
+    </control>
+    <control id="CVCtrl_forward" type="icon">
+      <disabled className="dark tbar_forward_off"/>      
+      <enabled className="iconized tbar_forward"/>  
+      <highlight className="highlightIcon tbar_forward_highlight"/>
+      <text>ctrl.fwd</text>
+    </control>
+    <control id="CVCtrl_emergencyProcedures"  type="icon" label="true">
+      <disabled className="tbar_emergencyProcedures_off toolbar_left toolbar_button_disabledM"/>
+      <enabled className="tbar_emergencyProcedures toolbar_buttonM toolbar_left" default="1"/>
+      <highlight className="tbar_emergencyProcedures toolbar_buttonM toolbar_left"/>
+      <onclick>CVPortal.components["cvEmergencyProcedures"].toggleEmergencyProceduresPanel();</onclick>
+      <text className="nav2ButtonText">ctrl.emergencyProcedures</text>
+    </control>
+
+    <!--LAM:2020-11-25-->
+    <!--
+    <control id="CV_showShoppingCart" type="icon" label="true" child="true">
+      <disabled  className="tbar_shoppingCart_some toolbar_left"/>
+      <enabled   className="toolbar_buttonM tbar_shoppingCart_some toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_shoppingCart_some toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("shoppingCartMenu");CVPortal.components["cvDocHandler"].ShowParts();</onclick>
+      <text className="nav2ButtonText">ctrl.shoppingCart</text>
+    </control>
+    <control id="CV_orderShoppingCart" type="icon" label="true" child="true">
+      <disabled  className="tbar_shoppingCart_some toolbar_left"/>
+      <enabled   className="toolbar_buttonM tbar_shoppingCart_some toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_shoppingCart_some toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("shoppingCartMenu");CVPortal.components["cvDocHandler"].OrderParts();</onclick>
+      <text className="nav2ButtonText">ctrl.shoppingCart</text>
+    </control>
+    -->
+    <control id="CVCtrl_showShoppingCart" type="icon" label="true">
+      <disabled className="tbar_shoppingCart_empt toolbar_left toolbar_button_disabledM" default="1">
+        <condition name="shoppingCartEmpty" status="true" />
+      </disabled>
+      <enabled className="tbar_shoppingCart_some toolbar_buttonM toolbar_left">
+        <condition name="shoppingCartEmpty" status="false" />
+      </enabled>
+      <onclick>CVPortal.components["cvDocHandler"].ShowParts();</onclick>
+      <access>
+        <groupname>ALL</groupname><device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">ctrl.shoppingCart</text>
+    </control>
+    <!--/ LAM:2020-11-25-->
+
+    <!-- LAM:2022-01-28-->
+    <control id="CVCtrl_bufrform" type="icon" label="true">
+      <disabled className="tbar_bufrform toolbar_left toolbar_button_disabledM" default="1">
+        <condition name="Form765Enabled" status="false" />
+      </disabled>
+      <enabled className="tbar_bufrform toolbar_left toolbar_buttonM">
+        <condition name="Form765Enabled" status="true" />
+      </enabled>
+      <onclick>CVPortal.components["cvDocHandler"].loadForm765();</onclick>
+      <access>
+        <groupname>ALL</groupname><device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">ctrl.form765</text>
+    </control>
+    <!--
+    <control id="CV_showbufrform" type="icon" label="true" child="true">
+      <disabled  className="tbar_bufrform toolbar_left"/>
+      <enabled   className="toolbar_buttonM tbar_bufrform toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_bufrform toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("bufrFormMenu");CVPortal.components.cvDocHandler.loadHome();</onclick>
+      <text className="nav2ButtonText">ctrl.form765</text>
+    </control>
+    -->
+    <!--/ LAM:2022-01-28-->
+
+    <!--LAM:2021-10-13
+    <control id="CVCtrl_hideEmergencyProcedures" type="icon" label="true">
+      <disabled className="close_mergencyProcedures_disabled"/>      
+      <enabled className="close_left_panel_active" default="1"/>  
+      <highlight className="close_left_panel_active"/>
+      <onclick>CVPortal.components["cvEmergencyProcedures"].hideEmergencyProceduresPanel();</onclick>
+      <text className="leftPanelCloseBtn">text.close</text>
+    </control>
+    -->
+    <!--/LAM:2021-10-13-->
+    <control id="CVCtrl_history" type="icon" label="true">
+      <disabled className="toolbar_button_disabledM  tbar_history_off toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_history toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_history toolbar_left"/>
+      <onclick>CVPortal.components["cvHistory"].toggleHistoryPanel();</onclick>
+      <text className="nav2ButtonText">ctrl.history</text>
+    </control>
+    <control id="CVCtrl_hideHistory" type="icon" label="true">
+      <disabled className="close_history_disabled"/>      
+      <enabled className="close_left_panel_active" default="1"/>  
+      <highlight className="close_left_panel_active"/>
+      <onclick>CVPortal.components["cvHistory"].hideHistoryPanel();</onclick>
+      <text className="leftPanelCloseBtn">text.close</text>
+    </control>
+    <control id="CVCtrl_refresh" type="icon">
+      <disabled className="dark tbar_refresh_off"/>      
+      <enabled className="iconized tbar_refresh" default="1"/>  
+      <highlight className="highlightIcon tbar_refresh_highlight"/>
+      <text>ctrl.refresh</text>
+    </control>
+    <control id="CVCtrl_print" type="icon" child="true">
+      <disabled  className="toolbar_button_disabled tbar_print_off dark" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>            
+      <enabled   className="toolbar_button tbar_print iconized">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_print highlightIcon"/>
+      <hidden>
+        <condition name="hasLargeTable" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hasLargeTable" status="false"/>
+      </shown>
+      <access>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <onclick>CVPortal.components.cvDocHandler.showMenu("prtMenu");</onclick>
+      <text>ctrl.print</text>
+    </control>
+    <control id="CVCtrl_printTable" type="icon" child="true">
+      <disabled  className="toolbar_button_disabled tbar_print_off dark" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>            
+      <enabled   className="toolbar_button tbar_print iconized">
+        <condition name="hasDocument" status="true"/>
+      </enabled>        
+      <highlight className="toolbar_button tbar_print highlightIcon"/>
+      <hidden>
+        <condition name="hasLargeTable" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="hasLargeTable" status="true"/>
+      </shown>
+      <access>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <onclick>CVPortal.components.cvPrinter.showPrintDialog();</onclick>
+      <text>ctrl.print</text>
+    </control>
+    <control id="CV_flipPanels" type="icon" child="true">      
+      <disabled  className="toolbar_button_disabled tbar_rotate_off dark" default="1">
+        <condition name="showingGraphic" status="false"/>
+        <condition name="showingDocPanel" status="false"/>
+      </disabled>
+      <enabled   className="toolbar_button tbar_rotate iconized">        
+        <condition name="showingGraphic" status="true"/>
+        <condition name="showingDocPanel" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_rotate highlightIcon"/>
+      <onclick>CVPortal.panelFactory().flipPanels();</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text>ctrl.flipPanels</text>    
+    </control>            
+    <control id="CVCtrl_admin" type="icon">
+      <disabled className="dark tbar_admin_off"/>      
+      <enabled className="iconized tbar_admin" default="1"/>  
+      <highlight className="highlightIcon tbar_admin_highlight"/>
+      <text>ctrl.admin</text>
+    </control>
+    <control id="CVCtrl_config" type="icon">
+      <disabled className="dark tbar_config_off"/>      
+      <enabled className="iconized tbar_config" default="1"/>  
+      <highlight className="highlightIcon tbar_config_highlight"/>
+      <text>ctrl.config</text>
+    </control>
+    <control id="CVCtrl_exit" type="icon">
+      <disabled className="dark tbar_sign_out"/>      
+      <enabled className="iconized tbar_sign_out" default="1"/>  
+      <highlight className="highlightIcon tbar_sign_out"/>
+      <text>ctrl.exit</text>
+    </control>
+    <control id="CVCtrl_help" type="icon" child="true">
+      <disabled className="tbar_help dark"/>      
+      <enabled className="tbar_help iconized" default="1"/>  
+      <highlight className="tbar_help highlightIcon"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();</onclick>
+      <access>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text>ctrl.info</text>
+    </control>
+    <control id="CVCtrl_helpM" type="icon" child="true">
+      <disabled className="tbar_help dark"/>      
+      <enabled className="tbar_help iconized" default="1"/>  
+      <highlight className="tbar_help highlightIcon"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("setupMenu");CVPortal.helpFactory().showUserGuide();</onclick>
+      <access>
+        <device>TABLET</device>
+      </access>
+      <text>ctrl.info</text>
+    </control>
+    <control id="CVCtrl_tools" type="icon">
+      <disabled className="dark tbar_tools_off"/>      
+      <enabled className="iconized tbar_tools" default="1"/>  
+      <highlight className="highlightIcon tbar_tools_highlight"/>
+      <text>ctrl.tools</text>
+    </control>
+    <control id="CVCtrl_save" type="icon">
+      <disabled className="dark tbar_save_off"/>      
+      <enabled className="iconized tbar_save" default="1"/>  
+      <highlight className="highlightIcon tbar_save_highlight"/>
+      <text>ctrl.save</text>
+    </control>
+    <control id="CVCtrl_show" type="icon">
+      <disabled className="dark tbar_show_off"/>      
+      <enabled className="iconized tbar_show"/>  
+      <highlight className="highlightIcon tbar_show_highlight"/>
+      <text>ctrl.show</text>
+    </control>
+    <tabset id="navigationTabs" class="tabListLeft">
+      <control id="CVTab_toc" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.toc</text>
+      </control>
+      <control id="CVTab_act" type="tab" alwaysHide="0">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.act</text>
+      </control>
+      <control id="CVTab_fig" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.figs</text>
+      </control>
+      <control id="CVTab_tbl" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.tables</text>
+      </control>
+      <control id="CVTab_search" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.search</text>
+      </control>
+    </tabset>
+
+    <tabset id="documentTabs" class="tabListRight">
+      <control id="CVTab_refmat" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.refMat</text>
+      </control>
+      <control id="CVTab_matreq" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.matReq</text>
+      </control>
+      <control id="CVTab_supteq" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.supportEq</text>
+      </control>
+      <control id="CVTab_task" type="tab">
+        <disabled className="darkTab"/>      
+        <enabled className="readyTab"/>  
+        <highlight className="highlightTab"/>
+        <text>tabs.main</text>
+      </control>
+    </tabset>
+    <control id="CVCtrl_modalClose" type="button">
+      <disabled className="modalClose"/>      
+      <enabled className="modalClose"/>  
+      <highlight className="modalClose"/>
+      <text>ctrl.modal.close</text>
+    </control>
+    
+    <control id="CVCtrl_secondModalClose" type="button">
+      <disabled className="modalClose"/>      
+      <enabled className="modalClose"/>  
+      <highlight className="modalClose"/>
+      <text>ctrl.modal.close</text>
+    </control>
+    <control id="CVCtrl_start" type="icon">
+      <disabled className="searchButton"/>      
+      <enabled className="searchButton" default="1"/>  
+      <highlight className="searchButton"/>
+      <onclick>CVPortal.components["cvSearch"].startSearch();</onclick>
+      <text>ctrl.search.start</text>
+    </control>
+    <control id="CVCtrl_stopSearch" type="icon">
+      <!--disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/-->
+      <onclick>CVPortal.components["cvSearch"].stopSearch();</onclick>
+      <text>ctrl.search.stop</text>
+    </control>    
+    <control id="CVCtrl_clear" type="icon" label="true">
+      <disabled className="searchClearButtonDisabled searchButtonDisabled">
+        <condition name="hasSearchResults" status="false"/>
+      </disabled>      
+      <enabled className="searchClearButtonEnabled searchButtonEnabled" default="1">
+        <condition name="hasSearchResults" status="true"/>
+      </enabled>  
+      <highlight className="searchClearButtonHighlight searchButtonEnabled"/>
+      <onclick>CVPortal.components["cvSearch"].clearSearch();</onclick>
+      <text className="searchButtonText">ctrl.search.clear</text>
+    </control>    
+    <control id="CVCtrl_hideSearch" type="icon" label="true">
+      <disabled className="searchHideButtonDisabled searchButtonDisabled"/>      
+      <enabled className="searchHideButtonEnabled searchButtonEnabled" default="1"/>  
+      <highlight className="searchHideButtonHighlight searchButtonEnabled"/>
+      <onclick>CVPortal.components.cvSearch.hideSearch();</onclick>
+      <text className="searchButtonText">ctrl.search.hide</text>
+    </control>    
+    <control id="CVCtrl_highlightSearch" type="icon" label="true">
+      <disabled className="searchHighlightButtonDisabled searchButtonDisabled"/>
+      <enabled className="searchHighlightButtonEnabled searchButtonEnabled" default="2"/>  
+      <highlight className="searchHighlightButtonHighlight searchButtonEnabled"/>
+      <visible>
+        <condition name="searchResultActive" status="true"/>
+      </visible>
+      <invisible default="1">
+        <condition name="searchResultActive" status="false"/>
+      </invisible>
+      <onclick>CVPortal.components.cvDocHandler.highlightSelectOnClick();</onclick>
+      <text className="searchButtonText">ctrl.search.highlight</text>
+    </control>    
+    <control id="CVCtrl_toggleTOCSearch" type="icon" label="true">
+      <disabled className="searchToggleTOCButtonDisabled searchButtonDisabled"/>      
+      <enabled className="searchToggleTOCButtonEnabled searchButtonEnabled" default="1">  
+        <condition name="showingSearchTOC" status="false"/>
+        <condition name="showingSearchText" status="true"/>
+        <condition name="showingSearchCat" status="true"/>
+        <condition name="showingSearchResults" status="true"/>
+      </enabled>  
+      <highlight className="searchToggleTOCButtonHighlight searchButtonEnabled selectedSearchButton">
+        <condition name="showingSearchTOC" status="true"/>
+      </highlight>
+      <onclick>CVPortal.components.cvSearch.toggleSearch("TOC");</onclick>
+      <text className="searchButtonText">ctrl.search.toc</text>
+    </control>    
+    <control id="CVCtrl_toggleFTSearch" type="icon" label="true">
+      <disabled className="searchToggleFTButtonDisabled searchButtonDisabled"/>      
+      <enabled className="searchToggleFTButtonEnabled searchButtonEnabled" default="1">  
+        <condition name="showingSearchTOC" status="true"/>
+        <condition name="showingSearchText" status="false"/>
+        <condition name="showingSearchCat" status="true"/>
+        <condition name="showingSearchResults" status="true"/>
+      </enabled>  
+      <highlight className="searchToggleFTButtonHighlight searchButtonEnabled selectedSearchButton">
+        <condition name="showingSearchText" status="true"/>
+      </highlight>
+      <onclick>CVPortal.components.cvSearch.toggleSearch("TEXT");</onclick>
+      <text className="searchButtonText">ctrl.search.text</text>
+    </control>    
+    <control id="CVCtrl_toggleCatSearch" type="icon" label="true">
+      <disabled className="searchToggleCatButtonDisabled searchButtonDisabled"/>      
+      <enabled className="searchToggleCatButtonEnabled searchButtonEnabled" default="1">  
+        <condition name="showingSearchTOC" status="true"/>
+        <condition name="showingSearchText" status="true"/>
+        <condition name="showingSearchCat" status="false"/>
+        <condition name="showingSearchResults" status="true"/>
+      </enabled>  
+      <highlight className="searchToggleCatButtonHighlight searchButtonEnabled selectedSearchButton">
+        <condition name="showingSearchCat" status="true"/>
+      </highlight>
+      <onclick>CVPortal.components.cvSearch.toggleSearch("CATEGORY");</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device>
+      </access>
+      <text className="searchButtonText">ctrl.search.categorical</text>
+    </control>    
+    <control id="CVCtrl_toggleResultsSearch" type="icon" label="true">
+      <disabled className="searchToggleResultsButtonDisabled searchButtonDisabled">
+        <condition name="hasSearchResults" status="false"/>
+      </disabled>      
+      <enabled className="searchToggleResultsButtonEnabled searchButtonEnabled" default="1">  
+        <condition name="showingSearchTOC" status="true"/>
+        <condition name="showingSearchText" status="true"/>
+        <condition name="showingSearchCat" status="true"/>
+        <condition name="hasSearchResults" status="true"/>
+      </enabled>  
+      <highlight className="searchToggleResultsButtonHighlight searchButtonEnabled selectedSearchButton">
+        <condition name="showingSearchResults" status="true"/>
+      </highlight>
+      <onclick>CVPortal.components.cvSearch.toggleSearch("RESULTS");</onclick>
+      <text className="searchButtonText">ctrl.search.results</text>
+    </control>    
+    <control id="CVCtrl_hideMedia" type="icon">
+      <disabled className="toolbar_button_disabled tbar_split_off toolbar_right" default="1">      
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button tbar_split toolbar_right">  
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_split toolbar_right"/>
+      <onclick>CVPortal.components['cvMedia'].explicitToggleMediaPanel();</onclick>
+      <text>ctrl.hideMedia</text>
+    </control>
+    <control id="CVCtrl_find" type="icon">
+      <disabled className="buttonSmallDisabled"/>      
+      <enabled className="buttonSmallEnabled"/>  
+      <highlight className="buttonSmallHighlight"/>
+      <text>ctrl.find</text>
+    </control>    
+    <control id="CV_dmBack" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_dm_back_off toolbar_left" default="1">
+        <condition name="hasPrevDM" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_dm_back toolbar_left">
+        <condition name="hasPrevDM" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_dm_back toolbar_left"/>
+      <onclick>CVPortal.components.cvHistory.backInHistory();</onclick>
+      <text className="nav2ButtonText">ctrl.back</text>
+    </control>
+    <control id="CV_prevStep" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_prev_step_off toolbar_left" default="1">
+        <condition name="firstStep" status="true"/>
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_prev_step toolbar_left">
+        <condition name="firstStep" status="false"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_prev_step toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.prevProcedStep();</onclick>
+      <text className="nav2ButtonText">ctrl.prev</text>
+    </control>
+    <control id="CV_bookmark" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_bookmarks_off toolbar_left"></disabled>
+      <enabled className="toolbar_buttonM tbar_bookmarks toolbar_left" default="1"></enabled>
+      <highlight className="toolbar_buttonM tbar_bookmarks toolbar_left"/>
+      <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('bookmarks');</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device>
+      </access>
+      <text className="nav2ButtonText">ctrl.bookmarks</text>
+    </control>
+    <control id="CV_suspend" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_suspend toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_suspend toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_suspend toolbar_left"/>
+      <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('suspend');</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device>
+      </access>
+      <text className="nav2ButtonText">ctrl.suspend</text>
+    </control>
+    <control id="CV_revisions" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_revisions_off toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_revisions toolbar_left"/>
+      <highlight className="toolbar_buttonM tbar_revisions toolbar_left"/>
+      <text>ctrl.revisions</text>
+    </control>
+    <control id="CV_prelReq" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_prelReq_off toolbar_left" default="1">
+        <condition name="hasPrelReqs" status="false" />
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_prelReq toolbar_left">
+        <condition name="hasPrelReqs" status="true" />
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_prelReq toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.openTabletDocumentInfo();</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device>
+      </access>
+      <text className="nav2ButtonText">ctrl.prelReq</text>
+    </control>
+    <control id="CV_notes" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_notes_off toolbar_left"></disabled>
+      <enabled className="toolbar_buttonM tbar_notes toolbar_left" default="1"></enabled>
+      <highlight className="toolbar_buttonM tbar_notes toolbar_left"/>
+      <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('notes');</onclick>
+      <text className="nav2ButtonText">ctrl.notes</text>
+    </control>
+    <control id="CV_attachments" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_notes_off toolbar_left"></disabled>
+      <enabled className="toolbar_buttonM tbar_attachment toolbar_left" default="1"></enabled>
+      <highlight className="toolbar_buttonM tbar_attachment toolbar_left"/>
+      <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('attachments');</onclick>
+      <access>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">ctrl.attachments</text>
+    </control>
+
+    <control id="CV_bufr765forms" type="icon" label="true" child="true"><!--LAM:2022-02-16-->
+      <disabled className="toolbar_button_disabledM tbar_notes_off toolbar_left"></disabled>
+      <enabled className="toolbar_buttonM tbar_burf765 toolbar_left" default="1"></enabled>
+      <highlight className="toolbar_buttonM tbar_burf765 toolbar_left"/>
+      <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('bufr765forms');</onclick>
+      <access><device>ALL</device></access>
+      <text className="nav2ButtonText">ctrl.bufr765forms</text>
+    </control>
+
+    <control id="CV_applic" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_applic toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_applic toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_applic toolbar_left"/>
+      <onclick>CVPortal.components['cvApplicHandler'].showApplic();</onclick>
+      <text className="nav2ButtonText">ctrl.config</text>
+    </control>
+    <control id="CV_nextStep" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_next_step_off toolbar_right" default="1">
+        <condition name="lastStep" status="true"/>
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_next_step toolbar_right">
+        <condition name="lastStep" status="false"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_next_step toolbar_right"/>
+      <onclick>CVPortal.components.cvDocHandler.nextProcedStep();</onclick>
+      <text className="nav2ButtonText">ctrl.next</text>
+    </control>
+    <control id="CV_dmForward" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_dm_forward_off toolbar_right" default="1">
+        <condition name="hasNextDM" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_dm_forward toolbar_right">
+        <condition name="hasNextDM" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_dm_forward toolbar_right"/>
+      <onclick>CVPortal.components.cvHistory.forwardInHistory();</onclick>
+      <text className="nav2ButtonText">ctrl.fwd</text>
+    </control>
+    <control id="CV_position" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_position toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_position toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_position toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleSettingsMenu();CVPortal.components["cvUserPrefs"].saveWindowPosition();</onclick>
+      <access>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">ctrl.position</text>
+    </control>
+    <control id="CV_changes" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_changes_off toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_changes toolbar_left" default="1">
+        <condition name="disableHighlights" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_changes_off toolbar_left">
+        <condition name="disableHighlights" status="false"/>
+      </highlight>
+      <onclick>CVPortal.components["cvUserPrefs"].toggleDisplayHighlights();</onclick>
+      <text>ctrl.changes</text>
+    </control>
+    <control id="CV_users" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_users toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_users toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_users toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleSettingsMenu();CVPortal.components["cvResourceManager"].showManagerDialog("resourceType_user");</onclick>
+      <access>
+        <groupname>ADMINISTRATOR</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">ctrl.users</text>
+    </control>
+    <control id="CV_signOut" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_sign_out toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_sign_out toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_sign_out toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleSettingsMenu();CVPortal.closePublication();</onclick>
+      <text className="nav2ButtonText">ctrl.exit</text>
+    </control>
+    <control id="CV_reports" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_reports toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_reports toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_reports toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleRptMenu();</onclick>
+      <text className="nav2ButtonText">ctrl.reports</text>
+    </control>
+    <control id="CV_markup" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_markup toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_markup toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_markup toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleAuxMenu();</onclick>
+      <access>
+        <groupname>ALL</groupname>
+      </access>
+      <text className="nav2ButtonText">ctrl.markup</text>
+    </control>
+    <control id="CV_releaseNotes" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_releaseNotes toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_releaseNotes toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_releaseNotes toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.helpFactory().showNamedHelp('releasenotes');</onclick>
+      <access>
+        <groupname>ADMINISTRATOR</groupname>
+      </access>
+      <text className="nav2ButtonText">ctrl.releaseNotes</text>
+    </control>
+    <control id="CV_userGuide" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_userGuide toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_userGuide toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_userGuide toolbar_left"/>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device>
+      </access>
+      <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.helpFactory().showUserGuide();</onclick>
+      <text className="nav2ButtonText">ctrl.userGuide</text>
+    </control>
+    <control id="CV_about" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_about toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_about toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_about toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.helpFactory().showNamedHelp("about");</onclick>
+      <text className="nav2ButtonText">ctrl.about</text>
+    </control>
+    <control id="CV_showFO" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_showFO_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_showFO toolbar_left">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_showFO toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("auxMenu");CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.cvDebugger().showSource("xslfo");</onclick>
+      <access>
+        <groupname>ADMINISTRATOR</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">menu.showXSLFO</text>
+    </control>
+    <control id="CV_showHTML" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_showHTML_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_showHTML toolbar_left">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_showHTML toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("auxMenu");CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.cvDebugger().showSource("html");</onclick>
+      <access>
+        <groupname>ADMINISTRATOR</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">menu.showHTML</text>
+    </control>
+    <control id="CV_showXML" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_showXML_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_showXML toolbar_left">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_showXML toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("auxMenu");CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.cvDebugger().showSource("xml");</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">menu.showXML</text>
+    </control>
+    <control id="CV_debug" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_debug toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_debug toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_debug toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("auxMenu");CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.cvDebugger().openDebugWindow();</onclick>
+      <access>
+        <groupname>ALL</groupname>
+        <device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+      </access>
+      <text className="nav2ButtonText">menu.debugWindow</text>
+    </control>
+    <control id="CV_revisionHighlight" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_revisionHighlight toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_revisionHighlight toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_revisionHighlight toolbar_left"/>
+      <onclick>CVPortal.components["cvReports"].showRevision();</onclick>
+      <text className="nav2ButtonText">menu.revisionHighlights</text>
+    </control>
+    <control id="CV_currentRef" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_currentRef_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_currentRef toolbar_left">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_currentRef toolbar_left"/>
+      <onclick>CVPortal.components.cvReports.showInvalidRefs("current");</onclick>
+      <text className="nav2ButtonText">menu.currentInvalidRefs</text>
+    </control>
+    <control id="CV_invalidRef" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_invalidRef_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_invalidRef toolbar_left">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_invalidRef toolbar_left"/>
+      <onclick>CVPortal.components.cvReports.showInvalidRefs();</onclick>
+      <text className="nav2ButtonText">menu.invalidRefs</text>
+    </control>
+    <control id="CV_missingImage" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_missingImage_off toolbar_left" default="1">
+        <condition name="hasDocument" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_missingImage toolbar_left" default="1">
+        <condition name="hasDocument" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_missingImage toolbar_left"/>
+      <onclick>CVPortal.components.cvReports.showInvalidImages();</onclick>
+      <text className="nav2ButtonText">menu.invalidImgs</text>
+    </control>
+    <control id="CV_auditTrail" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_auditTrail toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_auditTrail toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_auditTrail toolbar_left"/>
+      <onclick>CVPortal.components["cvResourceManager"].showManagerDialog("resourceType_audittrail");</onclick>
+      <text className="nav2ButtonText">menu.auditTrail</text>
+    </control>
+    <control id="CV_printDoc" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_printDoc toolbar_left"/>
+      <enabled className="toolbar_buttonM tbar_printDoc toolbar_left" default="1"/>
+      <highlight className="toolbar_buttonM tbar_printDoc toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("prtMenu");CVPortal.components["cvPrinter"].printDocOnly();</onclick>
+      <text className="nav2ButtonText">menu.printAll</text>
+    </control>
+    <control id="CV_printRefs" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_printRefs_off toolbar_left" default="1">
+        <condition name="hasReferences" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_printRefs toolbar_left">
+        <condition name="hasReferences" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_printRefs toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("prtMenu");CVPortal.components["cvPrinter"].printWithRefDocs();</onclick>
+      <text className="nav2ButtonText">menu.printRefs</text>
+    </control>
+    <control id="CV_printAllFigures" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_printAllFigures_off toolbar_left" default="1">
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_printAllFigures toolbar_left">
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_printAllFigures toolbar_left"/>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("prtMenu");CVPortal.components["cvPrinter"].printFigures();</onclick>
+      <text>menu.printAllFigures</text>
+    </control>
+    <control id="CV_printCurrentFigure" type="icon" label="true" child="true">
+      <disabled className="toolbar_buttonM tbar_printCurrentFigure_off toolbar_left" default="1">
+        <condition name="hasGraphic" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_printCurrentFigure toolbar_left">
+        <condition name="hasGraphic" status="true"/>
+      </enabled>
+      <onclick>CVPortal.components.cvDocHandler.hideMenu("prtMenu");CVPortal.components["cvPrinter"].printCurrFigure();</onclick>
+      <highlight className="toolbar_buttonM tbar_printCurrentFigure toolbar_left"/>
+      <text className="nav2ButtonText">menu.printCurrentFigure</text>
+    </control>
+    <control id="CV_syncToc" type="icon">
+      <disabled className="toolbar_button_disabled tbar_sync_toc_off toolbar_left">
+        <condition name="showTOCPanel" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button tbar_sync_toc toolbar_left" default="1">
+        <condition name="showTOCPanel" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_sync_toc toolbar_left"/>
+      <onclick>CVPortal.components["cvTOC"].synchronizeTOC();</onclick>
+      <text>ctrl.syncToc</text>
+    </control>
+    <control id="tocTabletSync" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabled tbar_sync_toc_off toolbar_left">
+        <condition name="showTOCPanel" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button tbar_sync_toc toolbar_left" default="1">
+        <condition name="showTOCPanel" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_sync_toc toolbar_left"/>
+      <onclick>CVPortal.components["cvTOC"].synchronizeTOC();</onclick>
+      <text>ctrl.syncToc</text>
+    </control>
+    <control id="CV_toggleTocCodes" type="icon">
+      <disabled className="toolbar_button_disabled tbar_toc_codes_off toolbar_left">
+        <condition name="showTOCPanel" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button tbar_toc_codes toolbar_left" default="1">
+        <condition name="showTOCPanel" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button tbar_toc_codes toolbar_left"/>
+      <text>ctrl.toggleCodes</text>
+    </control>
+    <control id="CV_toggleToc" type="icon">
+      <disabled className="toolbar_button_disabled tbar_hide_toc_off toolbar_left"/>
+      <enabled className="toolbar_button tbar_hide_toc toolbar_left" default="1"/>
+      <highlight className="toolbar_button tbar_hide_toc toolbar_left"/>
+      <text>ctrl.hideToc</text>
+    </control>
+    <control id="CVCtrl_OK" type="button">
+    <!--
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+    -->
+      <text>ctrl.ok</text>
+    </control>
+    <control id="CVCtrl_clearApplic" type="button">
+    <!--
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+    -->
+      <text>ctrl.clear</text>
+    </control>
+    <control id="CVCtrl_cancel" type="button">
+    <!--
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+    -->
+      <text>ctrl.cancel</text>
+    </control>
+    <control id="CVCtrl_prevImage" type="icon">
+      <disabled className="toolbar_button_disabled gbar_prev_off toolbar_left" default="1">
+        <condition name="firstGraphics" status="true"/>
+      </disabled>
+      <enabled className="toolbar_button gbar_prev toolbar_left">
+        <condition name="firstGraphics" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button gbar_prev toolbar_left"/>
+      <onclick>CVPortal.components['cvMedia'].selectPrevImage();</onclick>
+      <text>ctrl.image.prev</text>
+    </control>
+    <control id="CVCtrl_nextImage" type="icon">
+      <disabled className="toolbar_button_disabled gbar_next_off toolbar_left" default="1">
+        <condition name="multipleGraphics" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button gbar_next toolbar_left">
+        <condition name="multipleGraphics" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button gbar_next toolbar_left"/>
+      <onclick>CVPortal.components['cvMedia'].selectNextImage();</onclick>
+      <text>ctrl.image.next</text>
+    </control>
+    <control id="CVCtrl_prevRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_prev_off toolbar_left" default="1">
+        <condition name="prevSAPEnable" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_prev toolbar_left">
+        <condition name="prevSAPEnable" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_prev toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayPrevStep();</onclick>
+      <text>ctrl.rhistep.prev</text>
+    </control>
+    <control id="CVCtrl_currRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_play_off toolbar_left" default="1">      
+        <condition name="RHIStepsExist" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_play toolbar_left">  
+        <condition name="RHIStepsExist" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_play toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayCurrStep();</onclick>
+      <text>ctrl.rhistep.curr</text>
+    </control>
+    <control id="CVCtrl_nextRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_next_off toolbar_left" default="1">      
+        <condition name="nextSAPEnable" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_next toolbar_left">  
+        <condition name="nextSAPEnable" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_next toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayNextStep();</onclick>
+      <text>ctrl.rhistep.next</text>
+    </control>
+    <control id="CVCtrl_allRHISteps" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_all_off toolbar_left" default="1">      
+        <condition name="multipleRHISteps" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_all toolbar_left">  
+        <condition name="multipleRHISteps" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_all toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayAllSteps();</onclick>
+      <text>ctrl.rhistep.all</text>
+    </control>
+    <control id="CVCtrl_pauseRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_pause_off toolbar_left" default="1">      
+        <condition name="pauseRHIPossible" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_pause toolbar_left">  
+        <condition name="pauseRHIPossible" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_pause toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+        <condition name="resumeRHIPossible" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+        <condition name="resumeRHIPossible" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPauseStep();</onclick>
+      <text>ctrl.rhistep.pause</text>
+    </control>
+    <control id="CVCtrl_resumeRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_play_off toolbar_left" default="1">      
+        <condition name="pauseRHIPossible" status="true"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_play toolbar_left">  
+        <condition name="pauseRHIPossible" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_play toolbar_left"/>
+      <hidden default="1">
+        <condition name="resumeRHIPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="resumeRHIPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPauseStep();</onclick>
+      <text>ctrl.rhistep.resume</text>
+    </control>
+    <control id="CVCtrl_listRHISteps" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_list_off toolbar_left" default="1">      
+        <condition name="multipleRHISteps" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_list toolbar_left">  
+        <condition name="multipleRHISteps" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_list toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvResourceManager'].rhiDisplayAllSteps();</onclick>
+      <text>ctrl.rhistep.list</text>
+    </control>
+    <control id="CVCtrl_onRHIXray" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+        <condition name="RHIXrayOn" status="true"/>
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_xray toolbar_left">
+        <condition name="RHIXrayOn" status="false"/>
+        <condition name="RHIXrayCancel" status="true"/>
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_xray toolbar_left"/>
+      <hidden default="1">
+        <condition name="RHIXrayPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="RHIXrayPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiOpacityOn();</onclick>
+      <text>ctrl.rhixray.on</text>
+    </control>
+    <control id="CVCtrl_offRHIXray" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+        <condition name="RHIXrayOn" status="false"/>
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_xray toolbar_left">
+        <condition name="RHIXrayOn" status="true"/>
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_xray toolbar_left"/>
+      <hidden default="1">
+        <condition name="RHIXrayPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="RHIXrayPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiOpacityOff();</onclick>
+      <text>ctrl.rhixray.off</text>
+    </control>
+    <control id="CVCtrl_waitRHI" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_wait toolbar_left">
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_wait toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+        <condition name="waitRHIShow" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+        <condition name="waitRHIShow" status="true"/>
+      </shown>
+      <text>ctrl.rhi.wait</text>
+    </control>
+    <control id="CVCtrl_playAnim" type="icon">
+      <disabled imgSrc="playd.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="true"/>
+        <condition name="pauseAnimation" status="false"/>
+        <condition name="rewindAnimation" status="true"/>
+      </disabled>      
+      <enabled imgSrc="play.gif">
+        <condition name="playingAnimation" status="false"/>
+        <condition name="pauseAnimation" status="true"/>
+        <condition name="rewindAnimation" status="false"/>
+      </enabled>  
+      <highlight imgSrc="playm.gif"/>
+      <hidden default="1">
+        <condition name="showAnimation" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showAnimation" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].playAnimation();</onclick>
+      <text>ctrl.image.play</text>
+    </control>
+    <control id="CVCtrl_pauseAnim" type="icon">
+      <disabled imgSrc="paused.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="false"/>
+        <condition name="pauseAnimation" status="true"/>
+        <condition name="rewindAnimation" status="false"/>
+      </disabled>      
+      <enabled imgSrc="pause.gif">
+        <condition name="playingAnimation" status="true"/>
+        <condition name="pauseAnimation" status="false"/>
+        <condition name="rewindAnimation" status="true"/>
+      </enabled>  
+      <highlight imgSrc="pausem.gif"/>
+      <hidden default="1">
+        <condition name="showAnimation" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showAnimation" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].pauseAnimation();</onclick>
+      <text>ctrl.image.pause</text>
+    </control>
+    <control id="CVCtrl_rewindAnim" type="icon">
+      <disabled imgSrc="rewindd.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="false"/>
+        <condition name="pauseAnimation" status="false"/>
+        <condition name="rewindAnimation" status="false"/>
+      </disabled>      
+      <enabled imgSrc="rewind.gif">
+        <condition name="playingAnimation" status="true"/>
+        <condition name="pauseAnimation" status="true"/>
+        <condition name="rewindAnimation" status="true"/>
+      </enabled>      
+      <highlight imgSrc="rewindm.gif"/>      
+      <hidden default="1">
+        <condition name="showAnimation" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showAnimation" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rewindAnimation();</onclick>
+      <text>ctrl.image.rewind</text>
+    </control>
+    <control id="CVCtrl_svgZoomIn" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_zoomIn toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_zoomIn toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_zoomIn toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.zoomIn();</onclick>
+      <text>ctrl.image.svgZoomIn</text>
+    </control>
+    <control id="CVCtrl_svgZoomOut" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_zoomOut toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_zoomOut toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_zoomOut toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.zoomOut();</onclick>
+      <text>ctrl.image.svgZoomOut</text>
+    </control>
+    <control id="CVCtrl_svgPanLeft" type="icon">
+      <disabled className="toolbar_button_disabled svgPanButton svgControl svg_panLeft toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panLeft toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panLeft toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("left");</onclick>
+      <text>ctrl.image.svgPanLeft</text>
+    </control>
+    <control id="CVCtrl_svgPanRight" type="icon">
+      <disabled className="toolbar_button_disabled svgPanButton svgControl svg_panRight toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panRight toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panRight toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("right");</onclick>
+      <text>ctrl.image.svgPanRight</text>
+    </control>
+    <control id="CVCtrl_svgPanUp" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgPanButton svg_panUp toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panUp toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panUp toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("up");</onclick>
+      <text>ctrl.image.svgPanUp</text>
+    </control>
+    <control id="CVCtrl_svgPanDown" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgPanButton svg_panDown toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panDown toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panDown toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("down");</onclick>
+      <text>ctrl.image.svgPanDown</text>
+    </control>
+    <control id="CVCtrl_svgReset" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_Reset toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_Reset toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_Reset toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.reset();</onclick>
+      <text>ctrl.image.svgReset</text>
+    </control>
+    <control id="CVCtrl_svgHighlightAllHotspots" type="icon">
+      <enabled className="toolbar_button svgControl svgHighlightAllHotspots toolbar_left" default="1">
+        <condition name="svgHotspots" status="true"/>
+      </enabled>
+      <disabled className="toolbar_button_disabled svgControl svgHighlightAllHotspots toolbar_left" >
+        <condition name="svgHotspots" status="false"/>
+      </disabled>
+      <highlight className="toolbar_button svgControl svgHighlightAllHotspots toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="svgRedliningActive" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+        <condition name="svgRedliningActive" status="false"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.highlightAllHotspotSVG();</onclick>
+      <text>ctrl.image.showAllHotspots</text>
+    </control>
+
+
+
+    <control id="CVCtrl_svgRedliningPencil" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningPencil toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningPencil toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningPencil toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('pencil');</onclick>
+      <text>ctrl.image.svgRedliningPencil</text>
+    </control>
+    <control id="CVCtrl_svgRedliningCircle" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningCircle toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningCircle toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningCircle toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('circle');</onclick>
+      <text>ctrl.image.svgRedliningCircle</text>
+    </control>
+    <control id="CVCtrl_svgRedliningRectangle" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningRectangle toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningRectangle toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningRectangle toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('rect');</onclick>
+      <text>ctrl.image.svgRedliningRectangle</text>
+    </control>
+    <control id="CVCtrl_svgRedliningLine" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningLine toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningLine toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningLine toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('line');</onclick>
+      <text>ctrl.image.svgRedliningLine</text>
+    </control>
+    <control id="CVCtrl_svgRedliningAnnotation" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningAnnotation toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningAnnotation toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningAnnotation toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgAnnotation();</onclick>
+      <text>ctrl.image.svgRedliningAnnotation</text>
+    </control>
+    <control id="CVCtrl_svgRedliningErase" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningErase toolbar_left">
+        <condition name="disabledRedliningErase" status="true"/>
+      </disabled>
+      <enabled className="toolbar_button svgControl svgRedliningErase toolbar_left" default="1">
+        <condition name="disabledRedliningErase" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button svgControl svgRedliningErase toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgErase();</onclick>
+      <text>ctrl.image.svgDeleteRedliningAnnotation</text>
+    </control>
+    <control id="CVCtrl_svgRedliningDownload" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningDownload toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningDownload toolbar_left"  default="1"/>
+      <highlight className="toolbar_button svgControl svgRedliningDownload toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgExport();</onclick>
+      <text>ctrl.image.svgExportRedlining</text>
+    </control>
+    <control id="CVCtrl_svgRedlining" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedlining toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedlining toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedlining toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgRedliningIconsDisplay();</onclick>
+      <text>ctrl.image.svgRedlining</text>
+    </control>
+
+
+    <control id="CVCtrl_tearOff" type="icon">
+      <disabled className="toolbar_button_disabled tbar_tearoff_off toolbar_right" default="2">
+        <condition name="hasGraphic" status="false"/>
+      </disabled>      
+      <enabled className="toolbar_button tbar_tearoff toolbar_right">
+        <condition name="hasGraphic" status="true"/>
+      </enabled>  
+      <highlight className="toolbar_button tbar_tearoff toolbar_right"/>
+      <hidden default="1">
+        <condition name="hideTearOff" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hideTearOff" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].tearOffGraphic();</onclick>
+      <text>ctrl.image.tearOff</text>
+    </control>    
+    <control id="CVCtrl_gotoAnnot" type="icon">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.rm.goto</text>
+    </control>
+    <control id="CVCtrl_editAnnot" type="icon">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.rm.edit</text>
+    </control>
+    <control id="CVCtrl_deleteAnnot" type="icon">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.rm.deleter</text>
+    </control>
+    <control id="CVCtrl_deleteAllAnnot" type="icon">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.rm.deleteAll</text>
+    </control>
+    <control id="CVCtrl_exitAnnot" type="icon">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.rm.exit</text>
+    </control>
+    <control id="CVCtrl_selectType">
+      <disabled className=""/>
+    </control>
+    
+    <control id="CVCtrl_DocInfo" type="icon">
+      <disabled className="doc-tabs-icon-disable"/>      
+      <enabled className="doc-tabs-icon-open"/>  
+      <highlight className="doc-tabs-icon-close"/>
+      <text>ctrl.docinfo</text>
+    </control>
+    
+    <!-- step buttons -->
+    <control id="CVCtrl_nextStep" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabled tbar_next_proced_off toolbar_right" default="1"/>      
+      <enabled className="toolbar_button tbar_next_proced toolbar_right"/>  
+      <highlight className="toolbar_button tbar_next_proced toolbar_right"/>
+      <text className="nav2ButtonText">ctrl.step.next</text>
+    </control>
+    <control id="CVCtrl_prevStep" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabled tbar_prev_proced_off toolbar_right" default="1"/>      
+      <enabled className="toolbar_button tbar_prev_proced toolbar_right"/>  
+      <highlight className="toolbar_button tbar_prev_proced toolbar_right"/>
+      <text className="nav2ButtonText">ctrl.step.prev</text>
+    </control>
+    <control id="CVCtrl_PrevPDM" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_prev_pdm_off toolbar_right">      
+        <condition name="pdmEnablePrev" status="false"/>
+        <condition name="hasDocument" status="false"/>
+        <condition name="processDM" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_prev_pdm toolbar_right">  
+        <condition name="pdmEnablePrev" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_prev_pdm toolbar_right"/>
+      <onclick>CVPortal.rootThread.reverseThread();</onclick>
+      <text className="nav2ButtonText">ctrl.troubleshooting.prev</text>
+    </control>
+    <control id="CVCtrl_NextPDM" type="icon" label="true" child="true">
+      <disabled className="toolbar_button_disabledM tbar_next_pdm_off toolbar_right">
+        <condition name="pdmEnableNext" status="false"/>
+        <condition name="hasDocument" status="false"/>
+        <condition name="processDM" status="false"/>
+      </disabled>
+      <enabled className="toolbar_buttonM tbar_next_pdm toolbar_right">  
+        <condition name="pdmEnableNext" status="true"/>
+      </enabled>
+      <highlight className="toolbar_buttonM tbar_next_pdm toolbar_right"/>
+      <onclick>submitProcessDM()</onclick>
+      <text className="nav2ButtonText">ctrl.troubleshooting.next</text>
+    </control>
+    
+  
+  </set>
+  <set id="booklist">
+    <control id="CVCtrl_modalClose" type="button" alwaysHide="1"> 
+      <disabled imgSrc="modalClosed.gif" className="modalClose"/>      
+      <enabled imgSrc="modalClose.gif" className="modalClose" default="2"/>  
+      <highlight imgSrc="modalClosem.gif" className="modalClose"/>
+      <hidden default="1"/>
+      <text>ctrl.modal.close</text>
+    </control>
+    <control id="CVCtrl_secondModalClose" type="button">
+      <disabled imgSrc="modalClosed.gif" className="modalClose"/>      
+      <enabled imgSrc="modalClose.gif" className="modalClose" default="1"/>  
+      <highlight imgSrc="modalClosem.gif" className="modalClose"/>
+      <text>ctrl.modal.close</text>
+    </control>
+    <control id="CVCtrl_Install" type="button">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.install</text>
+    </control>
+    <control id="CVCtrl_cancel" type="button">
+      <disabled className="buttonDisabled"/>      
+      <enabled className="buttonEnabled"/>  
+      <highlight className="buttonHighlight"/>
+      <text>ctrl.cancel</text>
+    </control>
+    <control id="CVCtrl_login" type="button">
+      <disabled imgSrc="login.gif"/>      
+      <enabled imgSrc="login.gif" />  
+      <highlight imgSrc="loginm.gif" />
+    </control>
+    <!--
+    <control id="CVCtrl_help" type="button">
+      <disabled imgSrc="helpbtn.gif" />      
+      <enabled imgSrc="helpbtn.gif" />  
+      <highlight imgSrc="helpbtnm.gif" />
+    </control>
+    -->
+
+  </set>
+  <set id="tearOff">
+    <control id="CVCtrl_prevImage" type="icon">
+      <disabled className="toolbar_button_disabled gbar_prev_off toolbar_left" default="1">
+        <condition name="firstGraphics" status="true"/>
+      </disabled>
+      <enabled className="toolbar_button gbar_prev toolbar_left">
+        <condition name="firstGraphics" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button gbar_prev toolbar_left"/>
+      <hidden>
+        <condition name="showSAPGraphic" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPGraphic" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].selectPrevImage();</onclick>
+      <text>ctrl.image.prev</text>
+    </control>
+    <control id="CVCtrl_nextImage" type="icon">
+      <disabled className="toolbar_button_disabled gbar_next_off toolbar_left" default="1">
+        <condition name="multipleGraphics" status="false"/>
+      </disabled>
+      <enabled className="toolbar_button gbar_next toolbar_left">
+        <condition name="multipleGraphics" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button gbar_next toolbar_left"/>
+      <hidden>
+        <condition name="showSAPGraphic" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPGraphic" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].selectNextImage();</onclick>
+      <text>ctrl.image.next</text>
+    </control>
+    <control id="CVCtrl_playAnim" type="icon">
+      <disabled imgSrc="playd.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="false"/>
+      </disabled>      
+      <enabled imgSrc="play.gif">
+        <condition name="playingAnimation" status="true"/>
+      </enabled>  
+      <highlight imgSrc="playm.gif"/>
+      <hidden default="1">
+        <condition name="hidePlayAnimation" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hidePlayAnimation" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].playAnimation();</onclick>
+      <text>ctrl.image.play</text>
+    </control>
+    <control id="CVCtrl_pauseAnim" type="icon">
+      <disabled imgSrc="paused.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="true"/>
+      </disabled>      
+      <enabled imgSrc="pause.gif">
+        <condition name="playingAnimation" status="false"/>
+      </enabled>  
+      <highlight imgSrc="pausem.gif"/>
+      <hidden default="1">
+        <condition name="hidePlayAnimation" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hidePlayAnimation" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].pauseAnimation();</onclick>
+      <text>ctrl.image.pause</text>
+    </control>
+    <control id="CVCtrl_rewindAnim" type="icon">
+      <disabled imgSrc="rewindd.gif" className="simpleFloat" default="2">
+        <condition name="playingAnimation" status="true"/>
+      </disabled>      
+      <enabled imgSrc="rewind.gif">
+        <condition name="playingAnimation" status="false"/>
+      </enabled>      
+      <highlight imgSrc="rewindm.gif"/>      
+      <hidden default="1">
+        <condition name="hidePlayAnimation" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hidePlayAnimation" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rewindAnimation();</onclick>
+      <text>ctrl.image.rewind</text>
+    </control>
+    <control id="CVCtrl_svgZoomIn" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_zoomIn toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_zoomIn toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_zoomIn toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.zoomIn();</onclick>
+      <text>ctrl.image.svgZoomIn</text>
+    </control>
+    <control id="CVCtrl_svgZoomOut" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_zoomOut toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_zoomOut toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_zoomOut toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.zoomOut();</onclick>
+      <text>ctrl.image.svgZoomOut</text>
+    </control>
+    <control id="CVCtrl_svgPanLeft" type="icon">
+      <disabled className="toolbar_button_disabled svgPanButton svgControl svg_panLeft toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panLeft toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panLeft toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("left");</onclick>
+      <text>ctrl.image.svgPanLeft</text>
+    </control>
+    <control id="CVCtrl_svgPanRight" type="icon">
+      <disabled className="toolbar_button_disabled svgPanButton svgControl svg_panRight toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panRight toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panRight toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("right");</onclick>
+      <text>ctrl.image.svgPanRight</text>
+    </control>
+    <control id="CVCtrl_svgPanUp" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgPanButton svg_panUp toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panUp toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panUp toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("up");</onclick>
+      <text>ctrl.image.svgPanUp</text>
+    </control>
+    <control id="CVCtrl_svgPanDown" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgPanButton svg_panDown toolbar_left" />
+      <enabled className="toolbar_button svgControl svgPanButton svg_panDown toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgPanButton svg_panDown toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.panSVG("down");</onclick>
+      <text>ctrl.image.svgPanDown</text>
+    </control>
+    <control id="CVCtrl_svgReset" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svg_Reset toolbar_left" />
+      <enabled className="toolbar_button svgControl svg_Reset toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svg_Reset toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgLibrary.reset();</onclick>
+      <text>ctrl.image.svgReset</text>
+    </control>
+    <control id="CVCtrl_svgHighlightAllHotspots" type="icon">
+      <enabled className="toolbar_button svgControl svgHighlightAllHotspots toolbar_left" default="1">
+        <condition name="svgHotspots" status="true"/>
+      </enabled>
+      <disabled className="toolbar_button_disabled svgControl svgHighlightAllHotspots toolbar_left" >
+        <condition name="svgHotspots" status="false"/>
+      </disabled>
+      <highlight className="toolbar_button svgControl svgHighlightAllHotspots toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.highlightAllHotspotSVG();</onclick>
+      <text>ctrl.image.showAllHotspots</text>
+    </control>
+    <control id="CVCtrl_svgRedliningPencil" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningPencil toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningPencil toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningPencil toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('pencil');</onclick>
+      <text>ctrl.image.svgRedliningPencil</text>
+    </control>
+    <control id="CVCtrl_svgRedliningCircle" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningCircle toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningCircle toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningCircle toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('circle');</onclick>
+      <text>ctrl.image.svgRedliningCircle</text>
+    </control>
+    <control id="CVCtrl_svgRedliningRectangle" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningRectangle toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningRectangle toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningRectangle toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('rect');</onclick>
+      <text>ctrl.image.svgRedliningRectangle</text>
+    </control>
+    <control id="CVCtrl_svgRedliningLine" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningLine toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningLine toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningLine toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvg('line');</onclick>
+      <text>ctrl.image.svgRedliningLine</text>
+    </control>
+    <control id="CVCtrl_svgRedliningAnnotation" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningAnnotation toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningAnnotation toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedliningAnnotation toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgAnnotation();</onclick>
+      <text>ctrl.image.svgRedliningAnnotation</text>
+    </control>
+    <control id="CVCtrl_svgRedliningErase" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningErase toolbar_left">
+        <condition name="disabledRedliningErase" status="true"/>
+      </disabled>
+      <enabled className="toolbar_button svgControl svgRedliningErase toolbar_left" default="1">
+        <condition name="disabledRedliningErase" status="false"/>
+      </enabled>
+      <highlight className="toolbar_button svgControl svgRedliningErase toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgErase();</onclick>
+      <text>ctrl.image.svgDeleteRedliningAnnotation</text>
+    </control>
+    <control id="CVCtrl_svgRedliningDownload" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedliningDownload toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedliningDownload toolbar_left"  default="1"/>
+      <highlight className="toolbar_button svgControl svgRedliningDownload toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+        <condition name="displayRedliningIcons" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="displayRedliningIcons" status="true"/>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.redliningSvgExport();</onclick>
+      <text>ctrl.image.svgExportRedlining</text>
+    </control>
+    <control id="CVCtrl_svgRedlining" type="icon">
+      <disabled className="toolbar_button_disabled svgControl svgRedlining toolbar_left" />
+      <enabled className="toolbar_button svgControl svgRedlining toolbar_left" default="1" />
+      <highlight className="toolbar_button svgControl svgRedlining toolbar_left"/>
+      <hidden>
+        <condition name="svgControls" status="false"/>
+        <condition name="hasGraphic" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="svgControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components.cvMedia.svgRedliningIconsDisplay();</onclick>
+      <text>ctrl.image.svgRedlining</text>
+    </control>
+    <control id="CVCtrl_selectType">
+      <disabled className=""/>
+    </control>
+    
+    <control id="CVCtrl_tearOff" type="icon">
+      <disabled className="toolbar_button_disabled tbar_tearoff_off toolbar_right" default="2">
+        <condition name="hasGraphic" status="false"/>
+      </disabled>      
+      <enabled className="toolbar_button tbar_tearoff toolbar_right">
+        <condition name="hasGraphic" status="true"/>
+      </enabled>  
+      <highlight className="toolbar_button tbar_tearoff toolbar_right"/>
+      <hidden default="1">
+        <condition name="hideTearOff" status="true"/>
+      </hidden>
+      <shown>
+        <condition name="hideTearOff" status="false"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].tearOffGraphic();</onclick>
+      <text>ctrl.image.tearOff</text>
+    </control>
+    <control id="CVCtrl_prevRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_prev_off toolbar_left" default="1">
+        <condition name="prevSAPEnable" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_prev toolbar_left">
+        <condition name="prevSAPEnable" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_prev toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayPrevStep();</onclick>
+      <text>ctrl.rhistep.prev</text>
+    </control>
+    <control id="CVCtrl_currRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_play_off toolbar_left" default="1">      
+        <condition name="RHIStepsExist" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_play toolbar_left">  
+        <condition name="RHIStepsExist" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_play toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayCurrStep();</onclick>
+      <text>ctrl.rhistep.curr</text>
+    </control>
+    <control id="CVCtrl_nextRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_next_off toolbar_left" default="1">      
+        <condition name="nextSAPEnable" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_next toolbar_left">  
+        <condition name="nextSAPEnable" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_next toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayNextStep();</onclick>
+      <text>ctrl.rhistep.next</text>
+    </control>
+    <control id="CVCtrl_allRHISteps" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_all_off toolbar_left" default="1">      
+        <condition name="multipleRHISteps" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_all toolbar_left">  
+        <condition name="multipleRHISteps" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_all toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPlayAllSteps();</onclick>
+      <text>ctrl.rhistep.all</text>
+    </control>
+    <control id="CVCtrl_pauseRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_pause_off toolbar_left" default="1">      
+        <condition name="pauseRHIPossible" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_pause toolbar_left">  
+        <condition name="pauseRHIPossible" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_pause toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPauseStep();</onclick>
+      <text>ctrl.rhistep.pause</text>
+    </control>
+    <control id="CVCtrl_resumeRHIStep" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_play_off toolbar_left" default="1">      
+        <condition name="resumeRHIPossible" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_play toolbar_left">  
+        <condition name="resumeRHIPossible" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_play toolbar_left"/>
+      <hidden default="1">
+        <condition name="resumeRHIPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="resumeRHIPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiPauseStep();</onclick>
+      <text>ctrl.rhistep.resume</text>
+    </control>
+    <control id="CVCtrl_listRHISteps" type="icon">
+      <disabled className="toolbar_button_rhi_disabled gbar_rhi_list_off toolbar_left" default="1">      
+        <condition name="multipleRHISteps" status="false"/>
+      </disabled>    
+      <enabled className="toolbar_button_rhi gbar_rhi_list toolbar_left">  
+        <condition name="multipleRHISteps" status="true"/>
+      </enabled>
+      <highlight className="toolbar_button_rhi gbar_rhi_list toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvResourceManager'].rhiDisplayAllSteps();</onclick>
+      <text>ctrl.rhistep.list</text>
+    </control>
+    <control id="CVCtrl_onRHIXray" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+        <condition name="RHIXrayOn" status="true"/>
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_xray toolbar_left">
+        <condition name="RHIXrayOn" status="false"/>
+        <condition name="RHIXrayCancel" status="true"/>
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_xray toolbar_left"/>
+      <hidden default="1">
+        <condition name="RHIXrayPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="RHIXrayPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiOpacityOn();</onclick>
+      <text>ctrl.rhixray.on</text>
+    </control>
+    <control id="CVCtrl_offRHIXray" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+        <condition name="RHIXrayOn" status="false"/>
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_xray toolbar_left">
+        <condition name="RHIXrayOn" status="true"/>
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_xray toolbar_left"/>
+      <hidden default="1">
+        <condition name="RHIXrayPossible" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="RHIXrayPossible" status="true"/>
+      </shown>
+      <onclick>CVPortal.components['cvMedia'].rhiOpacityOff();</onclick>
+      <text>ctrl.rhixray.off</text>
+    </control>
+    <control id="CVCtrl_waitRHI" type="icon">
+      <disabled className="rhi_button gbar_rhi_xray_off toolbar_left" default="1">
+      </disabled>      
+      <enabled className="rhi_button gbar_rhi_wait toolbar_left">
+      </enabled>  
+      <highlight className="rhi_button gbar_rhi_wait toolbar_left"/>
+      <hidden default="1">
+        <condition name="showSAPControls" status="false"/>
+        <condition name="waitRHIShow" status="false"/>
+      </hidden>
+      <shown>
+        <condition name="showSAPControls" status="true"/>
+        <condition name="waitRHIShow" status="true"/>
+      </shown>
+      <text>ctrl.rhi.wait</text>
+    </control>
+    <control id="CVCtrl_hideMedia" type="button">
+    </control>  
+  </set>
+</controls>

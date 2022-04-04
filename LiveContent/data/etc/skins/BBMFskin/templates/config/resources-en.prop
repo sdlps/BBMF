@@ -1,0 +1,842 @@
+﻿# $Id: XY/etc/FullSupport/etc/skins/Carbon/templates/config/resources-en.prop 2.0 2019/05/22 21:01:19GMT milind Exp  $
+## Messages, often warnings
+message.requiresDocumentOpen = To use this option, you must have an open document.
+message.confirmPublicationClose = Are you sure you want to close the technical manual?
+message.cvPrinter.noFigures = There are no figures to print for this document.
+message.cvPrinter.noFigureSelected = No figure is currently selected for this document, because the document has not figures.
+
+## external links:
+messages.externalRef.noWebAddress=Failed to load undefined web address.
+messages.externalRef.noRegistry=Unable to locate the external link registry.
+
+## ERRORS
+errors.noComponents = {CVPortal} [ FATAL ] Unable to locate the requested set from components.xml!
+errors.failedLanguageLoad=Failed to load the language
+
+######################
+### MENU IETMS:
+######################
+menu.undefined=Undefined Menu
+## top level menu items:
+menu.logoff=Exit
+
+menu.file=File
+menu.admin=Administration
+menu.user=User
+menu.help=Help
+menu.annotations=Annotations
+menu.print=Print
+menu.debug=Debug
+
+### ADMIN MENU
+menu.manageUsers=Manage Users
+menu.invalidRefs=Invalid References
+menu.currentInvalidRefs=Current Invalid References
+menu.invalidImgs=Missing Images
+menu.currentInvalidImgs=Current Missing Images
+menu.auditTrail=Audit Trail
+
+## FILE MENU
+menu.home=Home
+menu.forward=Forward
+menu.back=Back
+
+## annotations:
+menu.addBookmark=Add Bookmark
+menu.addNote=Add Note
+
+## printing
+menu.printAllFigures=Print All Figures
+menu.printCurrentFigure=Print Current Figure
+menu.printAll=Print Text and Figures
+menu.printRefs=Print with Referenced Docs
+
+## user menu
+menu.resourceManager=Resource Manager
+menu.applic=Select Applicability
+menu.revisionHighlights=View Revision Highlights
+menu.clearHistory=Clear History
+menu.prefs=Preferences
+menu.suspend=Suspend and Resume
+menu.skinAlt=Mobile Skin
+
+## help menus:
+menu.releaseNotes=LiveContent Release Notes
+menu.company=About LiveContent
+menu.helpContents=Help Contents
+
+## debug menu:
+menu.debugWindow=Show Debug
+menu.metaDebug=Meta Debug
+menu.componentDebug=Component Debug
+menu.historyDebug=History Debug
+menu.showXML=Show XML
+menu.showHTML=Show HTML
+menu.showXSLFO=Show XSL-FO
+menu.showMsgs=Show XREF error messages
+menu.hideMsgs=Hide XREF error messages
+
+## language:
+menu.language.set=Select Language
+menu.language.en=English
+menu.language.fr=French
+menu.language.he=Hebrew
+menu.language.hi=Hindi
+menu.language.ja=Japanese
+menu.language.ar=Arabic
+
+###############
+##   CONTROLS
+###############
+ctrl.back=Back
+ctrl.fwd=Forward
+ctrl.home=Home
+ctrl.split=Display Graphics
+ctrl.graphic=Graphic Only
+ctrl.doc=Document Only
+ctrl.settings=Settings
+ctrl.suspend=Suspend and Resume
+ctrl.bookmarks=Bookmarks
+ctrl.prelReq=Preliminary Requirements
+ctrl.notes=Notes
+ctrl.attachments=Attachments
+
+# LAM:2022-02-16
+ctrl.bufr765forms=BUFR Forms
+
+ctrl.history=History
+ctrl.refresh=Refresh
+ctrl.print=Print
+ctrl.install=Install
+ctrl.find=Find
+ctrl.clear=Clear
+ctrl.admin=Admin
+ctrl.config=Applicability
+ctrl.tools=Tools
+ctrl.exit=Exit
+ctrl.help=Help
+ctrl.info=Info
+ctrl.next=Next
+ctrl.prev=Previous
+ctrl.save=Suspend and Resume
+ctrl.docinfo=Document Information
+ctrl.show=Debug Information
+ctrl.desktop=Desktop View
+ctrl.reports=Reports
+ctrl.markup=Markup
+ctrl.releaseNotes=Release Notes
+ctrl.userGuide=User Guide
+ctrl.about=About
+ctrl.users=User Management
+ctrl.position=Save Position
+ctrl.changes=Highlight Changes
+ctrl.largeTableControls=Large Table Controls
+ctrl.emergencyProcedures=Emergency Procedures
+ctrl.leftPanel=Toggle Left Panel
+ctrl.shoppingCart=Shopping Cart
+ctrl.form765=BUFR Form
+
+## troubleshooting steps
+ctrl.troubleshooting.next=Next Step
+ctrl.troubleshooting.prev=Prev Step
+###########
+#### Tabs
+###########
+tabs.toc=TOC
+tabs.act=Activity
+tabs.figs=Figures
+tabs.tables=Tables
+tabs.main=Task
+tabs.refMat=Reference Material
+tabs.matReq=Material Required
+tabs.supportEq=Support Equipment
+tabs.search=Search
+
+## modal:
+ctrl.modal.close=Close
+
+## search ctrls
+ctrl.search.start=&nbsp;
+ctrl.search.stop=Stop
+ctrl.search.clear=Clear Search
+ctrl.search.hide=Close Search
+ctrl.search.adv=Adv
+ctrl.search.branch=Filter on TOC selection
+ctrl.search.search=Search
+ctrl.search.categorical=Categorical Search
+ctrl.search.and=And
+ctrl.search.or=Or
+ctrl.search.near=Near
+ctrl.search.not=And Not
+ctrl.search.find=Find
+ctrl.search.case=Ignore case
+ctrl.search.whole=Whole words only
+ctrl.search.advanced=Advanced Search
+ctrl.search.simple=Simple Search
+ctrl.search.text=Full-Text Search
+ctrl.search.save=Load a Saved Search
+ctrl.search.filter.start=Starts With
+ctrl.search.filter.contain=Contains
+ctrl.search.filter.end=Ends With
+ctrl.search.highlight=Toggle Highlights
+ctrl.search.toc=Table of Contents
+ctrl.search.results=Search Results
+ctrl.search.toggleSearchTitles=ABC/123
+
+## media:
+ctrl.hideMedia=Unsplit
+ctrl.showMedia=Split
+ctrl.image.next=Next
+ctrl.image.prev=Previous
+ctrl.image.tearOff=Tear Off
+ctrl.image.play=Play
+ctrl.image.pause=Pause
+ctrl.image.rewind=Rewind
+ctrl.image.svgZoomIn=Zoom In
+ctrl.image.svgZoomOut=Zoom Out
+ctrl.image.svgPanLeft=Pan Left
+ctrl.image.svgPanRight=Pan Right
+ctrl.image.svgPanUp=Pan Up
+ctrl.image.svgPanDown=Pan Down
+ctrl.image.svgReset=Restore original view
+ctrl.image.showAllHotspots=Show All Hotspots
+ctrl.image.svgRedliningPencil=Draw redlining element
+ctrl.image.svgRedliningCircle=Draw redlining circle
+ctrl.image.svgRedliningRectangle=Draw redlining rectangle
+ctrl.image.svgRedliningLine=Draw redlining line
+ctrl.image.svgRedliningAnnotation=Add redlining annotation
+ctrl.image.svgDeleteRedliningAnnotation=Delete redlining annotation
+ctrl.image.svgExportRedlining=Export redlining
+ctrl.image.svgRedlining=Redlining
+
+## rhi buttons:
+ctrl.rhistep.prev=Play previous step
+ctrl.rhistep.next=Play next step
+ctrl.rhistep.curr=Play current step
+ctrl.rhistep.all=Play all steps
+ctrl.rhistep.pause=Pause
+ctrl.rhistep.resume=Resume
+ctrl.rhistep.list=List steps
+ctrl.rhixray.on=Xray On
+ctrl.rhixray.off=Xray Off
+ctrl.rhi.wait=Please wait
+
+## toc:
+ctrl.toggleCodes=ABC / 123
+ctrl.hideToc=Hide TOC
+ctrl.showToc=Show TOC
+ctrl.justCodes=123
+ctrl.justTitles=ABC
+ctrl.syncToc=Sync TOC
+
+## ok, cancels, etc
+ctrl.ok=OK
+ctrl.cancel=Cancel
+ctrl.media.save=Save
+
+## resource manager:
+ctrl.rm.goto=GoTo
+ctrl.rm.edit=Edit
+ctrl.rm.deleter=Delete
+ctrl.rm.deleteAll=Delete All
+ctrl.rm.exit=Exit
+ctrl.rm.add=Add
+ctrl.rm.suspend=Suspend
+ctrl.rm.view=View
+ctrl.rm.resume=Resume
+ctrl.rm.close=Close
+ctrl.rm.print=Print
+
+######################
+### Static Texts
+######################
+static.location=Location:
+
+######################
+### Search Terms
+######################
+search.saveASearch=Save this Search
+search.loadASearch=Load a Saved Search
+search.branch=Table of Contents Branch Search
+
+######################
+### Update Server
+######################
+UpdateServer.check=Check the Update Server.
+UpdateServer.modalTitle=Incremental Update Server
+
+## step buttons:
+ctrl.step.next=Next Step
+ctrl.step.prev=Prev Step
+
+## flip panels button:
+ctrl.flipPanels=Reorient Text and Graphics
+
+## NV Harmonization: Anchor strings
+proc.closeReqCondsAnchor=Anchor for Closing Required Conditions
+proc.commonInfoAnchor=Anchor for Common Information
+proc.faultStepAnchor=Anchor for Fault Isolation Step
+proc.prelReqCondsAnchor=Anchor for Preliminary Required Conditions
+proc.procStepAnchor=Anchor for Procedural Step
+proc.safetyCondsAnchor=Anchor for Safety Conditions
+
+######################
+### keys for cvDocHandler.js
+######################
+
+alert.unable.toLocate.referenced.publication = Unable to locate referenced publication
+alert.you.must.enter.aTerm.toFind = You must enter a term to find.
+alert.unable.toLoad.theDocument.byDocID = {DocHandler} Unable to load the document by Doc ID:
+alert.please.enter.aValid.page.number.between  = Please enter a valid page number between 1 and
+alert.unable.toLoad.document.broken.link = {DocHandler} Unable to load document.  You have activated a broken link!
+alert.troubleshooting.session.is.already.active = A troubleshooting session is already active.\n\nPlease complete the current troubleshooting session before starting a new one.
+alert.skin.isUndefined1 = Skin
+alert.skin.isUndefined2 = is undefined
+alert.noData.module.selected = No data module selected. Data module must be active to view preliminary requirements!
+alert.thisData.module.has.noPreliminary.requirements.information = This data module has no preliminary requirements information!
+alert.unable.toFind.part = Unable to find part:
+alert.enter.search.term.toStart = Enter search term to start.
+alert.find.noMatch.for.search.text = Find no match for
+alert.opera.browsers.not.supported = Opera browsers not supported, sorry...
+alert.found.searchCount.occurrences1 = found
+alert.found.searchCount.occurrences2 = occurrences
+alert.acknowledgeWarnings.button=OK
+
+dm.modal.loading=Loading...
+
+publication.security.banner.classification.level = Security level
+publication.security.banner.classification.level01 = Unclassified
+publication.security.banner.classification.level02 = Restricted
+publication.security.banner.classification.level03 = Confidential
+publication.security.banner.classification.level04 = Secret
+publication.security.banner.classification.level05 = Top secret
+
+publication.security.banner.restriction.caveat = UNDEF CAVEAT
+publication.security.banner.restriction.caveatCv51 = For Official Use Only
+publication.security.banner.restriction.caveatCv56 = US EYES ONLY
+publication.security.banner.restriction.caveatCv57 = Restricted Data
+publication.security.banner.restriction.caveatCv58 = Formerly Restricted Data
+publication.security.banner.restriction.caveatCv59 = NOFORN
+publication.security.banner.restriction.caveatOther = other
+
+publication.security.banner.distribution.statement = DISTRIBUTION STATEMENT
+
+dm.security.banner.classification.level = Security level
+dm.security.banner.classification.level01 = Unclassified
+dm.security.banner.classification.level02 = Restricted
+dm.security.banner.classification.level03 = Confidential
+dm.security.banner.classification.level04 = Secret
+dm.security.banner.classification.level05 = Top secret
+
+dm.security.banner.restriction.caveat = UNDEF CAVEAT
+dm.security.banner.restriction.caveatCv51 = For Official Use Only
+dm.security.banner.restriction.caveatCv56 = US EYES ONLY
+dm.security.banner.restriction.caveatCv57 = Restricted Data
+dm.security.banner.restriction.caveatCv58 = Formerly Restricted Data
+dm.security.banner.restriction.caveatCv59 = NOFORN
+dm.security.banner.restriction.caveatOther = other
+
+## set Title
+setTitle.acknowledgeWarnings.danger.cautions.notes = Acknowledge Warnings, Danger, Cautions, Notes
+setTitle.applicability.modal.title = Select Applicability
+openTabletDocumentInfo.reference.materials = Reference Materials
+openTabletDocumentInfo.required.materials = Required Materials
+openTabletDocumentInfo.support.equipment = Support Equipment
+
+######################
+### keys for cvResourceManager.js
+######################
+
+alert.file.with.thisName.isAlready.uploaded = A file with this name is already uploaded for this attachment!
+alert.toUse.thisOption.open.document = To use this option, you must have an open document.
+alert.select.anAnnotation.toEdit = You must select an annotation to edit.
+alert.enter.title.for.theBookmark = Please enter a title for the Bookmark
+alert.enter.title.for.theNote = Please enter a title for the Note
+alert.unable.toSelect.resource.type = {Resource Manager} Unable to select resource type:
+alert.suspendSession.unknown.resource.type.selected = Unknown resource type selected: 
+alert.newResource.unable.toLocate.resource.type = Unable to locate requested resource type:
+alert.newResource.action.attempted.unknown.resource.type = New Resource action attempted on unknown resource type:
+alert.saveUser.username.already.exists = A user by this username already exists.
+alert.login.name.required.field = Login Name is a required field
+alert.password.must.be.four.characters.long = Password must be at least 12 characters long
+alert.password.must.match.confirmation.password = Password must match the confirmation password
+alert.select.user.group = Please select User Group
+alert.first.last.name.required = First and last name are a required fields
+alert.email.required.field = E-mail is a required field
+alert.invalid.email.address = Invalid e-mail address
+alert.confirmation.email.must.match = Confirmation email must match email.
+alert.select.object.to.goto = You must select an object to goto.
+alert.select.resource.to.delete = You must select a resource to delete.
+alert.select.item.to.view = You must select an item to view!
+alert.select.resource.to.action = You must select a resource to
+alert.fillIn.required.form.fields = You must fill in all the required form fields.
+
+confirm.delete.selected.user = Do you want to delete the selected user?
+confirm.remove.selected.item = Would you like to remove the selected item?
+confirm.delete.selected.audit.trail = Do you want to delete the selected audit trail?
+confirm.delete.selected.form = Do you want to delete the selected form?
+confirm.delete.all.resources = Would you like to delete all of these resources?
+confirm.delete.selected.attachment = Delete selected attachment(s)?
+
+## Title
+title.mode.add.new.note = Add New Note
+title.mode.edit.note = Edit Note
+title.mode.add.new.bookmark = Add New Bookmark
+title.mode.edit.bookmark = Edit Bookmark
+title.table.list.user = User
+title.table.list.group = Group
+title.table.list.type = Type
+title.table.list.creator = Creator
+setTitle.cvModalHandler.resource.manager = Resource Manager
+
+## text for HTML
+attach.toDiv.text.uploading = UPLOADING...
+attach.edit.button = Edit
+attach.delete.button = Delete
+resource.type.public = Public
+resource.type.annotation = Public Annotation
+resourceList.msg.noAttachments = There are no attachments at this time.
+
+# LAM:2022-02-17
+resourceList.msg.nobufrforms = There are no BUFRs recorded for this publication.
+
+resourceList.msg.noAnnotations = There are no annotations at this time.
+resourceList.msg.noNotes = There are no notes at this time.
+resourceList.msg.noBookmarks = There are no bookmarks at this time.
+audittrail.table.title.audit.trail.record = Audit Trail Record
+audittrail.msg.noAudit = There are no audit trails at this time.  Your current audit trail will not saved until you close this publication window.
+audittrail.msg.noSaved.instances = There are no saved instances of this form.
+audittrail.msg.proced.step.checked = checked
+audittrail.msg.proced.step.unchecked = unchecked
+suspendSession.tooltip.text.comment = Comment:
+suspendSession.tooltip.text.current.document = Current Document:
+suspendSession.tooltip.text.current.document.title = Current Document Title:
+suspendSession.tooltip.text.saved.by = Saved By:
+suspendSession.tooltip.text.saved.at = Saved At:
+viewTabletNotesDialog.msg.toAdd.aNew.note.open.document = To add a new note, you must have an open document.
+viewTabletBookmarkDialog.msg.toAdd.aNew.bookmark.open.document = To add a new bookmark, you must have an open document.
+viewTabletAttachmentsDialog.msg.toAttach.file.open.document = To attach a file, you must have an open document.
+openUserDialog.select.company = Select a Company
+openUserDialog.mode.add.title = New User
+openUserDialog.mode.edit.title = Edit User
+suspendSession.noData.module.open = No data module is currently open. Data module must be active to enable suspend!
+suspendSession.noData.module.selected = No data module selected. Data module must be active to enable suspend!
+rhi.select.required.step = To play, please select the required step
+rhi.select.step.toPlay = Select a step to play
+
+######################
+### keys for cvBookList.js
+######################
+
+alert.rollback.successfully.completed = Rollback was successfully completed.
+alert.no.rollback.data = The book has no rollback data.
+alert.rollback.publication.failed1 = The rollback of the publication,
+alert.rollback.publication.failed2 = failed.
+alert.select.zip.file = Please select a zip file.
+alert.updates.successfully.installed = Updates were successfully installed.
+alert.password.undefined1 = Required password is UNDEFINED. Temporary password has been assigned:
+alert.password.undefined2 = Please remember to change your password after login or contact your administrator for help.
+alert.login.again = Please log in again.
+
+confirm.rollback.toLast.good.known.state = Would you like to rollback to the last good known state?
+
+## Title
+title.updating.publication = Updating Publication
+
+## text for HTML
+text.installing.updates = Installing Updates...
+text.login.failed = Login failed: unable to contact server.
+text.close = Close
+text.update.failed.to.install = Update failed to install
+publications.msg.one.update.pending = There is 1 update pending.
+publications.msg.count.updates.pending1 = There are
+publications.msg.count.updates.pending2 = updates pending.
+publications.msg.currently.update.pending = There is currently 1 update pending.
+publications.msg.currently.count.updates.pending1 = There are currently
+publications.msg.currently.count.updates.pending2 = updates pending.
+publications.msg.updateReady.info1 = Issue
+publications.msg.updateReady.info2 = Incremental Update
+publications.msg.updateReady.info3 = Dated
+publications.msg.currently.no.pending.updates = There are currently no pending updates.
+warning.msg.beginning.incremental.update.process = Beginning incremental update process.  Please close all of your publication windows.
+error.msg.displayed.for.time1 = Error!  This message will be displayed for
+error.msg.displayed.for.time2 = seconds
+error.msg.update.failed.unable.load.update.content = Update failed.  Unable to load update content.
+update.msg.successfully.installed.all = All updates successfully installed.
+update.msg.attempted.install.all = Attempted to install all updates.
+update.msg.successfully.installed = Updates successfully installed
+update.msg.successfully.installed.one = Update successfully installed
+update.msg.failed.install = Updates that failed to install
+text.msg.displayed.for.time1 = This message will display for
+text.msg.displayed.for.time2 = seconds
+text.msg.will.be.displayed.for.time1 = This message will be displayed for
+text.msg.proceeding = Proceeding
+
+#################################
+### keys for cvControlFactory.js
+#################################
+
+error.loadControls.unable.locate.requested.set = {Controls} [ FATAL ] Unable to locate the requested set from controls.xml!
+
+#################################
+### keys for cvHelpFactory.js
+#################################
+error.unable.locate.requested.help.resource = [ContentaView] Error, unable to locate requested help resource.
+error.unable.locate.named.help.resource = [ContentaView] Error, unable to locate named help resource
+
+#################################
+### keys for cvHistory.js
+#################################
+
+text.msg.currently.no.history = There is currently no history information.
+title.not.applic = Non Applicable
+
+#################################
+### keys for cvMedia.js
+#################################
+
+alert.getMediaType.error = Graphic not fully loaded, re-try later
+alert.rhiInitContext.error = Graphic not loaded, please try later
+
+confirm.wait.several.minutes = This may take several minutes. Continue?
+
+text.loading = Loading...
+text.msg.activeCGM.browser.support1 = ActiveCGM Viewer is not supported in
+text.msg.activeCGM.browser.support2 = Please use an Internet Explorer client with ActiveCGM ActiveX installed to view this graphic, or print the document.
+text.msg.IsoView.browser.support1 = IsoView Viewer is not supported in
+text.msg.IsoView.browser.support2 = Please use an Internet Explorer client with IsoView installed to view this graphic, or print the document.
+text.msg.Mobilizer.browser.support1 = NGrain Mobilizer Viewer is not supported in
+text.msg.Mobilizer.browser.support2 = Please use an Internet Explorer client with NGrain Mobilizer installed to view this graphic.
+text.msg.rhiModel.browser.support1 = SAP 3D Visual Enterprise Viewer is not supported in
+text.msg.rhiModel.browser.support2 = Please use an Internet Explorer client with SAP 3D Visual Enterprise Viewer installed to view this graphic.
+text.msg.rhiModel.viewer.not.installed1 = If you see this text, SAP 3D Visual Enterprise Viewer is not installed or
+text.msg.rhiModel.viewer.not.installed2 = not initialized. Please download and install it. Use the following link
+text.msg.rhiModel.viewer.not.installed3 = If this error message persists, check your security settings
+text.msg.rhiModel.viewer.not.installed4 = (ActiveX must be allowed) or use another WEB browser
+text.msg.rhiModel.viewer.not.installed5 = Using Microsoft Internet Explorer is preferred.
+text.rhiGetCurrStepDesc.no.description.orName.for.step = No description or name for step sequence
+text.rhiGetCurrStepDesc.no.description.for.step = No description for step named
+text.listAllSteps.no.steps.defined = NO STEPS DEFINED IN RH FILE
+
+#################################
+### keys for cvPanelFactory.js
+#################################
+
+alert.error.loadPanels = {Panels} [ FATAL ] Unable to locate the requested set from panels.xml.  Set
+
+#################################
+### keys for cvPrinter.js
+#################################
+
+alert.select.section.toPrint =  You need to select at least one section in the table for print.
+
+#################################
+### keys for cvProcessdm.js
+#################################
+
+alert.reverseThread.troubleshooting.session = You are at the beginning of this troubleshooting session and can not go to a previous node.
+alert.fill.all.mandatory.fields = You must fill in all mandatory fields.
+
+text.current.node = This is the current node
+
+#################################
+### keys for cvSearch.js
+#################################
+alert.fill.search.term = You need to fill a search term in the \"Find\" field
+alert.select.category.or.fullText = You must select a category or full text for your search.
+alert.unable.handle.unknown.search.result.category = Unable to handle unknown search result, for category
+alert.unable.handle.unknown.search.result.type = Unable to handle unknown search result, of type
+
+#################################
+### keys for cvSnippet_InvalidRefs.js
+#################################
+
+alert.unknown.report.type = Unknown report type.
+
+text.unknown.report.type = Unknown Report Type
+text.invalid.references.report.forCurrent.document = Invalid References Report for Current Document
+text.missing.images.report.forCurrent.document = Missing Images Report for Current Document
+text.missing.images.list = Missing images list
+
+#################################
+### keys for cvEmergencyProcedures.js
+#################################
+text.msg.no.emergency.procedures = There are no emergency procedures.
+
+## key for XSL styles
+style.common.nonapplicdm=Non Applicable Data Module
+style.common.nonapplictext=This data module is not applicable to the current configuration you have selected.
+style.common.dmapplic=Data Module Applicability
+style.common.datarestrict=Data Restriction
+style.common.datarestricttext=Data restriction information would go here.
+style.common.supequip=Support Equipment
+style.common.refmat=Reference Materials
+style.common.matreq=Materials Required
+style.common.prelreqs=Preliminary Requirements
+style.common.reqsconds=Required Conditions
+style.common.dmtp=Data Module / Technical Publication
+style.common.reqjobcomp=Requirements after Job Completion
+style.common.dmc=Data Module Code
+style.common.issueno=Issue No
+style.common.newdm=New Data Module
+style.common.applic=Applicability
+style.common.issuedate=Issue Date
+style.common.secclass=Security Classification
+style.common.instructions=Instructions
+style.common.distribution=Distribution
+style.common.exportcontrol=Export Control
+style.common.destruction=Destruction
+style.common.figure=Figure
+style.common.hotspot=Hotspot
+style.common.safecond=Safety Conditions
+style.common.crossref=cross reference
+style.common.warning=WARNING
+style.common.caution=CAUTION
+style.common.note=NOTE
+style.common.noforeigndisclosure=No Foreign Disclosure
+style.common.geninfo=General Information
+style.common.aboutproced=About This Procedure
+style.common.reqperson=Required Personnel
+style.common.personnel=Personnel
+style.common.category=Category
+style.common.trade=Trade
+style.common.esttime=Estimated Time
+style.common.man=Man
+style.common.asreq=As required.
+style.common.containdm=Container Data Module
+style.common.selectrefdm=selected the following refdm
+style.procedure.nosupply=No supplies are required.
+style.procedure.nospare=No spares are required.
+style.procedure.procedure=Procedure
+style.procedure.requirecomplete=Requirements after Job Completion
+style.procedure.norequirement=No requirements.
+style.general.code=Code
+style.general.none=None
+style.general.name=Name
+style.general.identification=Identification
+style.general.quantity=Quantity
+style.general.description=Description
+style.general.table=Table
+style.general.type=Type
+style.general.supply=Supply
+style.matreq.supplies=Supplies
+style.matreq.spares=Spares
+style.supteqt.supportequipment=Support Equipment
+style.refmat.referencedm=Referenced Data Modules
+style.refmat.noreferencedm=No referenced data modules.
+style.refmat.dm=Data Module
+style.refmat.referencetp=Referenced Technical Publications
+style.refmat.tp=Technical Publication
+style.refmat.noreferencetp=No referenced technical publications.
+style.commontmpl.no=NO
+style.commontmpl.withid=WITH ID
+style.commontmpl.informaltable=Informal Table
+style.commontmpl.criticaljuncture=Critical Juncture
+style.commontmpl.testingofsystem=Testing of System
+style.commontmpl.independentcheck=Independent Check
+style.commontmpl.maintenancegroundup=Maintenance Ground-Up
+style.commontmpl.maintenancetestflight=Maintenance Test Flight
+style.commontmpl.signaturerequired=Signature Required
+style.commontmpl.taskcomplete=Task Complete
+style.ipc.itemno=Item No
+style.ipc.fig=FIG
+style.ipc.indxsheetno=INDX/SHEET NO.
+style.ipc.rfs=RFS
+style.ipc.unitsperassy=UNITS PER ASSY
+style.ipc.cage=CAGE
+style.ipc.partnumber=PART NUMBER
+style.ipc.description=DESCRIPTION
+style.ipc.usableoncode=USABLE ON CODE
+style.ipc.srv=SRV
+style.ipc.smr=SMR
+style.ipc.mov=MOV
+style.ipc.item=ITEM
+style.ipc.unitsperassembly=Units per assembly
+style.ipc.ncage=NCAGE
+style.ipc.partno=Part No
+style.ipc.nomenclature=Nomenclature
+style.fault.faultcode=Fault Code
+style.fault.endofdatamodule=END OF DATA MODULE
+style.fault.faultdescription=Fault Description
+style.fault.faultisolationprocedure=Fault Isolation Procedure
+style.fault.gotostep=go to step
+style.fault.yes=Yes
+style.fault.no=No
+style.fault.isolationprocedure=Isolation procedure
+style.fault.faultcondition=Fault condition
+style.fault.faultcontext=Fault Context
+style.fault.faultisolationtest=Fault Isolation Test
+style.fault.testcodetype=Test Code / Type
+style.fault.detect=Detect
+style.fault.lru=LRU
+style.fault.mfc=MFC
+style.fault.isolatedetectedfault=Isolate Detected Fault
+style.fault.locateandrepair=Locate And Repair
+style.fault.repair=Repair
+style.fault.testdescription=Test Description
+style.fault.testprocedure=Test Procedure
+style.fault.isolate=Isolate
+style.fault.test=Test
+style.fault.context=Context
+style.fault.remarks=Remarks
+style.fault.fault=Fault
+style.schedule.timelimitsidentifier=Timelimits: Identifier
+style.general.equipment=Equipment
+style.schedule.pnr=PNR
+style.general.category=Category
+style.schedule.referencedtasks=Referenced Tasks
+style.schedule.limitinformation=Limit Information
+style.schedule.limitrange=Limit Range
+style.general.from=From
+style.schedule.trigger=Trigger
+style.schedule.groupno=Group No.
+style.schedule.componentassembly=Component/Assembly
+style.schedule.maintenancefunction=Maintenance Function
+style.schedule.maintfunc=Maint. Func.
+style.schedule.maintenancelevel=Maintenance Level
+style.schedule.toolsandequipment=Tools and Equipment
+style.schedule.field=Field
+style.schedule.sust=Sust.
+style.schedule.c=C
+style.schedule.f=F
+style.schedule.h=H
+style.schedule.d=D
+style.schedule.removeinstall=Remove/Install
+style.general.inspect=Inspect
+style.general.service=Service
+style.general.adjust=Adjust
+style.general.align=Align
+style.general.calibrate=Calibrate
+style.general.replace=Replace
+style.general.repair=Repair
+style.general.overhaul=Overhaul
+style.general.rebuild=Rebuild
+style.general.tasks=Tasks
+style.schedule.notavailableforprojects=Not available for projects
+style.schedule.limittype=Limit type
+style.schedule.limitcondition=Limit condition
+style.schedule.performonce=Perform once
+style.schedule.oncondition=On condition
+style.schedule.performperiodically=Perform periodically
+style.schedule.unitofmeasure=Unit of Measure
+style.schedule.limitrangefrom=Limit range from
+style.schedule.limitrangeto=Limit range to
+style.schedule.threshold=Threshold
+style.schedule.flighthours=Flight hours
+style.schedule.flightcycles=Flight cycles
+style.schedule.months=Months
+style.schedule.weeks=Weeks
+style.schedule.years=Years
+style.schedule.days=Days
+style.schedule.supersoniccycles=Supersonic cycles
+style.schedule.pressurecycles=Pressure cycles
+style.schedule.enginecycles=Engine cycles
+style.schedule.enginechange=Engine change
+style.schedule.shopvisits=Shop visits
+style.schedule.apuchange=Auxiliary power unit change
+style.schedule.landinggearchange=Landing gear change
+style.schedule.wheelchange=Wheel change
+style.schedule.enginestart=Engine start
+style.schedule.apuhours=APU hours
+style.schedule.enginehours=Engine hours
+style.schedule.elapsedhours=Elapsed hours
+style.schedule.landings=Landings
+style.schedule.operatingcycles=Operating cycles
+style.schedule.operatinghours=Operating hours
+style.schedule.supersonichours=Supersonic hours
+style.schedule.acheck=&quot;A&quot; check
+style.schedule.bcheck=&quot;B&quot; check
+style.schedule.ccheck=&quot;C&quot; check
+style.schedule.dcheck=&quot;D&quot; check
+style.schedule.echeck=&quot;E&quot; check
+style.schedule.daily=Daily
+style.schedule.overnight=Overnight
+style.schedule.preflight=Preflight
+style.schedule.routinecheck=Routine check
+style.schedule.structuralccheck=Structural &quot;C&quot; check
+style.schedule.servicecheck=Service check
+style.schedule.transit=Transit
+style.schedule.kilometers=Kilometers
+style.schedule.consumptionincubicmeter=Consumption in cubic meter
+style.schedule.consumptioninliter=Consumption in liter
+style.schedule.numberofshotseach=Number of shots - each
+style.schedule.numberofshotsefc=Number of shots - equivalent full charge (EFC)
+style.general.notdefined=Not defined
+style.schedule.inspection=Inspection
+style.schedule.inspectiontype=Inspection Type
+style.schedule.triggerreferencedtasks=Trigger Referenced Tasks
+style.table.mustspecifythenumberofcolumns=Error: CALS tables must specify the number of columns.
+style.table.noconvertlengthfunctionavailable=No convertLength function available.
+style.table.noadjustcolumnwidthsfunctionavailable=No adjustColumnWidths function available.
+style.table.findintable=Find in Table
+style.table.wholeword=Whole Word
+style.table.matchcase=Match Case
+style.table.currentsectiononly=Current Section Only
+style.table.result=Result
+style.table.noapplicabledatathissection=There is no applicable data in this section.
+style.table.determinecolumnnumber=Determine the column number in which a given entry occurs
+style.table.ifan=If an
+style.table.entry=entry
+style.table.hasa=has a
+style.table.or=or
+style.table.attributethistemplate=attribute, this template
+style.table.determinenumberofthecolumn=will determine the number of the column in which the entry should occur.
+style.table.forother=For other
+style.table.nothingisreturned=s, nothing is returned.
+style.table.elementtobetested=element which is to be tested.
+style.table.the=The
+style.table.returnsthecolumnnumber=This template returns the column number if it can be determined,
+style.table.orzero=or 0 (the empty string)
+style.checklist.checklistintervals=Checklist Intervals
+style.checklist.interval=Interval
+style.checklist.equipmentnotavailable=Equipment Not Available
+style.crew.if=If
+style.crew.elseif=Else if
+style.wiring.wirenumber=Wire Number
+style.wiring.fromreference=From Reference
+style.wiring.designator=Designator
+style.wiring.toreference=To Reference
+style.wiring.wiretype=Wire Type
+
+## LAM added for wiring
+style.wiring.equipdescrref=Equipment Desc.:
+style.wiring.functionaldescrref=Functional Desc.:
+style.wiring.harness=Harness
+style.wiring.harnessinfo=Harness Info.
+style.wiring.illustrationRef=Illustration Ref.:
+style.wiring.ref=Ref.
+style.wiring.references=References
+style.wiring.wirecolour=Wire Colour
+style.wiring.wireconnection=Wire Connection
+style.wiring.wiregauge=Wire Gauge
+style.wiring.wireinstallation=Wire Installation
+style.wiring.wirenumber=Wire Number
+style.wiring.wirepartnumber=Wire Part Number
+## / LAM added for wiring
+
+style.expert.requiredsupplies=Required Supplies
+style.expert.requiredspares=Required Spares
+style.expert.safetyinstructions=Safety Instructions
+style.expert.nomen=NOMEN
+style.expert.qty=QTY
+style.common.unverified=Unverified
+style.common.references=References
+style.common.noreferences=No references
+style.common.step=Step
+style.common.para=Para
+style.template.note=Note
+style.template.dataoutofdate=This page may contain data that is out of date. Refer to latest IETM
+style.template.datapath=Data Path
+style.template.destructionnotice=DESTRUCTION NOTICE - For unclassified, limited documents, destroy by any method that will prevent disclosure of contents or reconstruction of the document.
+style.template.ietmversion=IETM Version
+style.template.ietmdate=IETM Date
+style.template.version=Version
+style.template.pubdate=Pub Date
+style.template.dateprinted=Date Printed
+style.template.pubnumber=Pub Number
+style.template.username=User Name
+
+style.security.portionMarking.unclassified=(U)
+style.security.portionMarking.confidential=(C)
+style.security.portionMarking.secret=(S)
+style.security.portionMarking.topsecret=(TS)

@@ -1,0 +1,49 @@
+<div id="rightContainer"> <!-- wrapper to contain mobile scroll bounce -->
+	<div style="position:absolute;right:15px;" onclick="CVPortal.components.cvResourceManager.closeResourceManager(true)"><img src="@APPNAME@?target=resource&action=image&file_name=cancel_32_active_color.png"/></div>
+	<div id="rightHeader">
+		<div id="rightTitle"></div>
+		<div id="rightTools">
+			<div cvResourceAction="1" id="action_new" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.newResource()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=add_32_color.png"/> ctrl.rm.add
+			</div>
+			<div cvResourceAction="1" id="action_suspend" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.newResource()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=suspend_32_color.png"/> ctrl.rm.suspend
+			</div>
+			<div cvResourceAction="1" id="action_view" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.viewResource(true)";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=view_32_active_color.png"/> ctrl.rm.view
+			</div>
+			<div cvResourceAction="1" id="action_view_xml" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.viewResource(true)";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=view_32_active_color.png"/> ctrl.rm.view
+			</div>
+			<div cvResourceAction="1" id="action_edit" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.editResource('edit')";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=edit.32.color.png"/>	ctrl.rm.edit
+			</div>
+			<div cvResourceAction="1" id="action_resume" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.editResource('resume')";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=resume.32.color.png"/> ctrl.rm.resume
+			</div>
+			<div cvResourceAction="1" id="action_goto" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.goToResource()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=goto_32_active_ color.png"/> ctrl.rm.goto
+			</div>
+			<div cvResourceAction="1" id="action_print" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.printResource()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=print_16_active_color.png"/> ctrl.rm.print
+			</div>
+			<div cvResourceAction="1" id="action_delete" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.deleteResource()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=delete.32.color.png"/> ctrl.rm.deleter
+			</div>
+			<div cvResourceAction="1" id="action_deleteAll" style="display:none;" class="adminMenuItem rightItem" onClick="CVPortal.components.cvResourceManager.deleteAllResources()";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=deleteAll.32.color.png"/> ctrl.rm.deleteAll
+			</div>
+			<div class="adminMenuItem rightItem" id="action_close" onClick="CVPortal.components.cvResourceManager.closeResourceManager(true)";>
+				<img src="@APPNAME@?target=resource&action=image&file_name=cancel_32_active_color.png"/> ctrl.rm.close
+			</div>
+		</div>
+	</div>
+	<div id="rightBody">
+		<div id="rightDialog"></div>
+		<div id="rightList"></div>
+	</div>
+	<div id="rightFooter">
+		<div id="rightButtons"></div>
+	</div>
+	<div id="rightHidden" style="display:none"></div>
+</div>
