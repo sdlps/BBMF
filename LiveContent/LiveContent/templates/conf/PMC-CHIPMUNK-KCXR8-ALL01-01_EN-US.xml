@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wietm>
+  <configuration>
+    <application>
+      <configitem name="IncludeISOEntities">
+        <value>1</value>
+      </configitem>
+      <configitem name="EntityDefLocation">
+        <value>C:/LiveContentData/entities</value>
+      </configitem>
+      <configitem name="TempDirectory">
+        <value>C:\LiveContentData\publications\PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US\temp</value>
+      </configitem>
+      <configitem name="XMLInputDirectory">
+        <comments>The location of all XML input files</comments>
+        <value>C:\LiveContentData\publications\PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US\source_xml</value>
+      </configitem>
+      <configitem name="PubModule">
+        <comments>The name of the publishing module file</comments>
+        <value>PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US.xml</value>
+      </configitem>
+      <configitem name="OutputDirectory">
+        <comments>Output folder. The book will go there</comments>
+        <value>C:\LiveContentData\publications\PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US</value>
+      </configitem>
+      <configitem name="LogFileLocation">
+        <comments>Location of the log file for log4j output</comments>
+        <value>C:\LiveContentData\publications\PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US\info.log</value>
+      </configitem>
+      <configitem name="OutputDBName">
+        <comments>The name of the book</comments>
+        <value>PMC-CHIPMUNK-KCXR8-ALL01-01_EN-US</value>
+      </configitem>
+      <configitem name="DTDType">
+        <comments>The DTD type value</comments>
+        <value>S1000D</value>
+      </configitem>
+      <configitem name="WriteXML">
+        <comments>Create XML files for each PDOM file for debug purpose</comments>
+        <value>1</value>
+      </configitem>
+      <configitem name="RemoveInputFiles">
+        <comments>Remove all input files created by the parser</comments>
+        <value>0</value>
+      </configitem>
+      <configitem name="DebugMode">
+        <comments>Creates additional XML files for debug purpose only</comments>
+        <value>1</value>
+      </configitem>
+      <configitem name="ParserType">
+        <comments>Parser definition type</comments>
+        <value>s1000d</value>
+      </configitem>
+      <configitem name="ExtraConfig">
+        <comments>Extra configuration</comments>
+        <value>C:\LiveContent/templates/conf/system/s1000d.xml</value>
+      </configitem>
+      <configitem name="ExpandRefPm">
+        <value>1</value>
+      </configitem>
+      <configitem name="ExpandRefDmForWCN">
+        <value>1</value>
+      </configitem>
+      <configitem name="UseTechname">
+        <value>1</value>
+      </configitem>
+      <configitem name="TitleDelimiter">
+        <value>-</value>
+      </configitem>
+      <configitem name="TitleOrder">
+        <value>1</value>
+      </configitem>
+    </application>
+  </configuration>
+</wietm>

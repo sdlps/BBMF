@@ -1,0 +1,935 @@
+/* $Id: XY/etc/FullSupport/etc/styles/s1000d/common.css 2.0 2019/05/23 20:31:05GMT milind Exp  $ /* 
+/* CSS Document */
+h1
+{
+	font-family:Arial; 
+	font-size:14pt;
+	color:blue;
+}
+
+h1
+{
+	font-family:Arial; 
+	font-size:14pt;
+	color:blue;
+	text-align:center;
+}
+
+h2
+{
+	font-family:Arial; 
+	font-size:12pt;
+	color:blue;
+}
+
+h2.para_title
+{
+	font-family:Arial; 
+	font-size:12pt;
+	color:blue;
+}
+
+h2.para0_title
+{
+	font-family:Arial; 
+	font-size:11pt;
+	color:blue;
+}
+
+h2.major_section {
+	padding-top:30px;
+	font-family:Arial;
+	font-size:13pt;
+	color:blue;
+	text-align:center;
+
+}
+
+h3.conds {
+	font-family:Arial;
+	font-size:12pt;
+	color:brown;
+	font-style: italic;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+}
+
+h3.minor_section {
+	font-family:Arial;
+	font-size:12pt;
+	color:brown;
+	font-style: italic;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+}
+
+h2 > a.minor_section, h3.minor_section > a.minor_section {
+	color:inherit;
+}
+h2 > a.minor_section:hover, h3.minor_section > a.minor_section:hover {
+	color:inherit; text-decoration:none;
+}
+h2 > a.minor_section:visited, h3.minor_section > a.minor_section:visited {
+	color:inherit; text-decoration:none;
+}
+
+span.tooltip {
+  position:relative;
+	display:inline;
+  border-bottom: 1px dotted blue;
+	text-decoration: none;
+}
+/* <span class="xref tooltip"><span class="tooltip-content">...</span></span> */
+span.tooltip-content {
+  visibility:hidden;
+  display:none;
+}
+span.tooltip > span.tooltip-content {
+  visibility:hidden;
+  position:absolute;
+						
+					 
+  right:5%;
+  background-color:#eeeeee;
+	border:1px solid #333333;
+  padding:5px;
+	width:180px;
+  z-index: 1;
+  margin-left:-20px;
+  left:10%;
+  bottom: 125%;
+  transition: opacity 0.3s;
+  color:black;
+}
+span.tooltip > span.tooltip-dmtitle {
+	width:250px;
+}
+span.tooltip:hover > span.tooltip-content {
+  visibility:visible;
+  display:block;
+}
+span.tooltip > span.tooltip-content:hover {
+  visibility:hidden;
+  display:none;
+}
+.xref {
+	color:blue;
+	_cursor:hand;
+	cursor:pointer;
+	text-decoration: underline;
+}
+.xref {
+	color:blue;	  
+	cursor:hand;
+	text-decoration: underline;
+}
+
+h3.subpara_title {
+	font-family:Arial;
+	font-size:10pt;
+	color:brown;
+	font-style: italic;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+}
+
+h3
+{
+	font-family:Arial; 
+	font-size:12pt;
+	color:blue;
+}
+
+div
+{
+	font-family:Verdana; 
+	font-size:10pt;
+	color:black;
+}
+
+.block
+{
+	margin-top:10;	
+	margin-bottom:10;
+}
+
+span {
+ 
+	font-size:10pt;
+	/* color:black; */
+}
+
+			
+ 
+						
+							
+								
+														
+ 
+
+span.leading_para {	text-indent: -2px;}
+span.acronym {
+	font-size:10pt;
+	color:black;
+	background-color:#dee7f7;
+}
+
+span.def
+{
+	font-size:10pt;
+	color:black;
+	font-style:italic;
+}
+
+span.faultcode
+{
+	font-family:Verdana;
+	font-size:10pt;
+	font-weight:bold;
+}
+
+span.table_title {
+	font-weight: bold;
+	font-size: 10pt;
+	font-style:italic;
+}
+
+
+span.acronym {
+	font-weight: bold;
+	font-style:italic;
+	color:blue;
+	cursor:default;
+	z-index:500;
+}
+
+div.filter_display {
+	background-color:#FFFFE0;
+	border:1 solid black;
+	padding-left: 15px;
+	padding-top: 15px;
+}
+
+p.filter_rejected {
+	background-color:#CCCCCC;
+	border:1 solid black;
+	padding: 2px 2px 2px 2px;
+}
+
+div.filter_help {
+	background-color:#CCCCFF;
+	border:1 solid black;
+	padding: 2px 2px 2px 2px;
+}
+
+div.noconds {
+	padding-left: 20px;
+	font-weight: bold;
+}
+
+div.taskDescription, p.taskDescription {
+	padding-top:30px;
+	padding-bottom: 10px;
+	font-family:Arial;
+	font-size:16pt;
+	font-style: italic;
+	color:black;
+	text-align:Left;
+
+}
+
+
+/************************************
+ *
+ * Warnings, Cautions, and Notes
+ *
+ ************************************/
+
+div.warning_container {
+	text-align: center;
+	padding: 6pt 6pt 6pt 6pt;
+    background-image: url(@HTTP_ROOT@/images/warning_bg.gif);
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+div.caution_container {
+	text-align: center;
+    padding: 6pt 6pt 6pt 6pt;
+    background-image: url(@HTTP_ROOT@/images/caution_bg.gif);
+    margin-top:10px;
+	margin-bottom:10px;
+}
+
+div.note_container{
+	padding: 6pt 6pt 6pt 6pt;
+	background-color: #006400;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+div.wcn_inside {
+    padding: 6pt 6pt 6pt 6pt;
+    background-color: white;
+    border:3pt solid black;
+}
+
+div.wcn_header {
+	text-align: center;
+	font-size:10pt;
+	color:black;
+	background-color:white;
+	font-weight:bold;
+}
+/*** wcLookupFailed is used by LiveContentPreview in Contenta S1000D - DO NOT REMOVE ***/
+div.wcLookupFailed {
+	text-align: center;
+	font-size: 12pt;
+	color: yellow;
+	background-color: black;
+	font-weight: bold;
+}
+
+/**********************************
+ *
+ * Table styles:
+ *
+ **********************************/
+p.table_container {
+	text-align:center;
+}
+
+table,div.display_table {
+	font-family:Verdana; 
+	font-size:10pt;
+	color:black;
+}
+
+div.table {
+	display:table;
+}
+
+table.content_table,div.content_table{
+	font-family:Verdana;
+	font-size:10pt;
+	color:black;
+	border-color:black;
+	border-width:2px;
+	border-collapse:collapse;
+	border-style:solid;
+	text-align:center;
+}
+
+.content_table_with_borders{
+	font-family:Verdana;
+	font-size:10pt;
+	color:black;
+	border-color:black;
+	border-width:1px;
+	border-style:solid;
+	text-align:center;
+}
+
+tr.header_tr {
+	font-weight: bold;
+	border-style:solid;
+	border-color:black;
+	border-width:2px;
+	border-collapse:collapse;			
+}
+
+.table_title {
+	font-weight: bold;
+	font-size: 10pt;
+	font-style:italic;
+}
+.content_td{
+	font-size:10pt;
+	color:black;
+	border-style:dotted;
+	border-width:1px;
+	border-color:gray;
+	display:table-cell;
+}
+
+
+td {
+	font-size:10pt;
+	color:black;
+}
+
+td.header,div.header {	
+	font-size:11pt;
+	color:black;
+}
+
+td.label,div.label {
+	font-weight:bold;
+}
+
+td.content_td,div.content_td{
+	font-size:10pt;
+	color:black;
+	border-style:dotted;
+	border-width:1px;
+	border-color:gray;
+}
+
+td.content_td_solid,div.content_td_solid{
+	font-size:10pt;
+	color:black;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+}
+
+#table_container {
+	padding-top:20px;
+	padding-bottom:20px;
+
+}
+
+.display_colgroup {
+	display: table-column-group;
+}
+.display_thead {
+	display: table-header-group;
+	font-weight: bold;
+	border-bottom-style:solid;
+	border-bottom-color:black;
+	border-bottom-width:2px;
+	border-collapse:collapse;	
+}
+.display_tbody {
+	display: table-row-group;
+}
+.display_tr {
+	display: table-row;
+}
+
+/************* Parts CSS *****/
+th.parts_header {
+	text-align:left;
+	font-weight:bold;
+	border-top:1px solid black;
+	/* border-bottom:1px solid black; */
+	background-color:#DDDDDD;
+	vertical-align:top;
+	/* height:55px; */
+	height:35px;
+}
+
+/* <td class="parts_cell interim cart"><span class="cart">
+	<a href="#" onClick="javascript:"><img src="plus.gif" /></a>
+	<input disabled="" id="part29000101005" class="cart" type="text" value="1"/>
+</span></td> */
+span.cart {
+	display: inline-block;
+	height:16px;
+	padding-bottom:1px;
+	white-space:nowrap;
+}
+span.cart > input.cart {
+	height:16px;
+	border: 1px solid #ccc;
+	width:24px;
+	vertical-align: middle;
+}
+/* <input class="orderbtn" type="submit" value="Order" onclick="CVPortal.components.cvDocHandler.PartsOrder();"/> */
+input.orderbtn {
+	border: 1px solid #999;
+	background-color:#ccc;
+}
+span.cart * img {
+	vertical-align:middle;
+}
+
+td.parts_cell {
+	text-align:left;
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	vertical-align:top;
+}
+td.interim {
+	border-top:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+}
+
+*.ind02asp, *.ind02noasp { margin-left: 1.3mm; text-indent: -1.3mm; }
+  *.ind02asp::before   { content: '*'; }
+  *.ind02noasp::before { content: '\2022'; }
+*.ind03asp, *.ind03noasp { margin-left: 2.7mm; text-indent: -2.7mm; }
+  *.ind03asp::before   { content: '**';  }
+  *.ind03noasp::before { content: '\2022\2022'; }
+*.ind04asp, *.ind04noasp { margin-left: 4mm; text-indent: -4mm; }
+  *.ind04asp::before   { content: '***'; }
+  *.ind04noasp::before { content: '\2022\2022\2022'; }
+*.ind05asp, *.ind05noasp { margin-left: 5.3mm; text-indent: -5.3; }
+  *.ind05asp::before   { content: '****';  }
+  *.ind05noasp::before { content: '\2022\2022\2022\2022';  }
+*.ind06asp, *.ind06noasp { margin-left: 6.6mm; text-indent: -6.6mm; }
+  *.ind06asp::before   { content: '*****'; }
+  *.ind06noasp::before { content: '\2022\2022\2022\2022\2022'; }
+
+/* <span class="descrForPart">...</span><span class="descrForLocation">...</span> */
+span.descrForPart + span.descrForLocation {
+}
+	span.descrForPart + span.descrForLocation::before {
+		content:': ';
+	}
+
+/* END ************ Parts CSS *****/
+
+div.tablecontainer {
+	clear:both;
+	/* height:300px; */
+	height:90%;
+	overflow:auto;
+	/* width:1200px; */
+}
+div.tablecontainer > table {
+	float:left;
+}
+html>body div.tablecontainer {
+	overflow:hidden;
+	/* width:1200px; */
+}
+html>body * div.tablecontainer > table > thead > tr.parts_header,
+div.tablecontainer > table > thead > tr.parts_header {
+	display:block;
+	height:40px;
+	/* height:60px; width:1200px; */
+}
+html>body * div.tablecontainer > table > tbody,
+div.tablecontainer > table > tbody {
+	display:block;
+	height:255px;
+	overflow:auto;
+	/* width:1200px; */
+}
+html>body * div.tablecontainer > table,
+div.tablecontainer > table {
+	display:table;
+	overflow:auto;
+	width:100%
+}
+/*****************************
+ * Maintenance Planning - MAC
+ *****************************/
+.mac {
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	border-collapse:collapse;			
+}
+.mac_th {
+	text-align:center;
+	font-weight:bold;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	border-collapse:collapse;			
+	vertical-align: top;
+}
+
+.mac_td {
+	text-align:center;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	border-collapse:collapse;			
+	padding: 6px;
+	vertical-align: top;
+}
+
+.mac_td_left {
+	text-align:left;
+}
+
+.mac_td_sm_pad {
+	padding: 2px;
+}
+
+li.mac_li:first-letter  {
+	margin-left:-3em;
+}
+
+.mac_li {
+	margin-left:1em;
+	list-style-type:none;
+}
+
+.mp_table {
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+}
+
+.mkup_table {
+	display: table;
+} 
+
+.mkup_row {
+	display: table-row;
+}
+
+.mkup_cell  {
+	display: table-cell;
+	text-align: center;
+}
+
+.limit_cell {
+	padding: 6px;
+}
+
+/*****************************
+ * Lists
+ *****************************/
+
+ol {
+	font-size:10pt;
+	color:black;
+}
+
+ul {
+	font-size:10pt;
+	color:black;
+}
+
+li {
+	font-size:10pt;
+	color:black;
+	margin-top:10px;
+}
+
+			 
+							 
+						 
+														
+ 
+
+img.button{
+	cursor:hand;	
+}
+
+img.help{
+	cursor:hand;	
+}
+
+/*****************************
+ * Steps
+ *****************************/
+.stepDiv {
+	margin-left:0px;
+	padding: 4px;
+	vertical-align: top;
+}
+
+.stepLabel {
+	float: none;
+	background-color: #FFFFFF;
+	padding: 0px;
+	border: 0pt;
+	vertical-align: top;
+}
+
+
+.stepLabelHighlight {
+	float: none;
+	background-color:#99CCFF;
+	padding: 5px;
+	border:1pt solid black;
+} 
+
+/* NV Harmonization: anchor highlights */
+.procAnchorLabel { /* ,  .stepAnchorLabel*/
+	float:none;
+	background-color:#DDDDDD;
+	color: #666666;
+	padding: 5px;
+	border:1pt dashed #666666;
+	font-style:italic;
+} 
+/* NV Harmonization: anchor highlights LAM's version */
+span.stepAnchorLabel {
+	float:none;
+	color:#666666;
+	font-style:normal;
+} 
+td.stepAnchorLabel {
+	background-color:#DDDDDD;
+	padding:1px;
+	padding-left:6px;
+	border:1pt dashed #666666;
+} 
+
+/*****************************
+ * Process DMs / Dialogs
+ *****************************/
+
+.process_dm_wrapper {
+	width:100%;
+	padding:20px;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=bg.gif);
+	text-align:center;
+} 
+ 
+.dialog_container {
+	text-align:left;
+	border: 1px solid black;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=ribbon_bg_extended.png) repeat-x scroll bottom left #ffffff;
+	border-collapse: collapse;
+	padding-bottom:5px;
+}
+
+.dialog_container .dialog_container {
+margin-left: 10px;
+}
+
+
+.dialog_title  {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=toolbar_gradient.png) repeat-x scroll 0 0 #DAD8D3;
+	font-weight: bold;
+	padding:5px 15px 5px 15px;
+	border-bottom:1px solid black;
+	text-align: center;
+}
+
+.dialog_content {
+	padding:5px;
+}
+
+.message_content {
+	padding:5px;
+	margin-left:20px;
+}
+
+.menu_container {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.fillin_container {
+	margin: 10px;
+}
+
+.dialog-group_title {
+	margin-top:15px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+
+/* Applicability! */
+.non_applic {
+	border:1pt solid black;
+	background-color:#CCCCCC;
+	padding:20px;
+	margin:10px
+}
+ul.disc {list-style-type:disc}
+ol.decimal {list-style-type: decimal}
+
+/* NV Harmonization: Crew */
+.crewDrillDiv1 {
+	margin-left: 20pt;
+}
+
+.crewDrillDiv2 {
+	margin-left: 0pt;
+}
+
+.crewDrillTitle {
+	font-family:Arial; 
+	font-size:12pt;
+	color:black;
+}
+
+.subCrewDrillTitle, .crewIfPara {
+	font-family:Arial;
+	font-size:10pt;
+	color:black;
+	margin-left: 20pt;
+	text-decoration: underline;
+}
+
+.crewDrillStep1 {
+	margin-left: 0pt;
+}
+
+.crewDrillStep2 {
+	margin-left: 20pt;
+}
+
+.crewStepCell1 {
+	vertical-align: top;
+   padding-top: 1px;
+	padding-left: 16pt;
+}
+
+.crewDrillStepWCN {
+	padding-top: 8px;
+}
+
+/* NV Harmonization: Process */
+span.fieldErrorMessage {
+	padding-left: 4pt;
+	visibility: hidden;
+}
+
+span.fieldErrorMessage:not([valid="TRUE"]) {
+	visibility: visible;
+	color: red;
+}
+
+
+/********************************************/
+
+.top-width-4per {
+	padding-top: 1px; 
+	width: 4%;
+}
+.padd-t-b-3 {
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+.applic-msg-background {
+	border:1pt solid black;
+	background-color:#CCCCCC;
+	padding:2px;
+}
+
+/*************** GENERAL styles ******************/
+.v-align-top {
+	vertical-align: top;
+}
+
+.marg-b-25 {
+	margin-bottom:25px;
+} 
+
+.marg-l-20 {
+	margin-left:20px;
+}
+
+.padd-t-3 {
+	padding-top: 3px;
+}
+
+.padd-l-5 {
+	padding-left: 5px;
+}
+
+.padd-l-10 {
+	padding-left: 10px;
+}
+
+.padd-b-15 {
+	padding-bottom: 15px;
+}
+
+.padd-20 {
+	padding: 20px;
+}
+.absolute-r-20 {
+	position: absolute;
+	right: 20px;
+}
+
+.bold-xsl {
+	font-weight: bold;
+}
+
+.f_left {
+	float: left;
+}
+
+.f_right {
+	float: right;
+}
+
+.border-dasher-2 {
+	border: 2px dashed red;
+}
+/** LAM: 2021-10-26 Change management styles**/
+.change-deleted {
+	display:none;
+}
+/** / LAM: 2021-10-26 Change management styles**/
+
+
+/****** afi.xsl *****/
+
+.afi_table_td {
+	vertical-align: top;
+	padding-top: 1px; 
+	width: 4%;
+}
+
+
+/***** common_tmpl.xsl ****/
+
+.process_step_check_img {
+	position: absolute;
+	right: 20px;
+	cursor: hand;
+}
+
+.process_step_check_img_last {
+	position: absolute;
+	right: 20px;
+	cursor: hand;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+
+/**** faultIsolation.xsl ****/
+
+.faultIsolation_table {
+	vertical-align: top;
+	padding-top: 1px; 
+	width: 4%;
+}
+
+/*** illustratedPartsCatalog.xsl ***/
+
+.illustratedPartsCatalog_td_first {
+	padding-top: 3px;
+	padding-left: 5px;
+}
+
+.illustratedPartsCatalog_td {
+	padding-left: 10px;
+}
+
+/**** ipc.xsl *****/
+
+.ipc_td_first {
+	padding-top: 3px;
+	padding-left: 5px;
+}
+
+.ipc_td {
+	padding-left: 10px;
+}
+
+/***** proced.xsl *****/
+
+.proced_table_td {
+	padding-top: 4px;
+	vertical-align: top;
+}
+
+.proced_table_step_td {
+	padding-top: 8px;
+	vertical-align: top;
+}
+
+.checkbox-step {
+	display: none;
+	transform: scale(1.5);
+	margin-right: 10px;
+}

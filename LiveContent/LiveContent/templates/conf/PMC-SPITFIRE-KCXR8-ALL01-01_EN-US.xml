@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wietm>
+  <configuration>
+    <application>
+      <configitem name="IncludeISOEntities">
+        <value>1</value>
+      </configitem>
+      <configitem name="EntityDefLocation">
+        <value>C:/LiveContentData/entities</value>
+      </configitem>
+      <!-- HTTPS / SSL
+      jetty.sslContext.keyStorePassword=OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4
+      jetty.sslContext.keyManagerPassword=OBF:1u2u1wml1z7s1z7a1wnl1u2g
+      jetty.sslContext.trustStorePassword=OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4
+      -->
+      <!-- / HTTPS / SSL -->
+      <configitem name="app.secure_connection">
+        <value>1</value>
+      </configitem>
+      <configitem name="app.keystore_location">
+        <value>./etc/keystore</value>
+      </configitem>
+      <configitem name="app.keystore_password">
+        <value>OBF:1vny1wfq1wfw1vu11kqh1y0s1ri71y0y1kud1vv91wg21wg81vn4</value>
+      </configitem>
+      <configitem name="app.manager_password">
+        <value>OBF:1tvp1vn61y101zlo1zt11kqh1uha1ugg1kud1zsp1zlu1y0q1vnw1tvd</value>
+      </configitem>
+      <configitem name="app.port">
+        <comments>Server port</comments>
+        <value>443</value>
+      </configitem>
+      <!--configitem name="app.port"><comments>Server port</comments><value>2245</value></configitem-->
+      <configitem name="TempDirectory">
+        <value>C:\LiveContentData\publications\PMC-SPITFIRE-KCXR8-ALL01-01_EN-US\temp</value>
+      </configitem>
+      <configitem name="XMLInputDirectory">
+        <comments>The location of all XML input files</comments>
+        <value>C:\LiveContentData\publications\PMC-SPITFIRE-KCXR8-ALL01-01_EN-US\source_xml</value>
+      </configitem>
+      <configitem name="PubModule">
+        <comments>The name of the publishing module file</comments>
+        <value>PMC-SPITFIRE-KCXR8-ALL01-01_EN-US.xml</value>
+      </configitem>
+      <configitem name="OutputDirectory">
+        <comments>Output folder. The book will go there</comments>
+        <value>C:\LiveContentData\publications\PMC-SPITFIRE-KCXR8-ALL01-01_EN-US</value>
+      </configitem>
+      <configitem name="LogFileLocation">
+        <comments>Location of the log file for log4j output</comments>
+        <value>C:\LiveContentData\publications\PMC-SPITFIRE-KCXR8-ALL01-01_EN-US\info.log</value>
+      </configitem>
+      <configitem name="OutputDBName">
+        <comments>The name of the book</comments>
+        <value>PMC-SPITFIRE-KCXR8-ALL01-01_EN-US</value>
+      </configitem>
+      <configitem name="DTDType">
+        <comments>The DTD type value</comments>
+        <value>S1000D</value>
+      </configitem>
+      <configitem name="WriteXML">
+        <comments>Create XML files for each PDOM file for debug purpose</comments>
+        <value>1</value>
+      </configitem>
+      <configitem name="RemoveInputFiles">
+        <comments>Remove all input files created by the parser</comments>
+        <value>0</value>
+      </configitem>
+      <configitem name="DebugMode">
+        <comments>Creates additional XML files for debug purpose only</comments>
+        <value>1</value>
+      </configitem>
+      <configitem name="ParserType">
+        <comments>Parser definition type</comments>
+        <value>s1000d</value>
+      </configitem>
+      <configitem name="ExtraConfig">
+        <comments>Extra configuration</comments>
+        <value>C:\LiveContent/templates/conf/system/s1000d.xml</value>
+      </configitem>
+      <configitem name="ExpandRefPm">
+        <value>1</value>
+      </configitem>
+      <configitem name="ExpandRefDmForWCN">
+        <value>1</value>
+      </configitem>
+      <configitem name="UseTechname">
+        <value>1</value>
+      </configitem>
+      <configitem name="TitleDelimiter">
+        <value>-</value>
+      </configitem>
+      <configitem name="TitleOrder">
+        <value>1</value>
+      </configitem>
+    </application>
+  </configuration>
+</wietm>

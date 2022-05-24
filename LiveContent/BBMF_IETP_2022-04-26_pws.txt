@@ -1,0 +1,11 @@
+User	           | Group            | Password
+--------------------------------------------------
+devison          | SUPERUSER        | Password001!
+dburrows         | SUPERUSER        | Password001!
+sbest            | ADMINISTRATOR    | Password001!
+UserOffline      | USEROFFLINE      | Password001!
+tgeorge          | USER             | Password001!
+SuperUserOffline | SUPERUSEROFFLINE | Password001!
+tdavis           | USER             | Password001!
+admin            | ADMINISTRATOR    | Password001!
+mwilson          | ADMINISTRATOR    | Password001!
