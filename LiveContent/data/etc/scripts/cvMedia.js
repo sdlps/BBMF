@@ -52,7 +52,7 @@ cvMedia.prototype = {
 		}); 
 		if(this.getProp("tearOff") == 1) { 
 			this.resizeControlBar(); 
-			this.mediaPanel.manual_ff_resize = true;
+			// this.mediaPanel.manual_ff_resize = true;
 		}
 		// load the graphic control template into the graphic_control element:
 		$.ajax( { method: "GET",
@@ -273,12 +273,17 @@ cvMedia.prototype = {
 		delete this.mediaxml;
 		delete this.currentFig;
 		delete this.currentGraphic;
+		delete this.currentType;
+		delete this.currentFileName;
+		delete this.currentURL;
+		delete this.fileExt;
 		delete this.totalGraphicCount;
 		if (this.svgLibrary) {
 			this.svgLibrary.destroy();
 			delete this.svgLibrary;
 			CVPortal.controlFactory().updateCondition("svgControls","false");
 		}
+		CVPortal.controlFactory().updateCondition("cgmControls","false");
 		this.removeCanvasScripts();
 		//reset the values:
 		this.mediaxml = null;
@@ -380,13 +385,12 @@ cvMedia.prototype = {
 				CVPortal.controlFactory().updateCondition("showingGraphic","true");
 				if(CVPortal.components["cvResourceManager"].isTablet == true) this.mediaTabletOrientation();
 				CVPortal.components.cvMedia.resizeControlBar();
+        //  trigger resize to calculate wcn msg position is WCN_POPUP is enabled
+        if(CVPortal.metaFactory().get("META_WCN_POPUP") == 0) {
+          $(CVPortal.components.cvDocHandler.docPanel.getElement(CVPortal.components.cvDocHandler.id)).trigger("resize-panel");
+        }
 			}
-		//  trigger resize to culculate wcn msg position is WCN_POPUP is enabled
-		if(CVPortal.metaFactory().get("META_WCN_POPUP") == 0) {
-			$(CVPortal.components.cvDocHandler.docPanel.getElement(CVPortal.components.cvDocHandler.id)).trigger("resize-panel");
 		}
-		}
-		
 	},
 	
 	mediaTabletOrientation: function() {
@@ -712,8 +716,7 @@ cvMedia.prototype = {
 					if (source == "frontmatter") {
 						//there doesn't seem to be an easy function call to get to the book_data folder where the front matter is, so we write our own
 						scriptPath =  CVPortal.getUrlforHttpDocs() + "book_data/" + CVPortal.metaFactory().get("META_COLLECTION") + "/" + CVPortal.metaFactory().get("META_BOOK") + "" + scriptName;
-					}
-					else {
+					} else {
 						scriptPath = CVPortal.getUrlforBookData() + "/multimedia" + scriptName;
 					}
 					
@@ -726,16 +729,14 @@ cvMedia.prototype = {
 					if (library == true) {
 						//$.getScript(scriptPath);
 						media.canvasFunctions.push(scriptName);
-					}
-					else {
+					} else {
 						//$.getScript(scriptPath, media.logCanvasScripts);
 						$.get(scriptPath, media.logCanvasScripts, "text");
 					}
 					newScriptTag.src = scriptPath;
 					newScriptTag.async = false;
 					canvasDom.head.appendChild(newScriptTag);
-				}
-				else if (scriptList[i].text) {
+				} else if (scriptList[i].text) {
 					//these are inline script tags, so parse their contents directly
 					var scriptContent = scriptList[i].text;
 					media.logCanvasScripts(scriptContent);
@@ -746,8 +747,13 @@ cvMedia.prototype = {
 				}
 			}
 			//since we changed/removed some script tags, we need to convert our changed DOM back into a string
-			var serializer = new XMLSerializer();
-			html = serializer.serializeToString(canvasDom);
+			if (CVPortal.getBrowserType() === "IE11") {
+				// XMLSerializer self-closed <script /> element which case porblem in IE11
+				html =  $('<div>').append(canvasDom.documentElement).html();
+			} else {
+				var serializer = new XMLSerializer();
+				html = serializer.serializeToString(canvasDom);
+			}
 			return html;
 		}
 	},
@@ -815,6 +821,7 @@ cvMedia.prototype = {
 		}
 		this.removeCanvasScripts();
 		CVPortal.controlFactory().updateCondition("svgControls","false");
+		CVPortal.controlFactory().updateCondition("cgmControls","false");
 		//LCS-2939: if the title is encoded as ISO-8859, try to convert to UTF-8 using escape (which encodes as ISO-8859) and decodeURIComponent (which decodes as UTF-8)
 		//LCS-3489: if that doesn't work, it might silently fail and halt execution, so we need to try-catch this, at least till the server is fixed to send proper UTF-8 in the first place
 		try {
@@ -913,17 +920,11 @@ cvMedia.prototype = {
 							media.currentType = mmAttributes.mmExtension;
 							figFound = true;
 							delete html;
-						} else 	if(html.indexOf("ActiveCGM") != -1) {
-							$(media.graphic_content).html("<div class='graphicWarning'>" + CVPortal.getResource("text.msg.activeCGM.browser.support1") + " "+browser_name+".  " + CVPortal.getResource("text.msg.activeCGM.browser.support2") + "</div>");
-							CVPortal.warn(" {Graphics} Attempted to load ActiveCGM in a "+browser_name+" browser.  User was given a warning instead.");
+						} else if (media.fileExt == "cgm") {
 							media.currentType = "cgm";
 							figFound = true;
-							delete html;
-						} else if(html.indexOf("IsoView") != -1) {
-							$(media.graphic_content).html("<div class='graphicWarning'>" + CVPortal.getResource("text.msg.IsoView.browser.support1") + " "+browser_name+".  " + CVPortal.getResource("text.msg.IsoView.browser.support2") + "</div>");
-							CVPortal.warn(" {Graphics} Attempted to load a IsoView CGM in a "+browser_name+" browser.  User was given a warning instead.");
-							media.currentType = "cgm";
-							figFound = true;
+							media.createCgmCanvas();
+							media.loadCgmGraphic(media.filePath);
 							delete html;
 						} else if(html.indexOf("Mobilizer") != -1) {
 							$(media.graphic_content).html("<div class='graphicWarning'>" + CVPortal.getResource("text.msg.Mobilizer.browser.support1") + " "+browser_name+".  " + CVPortal.getResource("text.msg.Mobilizer.browser.support2") + "</div>");
@@ -965,7 +966,6 @@ cvMedia.prototype = {
 						} else if (mmAttributes == "") {
 							//if it's not a media type with a prebuilt tag from buildMMObjectTag, let's check for HTML/XML-based filetypes
 							//first, we check for SVGs, and build a tag for them
-              // console.info('setCurrentGraphic : ' + i + ' : ' + media.fileExt + ' : ' + html);
 							if (html.indexOf("showSVG(\"")>0){
 								var temp = html.substring(html.indexOf("showSVG(\"")+9);
 								temp = temp.substring(0,temp.indexOf("\""));
@@ -1005,6 +1005,7 @@ cvMedia.prototype = {
 						}
 					}
 				} else {
+					var specialMedia = false;
 					if(html.indexOf("rhiModel") != -1 || media.fileExt == "rh") { // SPECIAL SAP Viewer Processing:
 						if (media.filePath != "" && media.fileExt != "" && media.fileExt == "rh") {
 							$(media.graphic_content).html('<object id="rhiModel" height="100%" width="100%" border="0" classid="CLSID:1110E0D7-D33E-438C-88A4-1FA6A88F9A6B"> <param name="FileName" value="' + media.filePath + '"/> <param name="BackStyle" value="0" /> <param name="FillColor" value="16777215" /> <div align="center">'+ CVPortal.getResource("text.msg.rhiModel.viewer.not.installed1") + '<br /> '+ CVPortal.getResource('text.msg.rhiModel.viewer.not.installed2') + ':<br /> <a href="http://sap.com" target="_blank">http://sap.com </a><br /> ' + CVPortal.getResource("text.msg.rhiModel.viewer.not.installed3") + '<br />' + CVPortal.getResource("text.msg.rhiModel.viewer.not.installed4") + '.<br />'+ CVPortal.getResource('text.msg.rhiModel.viewer.not.installed5') + '<br /> 		</div> 		</object>');
@@ -1039,11 +1040,24 @@ cvMedia.prototype = {
 								media.currentType="svg";
 								html= "<div align=\"center\" valign=\"middle\" class=\"svgimage\" style=\"width:100%;height:100%;overflow:hidden;\">" + getSVGText(temp, title) + "</div>";
 								addSVGController = 1;
+							} else if (media.fileExt == "cgm") {
+								//if the configured CGM viewer is NOT set to IsoView, load HTML5 CGM viewer
+								if(html.indexOf("IsoView") == -1) {
+									media.currentType = "cgm";
+									figFound = true;
+									media.createCgmCanvas();
+									media.loadCgmGraphic(media.filePath);
+									delete html;
+									specialMedia = true;
+								}
+								//otherwise, do nothing and follow the default logic of just inserting whatever HTML the server provides
 							} else if (media.fileExt == "html" || "htm") {
 								media.currentType = "canvas";
 								html = media.createCanvasImage(html);
 							}
-							$(media.graphic_content).html(html);
+							if (specialMedia == false) {
+								$(media.graphic_content).html(html);
+							}
 							if (addSVGController == 1) {
 								media.addSVGControls();
 								if(!$(media.graphic_content).find('a').length) {
@@ -1255,13 +1269,10 @@ cvMedia.prototype = {
 		});
 
 		if (this.getProp("tearOff") === "1" && CVPortal.components.cvMedia.dmBannerSecurityClass) {
-			var dmBannerContainer = document.getElementById("dmSecurityBanner"),
-				classification;
-
+			var dmBannerContainer = document.getElementById("dmSecurityBanner"), classification;
 			if (this.dmBannerPrevClass) {
 				$("#dmSecurityBanner").removeClass(this.dmBannerPrevClass);
 			}
-
 			if (media.currentGraphic.getAttribute("CLASSIFICATION")) {
 				classification = media.currentGraphic.getAttribute("CLASSIFICATION");
 				dmBannerContainer.className += " security-dm-banner" + classification;
@@ -1388,15 +1399,10 @@ cvMedia.prototype = {
 		if(delay == true) {
 			this.DelayedHsHighlight(apsid, apsname);
 		} else {
-			switch(this.currentCGMViewer) {
-				case "ACTIVECGM":
-					CVPortal.error(" {cvMedia} Currently not handling ActiveCGM hotspots!");
-					break;
-				case "ISOVIEW":
-					this.IsoViewHighlightHotspot(apsid, apsname);
-					break;
-				default:
-					CVPortal.error(" {cvMedia} Unable to handle a hotspot that was activated!");
+			if (CVPortal.getBrowserType() == "IE11" && this.currentCGMViewer == "ISOVIEW") {
+				this.IsoViewHighlightHotspot(apsid, apsname);
+			} else {
+				this.cgmHighlightHotspot(apsid);
 			}
 		}
 	},
@@ -1510,58 +1516,6 @@ cvMedia.prototype = {
 		}
 		var newClass = oldClass + "hotspothighlight";
 		element.setAttribute("class", newClass);
-		// this.graphic_content;
-		// document.getElementById("graphic_content").getElementsByTagName("svg")[0]
-
-		/*
-		var rect = element.getBBox();
-		var offset = 10;
-		var newX = (rect.x - offset);
-		var newY = (rect.y - offset);
-		var svg = document.getElementById("graphic_content").getElementsByTagName("svg")[0];
-
-		var computedTransform = window.getComputedStyle(svg).getPropertyValue("transform");
-		var eDirScale = 0;
-		var scaleX, scaleY;
-		if (computedTransform === "none") {
-			eDirScale = 1;
-		} else {
-			var matrix = computedTransform.match(/matrix\(([^\)]*)\)/)[1].split(/, *| +/);
-			scaleX = Math.sqrt(matrix[0] * matrix[0] + matrix[1] * matrix[1]);
-			scaleY = Math.sqrt(matrix[2] * matrix[2] + matrix[3] * matrix[3]);
-			if (scaleX !== scaleY) throw "non-uniform scaling";
-			eDirScale = scaleX;
-		}
-		var svgBB = svg.getBoundingClientRect();
-		var eRelScale = (svgBB.width / svg.offsetWidth);
-		// console.info('1526: ' + eDirScale + ' : ' + eRelScale + ' : ' + svgBB.width + ' : ' + svgBB.left + ' : ' + svgBB.top + ' : ' + svgBB.height + ' : ' + svg.offsetWidth);
-		console.info('1526: ' + svgBB.width + ' : ' + svgBB.left + ' : ' + svgBB.top + ' : ' + svgBB.height);
-		// 1526: 1297.8900146484375 : 370.3299865722656 : 131.89999389648437 : 361 (H)
-		// 1526: 631.6199951171875  : 370.3299865722656 : 131.89999389648437 : 787 (V)
-
-		try {
-			var svg = document.getElementById("graphic_content").getElementsByTagName("svg")[0];
-			var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
-			// <text class="ishotspot" cursor="pointer" pointer-events="all" webcgm:name="4" webcgm:type="grobject" x="54.066" y="196.727">4</text>
-			// <rect width="300" height="100" style="fill:rgb(255,255,255);stroke-width:1;stroke:rgb(255,0,0)" x="50" y="50" />
-			newElement.setAttribute("class","tempRectangle");
-			newElement.setAttribute("width",(rect.width + (offset * 2)));
-			newElement.setAttribute("height",(rect.height + (offset * 2)));
-			newElement.setAttribute("x",newX);
-			newElement.setAttribute("y",newY);
-			newElement.style.stroke = "rgb(255,0,0)";
-			newElement.style.fill = "rgb(255,255,255)";
-			newElement.style.strokeWidth = "1";
-			// svg.appendChild(newElement);
-		} catch(e) {
-			console.info('Error drawing new rect ' + e.message);
-		}
-		*/
-		/*
-		setTimeout(function () {
-			element.setAttribute("class", oldClass);
-		}, mH.getProp("SVGHotspotDisplayTime"));
-		*/
 	},
 
 	lightHotspotSVG: function(element) {
@@ -1594,7 +1548,7 @@ cvMedia.prototype = {
 					}
 				}
 			});
-			hotspotsLink.find('text').each(function () {
+			hotspotsLink.find('text').each(function () { // LAM
 				for (var i = 0; i < this.attributes.length; i++) {
 					var attName = this.attributes[i];
 					if (attName.name.indexOf("webcgm:name")) {
@@ -1736,15 +1690,17 @@ cvMedia.prototype = {
 		}
 		
 		//using the SVG-Pan-Zoom library, see https://github.com/ariutta/svg-pan-zoom for doc
-		this.svgLibrary = svgPanZoom(svgElement, {
-				panEnabled: true,
-				dblClickZoomEnabled: false
-				, mouseWheelZoomEnabled: true
-				,preventMouseEventsDefault: preventDefaultEvents
-				, customEventsHandler: eventsHandler
-			});	
-		CVPortal.controlFactory().updateCondition("svgControls","true");
-		CVPortal.controlFactory().updateCondition("displayRedliningIcons","false");
+		if ($("#graphic_content").is(":visible")) {
+			this.svgLibrary = svgPanZoom(svgElement, {
+					panEnabled: true,
+					dblClickZoomEnabled: false
+					, mouseWheelZoomEnabled: true
+					,preventMouseEventsDefault: preventDefaultEvents
+					, customEventsHandler: eventsHandler
+				});	
+			CVPortal.controlFactory().updateCondition("svgControls","true");
+			CVPortal.controlFactory().updateCondition("displayRedliningIcons","false");
+		}
 	},
 
 	panSVG: function(direction) {
@@ -1769,9 +1725,264 @@ cvMedia.prototype = {
 		}
 		CVPortal.components.cvMedia.svgLibrary.panBy(coordinates);
 	},
+	createCgmCanvas: function() {
+		if (document.getElementById('canvas3')) {
+			console.log("CGM viewer already loaded, using existing viewer")
+			return;
+		}
+		var width = $(this.graphic_content).width();
+		var height = $(this.graphic_content).height();
+		var canvasString = "";
+		//add the link template for downloading exported SVG
+		canvasString += '<a id="download_link" style="display:none" download="reddline.svg" href="">export</a>';
+		//add the form template used for entering annotations
+		canvasString += '<form action="javascript:void(0);" id="sdiAnnotationPopup" style="position: fixed; display: none; margin-top:200px; z-index:4">' +
+		'<textarea id="sdiNoteForm" data_input="true"></textarea>' +
+		'<button type="button" value="Save" id="saveAnnotation" onclick="saveTextBox()">Save</button>' +
+		'<button type="button" value="Cancel" id="cancelAnnotation" onclick="hideTextBox()">Cancel</button></form>';
+
+		//add three canvas layers to use for displaying the main CGM
+		canvasString += '<div style="position:absolute">';
+		for (var i = 1; i < 4; i++) {
+			canvasString += '<canvas class="cgm" ';
+			//canvasString += 'width="' + width + '" height="' + height + '" ';
+			canvasString += 'id="canvas' + i + '" tabindex=' + i + ' ';
+			canvasString += 'style="position:absolute;background:transparent;left:0;right:0;margin:auto;"></canvas>';
+		}
+		canvasString+='</div>';
+		$(this.graphic_content).html(canvasString);
+		initapp(width, height);
+		setpanmode();
+	},
+	
+	loadCgmGraphic: function(cgmUrl) {
+		openCGMfile(cgmUrl);
+		CVPortal.controlFactory().updateCondition("cgmControls","true");
+		CVPortal.controlFactory().updateCondition("displayCgmRedliningIcons","false");
+
+		CVPortal.components.cvResourceManager.newResource("genericforms-RedlineSvgImages", "RedlineSvgImages");
+
+		var addRedlining = CVPortal.components.cvResourceManager.getRedliningSvg(this.currentGraphic.getAttribute("TITLE"));
+		
+		if(addRedlining !== undefined) {
+			addRedlining = addRedlining.getElementsByTagName('form-data')[0].textContent;
+			sdiLoadRedLine(addRedlining);
+		}
+
+		this.loadingGraphic = false;
+	},
+	
+	cgmZoom: function(type) {
+		switch (type) {
+			case "in":
+				setzoomin();
+				break;
+			case "out":
+				setzoomout();
+				break;
+			case "reset":
+				setfit();
+				break;
+			default:
+				break;
+		}
+
+		//LCS-9408: SDI code resets the drag mode, turning off drag-to-pan, so we need to catch that and turn pan back on
+		if (!this.isRedliningActive) {
+			this.cgmRemoveHighlights();
+			startSelectionButton();
+			setpanmode();
+		}
+	},
+	cgmPan: function(type) {
+		var x = 0;
+		var y = 0;
+		switch (type) {
+			case "up":
+				y = -50;
+				break;
+			case "down":
+				y = 50;
+				break;
+			case "left":
+				x = -50;
+				break;
+			case "right":
+				x = 50;
+				break;
+			default:
+				break;
+		}
+
+		//pt = c.ctx.transformedPoint(x, y);
+		var vpt = c.fcanvas.viewportTransform;
+		vpt[4] += x;
+		vpt[5] += y;
+		c.fcanvas.requestRenderAll();
+		 
+		var dx = x;
+		var dy = y;
+
+		c.w2.x += (c.vdcppx * dx * -1);
+		c.w2.y += (c.vdcppy * dy);
+		c.w1.x += (c.vdcppx * dx * -1);
+		c.w1.y +=(c.vdcppy * dy);
+
+		redraw();
+		c.fcanvas.setViewportTransform(c.fcanvas.viewportTransform);
+	},
+
+	hotspotClickedCGM: function(apsname, apsid) {
+		if(this.getProp("tearOff") == 1) { 
+			if(CVPortal.components.cvMedia.tearOffDocId == openingWindow.CVPortal.components.cvDocHandler.current.docId) {
+				openingWindow.CVPortal.components.cvMedia.hotspotClickedCGM(apsname, apsid);
+			}
+			return;
+		}		
+		var media=this;
+		var highlightDone = false;
+		// use our ICN to find the element in the Document:
+		var targetId = CVPortal.components.cvDocHandler.id;
+		$("#" + this.currentFilename, CVPortal.components.cvDocHandler.docPanel.getElement(targetId)).each(function() {
+			if (highlightDone == false){
+				var xref;
+				var target = null;				
+				var type = $(this).attr("doctype");
+				var found = 0;
+				var strName = null;
+				$("hotspot").each(function() {
+					if(apsname == this.getAttribute("apsname") && found != 1) {
+						type = this.getAttribute("xidtype");
+						xref = this.getAttribute("xrefid");
+						target = this.getAttribute("xref_target");						
+						strname = this.getAttribute("apsname");
+						apsid = this.getAttribute("apsid");
+						found = 1;
+					}
+				});
+				CVPortal.debug(" {cvMedia} [CGM] Hotspot clicked, determined APSID: " + apsid + ", APSNAME: -" + strName + "-, xidtype: " + type + ", xrefid: " + xref + " found... " + found  + " in DM TYPE: " + type);
+				// follow the XREF through:
+
+
+				if(type == "csn") {
+					CVPortal.debug(" {cvMedia} [CGM] IPC Hotspot clicked, CSN REF: " + strName);					
+					CVPortal.components.cvDocHandler.showSinglePartByAttr(xref, "csn");
+				} else if(type == "part" || type == "ipc") {					
+					CVPortal.debug(" {cvMedia} [CGM] IPC Hotspot clicked, part number: " + strName);					
+					CVPortal.components.cvDocHandler.showSinglePartByAttr(strName, "item");
+				} else {
+					highlightDone = true;
+					if ((xref != undefined) && (xref != undefined)){
+						//media.highlightHotspotSVG(strName, strName, true);
+						media.cgmHighlightHotspot(apsid);
+					}
+					CVPortal.components.cvDocHandler.handle_xref(xref, type, null, null, target);
+				}
+			}
+		});
+	},
+	
+	cgmHighlightHotspot: function(id) {
+		highlightID(id);
+		setTimeout(this.cgmRemoveHighlights, 1000);
+	},
+
+	cgmHighlightHotspotsAll: function() {
+		this.cgmHighlightHotspot(0);
+	},
+
+	cgmRemoveHighlights: function() {
+		clearlinks();
+	},
+
+	cgmRedliningMode: function(type) {
+		switch (type) {
+			case "pencil":
+				startDrawing('FreeFormLine');
+				break;
+			case "line":
+				startDrawing('FreeFormLine2');
+				break;
+			case "rect":
+				startDrawing('Rectangle');
+				break;
+			case "circle":
+				startDrawing('Circle');
+				break;
+			default:
+				startSelection();
+				break;
+		}
+	},
+
+	cgmRedliningText: function() {
+		startDrawing('Text');
+	},
+
+	cgmRedliningDelete: function() {
+		deleteObject();
+	},
+
+	cgmExport: function() {
+		saveRedline();
+	},
+	
+	cgmSaveRedlining: function() {
+		redliningJson = sdiSaveRedLine();
+
+		CVPortal.components.cvResourceManager.newResource("genericforms-RedlineSvgImages", "RedlineSvgImages");
+		this.savedImage = "<form-data>" + redliningJson + "</form-data>";
+		this.savedImageTitle = this.currentGraphic.getAttribute("TITLE")
+		CVPortal.components.cvResourceManager.saveForm();
+	},
+	
+	cgmRedliningIconsDisplay: function() {
+
+		if (this.isRedliningActive === true) {
+			this.isRedliningActive = false;
+			CVPortal.controlFactory().updateCondition("displayCgmRedliningIcons", "false");
+
+			if (document.getElementById("sdiAnnotationPopup")) {
+				saveTextBox();
+			}
+			this.cgmRemoveHighlights();
+			startSelectionButton();
+			setpanmode();
+
+			if (CVPortal.getIsTablet()) {
+				CVPortal.controlFactory().updateCondition("cgmRedliningActive", "false");
+			}
+
+		} else {
+			this.isRedliningActive = true;
+			CVPortal.controlFactory().updateCondition("displayCgmRedliningIcons", "true");
+
+			if (CVPortal.getIsTablet()) {
+				CVPortal.controlFactory().updateCondition("cgmRedliningActive", "true");
+			}
+			startSelection();
+		}
+	},
+
+	setCgmCanvasSize: function() {
+		//no need to support CGM front matter, so graphicPanel will always be graphic_content
+		var graphicPanel = document.getElementById("graphic_content");
+
+		//hiding the graphics panel sets its height or width to 0, which messes up our aspect calculations, and we don't need to resize a non-visible canvas anyway
+		if (graphicPanel.clientWidth <= 1 || graphicPanel.clientHeight <= 1) {
+			return;
+		} else if (!document.getElementById('canvas3')) {
+			return;
+		} else {
+			sdiSetCanvasSize(graphicPanel.clientWidth, graphicPanel.clientHeight);
+		}
+	},
 	
 	setCanvasSize: function() {
-		if (this.canvasFunctions == undefined || !(this.fileExt == "htm" || this.fileExt == "html" || this.fileExt == "vds")) return;
+		if (this.fileExt == "cgm") {
+			this.setCgmCanvasSize();
+			return;
+		} else if (this.canvasFunctions == undefined || !(this.fileExt == "htm" || this.fileExt == "html" || this.fileExt == "vds")) return;
 		//resizing canvas images via CSS percentages requires that we only size them by height OR width, not both - otherwise, the aspect ratio of the image is lost
 		//this function handles that by determining which direction the sizing should be applied to
 		var canvasElement = document.getElementsByTagName("canvas")[0];
@@ -1909,6 +2120,7 @@ cvMedia.prototype = {
 
 
 		media.drawElem.on("panstart", function (event) {
+			setpanmode();
 			event.preventDefault();
 
 			var shape = getDrawObject();
@@ -2383,8 +2595,8 @@ cvMedia.prototype = {
 			media = this;
 			media.svgEl = SVG.adopt(document.getElementsByClassName("svgimage")[0].firstChild);
 
-		if (this.isRedliningActive === "false") {
-			this.isRedliningActive = "true";
+		if (this.isRedliningActive === false) {
+			this.isRedliningActive = true;
 			CVPortal.controlFactory().updateCondition("displayRedliningIcons", "false");
 			media.drawElem.destroy();
 
@@ -2411,7 +2623,7 @@ cvMedia.prototype = {
 			}
 
 		} else {
-			this.isRedliningActive = "false";
+			this.isRedliningActive = false;
 			CVPortal.controlFactory().updateCondition("displayRedliningIcons", "true");
 
 			if (media.svgLibrary) {

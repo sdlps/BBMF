@@ -129,7 +129,7 @@
 
     <!-- LAM:2022-01-28-->
     <control id="CVCtrl_bufrform" type="icon" label="true">
-      <disabled className="tbar_bufrform toolbar_left toolbar_button_disabledM" default="1">
+      <disabled className="tbar_BUFRform_empty toolbar_left toolbar_button_disabledM" default="1">
         <condition name="Form765Enabled" status="false" />
       </disabled>
       <enabled className="tbar_bufrform toolbar_left toolbar_buttonM">
@@ -141,15 +141,6 @@
       </access>
       <text className="nav2ButtonText">ctrl.form765</text>
     </control>
-    <!--
-    <control id="CV_showbufrform" type="icon" label="true" child="true">
-      <disabled  className="tbar_bufrform toolbar_left"/>
-      <enabled   className="toolbar_buttonM tbar_bufrform toolbar_left" default="1"/>
-      <highlight className="toolbar_buttonM tbar_bufrform toolbar_left"/>
-      <onclick>CVPortal.components.cvDocHandler.hideMenu("bufrFormMenu");CVPortal.components.cvDocHandler.loadHome();</onclick>
-      <text className="nav2ButtonText">ctrl.form765</text>
-    </control>
-    -->
     <!--/ LAM:2022-01-28-->
 
     <!--LAM:2021-10-13

@@ -15,8 +15,9 @@ function bbmf_cvDocHandler() {
   this.form765instance = ''; // ID assigned by LCS
   this.form765orgowner = ''; // Person who created the form, only they can re-save it
   this.form765legacy = [];
-  this.form765matchs = [];
+  this.form765matchs = []; // CVPortal.components.cvDocHandler.form765matchs
   this.form765legacydoc = null;
+  this.form765maxct = 0;
   this.user = CVPortal.metaFactory().get("META_USER");
   this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
 }
@@ -44,6 +45,43 @@ function showHideControls(show) {
     document.querySelector("#longTaskProgressContainer").style.display = "none";
   }
 }
+var modalUI;
+var closeUI;
+var MSGBOXTYPEINF = 1;
+var MSGBOXTYPEWRN = 2;
+var MSGBOXTYPEQST = 3;
+function getModal(title,body,buttons,type) {
+	var htmlcontent = '';
+	htmlcontent += '<div id="modalui" class="modal">';
+  htmlcontent += '<div id="modaluicontent" class="modal-content" style="border:4px solid ' + (type == MSGBOXTYPEWRN ? "#c00":"#888") + '">'; // border:4px solid #888;
+  //htmlcontent += '<div id="modaluicontent" class="modal-content" style="border:4px solid ' + (type == MSGBOXTYPEQST ? "#fa0":"#888") + '">'; // border:4px solid #888;
+  htmlcontent += '<div style="background-color:#888; color:#fff; padding:6px;"><span id="titleui"><b>' + title + '</b></span>';
+  // htmlcontent += '<span id="closeui" class="close">&times;</span>';
+  htmlcontent += '</div>';
+  htmlcontent += '<div style="padding:20px">';
+  htmlcontent += '<p>' + body + '</p><center>';
+  for (a in buttons) {
+    var button = buttons[a];
+    htmlcontent += '<button class="modlabtn" id="' + button.id + '">' + button.label + '</button>&#0160';
+  }
+  htmlcontent += '</center></div></div>';
+  htmlcontent += '</div>';
+  document.body.insertAdjacentHTML( 'beforeend', htmlcontent);
+  modalUI = document.querySelector("#modalui");
+  /*
+  closeUI = document.querySelector("#closeui");
+  closeUI.onclick = function() {
+    modalUI.remove();
+  }
+  */
+  dragElement(document.getElementById("modaluicontent"));
+}
+function pad(num, size) {
+  num = num.toString();
+  while (num.length < size) num = "0" + num;
+  return num;
+}
+
 
 const USERUSER = 10;
 const USERVALD = 25;
@@ -55,6 +93,13 @@ bbmf_cvDocHandler.prototype = {
   // Extension initfunction (must have)
   extensionInit: function() {
     CVPortal.controlFactory().updateCondition("Form765Enabled","false");
+  },
+  
+  getXmlDoc: function(xmlStr) {
+    return (new DOMParser()).parseFromString(xmlStr, "text/xml");
+  },
+  getXmlString: function(doc) {
+    return (new XMLSerializer().serializeToString(doc));
   },
   
   getUserLevel: function() {
@@ -78,6 +123,14 @@ bbmf_cvDocHandler.prototype = {
         return 0;
     }
   },
+  
+  // BUFR Form XSLT functions
+  // #txt_origReference
+  // CVPortal.components.cvDocHandler.setOrigReference()
+  setOrigReference: function() {
+    return "BUFR/" + CVPortal.metaFactory().get("META_MODEL") + "/" + pad((form765maxct + 1), 5);
+  },
+  // / BUFR Form XSLT functions
 
   loadDocumentByCeId: function(docId, refStruct, noAuditFlag, isHistory) {
     // Data Module access
@@ -95,17 +148,27 @@ bbmf_cvDocHandler.prototype = {
     var url = CVPortal.getURLwithBookParams(null);
     url += '&target=tools&action=show_xml';
     url += '&eid=' + docId;
+    
     var ret = 0;
     $.ajax( {
       type:"GET", url:url, dataType:"xml", async:false, cache:false,
       success: function (xmlDoc,status,xhr) {
-        iss = $("issueInfo:first", xmlDoc).attr('issueNumber');
-        inw = $("issueInfo:first", xmlDoc).attr('inWork');
+        // <ERROR><MESSAGE>Failed to find TEXT node.</MESSAGE></ERROR>
+        var err = $("ERROR > MESSAGE", xmlDoc);
+        try {
+          err = $(err).text();
+        } catch(e) { err = ""; }
+        if (err != "") {
+          console.error('loadDocumentByCeId:error loading XML for ' + docId);
+        } else {
+          iss = $("issueInfo:first", xmlDoc).attr('issueNumber');
+          inw = $("issueInfo:first", xmlDoc).attr('inWork');
+        }
       }, error: function(error) {
         console.error('loadDocumentByCeId:error:' + error);
       },
     });
-    console.info('You are in: ' + CVPortal.components.cvDocHandler.userGroup + '; Looking at a DM: ' + iss + '-' + inw);
+    console.info('You are in: ' + CVPortal.components.cvDocHandler.userGroup + '; Looking at a DM [' + docId + ']: ' + iss + '-' + inw);
     if (userLevel < USERSPUS) {
       // Get the DM XML and read the metadata
       var n1 = 0, n2 = 0;
@@ -114,10 +177,28 @@ bbmf_cvDocHandler.prototype = {
         n2 = parseInt(inw,10);
       } catch(e) { }
       if (n1 < 2 && userLevel < USERVALD) {        // USER
-        alert('Users cannot access Data Modules at issue/inwork:\n\n' + iss + '-' + inw);
+        var msg = 'Users cannot access Data Modules at issue/inwork:<br><br>' + iss + '-' + inw;
+        var buttons = [
+          {"label":"OK", "id":"yayBtn"},
+        ];
+        getModal('Data Module access',msg,buttons,MSGBOXTYPEWRN);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+          return;
+        }
+        // alert('Users cannot access Data Modules at issue/inwork:\n\n' + iss + '-' + inw);
         return;
       } else if (n1 < 2 && userLevel < USERSPUS) { // VALIDATOR
-        alert('Validators cannot access Data Modules at issue/inwork:\n\n' + iss + '-' + inw);
+        var msg = 'Validators cannot access Data Modules at issue/inwork:<br><br>' + iss + '-' + inw;
+        var buttons = [
+          {"label":"OK", "id":"yayBtn"},
+        ];
+        getModal('Data Module access',msg,buttons,MSGBOXTYPEWRN);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+          return;
+        }
+        // alert('Validators cannot access Data Modules at issue/inwork:\n\n' + iss + '-' + inw);
         return;
       }
     }
@@ -146,10 +227,11 @@ bbmf_cvDocHandler.prototype = {
     console.debug('35: ' + CVPortal.components.cvDocHandler.form765dmidentf + ' : ' + CVPortal.components.cvDocHandler.form765dmcissid);
     // Load a FORM icon?
     CVPortal.components.cvDocHandler.initForm765();
-    console.debug('38: ' + CVPortal.components.cvDocHandler.form765instance);
     if (CVPortal.components.cvDocHandler.form765instance != null) {
+      // 2022-04-04 build more detailed label about BUFR forms
+      var bufrlabel = (form765matchs.length > 0 ? "&#0160;(" + (form765matchs.length == 1 ? "1 BUFR Form":form765matchs.length + " BUFR Forms") + ")":"");
       var html = "<span class='bbmfIcon' id='ATT' onClick='CVPortal.components.cvDocHandler.clickOnBufr765Form(event, \"" + CVPortal.components.cvDocHandler.form765instance + "\");'>";
-      html += "<img id='ATT_ICON_' src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "' title='" + CVPortal.components.cvDocHandler.form765name + "'/></span>";
+      html += "<img id='ATT_ICON_' src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "' title='" + CVPortal.components.cvDocHandler.form765name + "'/>" + bufrlabel + "</span>";
       $("#MAIN_DIV").prepend(html);
     }
   },
@@ -179,7 +261,16 @@ bbmf_cvDocHandler.prototype = {
     */
     var ttl = CVPortal.components["cvTOC"].currentChapterTitle.toLowerCase();
     if ((userLevel == USERVALD) || (userLevel == USERUSER && (ttl != 'topic 2' && ttl != 'topic 5' && ttl != 'training videos'))) {
-      alert('Restricted access: No access for ' + CVPortal.components.cvDocHandler.userGroup + ' users');
+      var msg = 'Restricted access: No access for ' + CVPortal.components.cvDocHandler.userGroup + ' users';
+      var buttons = [
+        {"label":"OK", "id":"yayBtn"},
+      ];
+      getModal('Legacy publication access access',msg,buttons,MSGBOXTYPEWRN);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        return;
+      }
+      // alert('Restricted access: No access for ' + CVPortal.components.cvDocHandler.userGroup + ' users');
       return;
     }
     cvDocHandler.prototype.externalReference.call(this, pubcode, refdm);
@@ -230,7 +321,7 @@ bbmf_cvDocHandler.prototype = {
       element.innerHTML = '<img id="CV_YELLOW_ARROW" src="' + CVPortal.fetchSkinImage("yellow_arrow.gif") + '"/>' + element.innerHTML;
     }
     dH.yellowArrowTarget = element;
-    $("#CV_YELLOW_ARROW").each(function() {
+    $("#CV_YELLOW_ARROW").each(function(i, o) {
       dH.yellowArrow = this;
       this.scrollIntoView(); // remove parameters block: 'start',  behavior: 'smooth' because chrome does not support them
     });
@@ -311,17 +402,11 @@ bbmf_cvDocHandler.prototype = {
       $("#panelForm765").hide();
     }
     cvDocHandler.prototype.loadHome.call(this);
+    CVPortal.components.cvDocHandler.bbmfLoad();
     CVPortal.controlFactory().updateCondition("Form765Enabled","false");
   },
   // END Core function overrides
 
-  getXmlDoc: function(xmlStr) {
-    return (new DOMParser()).parseFromString(xmlStr, "text/xml");
-  },
-  getXmlString: function(doc) {
-    return (new XMLSerializer().serializeToString(doc));
-  },
-  
   // LAM: SHOPPING CART
   inputToggle: function(csn, pnr, nsn, mfc, dsc, dmc) {
     var dH = this;
@@ -529,12 +614,12 @@ bbmf_cvDocHandler.prototype = {
     hReport += "<div style='padding-top:20px'> The following parts have been ordered:</div>";
     hReport += "<div style='padding-top:20px'><table width='100%' "+tStyle+"><tbody>"
     hReport += "<tr style='border-collapse:collapse;border:1px solid black'><th>Part Num</th><th>Qty</th></tr>";
-    $("tr[csn]:has(input.cart:visible)").each(function() {
+    $("tr[csn]:has(input.cart:visible)").each(function(i, o) {
       var pNum, units;
-      $( this ).find("td[partnumber='1']").each(function() {
+      $( this ).find("td[partnumber='1']").each(function(i, o) {
         pNum = this.innerHTML;
       });
-      $( this ).find("input.cart").each(function() {
+      $( this ).find("input.cart").each(function(i, o) {
         units = this.value;
         this.style.display = "none";
       });
@@ -561,42 +646,49 @@ bbmf_cvDocHandler.prototype = {
   set765FormCondition: function() {
     CVPortal.controlFactory().updateCondition("Form765Enabled","true");
   },
+  getThisRefNumber: function(o) {
+    try {
+      var txt = $(o).text();
+      var thisref = txt.split(":")[3];
+      return parseInt(thisref.split("/")[2],10);
+    } catch(e) {
+      return 0;
+    }
+  },
   checkXmlInstances: function(doc) {
     var res = 0;
-    showHideControls(1);
-    updateProgress("Checking BUFR forms ...");
     form765matchs = [];
+    form765maxct = 0;
     try {
-      $("instance", doc).each(function() {
-        var chk = null;
+      $("instance", doc).each(function(i, o) {
+        var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o);
+        form765maxct = refno > form765maxct ? refno:form765maxct;
         try {
-          chk = CVPortal.components.cvDocHandler.checkFormInstance(this);
+          CVPortal.components.cvDocHandler.checkFormInstance(this);
         } catch(ex) {
           console.error("Error running checkFormInstance " + ex);
         }
       });
     } catch(e) {
       res = -1
-      console.error("Error parsing doc for instances");
+      console.error("Error parsing doc for instances:" + e);
     }
+    console.debug("form765matches? " + form765matchs.length + "; form765maxct: " + form765maxct);
     // Look at form765matchs
-    console.debug("form765matchs.length? " + form765matchs.length);
     if (form765matchs.length > 0) {
       var mymatch = false;
       for (a in form765matchs) {
         var form765match = form765matchs[a]; // o.: usr|dmc|iss|instance|match
-        console.debug("form765match[" + a + "]:" + form765match.usr + " : " + form765match.dmc + " : " + form765match.iss + " : " + form765match.instance + " : " + form765match.match);
+        // console.debug("form765match[" + a + "]:" + form765match.usr + " : " + form765match.dmc + " : " + form765match.iss + " : " + form765match.instance + " : " + form765match.match);
         if (form765match.match) {
           CVPortal.components.cvDocHandler.setFormInstance(form765match.instance, form765match.usr)
-          ret = form765match.instance;
           mymatch = true;
-          // break; Don't break, allow it ot get the latest form instance, othertwise it will get the first
+          // break; Don't break, allow it to get the latest form instance, otherwise it will get the first
         }
       }
       if (!mymatch) {
         var form765match = form765matchs[0]; // o.: usr|dmc|iss|instance|match
         CVPortal.components.cvDocHandler.setFormInstance(form765match.instance, form765match.usr)
-        ret = form765match.instance;
       }
     }
     showHideControls(0);
@@ -604,7 +696,7 @@ bbmf_cvDocHandler.prototype = {
   },
   setFormInstance: function(instance, user) {
     CVPortal.components.cvDocHandler.form765instance = instance;
-    console.debug('checkFormInstance set ' + instance);
+    console.debug('setFormInstance set ' + instance);
     var url = CVPortal.getURLwithBookParams(null);
     url += '&target=forms&form_type=genforms&action=get_form';
     url += '&form_name=' + CVPortal.components.cvDocHandler.form765name;
@@ -629,7 +721,9 @@ bbmf_cvDocHandler.prototype = {
     var ref = refs[3];
     var doc = refs[4];
     var dte = refs[5];
-    console.debug('getFormDataFromTitle:' + usr + '|' + dmc + '|' + iss + '|' + ref + '|' + doc + '|' + dte);
+    var why = refs[6];
+    var how = refs[7];
+    //console.debug('getFormDataFromTitle:' + usr + '|' + dmc + '|' + iss + '|' + ref + '|' + doc + '|' + dte);
     thisformStr += '<form-instance><form-header>';
     thisformStr += '<form-id>' + instance + '</form-id>';
     thisformStr += '<user>' + usr + '</user>';
@@ -639,13 +733,15 @@ bbmf_cvDocHandler.prototype = {
     thisformStr += '<cond id="txt_origReference"><item>' + ref + '</item></cond>';
     thisformStr += '<cond id="txt_docRefDmc"><item>' + dmc + '</item></cond>';
     thisformStr += '<cond id="txt_docRefIssueInw"><item>' + iss + '</item></cond>';
+    thisformStr += '<cond id="ta_report1"><item>' + why + '</item></cond>';
+    thisformStr += '<cond id="ta_report2"><item>' + how + '</item></cond>';
     thisformStr += '</form-data></form-instance>';
     return thisformStr;
   },
   checkFormInstance: function(e){
     var ret = 0;
     var refText = $(e).text();
-    var val3;
+    var dmciss;
     var instance = e.getAttribute("name");
     var refs = refText.split(":");
     var usr = refs[0];
@@ -654,12 +750,11 @@ bbmf_cvDocHandler.prototype = {
     //var ref = refs[3];
     //var doc = refs[4];
     //var dte = refs[5];
-    console.debug('checkFormInstance:' + refText + '[' + usr + '|' + CVPortal.components.cvResourceManager.user + ']' + dmc + '|' + iss  + '|' + instance);
-    updateProgress("Checking BUFR form: " + dmc);
+    // console.debug('checkFormInstance:' + refText + '[' + usr + '|' + CVPortal.components.cvResourceManager.user + ']' + dmc + '|' + iss + '|' + instance + '|' + CVPortal.components.cvDocHandler.form765dmidentf + '|' + CVPortal.components.cvDocHandler.form765dmcissid);
     if (dmc && (dmc != null && dmc !== '')) {
       if (dmc == CVPortal.components.cvDocHandler.form765dmidentf) {
-        val3 = dmc + '_' + iss;
-        if (val3 == CVPortal.components.cvDocHandler.form765dmcissid) {
+        dmciss = dmc + '_' + iss;
+        if (dmciss == CVPortal.components.cvDocHandler.form765dmcissid) {
           //  CVPortal.components.cvResourceManager.user
           var o = new Object();
           o.usr = usr;
@@ -682,7 +777,8 @@ bbmf_cvDocHandler.prototype = {
     CVPortal.components.cvDocHandler.form765orgowner = null
     CVPortal.components.cvDocHandler.form765legacydoc = null;
     CVPortal.components.cvDocHandler.form765instance = null;
-
+    showHideControls(1);
+    updateProgress("Checking BUFR forms ...");
     console.debug('loadForm765: looking for ' + CVPortal.components.cvDocHandler.form765dmcissid);
     var url = CVPortal.getURLwithBookParams(null);
     url += '&target=forms&form_type=genforms&action=get_form_instances';
@@ -691,6 +787,7 @@ bbmf_cvDocHandler.prototype = {
       type: "GET", url: url, dataType: "xml",
       async: false, cache: false,
       success: function (result,status,xhr) {
+        updateProgress("Checking BUFR form instances ...");
         var chk = CVPortal.components.cvDocHandler.checkXmlInstances(result);
       }, error: function(xhr, status, error) {
         console.error(status + ' | ' + error);
@@ -733,7 +830,6 @@ bbmf_cvDocHandler.prototype = {
       type: "GET", url: url, dataType: "html",
       async: false, cache: false,
       success: function (result,status,xhr) {
-        // console.info(status + ": " + result);
         CVPortal.components.cvDocHandler.raiseBufrForm(result, prompt);
       }, error: function(xhr, status, error) {
         console.error(status + ' | ' + error);
@@ -828,21 +924,44 @@ bbmf_cvDocHandler.prototype = {
     $("#panelForm765").attr('style','display:none; visible:no;');
   },
   
-  catchForm765items: function(prompt) {
-    $("#panelForm765 *[formtype='form765']").each(function(){
+  setRequiredForms: function() { // CVPortal.components.cvDocHandler.setRequiredForms()
+    form765items = [];
+    $("#panelForm765 *[formtype='form765']").each(function(i, o){
       var o = new Object();
       o.id = this.id;
       o.required = this.getAttribute("required");
       form765items.push(o);
     });
+  },
+  
+  catchForm765items: function(prompt) {
+    CVPortal.components.cvDocHandler.setRequiredForms();
     var reset = false;
     var newinstance = false;
     if (CVPortal.components.cvDocHandler.form765legacydoc) {
       newinstance = true;
       if (prompt) {
-        var msg = "There is already another form for this issue/inwork:\n\n" + CVPortal.components.cvDocHandler.form765dmcissid;
-        msg += "\n\n• Press 'OK' to re-open the previous form\n\n• Or 'Cancel' to launch a new form."
-        reset = confirm(msg);
+        //var msg = "NOTE: There is an existing BUFR form for this Data Module issue number:\n\n" + CVPortal.components.cvDocHandler.form765dmcissid;
+        //msg += "\n\n• Press 'OK' to re-open the previous form\n\n• Or 'Cancel' to launch a new form."
+        //reset = confirm(msg);
+        var btn1 = "Existing";
+        var btn2 = "New";
+        var msg = "NOTE: There is an existing BUFR form for this Data Module issue number:<br><br>" + CVPortal.components.cvDocHandler.form765dmcissid;
+        msg += "<br><br>• Press <b>" + btn1 + "</b> to re-open the previous form<br><br>• Or <b>" + btn2 + "</b> to launch a new form."
+        var buttons = [
+          {"label":btn1, "id":"nayBtn"},
+          {"label":btn2, "id":"yayBtn"},
+        ];
+        getModal('Reload existing BUFR form',msg,buttons,MSGBOXTYPEQST);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+          CVPortal.components.cvDocHandler.presetForm765items(newinstance);
+        }
+        document.querySelector("#nayBtn").onclick = function() {
+          modalUI.remove();
+          CVPortal.components.cvDocHandler.resetForm765items();
+        }
+        return;
       } else {
         reset = true;
       }
@@ -855,11 +974,11 @@ bbmf_cvDocHandler.prototype = {
   },
   
   resetForm765items: function() {
-    console.debug('resetForm765items[1]: ' + CVPortal.components.cvDocHandler.form765instance);
+    console.debug('resetForm765items(form765instance?): ' + CVPortal.components.cvDocHandler.form765instance);
     $("#form_container").attr("instance_name", $("#form_container item", CVPortal.components.cvDocHandler.form765legacydoc).text());
     $("#ta_origtitleaddress").val($("#ta_origtitleaddress item", CVPortal.components.cvDocHandler.form765legacydoc).text());
     $("#txt_origdate").val($("#txt_origdate item", CVPortal.components.cvDocHandler.form765legacydoc).text());
-    $("#txt_origReference").val($("#txt_origReference item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // Free text
+    $("#txt_origReference").val($("#txt_origReference item", CVPortal.components.cvDocHandler.form765legacydoc).text());
     $("#txt_origUnitPOC").val($("#txt_origUnitPOC item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // Originator full name
     $("#txt_origEmail").val($("#txt_origEmail item", CVPortal.components.cvDocHandler.form765legacydoc).text());   // Originator email
     $("#txt_docRefDmc").val($("#txt_docRefDmc item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Technical Information (TI) Reference) DMC
@@ -869,7 +988,7 @@ bbmf_cvDocHandler.prototype = {
     $("#txt_AircraftType").val($("#txt_AircraftType item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Ac Type)
     $("#slt_AircraftMark").val($("#slt_AircraftMark item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Ac Mark)
     $("#txt_AircraftMarkOther").val($("#txt_AircraftMarkOther item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Other Types/Marks which may be affected)
-    $("#chk_report3").prop({ 'checked': ($("#chk_report3 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
+    //$("#chk_report3").prop({ 'checked': ($("#chk_report3 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
     $("#chk_report4").prop({ 'checked': ($("#chk_report4 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
     $("#ta_report1").val($("#ta_report1 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Unsatisfactory feature(s))
     $("#ta_report2").val($("#ta_report2 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Recommended Change (use continuation sheet(s) if necessary))
@@ -901,7 +1020,7 @@ bbmf_cvDocHandler.prototype = {
     }
     $("#ta_origtitleaddress").val("Battle Of Britain Memorial Flight, RAF Coningsby, LN4 4SY");
     $("#txt_origdate").val(datestr);
-  //$("#txt_origReference").val(); // Free text
+    $("#txt_origReference").val(CVPortal.components.cvDocHandler.setOrigReference()); // 2022-04-05 preset to BUFR/SPITFIRE/5 Digits, 00001
     $("#txt_origUnitPOC").val(o != null ? (o.first_name + ' ' + o.last_name + (o.company != null ? ', ' + o.company:'')) : 'Unknown'); // Originator full name
     $("#txt_origEmail").val(o != null ? o.email : '');   // Originator email
     $("#txt_docRefDmc").val($(root).attr("dmc")); // (Technical Information (TI) Reference) DMC
@@ -935,10 +1054,10 @@ bbmf_cvDocHandler.prototype = {
         $(e).css('background-color','#eee');
       }
       $("#bufrSaveBtn").button({ disabled: true });
-      CVPortal.components.cvDocHandler.setReportDivStyle(false);
+      //CVPortal.components.cvDocHandler.setReportDivStyle(false);
     }
     $("#bufrPrt1Btn").button({ disabled: false });
-    $("#bufrPrt2Btn").button({ disabled: false });
+    //$("#bufrPrt2Btn").button({ disabled: false });
     
   },
   /*
@@ -1031,53 +1150,67 @@ bbmf_cvDocHandler.prototype = {
       if (url) {
         console.info('printBufrForm:url:' + url);
         var winprops = 'toolbar=0,location=0,directories=0,scrollbars=1,status=0,menubar=0,resizable=1,top=5,left=5,width=700,height='+ (screen.availHeight - 100);
-        window.open(url, CVPortal.components.cvDocHandler.form765instance, winprops);
+        var win1 = window.open(url, CVPortal.components.cvDocHandler.form765instance, winprops);
       } else {
         alert('An error was experienced printing form\n\n' + CVPortal.components.cvDocHandler.form765instance);
       }
-      if (printall) {
-        // Print the DM as well
-        // First get the TOC and identify the DM for this form
-        // /servlets3/wietmsd?id=1566910399623&book=s1000d_bike_41&collection=default&target=toc&action=tree_xml&eid=root&levels=1
-        url = CVPortal.getURLwithBookParams();
-        url += '&target=toc&action=tree_xml&eid=root&levels=10';
-        var formDoc = CVPortal.components.cvDocHandler.getXmlDoc(formData);
-        if (formDoc) {
-          // <cond label='lcsdmcxref' id='hidden_lcsdmcxref'><item>SPITFIRE-AAAA-00-00-01-00-AA-520-A-D</item></cond>
-          var docId = $("#hidden_lcsdmcxref item", formDoc).text();
-          if (docId) {
-            $.ajax({
-              type: "GET", url: url,
-              async: false, cache: false,
-              contentType: "text/xml",
-              success: function(xhr, textStatus) {
-                console.info("Proxy:Success [" + textStatus + "]");
-                // console.info(CVPortal.components.cvDocHandler.getXmlString(xhr));
-                // <DOCUMENT DOCID="SPITFIRE-AAAA-28-00-00-00-AA-040-A-A" DOCTYPE="description" EID="2594" LASTEID="2596" REFID="411">
-                var mytocentry = $("DOCUMENT[DOCID='" + docId + "']", xhr);
-                if (mytocentry) {
-                  var doctype = $(mytocentry).attr("DOCTYPE");
-                  var tocref = $(mytocentry).attr("EID");
-                  var ceid = $(mytocentry).attr("REFID");
-                  url = CVPortal.getURLwithBookParams() + "&target=print&action=exppdf&eid=" + ceid + "&doctype=" + doctype + "&tocref=" + tocref;
-                  console.info('printBufrForm:printdmurl:' + url);
-                  var date = new Date() ;
-                  var winProps = 'toolbar=0,location=0,directories=0,scrollbars=1,status=0,menubar=0,resizable=1,top=10,left=10,width=700,height='+ (screen.availHeight - 100);
-                  window.open(url, 'PDFWindow'+date.getTime(), winProps);
-                } else {
-                  alert("Cannot find the Data Module for this form:\n\n" + docId);
-                }
-              },
-              error: function(xhr, textStatus) {
-                console.info("Proxy:Error ");
-                console.info(xhr);
-              }
-            });
-          }
-        }
+      // Print the DM as well
+      // First get the TOC and identify the DM for this form
+      // /servlets3/wietmsd?id=1566910399623&book=s1000d_bike_41&collection=default&target=toc&action=tree_xml&eid=root&levels=1
+      var msg = "Press <b>Yes</b> to print the DM aswell";
+      var buttons = [
+        {"label":"Yes", "id":"yayBtn"},
+        {"label":"No", "id":"nayBtn"},
+      ];
+      getModal('Reload existing BUFR form?',msg,buttons,MSGBOXTYPEQST);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        CVPortal.components.cvDocHandler.printDMAswell(formData);
+      }
+      document.querySelector("#nayBtn").onclick = function() {
+        modalUI.remove();
       }
     } catch(e) {
       console.error('printBufrForm:error:' + e);
+    }
+  },
+  
+  printDMAswell: function(formData) {
+    var url = CVPortal.getURLwithBookParams();
+    url += '&target=toc&action=tree_xml&eid=root&levels=10';
+    var formDoc = CVPortal.components.cvDocHandler.getXmlDoc(formData);
+    if (formDoc) {
+      // <cond label='lcsdmcxref' id='hidden_lcsdmcxref'><item>SPITFIRE-AAAA-00-00-01-00-AA-520-A-D</item></cond>
+      var docId = $("#hidden_lcsdmcxref item", formDoc).text();
+      if (docId) {
+        $.ajax({
+          type: "GET", url: url,
+          async: false, cache: false,
+          contentType: "text/xml",
+          success: function(xhr, textStatus) {
+            console.info("Proxy:Success [" + textStatus + "]");
+            // console.info(CVPortal.components.cvDocHandler.getXmlString(xhr));
+            // <DOCUMENT DOCID="SPITFIRE-AAAA-28-00-00-00-AA-040-A-A" DOCTYPE="description" EID="2594" LASTEID="2596" REFID="411">
+            var mytocentry = $("DOCUMENT[DOCID='" + docId + "']", xhr);
+            if (mytocentry) {
+              var doctype = $(mytocentry).attr("DOCTYPE");
+              var tocref = $(mytocentry).attr("EID");
+              var ceid = $(mytocentry).attr("REFID");
+              url = CVPortal.getURLwithBookParams() + "&target=print&action=exppdf&eid=" + ceid + "&doctype=" + doctype + "&tocref=" + tocref;
+              console.info('printBufrForm:ceid:' + ceid+ ':docId:' + docId+ ':printdmurl:' + url);
+              var date = new Date() ;
+              var winProps = 'toolbar=0,location=0,directories=0,scrollbars=1,status=0,menubar=0,resizable=1,top=10,left=10,width=700,height='+ (screen.availHeight - 100);
+              var win2 = window.open(url, 'PDFWindow'+date.getTime(), winProps);
+            } else {
+              alert("Cannot find the Data Module for this form:\n\n" + docId);
+            }
+          },
+          error: function(xhr, textStatus) {
+            console.info("Proxy:Error ");
+            console.info(xhr);
+          }
+        });
+      }
     }
   },
   
@@ -1098,29 +1231,35 @@ bbmf_cvDocHandler.prototype = {
   
   checkFormIsComplete: function() {
     var badborder = 'border:2px solid #f00';
+    /* After form is stripped down we don't need to make this check
     var chk_report3 = false;
     var chk_report4 = false;
-    CVPortal.components.cvDocHandler.setReportDivStyle(false);
+    //CVPortal.components.cvDocHandler.setReportDivStyle(false);
     for (a in form765items) {
       var o = form765items[a];
       var e = document.getElementById(o.id);
+      if (!e) continue;
       if (o.id == 'chk_report3') {
         chk_report3 = (e.checked);
       } else if (o.id == 'chk_report4') {
         chk_report4 = (e.checked);
       }
     }
+    console.debug('chk_report4[1]: ' + chk_report4);
     if (!chk_report3 && !chk_report4) {
-      var e = document.getElementById('report3');
-      e.focus();
-      CVPortal.components.cvDocHandler.setReportDivStyle(true);
+      var e = document.getElementById('chk_report4');
+      if (e) e.focus();
+      //CVPortal.components.cvDocHandler.setReportDivStyle(true);
       return false;
     }
-    console.debug('chk_report3: ' + chk_report3 + ' chk_report4: ' + chk_report4);
+    console.debug('chk_report4[2]: ' + chk_report4);
+    */
     for (a in form765items) {
       var o = form765items[a];
       var e = document.getElementById(o.id);
+      if (!e) continue;
       var v = null;
+      /*
       var s = e.getAttribute('style');
       if (s != null && s.indexOf(badborder) > -1) {
         var s1 = s.substring(0,s.indexOf(badborder));
@@ -1128,12 +1267,9 @@ bbmf_cvDocHandler.prototype = {
         s = s1 + ' ' + s2;
         e.setAttribute('style', s);
       }
+      */
       if (o.id.indexOf('txt_') > -1) {
-        if (o.id == 'txt_report4' && chk_report3) {
-          v = '...';
-        } else {
-          v = e.value;
-        }
+        v = e.value;
       } else if (o.id.indexOf('chk_') > -1) {
         v = '...';
       } else if (o.id.indexOf('ta_') > -1) {
@@ -1147,13 +1283,13 @@ bbmf_cvDocHandler.prototype = {
       if (o.required && (v == null || v === '' || ('' + v) === 'Undefined' || v === '---')) {
         console.info(a + ' : ERROR : ' + o.id + '=' + v);
         e.focus();
-        e.setAttribute('style', s + '; border:2px solid #f00;');
+        console.debug(a + ' : ' + o.id + ' is null...');
         return false;
       }
       // console.debug(a + ' : ' + o.id + '=' + v);
     }
     $("#bufrPrt1Btn").button({ disabled: false });
-    $("#bufrPrt2Btn").button({ disabled: false });
+    // $("#bufrPrt2Btn").button({ disabled: false }); // Combined into one btn
     return true;
   },
 
@@ -1161,13 +1297,21 @@ bbmf_cvDocHandler.prototype = {
     var set = CVPortal.components.cvDocHandler.checkFormIsComplete();
     if (set) {
       console.debug('saveBufrForm...');
-      alert('All fields appear complete.');
-      try {
-        CVPortal.components.cvDocHandler.saveForm(CVPortal.components.cvDocHandler.form765name);
-        $("#bufrSaveBtn").button({ disabled: true });
-      } catch(e) {
-        console.error('Error running cvResourceManager.saveForm: ' + e);
+      var msg = "All BUFR fields appear complete."
+      var buttons = [
+        {"label":"OK", "id":"yayBtn"},
+      ];
+      getModal('BUFR is ready to save',msg,buttons,MSGBOXTYPEQST);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        try {
+          CVPortal.components.cvDocHandler.saveForm(CVPortal.components.cvDocHandler.form765name);
+          $("#bufrSaveBtn").button({ disabled: true });
+        } catch(e) {
+          console.error('Error running cvResourceManager.saveForm: ' + e);
+        }
       }
+      //alert('All fields appear complete.');
     }
   },
 
@@ -1183,8 +1327,37 @@ bbmf_cvDocHandler.prototype = {
     var iss = $("#txt_docRefIssueInw item", doc).text();
     var iss = $("#txt_docRefIssueInw item", doc).text();
     var ref = $("#txt_origReference item", doc).text();
+    // Need to double-check this immediately prior to saving
+    var url = CVPortal.getURLwithBookParams(null);
+    url += '&target=forms&form_type=genforms&action=get_form_instances';
+    url += '&form_name=' + CVPortal.components.cvDocHandler.form765name;
+    $.ajax({
+      type: "GET", url: url, dataType: "xml",
+      async: false, cache: false,
+      success: function (result,status,xhr) {
+        form765maxct = 0;
+        try {
+          $("instance", result).each(function(i, o) {
+            // <instance name="bufr-1653938381130-1644823401130">tgeorge:SPITFIRE-AAAA-72-00-01-05AD-941A-A:000-17:BUFR/SPITFIRE/01333:SPITFIRE-AAAA-72-00-01-05-AD-941-A-A:2022-02-17:Missing alternate parts ref for item 3:We cannot always get 5433434534/PPL:3:1:1|1333</instance>
+            var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o);
+            form765maxct = refno > form765maxct ? refno:form765maxct;
+            // form765maxct++;
+          });
+        } catch(e) {
+        }
+        console.debug("form765matches? " + form765matchs.length + "; form765maxct:" + form765maxct);
+        ref = CVPortal.components.cvDocHandler.setOrigReference();
+        $("#txt_origReference item", doc).text(ref);
+        fXML = CVPortal.components.cvDocHandler.getXmlString(doc)
+      }, error: function(xhr, status, error) {
+        console.error(status + ' | ' + error);
+      }
+    });
+
     var dic = $("#hidden_lcsdmcxref item", doc).text();
     var dte = $("#txt_origdate item", doc).text();
+    var why = $("#ta_report1 item", doc).text();
+    var how = $("#ta_report2 item", doc).text();
 
     // see if we have an instance name:
     var instanceId = $("#form_container").attr("instance_id");
@@ -1192,7 +1365,9 @@ bbmf_cvDocHandler.prototype = {
       instanceId = CVPortal.components.cvDocHandler.form765instance;
     }
     console.debug('saveForm:instanceId:' + instanceId);
-    var form_title = CVPortal.components.cvResourceManager.user + ":" + dmc + ":" + iss + ":" + ref.replaceAll(":"," ") + ":" + dic + ":" + dte;
+    var form_title = "";
+    form_title = form_title + CVPortal.components.cvResourceManager.user + ":";
+    form_title = form_title + dmc + ":" + iss + ":" + ref.replaceAll(":"," ") + ":" + dic + ":" + dte + ":" + why.replaceAll(":"," ") + ":" + how.replaceAll(":"," ");
     console.debug('saveForm:form_title:' + form_title);
 
     var url = CVPortal.getURLwithBookParams("uniqid"); // /servlets3/wietmsd?id=[ID]&book=[BOOK]&collection=[COLLECTION]&uniqid=[ID]
@@ -1242,7 +1417,7 @@ bbmf_cvDocHandler.prototype = {
           break;
         case 'select':
           fXML += "<cond label='" + label + "' id='" + id + "'>";
-          $("option", e).each(function() {
+          $("option", e).each(function(i, o) {
             if (this.selected === true) {
               fXML += "<item label='" + $(this).text()  + "'>" + this.value + "</item>";
             }
@@ -1258,7 +1433,7 @@ bbmf_cvDocHandler.prototype = {
       }
     }
     fXML += "</form-data>";
-    console.info('fXML: ' + fXML);
+    // console.info('fXML: ' + fXML);
     return fXML;
   },
 
@@ -1276,6 +1451,11 @@ bbmf_cvDocHandler.prototype = {
   },
   clickOnBufr765Form: function(event, xref) {
     CVPortal.components.cvResourceManager.showBufr765Dialog('edit', true, xref);
+    try { // 2022-04-04 scroll to the selected row
+      document.querySelector("tr[annotid='" + xref +"']").scrollIntoView();
+    } catch(e) {
+      console.debug("Error selecting " + xref + ", " + e);
+    }
   },
 
   // END LAM: 765 form
@@ -1288,6 +1468,213 @@ bbmf_cvDocHandler.prototype = {
     resetDocumentComments(); 
   },
   // / LAM: 2020-10-01: Review comments
+
+  // LAM front page scripts
+  // CVPortal.components.cvDocHandler.bbmfLoad()
+  bbmfLoad: function() {
+    CVPortal.components.cvDocHandler.setIssueAndDate(); // LAM
+    CVPortal.components.cvDocHandler.getPubUpdateStatus(); // LAM
+    CVPortal.components.cvDocHandler.setUserName(); // LAM
+  },
+  // LAM: 2021-11-11: Front cover
+  // CVPortal.components.cvDocHandler.setIssueAndDate()
+  setIssueAndDate: function () {
+    // <span id="issuedateissue">Issue 1 (Draft)</span>; <span id="issuedatedate"></span>
+    // <meta id="META_PUBDATE" content="@PUBDATE@"/>
+    // <meta id="META_BOOK" content="pmc_spitfire_kcxr8_all01_01_en-us">
+    var issueDate = document.getElementById('frontpageissuedate');
+    if (issueDate) {
+      var xml = CVPortal.metaFactory().getPublicationsConfiguration();
+      if (xml) {
+        //var xmlText = new XMLSerializer().serializeToString(xml);
+        //console.info('xmlText : ' + xmlText);
+        var meta_book = document.getElementById("META_BOOK").content;
+        var book = xml.querySelector("results > reply > book-info > collection-item > book-item[name='" + meta_book + "']");
+        /*
+        <div id="frontpageissuedate" style="text-align: right; font-size: 11pt; margin-right: 12px;">
+        <span id="frontpageissuedateissue">Issue 1 (Draft)</span>; <span id="frontpageissuedatedate"></span>
+        </div>
+        */
+
+        var issueDateDate = document.getElementById('frontpageissuedatedate');
+        var val = book.querySelector("configitem[name='PubDate.value'] > value");
+        if (val) {
+          issueDateDate.innerHTML = CVPortal.components.cvDocHandler.formatUKdate(val.textContent);
+        }
+        var issueDateIssue = document.getElementById('frontpageissuedateissue');
+        val = book.querySelector("configitem[name='change_level'] > value");
+        if (val) {
+          val = val.textContent;
+          if (('' + val) === '000' || ('' + val) === '00' || ('' + val) === '0') {
+            val = 'Initial issue';
+          } else {
+            try {
+              val = parseInt(val,10);
+              val = 'Issue ' + val;
+            } catch(e) { }
+          }
+          issueDateIssue.innerHTML = val;
+        }
+      }
+    }
+  },
+  // CVPortal.components.cvDocHandler.formatUKdate()
+  formatUKdate: function (date) {
+    if (date.indexOf('/') > -1) {
+      var d = date.split("/");
+      return d[2] + "-" + d[0] + "-" + d[1];
+    } else {
+      return date;
+    }
+  },
+  // CVPortal.components.cvDocHandler.getPubUpdateStatus()
+  getPubUpdateStatus: function () {
+    var url = '';
+    url = CVPortal.getURLwithBookParams("date") + "&target=update&action=get_version_info";
+    $.ajax( {
+      method: "GET",
+      url: url,
+      dataType: "xml",
+      success: function(xml) {
+      /*
+      <BOOK_LIST><COLLECTION NAME="BBMF_IETP">
+        <BOOK COLNAME="BBMF_IETP" BOOKNAME="pmc_spitfire_kcxr8_all01_01_en-us" VERSION="002" DATE="05/18/2022" NOROLLBACK=""/>
+      </COLLECTION></BOOK_LIST>
+      */
+        //try { console.info("versionInfo: " + (new XMLSerializer().serializeToString(xml))); }
+        //catch(e){ console.info("versionInfo:error:" + e); }
+        var model = document.getElementById("META_MODEL").content; // <meta id="META_MODEL" content="SPITFIRE">
+        $("BOOK", xml).each(function(i, o) {
+          var pub = this.getAttribute("BOOKNAME").toUpperCase();
+          if (pub.indexOf(model) > -1) {
+            var version = this.getAttribute("VERSION");
+            if (version != null  && version != "" && version != "0") {
+              $("div#pub-update").html("<nobr>Updated " + CVPortal.components.cvDocHandler.formatUKdate(this.getAttribute("DATE")) + "</nobr>").show();
+            }
+          }
+        });
+      }, error: function() {
+        console.info("getPubUpdateStatus:error");
+      },
+    });
+    url = CVPortal.getURLwithBookParams("date") + "&target=toc&action=tree_xml&levels=4&eid=root";
+    var eid = null;
+    $.ajax( {
+      method: "GET",
+      url: url,
+      dataType: "xml",
+      success: function(xml) {
+        //try     { console.info("tree_xml: " + (new XMLSerializer().serializeToString(xml))); }
+        //catch(e){ console.info("tree_xml:error:" + e); }
+        /*
+          <SYSTEM EID="7334" LASTEID="7335" ROOT="1"><TITLE EID="7335">Reference Data Modules - Hide</TITLE>
+            <DOCUMENT DOCID="RWS-A-00-00-00-00-0-000-E-D" DOCTYPE="description" EID="7340" LASTEID="7342" REFID="1417">
+              <TITLE EID="7341" LASTEID="7341">Spitfire Technical Information - Spitfire AMM and AIPC</TITLE>
+              <DOCTITLE EID="7342" LASTEID="7342">Spitfire Technical Information - Spitfire AMM and AIPC</DOCTITLE>
+            </DOCUMENT>
+          </SYSTEM>
+          <DOCUMENT DOCID="SPITFIRE-AAAA-29-00-00-00-AA-040-A-A" DOCTYPE="description" EID="2121" LASTEID="2123" REFID="407">
+            <TITLE EID="2122" LASTEID="2122">Hydraulic power - Description</TITLE>
+            <DOCTITLE EID="2123" LASTEID="2123">Hydraulic power - Description</DOCTITLE>
+          </DOCUMENT>
+        */
+        var rscdoc = $("DOCUMENT[DOCID='RWS-A-00-00-00-00-0-000-E-D']", xml);
+        if (rscdoc) {
+          // eid = $(rscdoc).attr("EID");
+          eid = $(rscdoc).attr("REFID");
+          console.info("gettoc:eid:" + eid);
+        } else {
+          console.info("gettoc:eid...");
+        }
+      }, error: function() {
+        console.info("gettoc:error");
+      }, complete: function() {
+        if (eid) {
+          CVPortal.components.cvDocHandler.getRscDoc(eid);
+        }
+      }
+    });
+  },
+  
+  // CVPortal.components.cvDocHandler.getRscDoc(eid)
+  getRscDoc: function(eid) {
+    var url = '';
+    // url = CVPortal.getURLwithBookParams(null) + '&target=tools&action=show_xml&eid=2121';
+    url = 'http://localhost:2245/servlets3/wietmsd?id=1652957766273&book=pmc_spitfire_kcxr8_all01_01_en-us&collection=BBMF_IETP&target=tools&action=show_xml&eid=407&_=1652957765620';
+    url = CVPortal.getURLwithBookParams(null) + '&target=tools&action=show_xml&eid=' + eid;
+    $.ajax( {
+      type:"GET", url:url, dataType:"xml", async:false, cache:false,
+      success: function(xmlDoc) {
+        var err = $("ERROR > MESSAGE", xmlDoc);
+        try {
+          err = $(err).text();
+        } catch(e) { err = ""; }
+        if (err != "") {
+          console.info("err: " + err);
+        } else {
+          /* <dmodule ...>
+          <identAndStatusSection>
+            <dmAddress>
+              <dmIdent>
+                <issueInfo inWork="00" issueNumber="002"/>
+              </dmIdent>
+              <dmAddressItems>
+                <issueDate day="18" month="05" year="2022"/>
+                <dmTitle><techName>Spitfire Technical Information</techName><infoName>Spitfire AMM and AIPC</infoName></dmTitle>
+              </dmAddressItems>
+            </dmAddress>
+            <dmStatus issueType="new">...</dmStatus>
+          </identAndStatusSection>
+          <content>
+            <description>
+              <para id="rfu">Updated the title for Interim Revision 002, PM issue 002.</para>
+            </description>
+          </content></dmodule> */
+          //try     { console.info("xmlDoc: " + (new XMLSerializer().serializeToString(xmlDoc))); }
+          //catch(e){ console.info("xmlDoc:error:" + e); }
+          var paras = $("dmodule > content > description > para", xmlDoc);
+          /*
+          var issEl = $("dmodule > identAndStatusSection > dmAddress > dmIdent > issueInfo", xmlDoc);
+          var isdEl = $("dmodule > identAndStatusSection > dmAddress > dmAddressItems > issueDate", xmlDoc);
+          var dmtEl = $("dmodule > identAndStatusSection > dmAddress > dmAddressItems > dmTitle", xmlDoc);
+          if (isdEl) {
+            var dateStr = $(isdEl).attr("year") + "-" + $(isdEl).attr("month") + "-" + $(isdEl).attr("day");
+            $('#frontpageissuedatedate').html(dateStr);
+          }
+          if (dmtEl) {
+            dmtEl = $("dmodule > identAndStatusSection > dmAddress > dmAddressItems > dmTitle > techName", xmlDoc);
+            $('#frontpagetitle').html(dmtEl.text())
+          }
+          */
+          var htmlStr = '';
+          $(paras).each(function(i, o) {
+            htmlStr = htmlStr + $(this).text() + "<br>";
+          });
+          if (htmlStr != '') {
+            $("#pub-update-reason").html(htmlStr).show();
+          }
+        }
+      }, error: function() {
+        console.info("xmlDoc:error");
+      }
+    });
+  },
+  // / LAM: 2021-11-11: Front cover
+  // LAM: 2022-02-17: Set user name before 'iconbuttonsRightM'
+  // 
+  // CVPortal.components.cvDocHandler.setUserName()
+  setUserName: function () {
+    var myTarget = $("#iconbuttonsRightM");
+    if (myTarget) {
+      var thisid = "userinfospan";
+      var metaUser = $("#META_USER").attr('content');
+      var metaUserGroup = $("#META_USERGROUPNAME").attr('content');
+      var thisStyle = 'color:#fff; font-size:14px; font-weight:bold; top:6px; bottom:0; left:0; right:0; margin:auto; position:relative';
+      $("#" + thisid).remove();
+      $(myTarget).before('<span id="' + thisid + '" style="' + thisStyle + '">Welcome: ' + metaUser + ', ' + metaUserGroup + '</span>');
+    }
+  }
+
 };
 
 // Extension for cvResourceManager
@@ -1296,12 +1683,17 @@ function bbmf_cvResourceManager() {
   this.componentName= "Custom cvResourceManager";
   this.bufrformcount = 0;
   this.bufrformusers = '';
+  this.bufrformitems = []; // CVPortal.components.cvResourceManager.bufrformitems
+  this.bufrformsrchs = []; // CVPortal.components.cvResourceManager.bufrformsrchs
+  this.previousearch = -1; // CVPortal.components.cvResourceManager.previousearch
+  this.currentsearch = -1; // CVPortal.components.cvResourceManager.currentsearch
   this.user = CVPortal.metaFactory().get("META_USER");
   this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
   // ADMINISTRATOR | BUYER | DEVELOPER | EDITOR | GUEST | SUPERUSER | SUPERUSEROFFLINE | USER | USEROFFLINE
   /* LAM: 2020-03-17: Passwords */
   // CVPortal.components.cvResourceManager.specchars
   this.specchars = [33, 34, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 123, 124, 125, 126, 163];
+  this.currentbufrreportid = 'currentbufrreportid'; // CVPortal.components.cvResourceManager.currentbufrreportid
 }
 
 bbmf_cvResourceManager.prototype = {
@@ -1404,17 +1796,21 @@ bbmf_cvResourceManager.prototype = {
                 console.error("Error getting instances: " + ex);
               }
             });
+            updateProgress("Gathered " + tl + " BUFR forms");
           } catch(e) {
             console.error("Error parsing doc for instances");
           }
           formsStr += '</forms>';
+          /*
           var annotsXmlStr = CVPortal.components.cvDocHandler.getXmlString(theXML);
           if (annotsXmlStr.indexOf('<ANNOTATIONS') > -1) {
             annotsXmlStr = annotsXmlStr.substring(annotsXmlStr.indexOf('<ANNOTATIONS'));
             var newXmlStr = '<?xml version="1.0"?><annots>' + annotsXmlStr + formsStr + '</annots>';
-            console.debug('newXmlStr: ' + newXmlStr);
+            console.debug('newXmlStr:1502: ' + newXmlStr);
             theXML = CVPortal.components.cvDocHandler.getXmlDoc(newXmlStr);
           }
+          */
+          theXML = CVPortal.components.cvDocHandler.getXmlDoc(formsStr);
           /* CVPortal.components.cvDocHandler.getXmlDoc(xmlStr)
              CVPortal.components.cvDocHandler.getXmlString(doc) */
         }
@@ -1460,8 +1856,350 @@ bbmf_cvResourceManager.prototype = {
     }
   },
   
-  updateFormCount: function() {
-    $("#rightDialog").html("<div>&#0160;</div><div>" + this.bufrformcount + " " + CVPortal.components.cvDocHandler.form765name + " forms " + this.bufrformusers + "</div>");
+  resetBufrListing: function() {
+    $("#" + CVPortal.components.cvResourceManager.currentbufrreportid).html('');
+    $("table#bufrformlisting tr").each(function(i, o) {
+      $(o).css("display", "table-row");
+      $(o).removeClass("highlightOODRM");
+      $(o).removeClass("highlightRM");
+    });
+  },
+  
+  /* <tr class="simpleClickable" onclick="CVPortal.components.cvResourceManager.selectResource(event);" offset="0" type="F"
+         xref="SPITFIRE-AAAA-06-00-00-00-AA-040-A-A" annotid="bufr-1653938380001-1644823400001" srcuser="dburrows" sys="06-00-00" date="2022-02-17" s1diss="000-02"> */
+  filterBufrFormView: function(params) {
+    console.info('filterBufrFormView:' + CVPortal.components.cvResourceManager.previousearch + '|' + CVPortal.components.cvResourceManager.currentsearch);
+    //if ((CVPortal.components.cvResourceManager.previousearch > 0) && (CVPortal.components.cvResourceManager.previousearch == CVPortal.components.cvResourceManager.currentsearch)) {
+      //CVPortal.components.cvResourceManager.resetBufrListing();
+    //}
+    CVPortal.components.cvResourceManager.resetBufrListing();
+    var highlightedrows = [];
+    var currentdisplay = 0;
+    var currenthighlgt = 0;
+    // o.(htmlstring|user|dmc|sys1|sys2|sys3|date|iss|ref|docid|bufrid|dmcissue|searchtext + dmissue)
+    if (params) {
+      if (params[0].type) {
+        // Filter CVPortal.components.cvResourceManager.bufrformsrchs
+        // If params.type == any existing searches, remove it
+        var type = params[0].type;
+        for (a in CVPortal.components.cvResourceManager.bufrformsrchs) {
+          var bufrformsrch = CVPortal.components.cvResourceManager.bufrformsrchs[a][0].type;
+          if (bufrformsrch && (bufrformsrch == type)) {
+            CVPortal.components.cvResourceManager.bufrformsrchs.splice(a, 1);
+          }
+        }
+      }
+      CVPortal.components.cvResourceManager.bufrformsrchs.push(params);
+      for (a in CVPortal.components.cvResourceManager.bufrformsrchs) {
+        var bufrformsrch = CVPortal.components.cvResourceManager.bufrformsrchs[a][0];
+        if (bufrformsrch.report) { // ([{"report":"oodb"}]);
+          console.debug(a + ' : bufrformsrch.report : ' + bufrformsrch.report);
+          var report = bufrformsrch.report.toUpperCase();
+          console.debug("filterBufrFormView:report:" + report);
+          if (report == 'OODB') {
+            var docids = [];
+            for (a in CVPortal.components.cvResourceManager.bufrformitems) {
+              var bufrformitem = CVPortal.components.cvResourceManager.bufrformitems[a];
+              if (bufrformitem.dmissue) {
+                console.debug(a + ' : filterBufrFormView:report:OODB:' + bufrformitem.iss + '|' + bufrformitem.dmissue + '|' + (bufrformitem.iss == bufrformitem.dmissue));
+                if (bufrformitem.iss != bufrformitem.dmissue) docids.push(bufrformitem.bufrid);
+              }
+            }
+            console.debug("filterBufrFormView:report:OODB:" + report + "; docids:" + docids.length);
+            if (docids.length > 0) {
+              $("table#bufrformlisting tr").each(function(i, o) {
+                if ($(o).css("display") == 'table-row') {
+                  var thisdocid = $(o).attr("annotid");
+                  console.debug(i + ' : filterBufrFormView:report:OODB:' + thisdocid + '|' + docids.includes(thisdocid));
+                  if (docids.includes(thisdocid)) {
+                    $(o).addClass("highlightOODRM");
+                  }
+                }
+              });
+            }
+          }
+        } else if (bufrformsrch.searchtext) {
+          console.debug(a + ' : bufrformsrch.searchtext : ' + bufrformsrch.searchtext);
+          var searchtext = bufrformsrch.searchtext.toUpperCase();
+          var docids = [];
+          for (a in CVPortal.components.cvResourceManager.bufrformitems) {
+            var bufrformitem = CVPortal.components.cvResourceManager.bufrformitems[a];
+            var test = bufrformitem.searchtext.toUpperCase().indexOf(searchtext);
+            console.debug("filterBufrFormView[" + a + "]:" + bufrformitem.searchtext + ":" + searchtext + ":" + test);
+            if (test > -1) {
+              docids.push(bufrformitem.bufrid);
+            }
+          }
+          console.debug("docids:" + docids.length);
+          $("table#bufrformlisting tr").each(function(i, o) {
+            if ($(o).css("display") == 'table-row') {
+              var thisdocid = $(o).attr("annotid");
+              $(o).css("display", (docids.includes(thisdocid) ? "table-row":"none"));
+            }
+          });
+        } else if (bufrformsrch.val2) {
+          console.debug(a + ' : bufrformsrch.val2 : ' + bufrformsrch.val2);
+          var n1 = parseInt(bufrformsrch.val1.replaceAll("-",""),10);
+          var n2 = parseInt(bufrformsrch.val2.replaceAll("-",""),10);
+          $("table#bufrformlisting tr").each(function(i, o) {
+            if ($(o).css("display") == 'table-row') {
+              var checkval = $(o).attr(bufrformsrch.attr);
+              checkval = checkval.replaceAll("-","");
+              checkval = parseInt(checkval,10);
+              $(o).css("display", ((checkval >= n1 && checkval <= n2) ? "table-row":"none"));
+            }
+          });
+        } else {
+          $("table#bufrformlisting tr").each(function(i, o) {
+            if ($(o).css("display") == 'table-row') {
+              if (bufrformsrch.attrs) {
+                var chkd = false;
+                for (a in bufrformsrch.attrs) {
+                  var checkval = $(o).attr(bufrformsrch.attrs[a]);
+                  if (checkval == bufrformsrch.val1) chkd = true;
+                }
+                $(o).css("display", (chkd ? "table-row":"none"));
+              } else if (bufrformsrch.attr) {
+                var checkval = $(o).attr(bufrformsrch.attr);
+                $(o).css("display", (checkval == bufrformsrch.val1 ? "table-row":"none"));
+              } else {
+                console.debug(a + ' :[3] ' + i + ' : bufrformsrch err...');
+              }
+            }
+          });
+        }
+      }
+      $("table#bufrformlisting tr").each(function(i, o) {
+        if ($(o).css("display") == 'table-row') {
+          currentdisplay++;
+          if ($(o).hasClass('highlightOODRM')) {
+            currenthighlgt++;
+            /* <tr xref="SPITFIRE-AAAA-27-10-00-00-AA-369-C-A" annotid="bufr-1653938380198-1644823400198" srcuser="dburrows" date="2022-02-17" s1diss="000-06">
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top"><div>
+            <b class="bufrdmc">SPITFIRE-AAAA-27-10-00-00AA-369C-A</b>: 000-06</div><div class="bufrref">"<span class="bufrrefno">BUFR/SPITFIRE/00242</span>", (user: <b class="bufroriginator">dburrows</b>, <span class="bufrorigindate">2022-02-17</span>)</div></td></tr>
+            */
+            var s = $(o).find("span.bufrrefno").html() + ' for ' + $(o).attr("xref") + ', created by ' + $(o).attr("srcuser") + ' at issue ' + $(o).attr("s1diss") + ' on ' + $(o).attr("date");
+            highlightedrows.push(s);
+          }
+        }
+      });
+      $("#currentbufrdisplayct").html(("" + currentdisplay));
+      $("#currentbufrhighlightct").html(currenthighlgt > 0 ? ("(" + currenthighlgt + " highlighted entries) "):"(no highlighted entries) ");
+      if (currenthighlgt > 0 || params[0].highlight) {
+        var msg = currenthighlgt + ' highlighted ' + CVPortal.components.cvDocHandler.form765name + ' forms';
+        var buttons = [
+          {"label":"OK", "id":"yayBtn"},
+        ];
+        getModal('Highlighted ' + CVPortal.components.cvDocHandler.form765name + ' forms' ,msg, buttons, MSGBOXTYPEINF);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+        }
+        // List any highlighted items CVPortal.components.cvResourceManager.currentbufrreportid
+        var reporteditems = '';
+        for (a in highlightedrows) {
+          reporteditems = reporteditems + '• ' + highlightedrows[a] + '<br>';
+        }
+        $("#" + CVPortal.components.cvResourceManager.currentbufrreportid).html(reporteditems);
+      }
+    } else {
+      CVPortal.components.cvResourceManager.bufrformsrchs = [];
+      CVPortal.components.cvResourceManager.resetBufrListing();
+      $("#currentbufrdisplayct").html(("All"));
+      $("#currentbufrhighlightct").html((""));
+    }
+    CVPortal.components.cvResourceManager.previousearch = CVPortal.components.cvResourceManager.currentsearch;
+  },
+  
+  setUpBufrFormControls: function() {
+    var bufrfomrhtml = '';
+    var ct = this.bufrformcount;
+    var trmouse = ' onmouseover="this.style.backgroundColor=\'#eee\'" onmouseout="this.style.backgroundColor=\'#fff\'"'
+    bufrfomrhtml = bufrfomrhtml + '<div>&#0160;</div><div>Showing <span id="currentbufrdisplayct">All</span> of ' + this.bufrformcount + ' ' + CVPortal.components.cvDocHandler.form765name + ' forms <span id="currentbufrhighlightct"></span>' + this.bufrformusers + '<br></div>';
+    bufrfomrhtml = bufrfomrhtml + '<div>(BUFRs linked to unresolved Data Modules are marked with an \'!\', for example <span style="color:#999;font-weight:bold">!SPITFIRE-AAAA-00-00-00-00AA-000A-A</span>)</div>';
+
+    var allsysts = [];
+    var allusers = [];
+    var alldates = [];
+    for (a in CVPortal.components.cvResourceManager.bufrformitems) {
+      var bufrformitem = CVPortal.components.cvResourceManager.bufrformitems[a];
+      if (!allsysts.includes(bufrformitem.sys1)) allsysts.push(bufrformitem.sys1);
+      if (!allsysts.includes(bufrformitem.sys2)) allsysts.push(bufrformitem.sys2);
+      if (!allsysts.includes(bufrformitem.sys3)) allsysts.push(bufrformitem.sys3);
+      if (!allusers.includes(bufrformitem.user)) allusers.push(bufrformitem.user);
+      if (!alldates.includes(bufrformitem.date)) alldates.push(bufrformitem.date);
+    }
+    allsysts.sort();
+    allusers.sort();
+    alldates.sort(function(a, b){
+      let x = a.toLowerCase();
+      let y = b.toLowerCase();
+      if (x < y) {return -1;}
+      if (x > y) {return 1;}
+      return 0;
+    });
+    var bufrsearchformfields = [];
+    var bufrsearchbtns = [];
+    
+    var tablebdrstyletop = 'border-top:1px solid #ccc;';
+    var tablebdrstylebtm = 'border-bottom:1px solid #ccc;';
+    var tablebdrstylelft = 'border-left:1px solid #ccc;';
+    var tablebdrstylergt = 'border-right:1px solid #ccc;';
+
+    bufrfomrhtml = bufrfomrhtml + '<div style="margin-bottom:12px;"><br><b>BUFR filtering and reporting</b></div>';
+    bufrfomrhtml = bufrfomrhtml + '<table cellpadding="0" cellspacing="0"><tbody><tr><td style="vertical-align:top;">';
+    bufrfomrhtml = bufrfomrhtml + '<table cellpadding="8" cellspacing="0" id="bufrsearchfields">';
+    bufrfomrhtml = bufrfomrhtml + '<tbody>';
+
+    // Date range
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstyletop + tablebdrstylelft + '">Date range<br>(from &gt; to)</td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstyletop + '"><select name="sltBufrformsearchDat1" id="sltBufrformsearchDat1">';
+    bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
+    for (a in alldates) {
+      var date = alldates[a];
+      bufrfomrhtml = bufrfomrhtml + '<option value=' + date + '>' + date + '</option>';
+    }
+    bufrfomrhtml = bufrfomrhtml + '</select><br><select name="sltBufrformsearchDat2" id="sltBufrformsearchDat2">';
+    bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
+    for (a in alldates) {
+      var date = alldates[a];
+      bufrfomrhtml = bufrfomrhtml + '<option value=' + date + '>' + date + '</option>';
+    }
+    bufrfomrhtml = bufrfomrhtml + '</select></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstyletop + tablebdrstylergt + '"><button disabled id="btnBufrformsearchDate">&gt;</button></td></tr>';
+    bufrsearchformfields.push("sltBufrformsearchDat1");
+    bufrsearchformfields.push("sltBufrformsearchDat2");
+    bufrsearchbtns.push('btnBufrformsearchDate');
+    // / Date range
+
+    // System
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '">System</td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style=""><select name="sltBufrformsearchSyst" id="sltBufrformsearchSyst">';
+    bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
+    for (a in allsysts) {
+      var sys = allsysts[a];
+      bufrfomrhtml = bufrfomrhtml + '<option value=' + sys + '>' + sys + '</option>';
+    }
+    bufrfomrhtml = bufrfomrhtml + '</select></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylergt + '"><button disabled id="btnBufrformsearchSyst">&gt;</button></td></tr>';
+    bufrsearchformfields.push("sltBufrformsearchSyst");
+    bufrsearchbtns.push('btnBufrformsearchSyst');
+    // / System
+
+    // BUFR originator
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '">BUFR originator</td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style=""><select name="sltBufrformsearchUser" id="sltBufrformsearchUser">';
+    bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
+    for (a in allusers) {
+      var user = allusers[a];
+      bufrfomrhtml = bufrfomrhtml + '<option value=' + user + '>' + user + '</option>';
+    }
+    bufrfomrhtml = bufrfomrhtml + '</select></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylergt + '"><button disabled id="btnBufrformsearchUser">&gt;</button></td></tr>';
+    bufrsearchformfields.push("sltBufrformsearchUser");
+    bufrsearchbtns.push('btnBufrformsearchUser');
+    // / BUFR originator
+
+    // Free text search
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '">Keyword search</td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + '"><input type="text" id="txtBufrformsearchKeyW"></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + tablebdrstylergt + '"><button disabled id="btnBufrformsearchKeyW">&gt;</button></td></tr>';
+    bufrsearchformfields.push("txtBufrformsearchKeyW");
+    bufrsearchbtns.push('btnBufrformsearchKeyW');
+    // / Free text search
+
+    // Reporting BUFR applicable to current DM
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '" colspan="2">Check for potential superseded Data Modules</td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + tablebdrstylergt + '"><button id="btnBufrformsearchOODB">&gt;</button></td></tr>';
+    // / Reporting BUFR applicable to current DM
+
+    //bufrfomrhtml = bufrfomrhtml + '<tr><td colspan="3">&#0160;</td></tr>';
+    //bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td colspan="2">Reset BUFR filters</td>';
+    //bufrfomrhtml = bufrfomrhtml + '<td><button id="btnBufrformsearchReSt">&times;</button></td></tr>';
+    bufrfomrhtml = bufrfomrhtml + '<tr><td colspan="3"><center><button style="width:100%" id="btnBufrformsearchReSt">Reset BUFR filters</button></center></td></tr>';
+    bufrsearchbtns.push('btnBufrformsearchReSt');
+
+    bufrfomrhtml = bufrfomrhtml + '</tbody></table></td><td>&#0160;</td><td style="vertical-align:top;">';
+    bufrfomrhtml = bufrfomrhtml + '<div style="overflow-y:scroll; width:500px; height:400px; padding:3px; border:1px solid #ccc;" id="' + CVPortal.components.cvResourceManager.currentbufrreportid + '"></div>';
+    bufrfomrhtml = bufrfomrhtml + '</td></tr><tbody></table>';
+    
+    $("#rightDialog").html(bufrfomrhtml);
+    document.querySelector("#btnBufrformsearchDate").onclick = function() {
+      CVPortal.components.cvResourceManager.filterBufrFormView(); // Need to filter this first
+      var date1 = document.querySelector("#sltBufrformsearchDat1").value;
+      var date2 = document.querySelector("#sltBufrformsearchDat2").value;
+      if (date1 !== '---' && date2 !== '---') {
+        CVPortal.components.cvResourceManager.currentsearch = 1;
+        CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"date", "attr":"date", "val1":date1, "val2":date2}]);
+      } else {
+        document.querySelector("#sltBufrformsearchDat1").focus()
+      }
+    }
+    document.querySelector("#btnBufrformsearchSyst").onclick = function() {
+      var thesys = document.querySelector("#sltBufrformsearchSyst").value;
+      if (thesys !== '---') {
+        CVPortal.components.cvResourceManager.currentsearch = 2;
+        CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"syst", "attrs":["sys1","sys2","sys3"], "val1":thesys}]);
+      } else {
+        document.querySelector("#sltBufrformsearchSyst").focus()
+      }
+    }
+    document.querySelector("#btnBufrformsearchUser").onclick = function() {
+      var theuser = document.querySelector("#sltBufrformsearchUser").value;
+      if (theuser !== '---') {
+        CVPortal.components.cvResourceManager.currentsearch = 3;
+        CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"user", "attr":"srcuser", "val1":theuser}]);
+      } else {
+        document.querySelector("#sltBufrformsearchUser").focus()
+      }
+    }
+    document.querySelector("#btnBufrformsearchKeyW").onclick = function() {
+      var thesearchtext = document.querySelector("#txtBufrformsearchKeyW").value;
+      if (thesearchtext && thesearchtext.trim() !== '') {
+        CVPortal.components.cvResourceManager.currentsearch = 4;
+        CVPortal.components.cvResourceManager.filterBufrFormView([{"searchtext":thesearchtext.trim()}]);
+      } else {
+        document.querySelector("#txtBufrformsearchKeyW").focus()
+      }
+    }
+    document.querySelector("#btnBufrformsearchOODB").onclick = function() {
+      CVPortal.components.cvResourceManager.currentsearch = -1; // Set this as -1 so we cant do reports against searches
+      CVPortal.components.cvResourceManager.filterBufrFormView([{"report":"oodb", "highlight":"1"}]);
+    }
+    document.querySelector("#btnBufrformsearchReSt").onclick = function() {
+      for (a in bufrsearchformfields) {
+        var o = $("#" + bufrsearchformfields[a]);
+        $(o).val($(o).prop("tagName").toLowerCase() == 'select' ? "---":"");
+        $(o).trigger('change');
+      }
+      CVPortal.components.cvResourceManager.currentsearch = 0;
+      CVPortal.components.cvResourceManager.filterBufrFormView();
+    }
+
+    var dat1set = false;
+    var dat2set = false;
+    document.querySelector("#sltBufrformsearchDat1").onchange = function() {
+      dat1set = false;
+      var val = this.value;
+      if (val != '---') dat1set = true;
+      document.querySelector("#btnBufrformsearchDate").disabled = (!dat1set || !dat2set);
+    }
+    document.querySelector("#sltBufrformsearchDat2").onchange = function() {
+      dat2set = false;
+      var val = this.value;
+      if (val != '---') dat2set = true;
+      document.querySelector("#btnBufrformsearchDate").disabled = (!dat1set || !dat2set);
+    }
+    document.querySelector("#sltBufrformsearchSyst").onchange = function() {
+      document.querySelector("#btnBufrformsearchSyst").disabled = (this.value == '---');
+    }
+    document.querySelector("#sltBufrformsearchUser").onchange = function() {
+      document.querySelector("#btnBufrformsearchUser").disabled = (this.value == '---');
+    }
+
+    document.querySelector("#txtBufrformsearchKeyW").onchange = function() {
+      document.querySelector("#btnBufrformsearchKeyW").disabled = (this.value == '---');
+    }
   },
 
   viewTabletbufr765formsResourceList: function(xml, type, xref) {
@@ -1470,46 +2208,125 @@ bbmf_cvResourceManager.prototype = {
     var resContent;
     $("#resourceContents", this.panel.getElement(this.id)).each(function() { resContent = this; });
     var rightList = $("#rightList");
-    var htmlString = "<table width='98%' cellpadding='2'>";
+    var htmlString = "<table width='98%' cellpadding='2' id='bufrformlisting'>";
     CVPortal.components.cvResourceManager.bufrformcount = 0;
     CVPortal.components.cvResourceManager.bufrformusers = '';
-    var formitems = [];
+    CVPortal.components.cvResourceManager.bufrformitems = [];
     CVPortal.components.cvDocHandler.form765instance = null;
+    var dminfo = [];
+    var len = 0;
     if ($("form-instance", xml).length == 0) {
       htmlString += "<tr><td colspan='3'>" + CVPortal.getResource("resourceList.msg.nobufrforms") + "</td></tr>";
     } else {
-      var len = $("form-instance", xml).length;
+      // For BUFR searching add DM-specific to these object.
+      // We need to know the issue/inwork of the current DM to check for out-of-date forms
+      len = $("form-instance", xml).length;
       $("form-instance", xml).each(function(i, o) {
         var thisUser = $("user", $(this)).text();
+        // 2022-05-23: Disabled this check on user, all users have access to view all forms
+        //if (CVPortal.components.cvResourceManager.userGroup == 'ADMINISTRATOR' || (CVPortal.components.cvResourceManager.user == thisUser)) {
+        /* <form-instance><form-header>
+          <form-id>...</form-id><user>...</user>
+          </form-header><form-data>
+          <cond id="hidden_lcsdmcxref"><item>...</item></cond>
+          <cond id="txt_origdate"><item>...</item></cond>
+          <cond id="txt_origReference"><item>...</item></cond>
+          <cond id="txt_docRefDmc"><item>...</item></cond>
+          <cond id="txt_docRefIssueInw"><item>...</item></cond>
+          <cond id="ta_report1"><item>why</item></cond>
+          <cond id="ta_report2"><item>how</item></cond>';
+        </form-data></form-instance> */
         var bufrid = $("form-header form-id", $(this)).text();
-        console.debug('viewTabletbufr765formsResourceList:952[A]: ' + (i + 1) + ' of ' + len + ' : ' + bufrid);
-        if (CVPortal.components.cvResourceManager.userGroup == 'ADMINISTRATOR' || (CVPortal.components.cvResourceManager.user == thisUser)) {
-          var thishtmlstring = "";
-          var thisdmc = $("#txt_docRefDmc item", $(this)).text();
-          var thisiss = $("#txt_docRefIssueInw item", $(this)).text();
-          if (bufrid == xref) {
-            CVPortal.components.cvDocHandler.form765instance = bufrid;
-          }
-          CVPortal.components.cvResourceManager.bufrformcount = (CVPortal.components.cvResourceManager.bufrformcount + 1);
-          console.debug('viewTabletbufr765formsResourceList:952[B]: Adding ' + (i + 1) + ' to ' + CVPortal.components.cvResourceManager.user + ' form list');
-          thishtmlstring += "<tr class='simpleClickable" + (bufrid == xref ? ' highlightRM':'') + "' onclick='CVPortal.components.cvResourceManager.selectResource(event);' ";
-          thishtmlstring += "offset='0' type='F' xref='" + $("#hidden_lcsdmcxref item", $(this)).text() + "' annotid='" + bufrid + "'>";
-          thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>";
-          thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "'></td>";
-          thishtmlstring += "<td style='vertical-align:top'>"; // + $("form-header form-id", $(this)).text();
-          thishtmlstring += "<div><b>" + thisdmc + "</b>: " + thisiss + "</div>";
-          thishtmlstring += "<div>\"" + $("#txt_origReference item", $(this)).text() + "\", ";
-          thishtmlstring += "(user: <b>" + thisUser + "</b>, " + $("#txt_origdate item", $(this)).text() +")</div>";
-          thishtmlstring += "</td></tr>";
-          var o = new Object();
-          o.dmcissue = thisdmc + '_' + thisiss;
-          o.htmlstring = thishtmlstring;
-          o.user = thisUser;
-          formitems.push(o);
+        var thisdmc = $("#txt_docRefDmc item", $(this)).text();
+        var thisdocid = $("#hidden_lcsdmcxref item", $(this)).text();
+        var dmcparts = thisdmc.split("-"); // SPITFIRE-AAAA-06-00-00-00AA-040A-A
+        var thissys1 = dmcparts[2];
+        var thissys2 = dmcparts[2] + '-' + dmcparts[3];
+        var thissys3 = dmcparts[2] + '-' + dmcparts[3] + '-' + dmcparts[4];
+        var thisdate = $("#txt_origdate item", $(this)).text();
+        var thisiss = $("#txt_docRefIssueInw item", $(this)).text();
+        var thisref = $("#txt_origReference item", $(this)).text();
+        var searchtext = "";
+        searchtext = searchtext + $("#ta_report1 item", $(this)).text() + " ";
+        searchtext = searchtext + $("#ta_report2 item", $(this)).text() + " ";
+        searchtext = searchtext + $("#txt_origReference item", $(this)).text() + " ";
+        searchtext = searchtext + $("#slt_AircraftMark item", $(this)).text() + " ";
+        if (bufrid == xref) {
+          CVPortal.components.cvDocHandler.form765instance = bufrid;
         }
+        var shouldhighlight = (bufrid == xref);
+        var shouldsemihighlight = false;
+        // Also select all 'form765matchs' .semihighlightRM
+        try {
+          for (a in form765matchs) {
+            var form765match = form765matchs[a];
+            if (thisdmc == form765match.dmc) shouldsemihighlight = true;
+          }
+        } catch(e) {}
+        var classstring = 'simpleClickable' + (shouldhighlight ? ' highlightRM':(shouldsemihighlight ? ' semihighlightRM':''));
+        CVPortal.components.cvResourceManager.bufrformcount = (CVPortal.components.cvResourceManager.bufrformcount + 1);
+        var thishtmlstring = "";
+        thishtmlstring += "<tr class='" + classstring + "' onclick='CVPortal.components.cvResourceManager.selectResource(event);' ";
+        thishtmlstring += "offset='0' type='F' xref='" + thisdocid + "' ";
+        thishtmlstring += "annotid='" + bufrid + "' srcuser='" + thisUser + "' date='" + thisdate + "' s1diss='" + thisiss + "' ";
+        thishtmlstring += "sys1='" + thissys1 + "' sys2='" + thissys2 + "' sys3='" + thissys3 + "' ";
+        thishtmlstring += ">";
+        thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>";
+        thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "'></td>";
+        thishtmlstring += "<td style='vertical-align:top'>"; // + $("form-header form-id", $(this)).text();
+        thishtmlstring += "<div><b class='bufrdmc'>" + thisdmc + "</b>: " + thisiss + "</div>";
+        thishtmlstring += "<div class='bufrref'>\"<span class='bufrrefno'>" + thisref + "</span>\", ";
+        thishtmlstring += "(user: <b class='bufroriginator'>" + thisUser + "</b>, <span class='bufrorigindate'>" + thisdate +"</span>)</div>";
+        thishtmlstring += "</td></tr>";
+        var o = new Object();
+        o.htmlstring = thishtmlstring;
+        o.user = thisUser;
+        o.dmc = thisdmc;
+        o.sys1 = thissys1;
+        o.sys2 = thissys2;
+        o.sys3 = thissys3;
+        o.date = thisdate;
+        o.iss = thisiss;
+        o.ref = thisref;
+        o.docid = thisdocid;
+        o.bufrid = bufrid;
+        o.dmcissue = thisdmc + '_' + thisiss;
+        o.searchtext = searchtext;
+        CVPortal.components.cvResourceManager.bufrformitems.push(o);
+        dminfo.push(thisdocid);
+        //}
       });
     }
-    formitems.sort(function(a, b){
+    // Check dminfo, run call to get issue info then addback to CVPortal.components.cvResourceManager.bufrformitems
+    var formData = "";
+    formData = formData + "<request>";
+    formData = formData + "<query>.//identAndStatusSection/dmAddress/dmIdent/issueInfo</query>";
+    formData = formData + "</request>";
+    for (a in dminfo) {
+      var docId = dminfo[a];
+      var url = CVPortal.getURLwithBookParams("time") + "&target=interface&action=xpath_query&html_entity=1&document=" + docId;
+      var xmlReturn = CVPortal.ajaxPostXMLData(url, formData);
+      try {
+        for (b in CVPortal.components.cvResourceManager.bufrformitems) {
+          var o = CVPortal.components.cvResourceManager.bufrformitems[b];
+          // o.(htmlstring|user|dmc|sys1|sys2|sys3|date|iss|ref|docid|bufrid|dmcissue|searchtext)
+          if (o && (o.docid == docId)) {
+            var doc = CVPortal.components.cvDocHandler.getXmlDoc(xmlReturn.responseText);
+            var i = doc.querySelector("item > issueInfo");
+            var iss = i == null ? null:i.getAttribute("issueNumber");
+            var inw = i == null ? null:i.getAttribute("inWork");
+            if ((iss && iss != null) && (inw && inw != null)) {
+              o.dmissue = iss + '-' + inw;
+              o.valid = 1;
+            } else {
+              o.valid = -1;
+            }
+            CVPortal.components.cvResourceManager.bufrformitems[b] = o;
+          }
+        }
+      } catch(e) {}
+    }
+    CVPortal.components.cvResourceManager.bufrformitems.sort(function(a, b){
       let x = a.dmcissue.toLowerCase();
       let y = b.dmcissue.toLowerCase();
       if (x < y) {return -1;}
@@ -1517,10 +2334,17 @@ bbmf_cvResourceManager.prototype = {
       return 0;
     });
     var formusers = [];
-    for (a in formitems) {
-      var formitem = formitems[a];
+    for (a in CVPortal.components.cvResourceManager.bufrformitems) {
+      var formitem = CVPortal.components.cvResourceManager.bufrformitems[a];
       var thishtmlstring = formitem.htmlstring;
-      thishtmlstring = thishtmlstring.replaceAll("<td style='vertical-align:top' class='formNumber'></td>","<td style='vertical-align:top' class='formNumber'>" + (parseInt(a,10) + 1) + "</td>");
+      var thisnumber = (parseInt(a,10) + 1);
+      thishtmlstring = thishtmlstring.replaceAll(
+        "<td style='vertical-align:top' class='formNumber'></td>",
+        "<td style='vertical-align:top' class='formNumber' ct='" + thisnumber + "'>" + thisnumber + "</td>");
+      if (formitem.valid == -1) {
+        thishtmlstring = thishtmlstring.replaceAll("<b class='bufrdmc'>","<b class='bufrdmc' style='color:#999;' title='Unresolved Data Module Code'>!");
+      }
+      
       htmlString += thishtmlstring;
       if (!formusers.includes(formitem.user)) {
         formusers.push(formitem.user);
@@ -1534,7 +2358,7 @@ bbmf_cvResourceManager.prototype = {
       htmlString += "<tr><td colspan='3'><div>No " + CVPortal.components.cvDocHandler.form765name + " forms" + (CVPortal.components.cvResourceManager.userGroup == 'ADMINISTRATOR' ? "":" for user " + CVPortal.components.cvResourceManager.user) + "</div></td></tr>";
     } else {
       CVPortal.components.cvResourceManager.bufrformusers = (formusers.length > 0 ? "for users " + formusers.toString().replaceAll(",",", ") : "");
-      CVPortal.components.cvResourceManager.updateFormCount();
+      CVPortal.components.cvResourceManager.setUpBufrFormControls();
     }
     $(rightList).html(htmlString);
     // TODO: need to set this.currentResource, which is the TR
@@ -1601,44 +2425,83 @@ bbmf_cvResourceManager.prototype = {
 
     CVPortal.info(" { Resource Mngr } Successfully opened attachment Dialog for doc :"+ceid + " with manager flag: " + cvRM.managerOpen);
   },
+  
+  deleteBufrForm: function(thisbufr, thisitem) {
+    /* <tr class="simpleClickable semihighlightRM highlightRM" onclick="CVPortal.components.cvResourceManager.selectResource(event);" offset="0" type="F" xref="SPITFIRE-AAAA-06-00-00-00-AA-040-A-A" annotid="bufr-1653938380001-1644823400001" srcuser="dburrows"> */
+    console.info('Trying to remove ' + thisbufr + '...');
+    var isdeleted = true;
+    var url = CVPortal.getURLwithBookParams("time");
+    url += "&target=forms&action=delete_form_instance&form_type=genforms";
+    url += "&form_name=" + CVPortal.components.cvDocHandler.form765name;
+    url += "&instance_name=" + thisbufr + "&instance_id=" + thisbufr;
+    $.ajax( {
+      type: "GET", url: url, dataType: "xml",
+      async: true, cache: false,
+      success: function (xml,status,xhr) { // console.info('1077:deleteResource:' + CVPortal.components.cvDocHandler.getXmlString(xml));
+        $("instance", xml).each(function(i, o) { // <instance name="bufr-...">bufr-...</instance>
+          if ($(o).attr('name') == thisbufr) isdeleted = false;
+        });
+        if (isdeleted) { // delete thisitem
+          try {
+            console.info("Deleting " + thisbufr);
+            thisitem.parentNode.removeChild(thisitem);
+          } catch(e) {
+            console.error(thisbufr + " was not removed from the BUFR listing in the panel");
+            console.error(e);
+          }
+        } else {
+          console.info(thisbufr + " was not removed from the server");
+        }
+      }, error: function(xhr, status, error) {
+        console.error('1071:deleteResource:' + status + ' | ' + error);
+      }, complete: function() {
+        console.info('1073:deleteResource:' + thisbufr + ' was deleted? ' + isdeleted);
+        if (!isdeleted) {
+          var msg = thisbufr + " was not deleted";
+          var buttons = [
+            {"label":"OK", "id":"yayBtn"},
+          ];
+          getModal('Unable to delete BUFR form',msg,buttons,MSGBOXTYPEWRN);
+          document.querySelector("#yayBtn").onclick = function() {
+            modalUI.remove();
+          }
+          return;
+        }
+      }
+    });
+  },
 
   deleteResource: function() {
     cvResourceManager.prototype.deleteResource.call(this);
     if (this.currentResource != null) {
       var thisitem = this.currentResource;
       if (this.typeObj.type == "bufr765forms") {
+        var thisuser = thisitem.getAttribute("srcuser");
+        // If this isn't the current user and can't in fact delete it we need to disallow this
+        if (CVPortal.components.cvResourceManager.user != thisuser) {
+          var msg = "Only the owner of this BUFR form (" + thisuser + ") can delete it";
+          var buttons = [
+            {"label":"OK", "id":"yayBtn"},
+          ];
+          getModal(CVPortal.components.cvResourceManager.user + ' cannot delete this BUFR form',msg,buttons,MSGBOXTYPEWRN);
+          document.querySelector("#yayBtn").onclick = function() {
+            modalUI.remove();
+          }
+          return;
+        }
         var thisbufr = thisitem.getAttribute("annotid");
-        if (confirm("Delete this BUFR entry?\n\n• " + thisbufr)) {
-          /* <tr class="simpleClickable highlightRM" onclick="..." offset="0" type="F" xref="SPITFIRE-AAAA-00-00-01-00-AA-040-A-D" annotid="bufr-1653938382373-1644823406259"></tr> */
-          console.info('Trying to remove ' + thisbufr + '...');
-          var isdeleted = true;
-          var url = CVPortal.getURLwithBookParams("time");
-          url += "&target=forms&action=delete_form_instance&form_type=genforms";
-          url += "&form_name=" + CVPortal.components.cvDocHandler.form765name;
-          url += "&instance_name=" + thisbufr + "&instance_id=" + thisbufr;
-          $.ajax( {
-            type: "GET", url: url, dataType: "xml",
-            async: true, cache: false,
-            success: function (xml,status,xhr) { // console.info('1077:deleteResource:' + CVPortal.components.cvDocHandler.getXmlString(xml));
-              $("instance", xml).each(function(i, o) { // <instance name="bufr-...">bufr-...</instance>
-                if ($(o).attr('name') == thisbufr) isdeleted = false;
-              });
-              if (isdeleted) { // delete thisitem
-                try {
-                  console.info("Deleting " + thisbufr);
-                  thisitem.parentNode.removeChild(thisitem);
-                } catch(e) {
-                  console.error(thisbufr + " was not removed from the server");
-                }
-              } else {
-                console.info(thisbufr + " was not removed from the server");
-              }
-            }, error: function(xhr, status, error) {
-              console.error('1071:deleteResource:' + status + ' | ' + error);
-            }, complete: function() {
-              console.info('1073:deleteResource:' + thisbufr + ' was deleted? ' + isdeleted);
-            }
-          });
+        var msg = "Delete this BUFR entry?<br><br>• " + thisbufr;
+        var buttons = [
+          {"label":"Yes", "id":"yayBtn"},
+          {"label":"No",  "id":"nayBtn"},
+        ];
+        getModal('Delete BUFR form?',msg,buttons,MSGBOXTYPEQST);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+          CVPortal.components.cvResourceManager.deleteBufrForm(thisbufr, thisitem);
+        }
+        document.querySelector("#nayBtn").onclick = function() {
+          modalUI.remove();
         }
       }
     }
@@ -1657,14 +2520,22 @@ bbmf_cvResourceManager.prototype = {
         });
       }, error: function(xhr, status, error) {
         console.error(status + ' | ' + error);
+        return -1;
       }
     });
   },
   deleteAllResources: function() {
     console.info('deleteAllResources: ' + this.typeObj.type + '|' + CVPortal.components.cvDocHandler.form765name)
     if (this.typeObj.type == 'bufr765forms') {
-      CVPortal.components.cvResourceManager.getAllFormsInstances();
-      if (confirm("Are you sure you want to remove all " + CVPortal.components.cvDocHandler.form765name + " forms?")) {
+      var msg = "Are you sure you want to remove all " + CVPortal.components.cvDocHandler.form765name + " forms?";
+      var buttons = [
+        {"label":"Yes", "id":"yayBtn"},
+        {"label":"No",  "id":"nayBtn"},
+      ];
+      getModal('Delete all BUFR forms?',msg,buttons,MSGBOXTYPEQST);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        CVPortal.components.cvResourceManager.getAllFormsInstances();
         var url = CVPortal.getURLwithBookParams("time") + "&target=forms&action=delete_all_form_instances&form_type=genforms&form_name=" + CVPortal.components.cvDocHandler.form765name;
         $.ajax({ 
           method: "GET", url: url, async: false, cache: false, dataType: "xml",
@@ -1672,17 +2543,27 @@ bbmf_cvResourceManager.prototype = {
             if (CVPortal.metaFactory().get("META_USERGROUP") == 'ADMINISTRATOR') {
               var len = $("instance", xml).length;
               if (len > 0) {
-                alert("Not all BUFR forms were deleted, there are still " + len + " forms remaining");
                 // TODO: use remote login and remove ALL forms by different users
+                msg = "Not all BUFR forms were deleted, there are still " + len + " forms remaining";
+                buttons = [
+                  {"label":"OK", "id":"yayBtn"},
+                ];
+                getModal('Not all BUFR forms were deleted',msg,buttons,MSGBOXTYPEINF);
+                document.querySelector("#yayBtn").onclick = function() {
+                  modalUI.remove();
+                  showHideControls(1);
+                  CVPortal.components['cvResourceManager'].viewTabletResource('bufr765forms');
+                  showHideControls(0);
+                }
               }
             }
-            showHideControls(1);
-            CVPortal.components['cvResourceManager'].viewTabletResource('bufr765forms');
-            showHideControls(0);
           }, error: function(xhr, status, error) {
             console.error('1074:deleteAllResources:' + status + ' | ' + error);
           }
         });
+      }
+      document.querySelector("#nayBtn").onclick = function() {
+        modalUI.remove();
       }
     } else {
       cvResourceManager.prototype.deleteAllResources.call(this);
@@ -1822,6 +2703,33 @@ bbmf_cvResourceManager.prototype = {
 		}
 
 		return true;
+	},
+
+	selectResource: function(event) { 
+		event = CVPortal.fixEvent(event); // fix our event:
+		event.cancelBubble = true;
+		var elem = CVPortal.eventGetElement(event);
+
+		while(elem.nodeName != "TR") {
+			elem = elem.parentNode;
+		}
+
+		if($(".highlightRM").length) {
+			$(".simpleClickable").each(function() {
+				$(this).removeClass("highlightRM");
+			})
+		}
+		if($(".semihighlightRM").length) {
+			$(".simpleClickable").each(function() {
+				$(this).removeClass("semihighlightRM");
+			})
+		}
+		$(elem).addClass("highlightRM");
+
+		this.currentResource = elem;
+		if(elem.getAttribute("type")=="A"){
+			CVPortal.components['cvResourceManager'].editResource("edit");
+		}
 	},
 
 };

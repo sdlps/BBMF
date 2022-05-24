@@ -1293,7 +1293,7 @@ cvDocHandler.prototype = {
 	***********************/
 	// stepID added to signature to allow RH step description to be added to yellow arrow during referencing
 	handle_xref: function(xrefid, xidtype, event, stepID, referredFragment) {
-    console.info('handle_xref: ' + xrefid + ' : ' + xidtype + ' : ' + stepID + ' : ' + referredFragment);
+    console.info('handle_xref[1]: ' + xrefid + ' : ' + xidtype + ' : ' + stepID + ' : ' + referredFragment);
 		var dH = this;
 		var evt;
 		var el = null;
@@ -1332,7 +1332,7 @@ cvDocHandler.prototype = {
 				xrefid = el.getAttribute("xrefid");
 			}
 		}
-
+    console.info('handle_xref[2]: ' + xrefid);
 		if(xrefid == null) { // still null?  error:
 			CVPortal.error(" {DocHandler} Failed to follow an XREF with the id " + xrefid + " and type " + xidtype);
 			if(this.yellowArrow) {
@@ -1934,9 +1934,8 @@ cvDocHandler.prototype = {
 			success: function(html) {
 				if (html.indexOf("createjs") != -1 || html.indexOf("Adobe_Animate_CC") != -1) {
 					html = CVPortal.components.cvMedia.createCanvasImage(html, "frontmatter");
-				}
-				else { 
-				html = CVPortal.stripScripts(html, true, 1000);
+				} else { 
+          html = CVPortal.stripScripts(html, true, 1000);
 				}
 				delete dH.current;
 				dH.current = null;

@@ -27,12 +27,12 @@
 <link rel="icon" type="image/x-icon" href="@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=favicon.ico" />
 <link rel="stylesheet" type="text/css" href="@APPNAME@?target=resource&action=html&file_name=skin.css"/>
 
-<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.4.1.js"></script>
+<script type="text/javascript" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=script&file_name=jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.highlight-3.js"></script>
 <!-- add session id for skin switch
 <script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=interface.js"></script>
-<script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.dimensions.min.js"></script>
+script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.dimensions.min.js"></script>
 <script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=jquery.form.js"></script>
 -->
 <script type="text/javascript" src="@APPNAME@?target=resource&action=script&file_name=cvPortal.js"></script>
@@ -61,7 +61,7 @@ function cvPortalInit() {
 	CVPortal.components.cvBookList.loadBooklist();
 	if (CVPortal.getBrowserType() == "WEBKIT") {
 		window.addEventListener("unload", function logData() {
-			var url = CVPortal.getURLwithBaseParams("date") + "&target=main&action=main_close";
+			var url = CVPortal.getURLwithBaseParams() + "&target=main&action=main_close";
 			navigator.sendBeacon(url, "");
 		});
 	} else {
@@ -79,7 +79,7 @@ function cvPortalInit() {
 
 
 <div class="front-header">
-	<img alt="SDL" class="LCS-logo" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=lcs_white_logo.png">
+	<img alt="RWS" class="LCS-logo" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=lcs_white_logo.png">
 </div>
 
 <div>

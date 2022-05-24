@@ -621,6 +621,7 @@ style.general.type=Type
 style.general.supply=Supply
 style.matreq.supplies=Supplies
 style.matreq.spares=Spares
+style.matreq.workLocation=Work Location
 style.supteqt.supportequipment=Support Equipment
 style.refmat.referencedm=Referenced Data Modules
 style.refmat.noreferencedm=No referenced data modules.

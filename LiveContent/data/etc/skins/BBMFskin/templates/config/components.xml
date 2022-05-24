@@ -63,13 +63,10 @@
       <item virtual="svgRedliningErase" target="CVCtrl_svgRedliningErase" type="control"/>
       <item virtual="svgRedliningDownload" target="CVCtrl_svgRedliningDownload" type="control"/>
       <item virtual="svgRedlining" target="CVCtrl_svgRedlining" type="control"/>
-      <prop id="tearOff">0</prop>
-      <!-- is this media operating in a tearOff environment? -->
-      <prop id="alwaysShowMedia">1</prop>
-      <!-- setting to automatically open media or not -->
+      <prop id="tearOff">0</prop> <!-- is this media operating in a tearOff environment? -->
+      <prop id="alwaysShowMedia">1</prop><!-- setting to automatically open media or not -->
       <!-- resize simple images to 100% height of the graphic panel -->
-      <prop id="resize_simple_images">0</prop>
-      <!-- 1 = all simple images = 100% height of graphics pane -->
+      <prop id="resize_simple_images">0</prop><!-- 1 = all simple images = 100% height of graphics pane -->
       <!-- SVG hotspot display time in milliseconds 1000 ms = 1 sec  -->
       <prop id="SVGHotspotDisplayTime">6000</prop>
     </component>
@@ -132,10 +129,8 @@
       <item virtual="toggleToc" target="CV_toggleToc" type="control"/>
       <item virtual="tocTab" target="CVTab_toc" type="control"/>
       <item virtual="toggleCodes" target="CV_toggleTocCodes" type="control"/>
-      <prop id="tocLevel">1</prop>
-      <!-- depth of TOC to load -->
-      <prop id="disableTOCHitCount">0</prop>
-      <!-- Setting to 1 will suppress hit count calc and display in TOC -->
+      <prop id="tocLevel">1</prop><!-- depth of TOC to load -->
+      <prop id="disableTOCHitCount">0</prop><!-- Setting to 1 will suppress hit count calc and display in TOC -->
     </component>
     <!--LAM:2021-10-13
     <component id="cvEmergencyProcedures">
@@ -237,10 +232,8 @@
       <prop id="displayPDMButtons">0</prop>
       <!-- display Document TOC int the TOC -->
       <prop id="activityInTOC">1</prop>
-      <prop id="resourceTabList">activity|figures|tables</prop>
-      <!-- list of document tabs -->
-      <prop id="documentTabList">refmat|matreq|supteqt|main</prop>
-      <!-- list of document tabs -->
+      <prop id="resourceTabList">activity|figures|tables</prop><!-- list of document tabs -->
+      <prop id="documentTabList">refmat|matreq|supteqt|main</prop><!-- list of document tabs -->
       <!-- replace S1000D DMCs with DM Titles if the title is not provided -->
       <prop id="S1000D_ReplaceDMCwithDMTitle">1</prop>
       <!-- Show the Full IPC Parts List or Show a Single Item -->

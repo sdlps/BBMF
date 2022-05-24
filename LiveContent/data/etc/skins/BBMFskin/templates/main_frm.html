@@ -117,69 +117,52 @@ function cvPortalInit() {
 	CVPortal.panelFactory().initResize();
 	//if on tablet, hide TOC by default
 	if(CVPortal.components["cvResourceManager"].isTablet == true) CVPortal.components.cvTOC.togglePanel();
-	
-	setIssueAndDate(); // LAM
-	setUserName(); // LAM
+	CVPortal.components.cvDocHandler.bbmfLoad(); // See \data\etc\scripts\cvExtensionLibrary.js
 }
-<!-- LAM: 2021-11-11: Front cover -->
-function setIssueAndDate() {
-  // <span id="issuedateissue">Issue 1 (Draft)</span>; <span id="issuedatedate"></span>
-  // <meta id="META_PUBDATE" content="@PUBDATE@"/>
-  // <meta id="META_BOOK" content="pmc_spitfire_kcxr8_all01_01_en-us">
-  var issueDate = document.getElementById('frontpageissuedate');
-  if (issueDate) {
-    var xml = CVPortal.metaFactory().getPublicationsConfiguration();
-    if (xml) {
-      //var xmlText = new XMLSerializer().serializeToString(xml);
-      //console.info('xmlText : ' + xmlText);
-      var meta_book = document.getElementById("META_BOOK").content;
-      var book = xml.querySelector("results > reply > book-info > collection-item > book-item[name='" + meta_book + "']");
-      /*
-      <div id="frontpageissuedate" style="text-align: right; font-size: 11pt; margin-right: 12px;">
-      <span id="frontpageissuedateissue">Issue 1 (Draft)</span>; <span id="frontpageissuedatedate"></span>
-      </div>
-      */
+</script>
+<script type="text/javascript">
 
-      issueDate = document.getElementById('frontpageissuedatedate');
-      var val = book.querySelector("configitem[name='PubDate.value'] > value");
-      if (val) {
-        val = val.textContent;
-        if (val.indexOf('/') > -1) {
-          var d = val.split("/");
-          val = d[2] + "-" + d[0] + "-" + d[1];
-        }
-        issueDate.innerHTML = val;
-      }
-
-      issueDate = document.getElementById('frontpageissuedateissue');
-      val = book.querySelector("configitem[name='change_level'] > value");
-      if (val) {
-        val = val.textContent;
-        if (('' + val) === '000' || ('' + val) === '00' || ('' + val) === '0') {
-          val = 'Initial issue';
-        } else {
-          try {
-            val = parseInt(val,10);
-          } catch(e) { }
-          val = 'Issue ' + val;
-        }
-        issueDate.innerHTML = val;
-      }
-    }
-  }
-}<!-- / LAM: 2021-11-11: Front cover -->
-// iconbuttonsRightM
-<!-- LAM: 2022-02-17: Set user name before 'iconbuttonsRightM' -->
-function setUserName() {
-	var myTarget = $("#iconbuttonsRightM");
-	if (myTarget) {
-		var metaUser = $("#META_USER").attr('content');
-		var metaUserGroup = $("#META_USERGROUPNAME").attr('content');
-		var thisStyle = 'color:#fff; font-size:14px; font-weight:bold; top:6px; bottom:0; left:0; right:0; margin:auto; position:relative';
-		$(myTarget).before('<span style="' + thisStyle + '">Welcome: ' + metaUser + ', ' + metaUserGroup + '</span>');
-	}
-}
 <!-- / LAM: 2022-02-17: Set user name before 'iconbuttonsRightM' -->
+</script>
+<script type="text/javascript">
+<!-- LAM: 2022-04-05: Drag script -->
+function dragElement(el) {
+	if (!el) {
+		return;
+	} else {
+		el.onmousedown = dragMouseDown;
+	}
+  var p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+
+  function dragMouseDown(ev) {
+    ev = ev || window.event;
+		var nm = ev.target.nodeName.toLowerCase();
+		if (nm == 'input' || nm == 'select' || nm == 'textarea' || nm == 'label') { // This messes up form fields
+			return;
+		}
+		ev.preventDefault();
+		p3 = ev.clientX;
+		p4 = ev.clientY;
+		document.onmouseup = closeDragElement;
+		document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(ev) {
+    ev = ev || window.event;
+    ev.preventDefault();
+    p1 = p3 - ev.clientX;
+    p2 = p4 - ev.clientY;
+    p3 = ev.clientX;
+    p4 = ev.clientY;
+    el.style.top = (el.offsetTop - p2) + "px";
+    el.style.left = (el.offsetLeft - p1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 </script>
 
 <script language="javascript" for="IsoViewCGM" event="InitFinished()">IsoInitFinished()</script>

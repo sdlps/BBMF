@@ -5,15 +5,15 @@
 	<title>UFR ModF765 - BUFR</title>
 </idstatus>
 <content>
-	<text id="topgrid">|</text>
-	<text id="formName">MOD Format 765</text>
-	<text id="revStatement">Revised (Oct 19)</text>
-	<text id="ppq">50</text>
-	<title id="ufr">Unsatifactory Feature Report</title>
-	<title id="ufrsubtitle">(For Defence Air Environment Technical Information)</title>
+	<text id="topgrid">|</text><!--Defunct-->
+	<text id="formName">MOD Format 765</text><!--Defunct-->
+	<text id="revStatement">Revised (Oct 19)</text><!--Defunct-->
+	<text id="ppq">50</text><!--Defunct-->
+	<title id="ufr">BBMF Unsatisfactory Feature Report (BUFR)</title>
+	<title id="ufrsubtitle">(For Defence Air Environment Technical Information)</title><!--Defunct-->
   <hidden id="lcsdmcxref"></hidden>
-  <div id="part0"><text id="formRef">Reference: MOD Poster 302 Series</text></div>
-  <div id="part1"><title>Part 1 - Originator</title>
+  <div id="part0"><text id="formRef">Reference: MOD Poster 302 Series</text></div><!--Defunct-->
+  <div id="part1"><title>Part 1 - Originator</title><!--Defunct-->
     <textinput id="origtitleaddress">Title / Address</textinput>
     <textinput id="origdate">Date</textinput>
     <textinput id="origReference">Reference</textinput>
@@ -32,16 +32,16 @@
   <div id="part3"><title>Originator's Report</title>
     <textinput id="report1">Unsatisfactory feature(s)</textinput>
     <textinput id="report2">Recommended Change</textinput><!--(use continuation sheet(s) if necessary)-->
-    <confirm id="report3">I know of no other TI/Logistic Information System (ILS) that may be affected by this recommendation</confirm>
-    <confirm id="report4">Other TI/LIS affect/further effects have been reported at:</confirm>
-    <text id="report5">(eg MOD Form 765 or Remedy Record Ref) </text>
+    <confirm id="report3">I know of no other TI/Logistic Information System (ILS) that may be affected by this recommendation</confirm><!--Defunct-->
+    <confirm id="report4">BUFR Transferred to RESOLVE. F765 UFR Reference:</confirm>
+    <text id="report5">(eg MOD Form 765 or Remedy Record Ref) </text><!--Defunct-->
   </div>
   <div id="signature">
-    <textinput id="signature1">Signature</textinput>
-    <textinput id="signature2">Rank/Grade and Name</textinput>
-    <textinput id="signature3">Tel No</textinput>
-    <textinput id="signature4">Role email address</textinput>
-    <textinput id="signature5">Date</textinput>
+    <textinput id="signature1">Signature</textinput><!--Defunct-->
+    <textinput id="signature2">Rank/Grade and Name</textinput><!--Defunct-->
+    <textinput id="signature3">Tel No</textinput><!--Defunct-->
+    <textinput id="signature4">Role email address</textinput><!--Defunct-->
+    <textinput id="signature5">Date</textinput><!--Defunct-->
   </div>
 	<!--
   <input onKeyDown="return false;" type="text" id="form_title" required="true" size="34"/>

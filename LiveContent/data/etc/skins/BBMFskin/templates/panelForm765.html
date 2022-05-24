@@ -1,43 +1,6 @@
 <div id="panelForm765Container" style="display:none">
 <script id="panelForm765Script">
 dragElement(document.getElementById("form765container"));
-function dragElement(el) {
-  var p1 = 0, p2 = 0, p3 = 0, p4 = 0;
-	if (el) {
-		el.onmousedown = dragMouseDown;
-	}
-
-  function dragMouseDown(ev) {
-    ev = ev || window.event;
-		var mytarget = ev.target.id;
-		var nm = ev.target.nodeName.toLowerCase();
-		// console.info('ev.target:' + ev.target.id + ':' + nm);
-		if (nm == 'input' || nm == 'select' || nm == 'textarea' || nm == 'label') { // This messes up form fields
-			return;
-		}
-		ev.preventDefault();
-		p3 = ev.clientX;
-		p4 = ev.clientY;
-		document.onmouseup = closeDragElement;
-		document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(ev) {
-    ev = ev || window.event;
-    ev.preventDefault();
-    p1 = p3 - ev.clientX;
-    p2 = p4 - ev.clientY;
-    p3 = ev.clientX;
-    p4 = ev.clientY;
-    el.style.top = (el.offsetTop - p2) + "px";
-    el.style.left = (el.offsetLeft - p1) + "px";
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
 </script>
 <div class="title" id="panelForm765Title">BUFR Form <a href="#" onclick="CVPortal.components['cvDocHandler'].closeBufrForm()"><span>X</span></a></div>
 </div>

@@ -93,10 +93,11 @@
   <xsl:template match="/">
     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" line-height="120%" font-size="10pt" font-family="sans-serif" language="en">
       <fo:layout-master-set>
-        <fo:simple-page-master master-name="bufrform" page-width="210mm" page-height="297mm" margin-top="5mm" margin-bottom="5mm" margin-left="10mm" margin-right="10mm">
+        <fo:simple-page-master master-name="bufrform" page-width="210mm" page-height="297mm"
+                               margin-top="10mm" margin-bottom="10mm" margin-left="10mm" margin-right="10mm">
           <fo:region-body margin-top="7mm" margin-bottom="7mm"/>
-          <fo:region-before extent="10mm"/>
-          <fo:region-after  extent="10mm"/>
+          <fo:region-before extent="15mm"/>
+          <fo:region-after  extent="15mm"/>
         </fo:simple-page-master>
         <fo:page-sequence-master master-name="content"><fo:repeatable-page-master-alternatives>
           <fo:conditional-page-master-reference page-position="any" odd-or-even="any" master-reference="bufrform"/>
@@ -112,20 +113,20 @@
 
   <xsl:template match="generic_form" priority="5">
     <fo:block id="page1"><xsl:call-template name="controls_layout"/></fo:block>
-    <fo:block id="page2" page-break-before="always"><xsl:call-template name="controls_layout_p2"/></fo:block>
+    <!-- <fo:block id="page2" page-break-before="always"><xsl:call-template name="controls_layout_p2"/></fo:block> -->
   </xsl:template>
   
   <xsl:template name="controls_layout">
-    <fo:table xsl:use-attribute-sets="table" width="100%"><fo:table-body><fo:table-row>
+    <!-- <fo:table xsl:use-attribute-sets="table" width="100%"><fo:table-body><fo:table-row>
       <fo:table-cell xsl:use-attribute-sets="cell"><fo:block><xsl:apply-templates select="content/text[@id='topgrid']"/></fo:block></fo:table-cell>
       <fo:table-cell xsl:use-attribute-sets="cell" text-align="right"><fo:block>
       <xsl:apply-templates select="content/text[@id='formName']"/>
       <xsl:apply-templates select="content/text[@id='revStatement']"/>
       <xsl:apply-templates select="content/text[@id='ppq']"/>
       </fo:block></fo:table-cell>
-    </fo:table-row></fo:table-body></fo:table>
+    </fo:table-row></fo:table-body></fo:table> -->
     <xsl:apply-templates select="content/title[@id='ufr']"/>
-    <xsl:apply-templates select="content/title[@id='ufrsubtitle']"/>
+    <!-- <xsl:apply-templates select="content/title[@id='ufrsubtitle']"/> -->
     <xsl:apply-templates select="content/hidden[@id='lcsdmcxref']"/>
     
     <fo:block>
@@ -133,13 +134,13 @@
       <fo:table-column width="50%"/>
       <fo:table-column width="50%"/>
       <fo:table-body>
-      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" number-columns-spanned="2" text-align="left"><fo:block>
+      <!-- <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" number-columns-spanned="2" text-align="left"><fo:block>
         <xsl:apply-templates select="content/div[@id='part0']/text[@id='formRef']"/>
-      </fo:block></fo:table-cell></fo:table-row>
+      </fo:block></fo:table-cell></fo:table-row> -->
 
       <fo:table-row>
         <fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellborderst" text-align="left"><fo:block>
-          <xsl:apply-templates select="content/div[@id='part1']/title"/>
+          <!-- <xsl:apply-templates select="content/div[@id='part1']/title"/> -->
           <fo:block><xsl:apply-templates select="content/div[@id='part1']/textinput[@id='origtitleaddress']"/></fo:block>
         </fo:block></fo:table-cell>
         <fo:table-cell xsl:use-attribute-sets="cell cellbordersr cellborderst" text-align="left"><fo:block>
@@ -186,15 +187,15 @@
       <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr" text-align="left" number-columns-spanned="2"><fo:block>
         <fo:block><xsl:apply-templates select="content/div[@id='part3']/textinput[@id='report2']"/></fo:block>
       </fo:block></fo:table-cell></fo:table-row>
-      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr" text-align="left" number-columns-spanned="2"><fo:block>
+      <!-- <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr" text-align="left" number-columns-spanned="2"><fo:block>
         <fo:block><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report3']"/></fo:block>
-      </fo:block></fo:table-cell></fo:table-row>
-      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr" text-align="left" number-columns-spanned="2"><fo:block>
+      </fo:block></fo:table-cell></fo:table-row> -->
+      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr cellbordersb" text-align="left" number-columns-spanned="2"><fo:block>
         <fo:block><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report4']"/>
-        <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/></fo:block>
+        <!-- <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/> --></fo:block>
       </fo:block></fo:table-cell></fo:table-row>
 
-      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" text-align="left" number-columns-spanned="2"><fo:block>
+      <!-- <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" text-align="left" number-columns-spanned="2"><fo:block>
       <fo:table xsl:use-attribute-sets="table" width="100%">
       <fo:table-column column-number="1" column-width="25%"/>
       <fo:table-column column-number="2" column-width="25%"/>
@@ -208,14 +209,14 @@
       <fo:table-cell xsl:use-attribute-sets="cell"><fo:block><xsl:apply-templates select="content/div[@id='signature']/textinput[@id='signature4']"/></fo:block></fo:table-cell>
       <fo:table-cell xsl:use-attribute-sets="cell"><fo:block><xsl:apply-templates select="content/div[@id='signature']/textinput[@id='signature5']"/></fo:block></fo:table-cell>
       </fo:table-row></fo:table-body></fo:table>
-      </fo:block></fo:table-cell></fo:table-row>
+      </fo:block></fo:table-cell></fo:table-row> -->
 
       </fo:table-body>
     </fo:table></fo:block>
   </xsl:template>
   
   <xsl:template match="title[@id='ufr']">
-    <fo:block font-weight="bold" font-size="180%" line-height="1em" text-align="center"><xsl:apply-templates/></fo:block>
+    <fo:block font-weight="bold" font-size="180%" line-height="1em" margin-bottom="1em" text-align="center"><xsl:apply-templates/></fo:block>
   </xsl:template>
   <xsl:template match="title[@id='ufrsubtitle']">
     <fo:block font-size="150%" line-height="1em" text-align="center"><xsl:apply-templates/></fo:block>

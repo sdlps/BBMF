@@ -5,10 +5,24 @@
     <application>
       <configitem name="IncludeISOEntities"><value>1</value></configitem>
       <configitem name="EntityDefLocation"><value>C:/LiveContentData/entities</value></configitem>
+      <!-- HTTPS / SSL
+      jetty.sslContext.keyStorePassword=OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4
+      jetty.sslContext.keyManagerPassword=OBF:1u2u1wml1z7s1z7a1wnl1u2g
+      jetty.sslContext.trustStorePassword=OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4
+      See: https://docs.rws.com/908614/888096/livecontent-s1000d-5-10/
+      Implementing LiveContent S1000D > 
+        Configuring LiveContent S1000D > 
+          Using Client Certificate Authentication > 
+            Setting Up Client Certificate Authentication for LiveContent S1000D
+      <configitem name="app.secure_connection"><value>1</value></configitem>
+      <configitem name="app.keystore_location"><value>./etc/keystore</value></configitem>
+      <configitem name="app.keystore_password"><value>OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v</value></configitem>
+      <configitem name="app.manager_password"><value>OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v</value></configitem>
+      <configitem name="app.port"><comments>Server port</comments><value>443</value></configitem>
+      -->
+      <!-- / HTTPS / SSL -->
       <configitem name="app.port"><comments>Server port</comments><value>2245</value></configitem>
-
       <!-- <configitem name="app.use_jetty_server"><value>1</value></configitem> -->
-
       <!-- **********************************************					 Database and HTTP thread pools and connections			     ********************************************** -->			<!-- initial thread number -->
       <configitem name="app.thread_number"><value>10</value></configitem>
       <!-- maximum allowed threads -->
@@ -102,9 +116,9 @@
       <configitem name="pdf.label_y_position"><comments>Graphics extend Y. Vertical extend of the image on the page</comments><value>550.0</value></configitem>
       <configitem name="pdf.param_list"><comments>This section defines the variables which can be used in the Headers/fotters. The name defines the parameter name in the template_pdf.xsl	The value will be passed by the application.	See the template_pdf.xsl for an example how to use those variables List of the parameters available for headers/footers</comments><value>ietm_version;ietm_date;pub_number;pub_date</value></configitem>
       <configitem name="ietm_version.name"><value>IETMVersion</value></configitem>
-      <configitem name="ietm_version.value"><value>Version 5.9.0.0</value></configitem>
-      <configitem name="ietm_date.name"><value>IETMDate</value></configitem>
-      <configitem name="ietm_date.value"><value>December 11, 2020</value></configitem>
+			<configitem name="ietm_version.value"><value>Version 5.11.0.0</value></configitem>
+			<configitem name="ietm_date.name"><value>IETMDate</value></configitem>
+			<configitem name="ietm_date.value"><value>December 15, 2021</value></configitem>
       <configitem name="pub_number.name"><comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_version.value for example</comments><value>PubNumber</value></configitem>
       <configitem name="pub_date.name"><comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_date.value for example</comments><value>PubDate</value></configitem>
     </pdf>
