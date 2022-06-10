@@ -370,15 +370,18 @@ cvDocHandler.prototype = {
    				//var trgTag = trgEl.getAttribute("TAGNAME") ;
 				var cEid = trgEl.getAttribute("CEID") ;
 				if (dH != undefined && dH.current != undefined && dH.current.eid != null && dH.current.eid == cEid){
-          console.debug('loadDocumentByDocId[2A]');
+          console.debug('loadDocumentByDocId[2A]'); // LAM
 					if(dH.current.docType == "process") {
 						// for process DMs, links often go to the same place, so load it anyway:
+            console.debug('loadDocumentByDocId[2Aa]'); // LAM
 						dH.loadDocumentByCeId(cEid, refStruct, noAuditFlag);
 					} else {
+            console.debug('loadDocumentByDocId[2Ab]'); // LAM
 						// prevent links to the same document:
 						
 						// atrese - 9/23/2011 - removed alert because it is popped at times like opening bookmarks
 						//alert("Warning, link is to current document position");
+            CVPortal.components.cvDocHandler.setUpBufrForm(); // LAM: Need to check for form, the document may already onep and not have ICON
 					}
 				} else {
 					dH.loadDocumentByCeId(cEid, refStruct, noAuditFlag);
@@ -1333,6 +1336,7 @@ cvDocHandler.prototype = {
 			}
 		}
     console.info('handle_xref[2]: ' + xrefid);
+
 		if(xrefid == null) { // still null?  error:
 			CVPortal.error(" {DocHandler} Failed to follow an XREF with the id " + xrefid + " and type " + xidtype);
 			if(this.yellowArrow) {

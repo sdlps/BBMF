@@ -221,6 +221,9 @@ bbmf_cvDocHandler.prototype = {
     // dmBannerContainer.children[0].innerText = dh.dmSecurityInfo;
     // LAM revised
     dmBannerContainer.children[0].innerHTML = ('' + dh.dmSecurityInfo) === '' ? '' : '<span class="dmSecurityInfo">' + dh.dmSecurityInfo + '</span>';
+    CVPortal.components.cvDocHandler.setUpBufrForm();
+  },
+  setUpBufrForm: function() {
     var root = $("#MAIN_CONTENT");
     CVPortal.components.cvDocHandler.form765dmidentf = $(root).attr("dmc");
     CVPortal.components.cvDocHandler.form765dmcissid = ($(root).attr("dmc") + "_" + $(root).attr("issuenumber") + "-" + $(root).attr("issueinwork"));
