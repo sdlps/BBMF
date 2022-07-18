@@ -98,7 +98,7 @@ bbmf_cvDocHandler.prototype = {
   getXmlDoc: function(xmlStr) {
     return (new DOMParser()).parseFromString(xmlStr, "text/xml");
   },
-  getXmlString: function(doc) {
+  getXmlString: function(doc) { // CVPortal.components.cvDocHandler.getXmlString(doc)
     return (new XMLSerializer().serializeToString(doc));
   },
   
@@ -132,7 +132,87 @@ bbmf_cvDocHandler.prototype = {
   },
   // / BUFR Form XSLT functions
 
+  /** Updated 2022-07-14 to use <dataHandling> instead of issue number */
   loadDocumentByCeId: function(docId, refStruct, noAuditFlag, isHistory) {
+    // Data Module access
+		/* <restrictionInstructions>
+			Blank: Access To LiveContent = Administrators|Super Users
+				<dataHandling></dataHandling>
+			Approved User: Access To LiveContent = Administrators|Super Users|Approved Users
+				<dataHandling>Approved User</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling>
+			Validator: Access To LiveContent = Administrators|Super Users|Approved Users|Validators
+				<dataHandling>Validator</dataHandling> or <dataHandling>V</dataHandling>
+			User: Access To LiveContent = Administrators|Super Users|Approved Users|Validators|Users
+				<dataHandling>User</dataHandling> or <dataHandling>U</dataHandling>
+		</restrictionInstructions> */
+
+		// ADMINISTRATOR|SUPERUSER|SUPERUSEROFFLINE|APPROVEDUSER|VALIDATOR|USER|USEROFFLINE|DEVELOPER|EDITOR|BUYER|GUEST|
+
+    var userLevel = CVPortal.components.cvDocHandler.getUserLevel();
+    var iss = '000';
+    var inw = '00';
+		var dataHandling = '';
+    var url = CVPortal.getURLwithBookParams(null);
+    url += '&target=tools&action=show_xml';
+    url += '&eid=' + docId;
+    
+    var ret = 0;
+    $.ajax( {
+      type:"GET", url:url, dataType:"xml", async:false, cache:false,
+      success: function (xmlDoc,status,xhr) {
+        // <ERROR><MESSAGE>Failed to find TEXT node.</MESSAGE></ERROR>
+        var err = $("ERROR > MESSAGE", xmlDoc);
+        try {
+          err = $(err).text();
+        } catch(e) { err = ""; }
+        if (err != "") {
+          console.error('loadDocumentByCeId:error loading XML for ' + docId);
+        } else {
+          iss = $("issueInfo:first", xmlDoc).attr('issueNumber');
+          inw = $("issueInfo:first", xmlDoc).attr('inWork');
+          dataHandling = $("dataHandling:first", xmlDoc).text();
+        }
+      }, error: function(error) {
+        console.error('loadDocumentByCeId:error:' + error);
+      },
+    });
+		if (dataHandling == null) {
+			dataHandling = '';
+		}
+		dataHandling = dataHandling.toUpperCase();
+		var ug = CVPortal.components.cvDocHandler.userGroup.toUpperCase();
+		console.debug('You are in: ' + ug + '; Looking at a DM: ' + iss + '-' + inw + '; dataHandling=' + dataHandling);
+		var goodtogo = false;
+		if ((dataHandling == '') &&
+		    (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE')) {
+			/* Blank: Access To LiveContent = Administrators|Super Users
+				<dataHandling></dataHandling> */
+			goodtogo = true;
+		} else if ((dataHandling == 'APPROVED USER' || dataHandling == 'A') &&
+		           (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE' || ug == 'APPROVEDUSER')) {
+		/* Approved User: Access To LiveContent = Administrators|Super Users|Approved Users
+			<dataHandling>Approved User</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling> */
+			goodtogo = true;
+		} else if ((dataHandling == 'VALIDATOR' || dataHandling == 'V') &&
+		           (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE' || ug == 'APPROVEDUSER' || ug == 'VALIDATOR')) {
+			/* Validator: Access To LiveContent = Administrators|Super Users|Approved Users|Validators
+				<dataHandling>Validator</dataHandling> or <dataHandling>V</dataHandling> */
+			goodtogo = true;
+		} else if ((dataHandling == 'USER' || dataHandling == 'U') &&
+		           (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE' || ug == 'APPROVEDUSER' || ug == 'VALIDATOR' || ug == 'USER' || ug == 'USEROFFLINE')) {
+			/* User: Access To LiveContent = Administrators|Super Users|Approved Users|Validators|Users
+				<dataHandling>User</dataHandling> or <dataHandling>U</dataHandling> */
+			goodtogo = true;
+		} else {
+		}
+		if (!goodtogo) {
+			console.debug('No access for user group when DM is under this level of DM handling');
+		} else {
+			cvDocHandler.prototype.loadDocumentByCeId.call(this, docId, refStruct, noAuditFlag, isHistory);
+			CVPortal.controlFactory().updateCondition("Form765Enabled","true");
+		}
+  },
+  loadDocumentByCeId_ORIG: function(docId, refStruct, noAuditFlag, isHistory) {
     // Data Module access
     /*
     Admin     |Access to all documents in all issue states        |DMs and legacy docs
@@ -231,6 +311,11 @@ bbmf_cvDocHandler.prototype = {
     // Load a FORM icon?
     CVPortal.components.cvDocHandler.initForm765();
     if (CVPortal.components.cvDocHandler.form765instance != null) {
+      try {
+        $("span.bbmfIcon").each(function() {
+          $(this).remove();
+        });
+      } catch(e) {}
       // 2022-04-04 build more detailed label about BUFR forms
       var bufrlabel = (form765matchs.length > 0 ? "&#0160;(" + (form765matchs.length == 1 ? "1 BUFR Form":form765matchs.length + " BUFR Forms") + ")":"");
       var html = "<span class='bbmfIcon' id='ATT' onClick='CVPortal.components.cvDocHandler.clickOnBufr765Form(event, \"" + CVPortal.components.cvDocHandler.form765instance + "\");'>";
@@ -649,13 +734,13 @@ bbmf_cvDocHandler.prototype = {
   set765FormCondition: function() {
     CVPortal.controlFactory().updateCondition("Form765Enabled","true");
   },
-  getThisRefNumber: function(o) {
+  getThisRefNumber: function(o, currentmax) {
     try {
       var txt = $(o).text();
       var thisref = txt.split(":")[3];
       return parseInt(thisref.split("/")[2],10);
     } catch(e) {
-      return 0;
+      return currentmax;
     }
   },
   checkXmlInstances: function(doc) {
@@ -664,7 +749,7 @@ bbmf_cvDocHandler.prototype = {
     form765maxct = 0;
     try {
       $("instance", doc).each(function(i, o) {
-        var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o);
+        var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o, form765maxct);
         form765maxct = refno > form765maxct ? refno:form765maxct;
         try {
           CVPortal.components.cvDocHandler.checkFormInstance(this);
@@ -726,6 +811,8 @@ bbmf_cvDocHandler.prototype = {
     var dte = refs[5];
     var why = refs[6];
     var how = refs[7];
+    var dmt = refs[8];
+    var elm = refs[9];
     //console.debug('getFormDataFromTitle:' + usr + '|' + dmc + '|' + iss + '|' + ref + '|' + doc + '|' + dte);
     thisformStr += '<form-instance><form-header>';
     thisformStr += '<form-id>' + instance + '</form-id>';
@@ -736,6 +823,8 @@ bbmf_cvDocHandler.prototype = {
     thisformStr += '<cond id="txt_origReference"><item>' + ref + '</item></cond>';
     thisformStr += '<cond id="txt_docRefDmc"><item>' + dmc + '</item></cond>';
     thisformStr += '<cond id="txt_docRefIssueInw"><item>' + iss + '</item></cond>';
+    thisformStr += '<cond id="txt_docRefTitle"><item>' + dmt + '</item></cond>';
+    thisformStr += '<cond id="txt_docRefElementLevel"><item>' + elm + '</item></cond>';
     thisformStr += '<cond id="ta_report1"><item>' + why + '</item></cond>';
     thisformStr += '<cond id="ta_report2"><item>' + how + '</item></cond>';
     thisformStr += '</form-data></form-instance>';
@@ -1342,7 +1431,7 @@ bbmf_cvDocHandler.prototype = {
         try {
           $("instance", result).each(function(i, o) {
             // <instance name="bufr-1653938381130-1644823401130">tgeorge:SPITFIRE-AAAA-72-00-01-05AD-941A-A:000-17:BUFR/SPITFIRE/01333:SPITFIRE-AAAA-72-00-01-05-AD-941-A-A:2022-02-17:Missing alternate parts ref for item 3:We cannot always get 5433434534/PPL:3:1:1|1333</instance>
-            var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o);
+            var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o, form765maxct);
             form765maxct = refno > form765maxct ? refno:form765maxct;
             // form765maxct++;
           });
@@ -1361,6 +1450,8 @@ bbmf_cvDocHandler.prototype = {
     var dte = $("#txt_origdate item", doc).text();
     var why = $("#ta_report1 item", doc).text();
     var how = $("#ta_report2 item", doc).text();
+    var dmt = $("#txt_docRefTitle item", doc).text();
+    var elm = $("#txt_docRefElementLevel item", doc).text();
 
     // see if we have an instance name:
     var instanceId = $("#form_container").attr("instance_id");
@@ -1370,7 +1461,9 @@ bbmf_cvDocHandler.prototype = {
     console.debug('saveForm:instanceId:' + instanceId);
     var form_title = "";
     form_title = form_title + CVPortal.components.cvResourceManager.user + ":";
-    form_title = form_title + dmc + ":" + iss + ":" + ref.replaceAll(":"," ") + ":" + dic + ":" + dte + ":" + why.replaceAll(":"," ") + ":" + how.replaceAll(":"," ");
+    form_title = form_title + dmc + ":" + iss + ":" + ref.replaceAll(":"," ") + ":" + dic + ":" + dte + ":";
+    form_title = form_title + why.replaceAll(":"," ") + ":" + how.replaceAll(":"," ") + ":";
+    form_title = form_title + dmt.replaceAll(":"," ") + ":" + elm.replaceAll(":"," ");
     console.debug('saveForm:form_title:' + form_title);
 
     var url = CVPortal.getURLwithBookParams("uniqid"); // /servlets3/wietmsd?id=[ID]&book=[BOOK]&collection=[COLLECTION]&uniqid=[ID]
@@ -2225,6 +2318,8 @@ bbmf_cvResourceManager.prototype = {
       // We need to know the issue/inwork of the current DM to check for out-of-date forms
       len = $("form-instance", xml).length;
       $("form-instance", xml).each(function(i, o) {
+        console.debug(i + ' : ' + CVPortal.components.cvDocHandler.getXmlString(o));
+        
         var thisUser = $("user", $(this)).text();
         // 2022-05-23: Disabled this check on user, all users have access to view all forms
         //if (CVPortal.components.cvResourceManager.userGroup == 'ADMINISTRATOR' || (CVPortal.components.cvResourceManager.user == thisUser)) {
@@ -2254,6 +2349,9 @@ bbmf_cvResourceManager.prototype = {
         searchtext = searchtext + $("#ta_report2 item", $(this)).text() + " ";
         searchtext = searchtext + $("#txt_origReference item", $(this)).text() + " ";
         searchtext = searchtext + $("#slt_AircraftMark item", $(this)).text() + " ";
+        searchtext = searchtext + $("#txt_docRefTitle item", $(this)).text() + " ";
+        searchtext = searchtext + $("#txt_docRefElementLevel item", $(this)).text() + " ";
+        console.debug(i + ' : ' + thisdmc + ' : ' + searchtext);
         if (bufrid == xref) {
           CVPortal.components.cvDocHandler.form765instance = bufrid;
         }
@@ -2274,7 +2372,7 @@ bbmf_cvResourceManager.prototype = {
         thishtmlstring += "annotid='" + bufrid + "' srcuser='" + thisUser + "' date='" + thisdate + "' s1diss='" + thisiss + "' ";
         thishtmlstring += "sys1='" + thissys1 + "' sys2='" + thissys2 + "' sys3='" + thissys3 + "' ";
         thishtmlstring += ">";
-        thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>";
+        // thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>"; // LAM:2022-06-14; removed per Mark and Stu
         thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "'></td>";
         thishtmlstring += "<td style='vertical-align:top'>"; // + $("form-header form-id", $(this)).text();
         thishtmlstring += "<div><b class='bufrdmc'>" + thisdmc + "</b>: " + thisiss + "</div>";
@@ -2340,10 +2438,12 @@ bbmf_cvResourceManager.prototype = {
     for (a in CVPortal.components.cvResourceManager.bufrformitems) {
       var formitem = CVPortal.components.cvResourceManager.bufrformitems[a];
       var thishtmlstring = formitem.htmlstring;
+      /* LAM:2022-06-14; removed per Mark and Stu
       var thisnumber = (parseInt(a,10) + 1);
       thishtmlstring = thishtmlstring.replaceAll(
         "<td style='vertical-align:top' class='formNumber'></td>",
         "<td style='vertical-align:top' class='formNumber' ct='" + thisnumber + "'>" + thisnumber + "</td>");
+      */
       if (formitem.valid == -1) {
         thishtmlstring = thishtmlstring.replaceAll("<b class='bufrdmc'>","<b class='bufrdmc' style='color:#999;' title='Unresolved Data Module Code'>!");
       }
