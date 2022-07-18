@@ -4632,9 +4632,20 @@ dmBannerContainer.children[0].innerHTML = '<span class="dmSecurityInfo">' + dh.d
 .semihighlightRM {
 	background-color: rgb(204, 230, 255);
 }
+.suppressedbufrRM {
+	background-color: rgb(204, 204, 204);
+}
+.suppressedbufrRM td * {
+	color:#666;
+}
 /* LAM:2022-04-26 highlight out-of-date BUFR forms */
 .highlightOODRM {
 	background-color: rgb(255, 191, 0);
+}
+
+*.helpmsg {
+	cursor:help;
+	_cursor:help;
 }
 	
 /* LAM: Shopping Cart
@@ -4768,7 +4779,7 @@ div#bufrformcontainer select:focus {
 #form765container {
 	position:absolute;
 	width:700px;
-	height:730px;
+	height:770px;
 	left:450px;
 	top:20px;
 	display:block;

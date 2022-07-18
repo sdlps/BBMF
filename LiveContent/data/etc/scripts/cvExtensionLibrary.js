@@ -2,25 +2,6 @@
 
 // Extension for cvDocHandler
 // Registered in \skins\BBMFskin\templates\config\components.xml <item extension="bbmf_cvDocHandler"/>
-function bbmf_cvDocHandler() {
-  this.componentName= "Custom Document Handler";
-  this.shoppingList = [];
-  this.addthispart = false;
-  this.thispartqty = 0;
-  this.form765items = [];
-  this.formContainerId = 'form765container';
-  this.form765name = 'BUFR';
-  this.form765dmidentf = ''; // based on the dmc
-  this.form765dmcissid = ''; // based on the dmc_issue_inwork
-  this.form765instance = ''; // ID assigned by LCS
-  this.form765orgowner = ''; // Person who created the form, only they can re-save it
-  this.form765legacy = [];
-  this.form765matchs = []; // CVPortal.components.cvDocHandler.form765matchs
-  this.form765legacydoc = null;
-  this.form765maxct = 0;
-  this.user = CVPortal.metaFactory().get("META_USER");
-  this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
-}
 
 var loadingDiv = null;
 function updateProgress(msg) {
@@ -82,17 +63,38 @@ function pad(num, size) {
   return num;
 }
 
-
 const USERUSER = 10;
 const USERVALD = 25;
 const USERSPUS = 50;
 const USERADMN = 100;
 
+function bbmf_cvDocHandler() {
+  this.componentName= "Custom Document Handler";
+  this.shoppingList = [];
+  this.addthispart = false;
+  this.thispartqty = 0;
+  this.form765items = [];
+  this.formContainerId = 'form765container';
+  this.form765name = 'BUFR';
+  this.form765dmidentf = ''; // based on the dmc
+  this.form765dmcissid = ''; // based on the dmc_issue_inwork
+  this.form765instance = ''; // ID assigned by LCS; CVPortal.components.cvDocHandler.form765instance
+  this.form765orgowner = ''; // Person who created the form, only they can re-save it
+  this.form765legacy = [];
+  this.form765matchs = []; // CVPortal.components.cvDocHandler.form765matchs
+  this.form765legacydoc = null;
+  this.form765maxct = 0;
+  this.user = CVPortal.metaFactory().get("META_USER");
+  this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
+}
+
 bbmf_cvDocHandler.prototype = {
 
   // Extension initfunction (must have)
   extensionInit: function() {
-    CVPortal.controlFactory().updateCondition("Form765Enabled","false");
+    if (!CVPortal.components.cvResourceManager.isuseroffline) {
+      CVPortal.controlFactory().updateCondition("Form765Enabled","false");
+    }
   },
   
   getXmlDoc: function(xmlStr) {
@@ -139,14 +141,14 @@ bbmf_cvDocHandler.prototype = {
 			Blank: Access To LiveContent = Administrators|Super Users
 				<dataHandling></dataHandling>
 			Approved User: Access To LiveContent = Administrators|Super Users|Approved Users
-				<dataHandling>Approved User</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling>
+				<dataHandling>Approved User</dataHandling> or <dataHandling>ApprovedUser</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling>
 			Validator: Access To LiveContent = Administrators|Super Users|Approved Users|Validators
 				<dataHandling>Validator</dataHandling> or <dataHandling>V</dataHandling>
 			User: Access To LiveContent = Administrators|Super Users|Approved Users|Validators|Users
 				<dataHandling>User</dataHandling> or <dataHandling>U</dataHandling>
 		</restrictionInstructions> */
 
-		// ADMINISTRATOR|SUPERUSER|SUPERUSEROFFLINE|APPROVEDUSER|VALIDATOR|USER|USEROFFLINE|DEVELOPER|EDITOR|BUYER|GUEST|
+		// ADMINISTRATOR|SUPERUSER|SUPERUSEROFFLINE|APPROVEDUSER|VALIDATOR|USER|USEROFFLINE
 
     var userLevel = CVPortal.components.cvDocHandler.getUserLevel();
     var iss = '000';
@@ -188,10 +190,10 @@ bbmf_cvDocHandler.prototype = {
 			/* Blank: Access To LiveContent = Administrators|Super Users
 				<dataHandling></dataHandling> */
 			goodtogo = true;
-		} else if ((dataHandling == 'APPROVED USER' || dataHandling == 'A') &&
+		} else if ((dataHandling == 'APPROVED USER' || dataHandling == 'APPROVEDUSER' || dataHandling == 'AU' || dataHandling == 'A') &&
 		           (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE' || ug == 'APPROVEDUSER')) {
 		/* Approved User: Access To LiveContent = Administrators|Super Users|Approved Users
-			<dataHandling>Approved User</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling> */
+			<dataHandling>Approved User</dataHandling> or <dataHandling>ApprovedUser</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling> */
 			goodtogo = true;
 		} else if ((dataHandling == 'VALIDATOR' || dataHandling == 'V') &&
 		           (ug == 'ADMINISTRATOR' || ug == 'SUPERUSER' || ug == 'SUPERUSEROFFLINE' || ug == 'APPROVEDUSER' || ug == 'VALIDATOR')) {
@@ -206,13 +208,12 @@ bbmf_cvDocHandler.prototype = {
 		} else {
 		}
 		if (!goodtogo) {
-			console.debug('No access for user group when DM is under this level of DM handling');
-		} else {
+3		} else {
 			cvDocHandler.prototype.loadDocumentByCeId.call(this, docId, refStruct, noAuditFlag, isHistory);
-			CVPortal.controlFactory().updateCondition("Form765Enabled","true");
+      if (!CVPortal.components.cvResourceManager.isuseroffline) CVPortal.controlFactory().updateCondition("Form765Enabled","true");
 		}
   },
-  loadDocumentByCeId_ORIG: function(docId, refStruct, noAuditFlag, isHistory) {
+  loadDocumentByCeId_ORIG: function(docId, refStruct, noAuditFlag, isHistory) { // 2022-07-15: Should be deprecated, keeping in case we regress
     // Data Module access
     /*
     Admin     |Access to all documents in all issue states        |DMs and legacy docs
@@ -310,12 +311,12 @@ bbmf_cvDocHandler.prototype = {
     console.debug('35: ' + CVPortal.components.cvDocHandler.form765dmidentf + ' : ' + CVPortal.components.cvDocHandler.form765dmcissid);
     // Load a FORM icon?
     CVPortal.components.cvDocHandler.initForm765();
+    try {
+      $("span.bbmfIcon").each(function() {
+        $(this).remove();
+      });
+    } catch(e) {}
     if (CVPortal.components.cvDocHandler.form765instance != null) {
-      try {
-        $("span.bbmfIcon").each(function() {
-          $(this).remove();
-        });
-      } catch(e) {}
       // 2022-04-04 build more detailed label about BUFR forms
       var bufrlabel = (form765matchs.length > 0 ? "&#0160;(" + (form765matchs.length == 1 ? "1 BUFR Form":form765matchs.length + " BUFR Forms") + ")":"");
       var html = "<span class='bbmfIcon' id='ATT' onClick='CVPortal.components.cvDocHandler.clickOnBufr765Form(event, \"" + CVPortal.components.cvDocHandler.form765instance + "\");'>";
@@ -736,12 +737,22 @@ bbmf_cvDocHandler.prototype = {
   },
   getThisRefNumber: function(o, currentmax) {
     try {
-      var txt = $(o).text();
-      var thisref = txt.split(":")[3];
-      return parseInt(thisref.split("/")[2],10);
+      var txt;
+      if (typeof o === 'string' || o instanceof String) {
+        txt = o;
+      } else {
+        txt = $(o).text();
+      }
+      return CVPortal.components.cvDocHandler.getTheRefNumber(txt.split(":")[3]);
     } catch(e) {
+      console.error('getThisRefNumber:error ' + e);
       return currentmax;
     }
+  },
+  getTheRefNumber: function(txt) { // CVPortal.components.cvDocHandler.getTheRefNumber(txt);
+    txt = txt.replaceAll('%2F','/');
+    console.debug('getTheRefNumber? ' + txt + ' : ' + parseInt(txt.split("/")[2],10));
+    return parseInt(txt.split("/")[2],10);
   },
   checkXmlInstances: function(doc) {
     var res = 0;
@@ -769,7 +780,7 @@ bbmf_cvDocHandler.prototype = {
         var form765match = form765matchs[a]; // o.: usr|dmc|iss|instance|match
         // console.debug("form765match[" + a + "]:" + form765match.usr + " : " + form765match.dmc + " : " + form765match.iss + " : " + form765match.instance + " : " + form765match.match);
         if (form765match.match) {
-          CVPortal.components.cvDocHandler.setFormInstance(form765match.instance, form765match.usr)
+          CVPortal.components.cvDocHandler.setFormInstance(form765match.instance, form765match.usr);
           mymatch = true;
           // break; Don't break, allow it to get the latest form instance, otherwise it will get the first
         }
@@ -784,6 +795,7 @@ bbmf_cvDocHandler.prototype = {
   },
   setFormInstance: function(instance, user) {
     CVPortal.components.cvDocHandler.form765instance = instance;
+    CVPortal.components.cvDocHandler.form765orgowner = user;
     console.debug('setFormInstance set ' + instance);
     var url = CVPortal.getURLwithBookParams(null);
     url += '&target=forms&form_type=genforms&action=get_form';
@@ -813,6 +825,7 @@ bbmf_cvDocHandler.prototype = {
     var how = refs[7];
     var dmt = refs[8];
     var elm = refs[9];
+    var spr = refs[10];
     //console.debug('getFormDataFromTitle:' + usr + '|' + dmc + '|' + iss + '|' + ref + '|' + doc + '|' + dte);
     thisformStr += '<form-instance><form-header>';
     thisformStr += '<form-id>' + instance + '</form-id>';
@@ -827,6 +840,7 @@ bbmf_cvDocHandler.prototype = {
     thisformStr += '<cond id="txt_docRefElementLevel"><item>' + elm + '</item></cond>';
     thisformStr += '<cond id="ta_report1"><item>' + why + '</item></cond>';
     thisformStr += '<cond id="ta_report2"><item>' + how + '</item></cond>';
+    thisformStr += '<cond id="chk_suppressionreason"><item>' + spr + '</item></cond>';
     thisformStr += '</form-data></form-instance>';
     return thisformStr;
   },
@@ -839,6 +853,7 @@ bbmf_cvDocHandler.prototype = {
     var usr = refs[0];
     var dmc = refs[1];
     var iss = refs[2];
+    var spr = refs[10];
     //var ref = refs[3];
     //var doc = refs[4];
     //var dte = refs[5];
@@ -846,7 +861,8 @@ bbmf_cvDocHandler.prototype = {
     if (dmc && (dmc != null && dmc !== '')) {
       if (dmc == CVPortal.components.cvDocHandler.form765dmidentf) {
         dmciss = dmc + '_' + iss;
-        if (dmciss == CVPortal.components.cvDocHandler.form765dmcissid) {
+        if (spr == 'true') { // 2022-07-15: Suppressed, hide from list
+        } else if (dmciss == CVPortal.components.cvDocHandler.form765dmcissid) {
           //  CVPortal.components.cvResourceManager.user
           var o = new Object();
           o.usr = usr;
@@ -1021,7 +1037,8 @@ bbmf_cvDocHandler.prototype = {
     $("#panelForm765 *[formtype='form765']").each(function(i, o){
       var o = new Object();
       o.id = this.id;
-      o.required = this.getAttribute("required");
+      o.required = this.hasAttribute("required") ? (this.getAttribute("required") == 'true' ? true:false) : false;
+      o.pairedto = this.hasAttribute("pairedto") ? this.getAttribute("pairedto") : null;
       form765items.push(o);
     });
   },
@@ -1081,10 +1098,14 @@ bbmf_cvDocHandler.prototype = {
     $("#slt_AircraftMark").val($("#slt_AircraftMark item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Ac Mark)
     $("#txt_AircraftMarkOther").val($("#txt_AircraftMarkOther item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Other Types/Marks which may be affected)
     //$("#chk_report3").prop({ 'checked': ($("#chk_report3 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
-    $("#chk_report4").prop({ 'checked': ($("#chk_report4 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
     $("#ta_report1").val($("#ta_report1 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Unsatisfactory feature(s))
     $("#ta_report2").val($("#ta_report2 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Recommended Change (use continuation sheet(s) if necessary))
+
+    $("#chk_report4").prop({ 'checked': ($("#chk_report4 item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
     $("#txt_report4").val($("#txt_report4 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Other TI/LIS affect/further effects have been reported at)
+    $("#chk_suppressionreason").prop({ 'checked': ($("#chk_suppressionreason item", CVPortal.components.cvDocHandler.form765legacydoc).text() == 'true') });
+    $("#txt_suppressionreason").val($("#txt_suppressionreason item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // Suppression / archive text
+
     $("#txt_signature1").val($("#txt_signature1 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Signature)
     $("#txt_signature2").val($("#txt_signature2 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Rank/Grade and Name)
     $("#txt_signature3").val($("#txt_signature3 item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // (Tel No)
@@ -1093,6 +1114,7 @@ bbmf_cvDocHandler.prototype = {
     $("#hidden_lcsdmcxref").val($("#hidden_lcsdmcxref item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // Need to be that special DMC with extra dashes...
     CVPortal.components.cvDocHandler.checkFormIsComplete();
     CVPortal.components.cvDocHandler.setFormAsReadonly();
+    CVPortal.components.cvDocHandler.enablePairedCheckBoxes();
   },
   
   presetForm765items: function(newinstance) {
@@ -1125,6 +1147,7 @@ bbmf_cvDocHandler.prototype = {
     $("#ta_report1").val(); // (Unsatisfactory feature(s))
     $("#ta_report2").val(); // (Recommended Change (use continuation sheet(s) if necessary))
     $("#txt_report4").val(); // (Other TI/LIS affect/further effects have been reported at)
+    $("#txt_suppressionreason").val(); // Suppression / archive text
     $("#txt_signature1").val(); // (Signature)
     $("#txt_signature2").val(); // (Rank/Grade and Name)
     $("#txt_signature3").val(); // (Tel No)
@@ -1133,12 +1156,19 @@ bbmf_cvDocHandler.prototype = {
     $("#hidden_lcsdmcxref").val($(root).attr("document_id"));
   },
   
+  enablePairedCheckBoxes: function() {
+    // <input type="checkbox" id="chk_suppressionreason" label="chk_suppressionreason" value="val_suppressionreason" formtype="form765" disabled="1">
+    $("#chk_report4").prop('disabled',false);
+    $("#chk_suppressionreason").prop('disabled',false);
+  },
+  
   setFormAsReadonly: function() {
     // If CVPortal.components.cvDocHandler.form765orgowner != current user
     console.debug('setFormAsReadonly:owner: ' + CVPortal.components.cvDocHandler.form765orgowner);
     console.debug('setFormAsReadonly:user:  ' + CVPortal.components.cvDocHandler.user);
-    console.debug('setFormAsReadonly:  ' + (CVPortal.components.cvDocHandler.form765orgowner == CVPortal.components.cvDocHandler.user));
-    if (CVPortal.components.cvDocHandler.form765orgowner != CVPortal.components.cvDocHandler.user) {
+    var setasreadonly = (CVPortal.components.cvDocHandler.form765orgowner != CVPortal.components.cvDocHandler.user);
+    console.debug('setFormAsReadonly:  ' + setasreadonly);
+    if (setasreadonly) {
       for (a in form765items) {
         var o = form765items[a];
         var e = document.getElementById(o.id);
@@ -1169,6 +1199,7 @@ bbmf_cvDocHandler.prototype = {
   <textarea type="text" id="ta_report1"></textarea> (Unsatisfactory feature(s))
   <textarea type="text" id="ta_report2"></textarea> (Recommended Change (use continuation sheet(s) if necessary))
   <input type="text" id="txt_report4"> (Other TI/LIS affect/further effects have been reported at)
+  <input type="text" id="txt_suppressionreason"> (Suppression / archive text)
   <input type="text" id="txt_signature1"> (Signature)
   <input type="text" id="txt_signature2"> (Rank/Grade and Name)
   <input type="text" id="txt_signature3"> (Tel No)
@@ -1323,33 +1354,18 @@ bbmf_cvDocHandler.prototype = {
   
   checkFormIsComplete: function() {
     var badborder = 'border:2px solid #f00';
-    /* After form is stripped down we don't need to make this check
-    var chk_report3 = false;
-    var chk_report4 = false;
-    //CVPortal.components.cvDocHandler.setReportDivStyle(false);
+    var pairs = [];
     for (a in form765items) {
       var o = form765items[a];
       var e = document.getElementById(o.id);
       if (!e) continue;
-      if (o.id == 'chk_report3') {
-        chk_report3 = (e.checked);
-      } else if (o.id == 'chk_report4') {
-        chk_report4 = (e.checked);
+      if (o.pairedto != null) {
+        var p = new Object();
+        p.id = o.id;
+        p.pairedto = o.pairedto;
+        pairs.push(p);
+        continue;
       }
-    }
-    console.debug('chk_report4[1]: ' + chk_report4);
-    if (!chk_report3 && !chk_report4) {
-      var e = document.getElementById('chk_report4');
-      if (e) e.focus();
-      //CVPortal.components.cvDocHandler.setReportDivStyle(true);
-      return false;
-    }
-    console.debug('chk_report4[2]: ' + chk_report4);
-    */
-    for (a in form765items) {
-      var o = form765items[a];
-      var e = document.getElementById(o.id);
-      if (!e) continue;
       var v = null;
       /*
       var s = e.getAttribute('style');
@@ -1378,7 +1394,34 @@ bbmf_cvDocHandler.prototype = {
         console.debug(a + ' : ' + o.id + ' is null...');
         return false;
       }
-      // console.debug(a + ' : ' + o.id + '=' + v);
+    }
+    for (a in pairs) {
+      var p = pairs[a];
+      var e1 = document.getElementById(p.pairedto);
+      var e2 = document.getElementById(p.id);
+      if ((e1 != null && e2 != null) && (e1.nodeName == 'INPUT' && e2.nodeName == 'INPUT')) {
+        var e1t = e1.getAttribute('type');
+        var e2t = e2.getAttribute('type');
+        var chk = null;
+        var txt = null;
+        if (e1t == 'checkbox' && e2t == 'text') {
+          chk = e1, txt = e2;
+        } else if (e2t == 'checkbox' && e1t == 'text') {
+          chk = e2, txt = e1;
+        }
+        if (chk && txt) {
+          var c = $(chk).prop('checked');
+          var v = $(txt).val();
+          if ((c && v != '') || (!c && v == '')) {
+          } else {
+            console.info(a + ' : ERROR : ' + p.id + '=' + v);
+            e.focus();
+            console.debug(a + ' : ' + p.id + ' is null...');
+            return false;
+          }
+          console.debug(a + ' pair ' + $(txt).attr('id') + '|' + $(chk).attr('id') + '|' + c + ' ## ' + p.id + '|' + v);
+        }
+      }
     }
     $("#bufrPrt1Btn").button({ disabled: false });
     // $("#bufrPrt2Btn").button({ disabled: false }); // Combined into one btn
@@ -1399,17 +1442,21 @@ bbmf_cvDocHandler.prototype = {
         try {
           CVPortal.components.cvDocHandler.saveForm(CVPortal.components.cvDocHandler.form765name);
           $("#bufrSaveBtn").button({ disabled: true });
+          // TODO, if legacydoc exists, need to update this
+          if (CVPortal.components.cvDocHandler.form765instance) {
+            CVPortal.components.cvDocHandler.setFormInstance(CVPortal.components.cvDocHandler.form765instance, CVPortal.components.cvDocHandler.form765orgowner);
+          }
         } catch(e) {
           console.error('Error running cvResourceManager.saveForm: ' + e);
         }
       }
-      //alert('All fields appear complete.');
     }
   },
 
   saveForm: function(formName) {
-    var fXML = CVPortal.components.cvDocHandler.fetchFormXML();
+    var fXML = CVPortal.components.cvDocHandler.fetchFormXML(); // List of instances
     console.info('saveForm:fXML:' + fXML);
+    console.debug('CVPortal.components.cvDocHandler.form765instance: ' + CVPortal.components.cvDocHandler.form765instance)
     var doc = CVPortal.components.cvDocHandler.getXmlDoc(fXML);
     /*
     <cond label='txt_docRefDmc' id='txt_docRefDmc'><item>SPITFIRE-AAAA-28-00-01-01AA-941A-A</item></cond>
@@ -1417,29 +1464,54 @@ bbmf_cvDocHandler.prototype = {
     */
     var dmc = $("#txt_docRefDmc item", doc).text();
     var iss = $("#txt_docRefIssueInw item", doc).text();
-    var iss = $("#txt_docRefIssueInw item", doc).text();
     var ref = $("#txt_origReference item", doc).text();
+    var thisrefno = CVPortal.components.cvDocHandler.getTheRefNumber(ref);
+    console.debug('saveForm:thisrefno: ' + ref + '|' + thisrefno);
+    var currentinstance = CVPortal.components.cvDocHandler.form765instance;
     // Need to double-check this immediately prior to saving
     var url = CVPortal.getURLwithBookParams(null);
     url += '&target=forms&form_type=genforms&action=get_form_instances';
     url += '&form_name=' + CVPortal.components.cvDocHandler.form765name;
+    var isthisrefduped = false;
     $.ajax({
       type: "GET", url: url, dataType: "xml",
       async: false, cache: false,
       success: function (result,status,xhr) {
         form765maxct = 0;
+        console.debug('saveForm?' + CVPortal.components.cvDocHandler.getXmlString(result));
+        // First check to see if the curent counter is only in use once with this instance...
         try {
           $("instance", result).each(function(i, o) {
-            // <instance name="bufr-1653938381130-1644823401130">tgeorge:SPITFIRE-AAAA-72-00-01-05AD-941A-A:000-17:BUFR/SPITFIRE/01333:SPITFIRE-AAAA-72-00-01-05-AD-941-A-A:2022-02-17:Missing alternate parts ref for item 3:We cannot always get 5433434534/PPL:3:1:1|1333</instance>
+            var thisid = $(o).attr("name");
+            if (thisid == currentinstance) {
+              console.debug('saveForm[' + i + '|A] skip...');
+              return; // continue;
+            }
             var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o, form765maxct);
-            form765maxct = refno > form765maxct ? refno:form765maxct;
-            // form765maxct++;
+            console.debug('saveForm[' + i + '|A] ' + thisrefno + '|' + refno);
+            if (thisrefno == refno) isthisrefduped = true;
+            // saveForm[0|A]BUFR%2FSPITFIRE%2F00002|1
           });
-        } catch(e) {
+        } catch(e) { }
+        if (isthisrefduped) {
+          try {
+            $("instance", result).each(function(i, o) {
+              var thisid = $(o).attr("name");
+              console.debug('saveForm[' + i + '|B]' + thisid + '|' + CVPortal.components.cvDocHandler.form765instance + '|' + (thisid == CVPortal.components.cvDocHandler.form765instance));
+              // <instance name="bufr-1653938381130-1644823401130">tgeorge:SPITFIRE-AAAA-72-00-01-05AD-941A-A:000-17:BUFR/SPITFIRE/01333:SPITFIRE-AAAA-72-00-01-05-AD-941-A-A:2022-02-17:Missing alternate parts ref for item 3:We cannot always get 5433434534/PPL:3:1:1|1333</instance>
+              var refno = CVPortal.components.cvDocHandler.getThisRefNumber(o, form765maxct);
+              form765maxct = refno > form765maxct ? refno:form765maxct;
+              // form765maxct++;
+            });
+          } catch(e) {
+          }
+          console.debug("form765maxct:" + form765maxct);
+          ref = CVPortal.components.cvDocHandler.setOrigReference();
+          console.debug("ref:" + ref);
+          $("#txt_origReference item", doc).text(ref);
+        } else {
+          
         }
-        console.debug("form765matches? " + form765matchs.length + "; form765maxct:" + form765maxct);
-        ref = CVPortal.components.cvDocHandler.setOrigReference();
-        $("#txt_origReference item", doc).text(ref);
         fXML = CVPortal.components.cvDocHandler.getXmlString(doc)
       }, error: function(xhr, status, error) {
         console.error(status + ' | ' + error);
@@ -1452,6 +1524,7 @@ bbmf_cvDocHandler.prototype = {
     var how = $("#ta_report2 item", doc).text();
     var dmt = $("#txt_docRefTitle item", doc).text();
     var elm = $("#txt_docRefElementLevel item", doc).text();
+    var spr = $("#chk_suppressionreason item", doc).text();
 
     // see if we have an instance name:
     var instanceId = $("#form_container").attr("instance_id");
@@ -1463,7 +1536,8 @@ bbmf_cvDocHandler.prototype = {
     form_title = form_title + CVPortal.components.cvResourceManager.user + ":";
     form_title = form_title + dmc + ":" + iss + ":" + ref.replaceAll(":"," ") + ":" + dic + ":" + dte + ":";
     form_title = form_title + why.replaceAll(":"," ") + ":" + how.replaceAll(":"," ") + ":";
-    form_title = form_title + dmt.replaceAll(":"," ") + ":" + elm.replaceAll(":"," ");
+    form_title = form_title + dmt.replaceAll(":"," ") + ":" + elm.replaceAll(":"," ") + ":";
+    form_title = form_title + spr;
     console.debug('saveForm:form_title:' + form_title);
 
     var url = CVPortal.getURLwithBookParams("uniqid"); // /servlets3/wietmsd?id=[ID]&book=[BOOK]&collection=[COLLECTION]&uniqid=[ID]
@@ -1486,6 +1560,18 @@ bbmf_cvDocHandler.prototype = {
       CVPortal.components.cvDocHandler.form765instance = formId;
     } catch(e) {
       console.error('saveForm:r:error:' + e);
+    }
+    if (isthisrefduped) {
+      var thismsg = 'The BUFR number has changed to ' + ref + ', relaunch BUFR forms to see current view.';
+			console.debug(thismsg);
+      var buttons = [
+        {"label":"OK", "id":"yayBtn"},
+      ];
+      getModal('BUFR number update',thismsg,buttons,MSGBOXTYPEINF);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        return;
+      }
     }
   },
 
@@ -1785,17 +1871,26 @@ function bbmf_cvResourceManager() {
   this.currentsearch = -1; // CVPortal.components.cvResourceManager.currentsearch
   this.user = CVPortal.metaFactory().get("META_USER");
   this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
-  // ADMINISTRATOR | BUYER | DEVELOPER | EDITOR | GUEST | SUPERUSER | SUPERUSEROFFLINE | USER | USEROFFLINE
+  // ADMINISTRATOR|SUPERUSER|SUPERUSEROFFLINE|APPROVEDUSER|VALIDATOR|USER|USEROFFLINE
   /* LAM: 2020-03-17: Passwords */
   // CVPortal.components.cvResourceManager.specchars
   this.specchars = [33, 34, 35, 36, 37, 38, 40, 41, 42, 43, 44, 45, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 123, 124, 125, 126, 163];
   this.currentbufrreportid = 'currentbufrreportid'; // CVPortal.components.cvResourceManager.currentbufrreportid
+  this.isuseroffline = false; // 2022-07-15 check for offline users to remove bufr palette
 }
 
 bbmf_cvResourceManager.prototype = {
 
   // Extension initfunction (must have)
   extensionInit: function() {
+    // 2022-07-15 check for offline users to remove bufr palette
+    switch(CVPortal.metaFactory().get("META_USERGROUP")) {
+      case "SUPERUSEROFFLINE":
+      case "USEROFFLINE":
+        CVPortal.components.cvResourceManager.isuseroffline = true;
+        break;
+      default:
+    }
   },
 
   viewTabletResource: function(type, highlight, xref) { // type:bufr765forms
@@ -2046,23 +2141,40 @@ bbmf_cvResourceManager.prototype = {
             }
           });
         } else {
-          $("table#bufrformlisting tr").each(function(i, o) {
-            if ($(o).css("display") == 'table-row') {
-              if (bufrformsrch.attrs) {
-                var chkd = false;
-                for (a in bufrformsrch.attrs) {
-                  var checkval = $(o).attr(bufrformsrch.attrs[a]);
-                  if (checkval == bufrformsrch.val1) chkd = true;
+          if (bufrformsrch.type == "formstatus") {
+            // CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"formstatus", "attr":"issuppressed", "val1":formstatus}]);
+            // ALL|Active|Archive
+            var formstatusselect = bufrformsrch.val1;
+            $("table#bufrformlisting tr").each(function(i, o) {
+              if ($(o).css("display") == 'table-row') {
+                var formstatus = $(this).attr(bufrformsrch.attr);
+                var show = true;
+                if ((formstatusselect == 'Active' && formstatus == 'true') || 
+                    (formstatusselect == 'Archive' && formstatus == 'false')) {
+                  show = false;
                 }
-                $(o).css("display", (chkd ? "table-row":"none"));
-              } else if (bufrformsrch.attr) {
-                var checkval = $(o).attr(bufrformsrch.attr);
-                $(o).css("display", (checkval == bufrformsrch.val1 ? "table-row":"none"));
-              } else {
-                console.debug(a + ' :[3] ' + i + ' : bufrformsrch err...');
+                $(o).css("display", (show ? "table-row":"none"));
               }
-            }
-          });
+            });
+          } else {
+            $("table#bufrformlisting tr").each(function(i, o) {
+              if ($(o).css("display") == 'table-row') {
+                if (bufrformsrch.attrs) {
+                  var chkd = false;
+                  for (a in bufrformsrch.attrs) {
+                    var checkval = $(o).attr(bufrformsrch.attrs[a]);
+                    if (checkval == bufrformsrch.val1) chkd = true;
+                  }
+                  $(o).css("display", (chkd ? "table-row":"none"));
+                } else if (bufrformsrch.attr) {
+                  var checkval = $(o).attr(bufrformsrch.attr);
+                  $(o).css("display", (checkval == bufrformsrch.val1 ? "table-row":"none"));
+                } else {
+                  console.debug(a + ' :[3] ' + i + ' : bufrformsrch err...');
+                }
+              }
+            });
+          }
         }
       }
       $("table#bufrformlisting tr").each(function(i, o) {
@@ -2112,7 +2224,10 @@ bbmf_cvResourceManager.prototype = {
     var ct = this.bufrformcount;
     var trmouse = ' onmouseover="this.style.backgroundColor=\'#eee\'" onmouseout="this.style.backgroundColor=\'#fff\'"'
     bufrfomrhtml = bufrfomrhtml + '<div>&#0160;</div><div>Showing <span id="currentbufrdisplayct">All</span> of ' + this.bufrformcount + ' ' + CVPortal.components.cvDocHandler.form765name + ' forms <span id="currentbufrhighlightct"></span>' + this.bufrformusers + '<br></div>';
-    bufrfomrhtml = bufrfomrhtml + '<div>(BUFRs linked to unresolved Data Modules are marked with an \'!\', for example <span style="color:#999;font-weight:bold">!SPITFIRE-AAAA-00-00-00-00AA-000A-A</span>)</div>';
+    bufrfomrhtml = bufrfomrhtml + '<ul class="tight">';
+    bufrfomrhtml = bufrfomrhtml + '<li>BUFRs linked to unresolved Data Modules are marked with an \'!\', for example <span style="color:#999;font-weight:bold">!SPITFIRE-AAAA-00-00-00-00AA-000A-A</span></li>';
+    bufrfomrhtml = bufrfomrhtml + '<li>Archived BUFRs are marked the "broken" icon: <img src="' + CVPortal.fetchSkinImage("aircraft/bufr765suppressed.16.png") + '"></li>';
+    bufrfomrhtml = bufrfomrhtml + '</ul>';
 
     var allsysts = [];
     var allusers = [];
@@ -2136,6 +2251,7 @@ bbmf_cvResourceManager.prototype = {
     });
     var bufrsearchformfields = [];
     var bufrsearchbtns = [];
+    var helpmsg = '...';
     
     var tablebdrstyletop = 'border-top:1px solid #ccc;';
     var tablebdrstylebtm = 'border-bottom:1px solid #ccc;';
@@ -2148,7 +2264,8 @@ bbmf_cvResourceManager.prototype = {
     bufrfomrhtml = bufrfomrhtml + '<tbody>';
 
     // Date range
-    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstyletop + tablebdrstylelft + '">Date range<br>(from &gt; to)</td>';
+    helpmsg = 'Select a date range the BUFR was raised';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstyletop + tablebdrstylelft + '"><span class="helpmsg" title="' + helpmsg + '">Date range<br>(from &gt; to)</span></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstyletop + '"><select name="sltBufrformsearchDat1" id="sltBufrformsearchDat1">';
     bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
     for (a in alldates) {
@@ -2169,7 +2286,8 @@ bbmf_cvResourceManager.prototype = {
     // / Date range
 
     // System
-    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '">System</td>';
+    helpmsg = 'Select the relevant aircraft system';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '"><span class="helpmsg" title="' + helpmsg + '">System</span></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style=""><select name="sltBufrformsearchSyst" id="sltBufrformsearchSyst">';
     bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
     for (a in allsysts) {
@@ -2183,7 +2301,8 @@ bbmf_cvResourceManager.prototype = {
     // / System
 
     // BUFR originator
-    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '">BUFR originator</td>';
+    helpmsg = 'Select the BUFR originator';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '"><span class="helpmsg" title="' + helpmsg + '">BUFR originator</span></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style=""><select name="sltBufrformsearchUser" id="sltBufrformsearchUser">';
     bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
     for (a in allusers) {
@@ -2195,9 +2314,24 @@ bbmf_cvResourceManager.prototype = {
     bufrsearchformfields.push("sltBufrformsearchUser");
     bufrsearchbtns.push('btnBufrformsearchUser');
     // / BUFR originator
+    
+    // Archive,active,all
+    helpmsg = 'Select the active/archive status of the BUFRs';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + '"><span class="helpmsg" title="' + helpmsg + '">ALL|Active|Archive BUFRs</span></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style=""><select name="sltBufrformsearchArchive" id="sltBufrformsearchArchive">';
+    bufrfomrhtml = bufrfomrhtml + '<option value="---">---</option>';
+    bufrfomrhtml = bufrfomrhtml + '<option value="ALL">ALL</option>';
+    bufrfomrhtml = bufrfomrhtml + '<option value="Active">Active</option>';
+    bufrfomrhtml = bufrfomrhtml + '<option value="Archive">Archive</option>';
+    bufrfomrhtml = bufrfomrhtml + '</select></td>';
+    bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylergt + '"><button disabled id="btnBufrformsearchArchive">&gt;</button></td></tr>';
+    bufrsearchformfields.push("sltBufrformsearchArchive");
+    bufrsearchbtns.push('btnBufrformsearchArchive');
+    // / Archive,active,all
 
     // Free text search
-    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '">Keyword search</td>';
+    helpmsg = 'Search from text across the BUFR content';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '"><span class="helpmsg" title="' + helpmsg + '">Keyword search</span></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + '"><input type="text" id="txtBufrformsearchKeyW"></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + tablebdrstylergt + '"><button disabled id="btnBufrformsearchKeyW">&gt;</button></td></tr>';
     bufrsearchformfields.push("txtBufrformsearchKeyW");
@@ -2205,14 +2339,13 @@ bbmf_cvResourceManager.prototype = {
     // / Free text search
 
     // Reporting BUFR applicable to current DM
-    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '" colspan="2">Check for potential superseded Data Modules</td>';
+    helpmsg = 'Check for BUFRs that my be out of date (a Data Module may now be in a more recent issue state then the BUFR instance)';
+    bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td style="' + tablebdrstylelft + tablebdrstylebtm + '" colspan="2"><span class="helpmsg" title="' + helpmsg + '">Check for potential superseded Data Modules</span></td>';
     bufrfomrhtml = bufrfomrhtml + '<td style="' + tablebdrstylebtm + tablebdrstylergt + '"><button id="btnBufrformsearchOODB">&gt;</button></td></tr>';
     // / Reporting BUFR applicable to current DM
 
-    //bufrfomrhtml = bufrfomrhtml + '<tr><td colspan="3">&#0160;</td></tr>';
-    //bufrfomrhtml = bufrfomrhtml + '<tr' + trmouse + '><td colspan="2">Reset BUFR filters</td>';
-    //bufrfomrhtml = bufrfomrhtml + '<td><button id="btnBufrformsearchReSt">&times;</button></td></tr>';
-    bufrfomrhtml = bufrfomrhtml + '<tr><td colspan="3"><center><button style="width:100%" id="btnBufrformsearchReSt">Reset BUFR filters</button></center></td></tr>';
+    helpmsg = 'Reset all search and reporting filters';
+    bufrfomrhtml = bufrfomrhtml + '<tr><td colspan="3"><center><button style="width:100%" id="btnBufrformsearchReSt"><span class="helpmsg" title="' + helpmsg + '">Reset BUFR filters</span></button></center></td></tr>';
     bufrsearchbtns.push('btnBufrformsearchReSt');
 
     bufrfomrhtml = bufrfomrhtml + '</tbody></table></td><td>&#0160;</td><td style="vertical-align:top;">';
@@ -2245,6 +2378,15 @@ bbmf_cvResourceManager.prototype = {
       if (theuser !== '---') {
         CVPortal.components.cvResourceManager.currentsearch = 3;
         CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"user", "attr":"srcuser", "val1":theuser}]);
+      } else {
+        document.querySelector("#sltBufrformsearchUser").focus()
+      }
+    }
+    document.querySelector("#btnBufrformsearchArchive").onclick = function() {
+      var formstatus = document.querySelector("#sltBufrformsearchArchive").value;
+      if (formstatus !== '---') {
+        CVPortal.components.cvResourceManager.currentsearch = 4;
+        CVPortal.components.cvResourceManager.filterBufrFormView([{"type":"formstatus", "attr":"issuppressed", "val1":formstatus}]);
       } else {
         document.querySelector("#sltBufrformsearchUser").focus()
       }
@@ -2292,6 +2434,10 @@ bbmf_cvResourceManager.prototype = {
     document.querySelector("#sltBufrformsearchUser").onchange = function() {
       document.querySelector("#btnBufrformsearchUser").disabled = (this.value == '---');
     }
+    document.querySelector("#sltBufrformsearchArchive").onchange = function() {
+      document.querySelector("#btnBufrformsearchArchive").disabled = (this.value == '---');
+    }
+    
 
     document.querySelector("#txtBufrformsearchKeyW").onchange = function() {
       document.querySelector("#btnBufrformsearchKeyW").disabled = (this.value == '---');
@@ -2332,7 +2478,8 @@ bbmf_cvResourceManager.prototype = {
           <cond id="txt_docRefDmc"><item>...</item></cond>
           <cond id="txt_docRefIssueInw"><item>...</item></cond>
           <cond id="ta_report1"><item>why</item></cond>
-          <cond id="ta_report2"><item>how</item></cond>';
+          <cond id="ta_report2"><item>how</item></cond>
+          <cond id="chk_suppressionreason"><item>spr</item></cond>
         </form-data></form-instance> */
         var bufrid = $("form-header form-id", $(this)).text();
         var thisdmc = $("#txt_docRefDmc item", $(this)).text();
@@ -2344,6 +2491,7 @@ bbmf_cvResourceManager.prototype = {
         var thisdate = $("#txt_origdate item", $(this)).text();
         var thisiss = $("#txt_docRefIssueInw item", $(this)).text();
         var thisref = $("#txt_origReference item", $(this)).text();
+        var thisspr = $("#chk_suppressionreason item", $(this)).text();
         var searchtext = "";
         searchtext = searchtext + $("#ta_report1 item", $(this)).text() + " ";
         searchtext = searchtext + $("#ta_report2 item", $(this)).text() + " ";
@@ -2355,6 +2503,7 @@ bbmf_cvResourceManager.prototype = {
         if (bufrid == xref) {
           CVPortal.components.cvDocHandler.form765instance = bufrid;
         }
+        var issuppressed = (thisspr == 'true');
         var shouldhighlight = (bufrid == xref);
         var shouldsemihighlight = false;
         // Also select all 'form765matchs' .semihighlightRM
@@ -2364,16 +2513,18 @@ bbmf_cvResourceManager.prototype = {
             if (thisdmc == form765match.dmc) shouldsemihighlight = true;
           }
         } catch(e) {}
-        var classstring = 'simpleClickable' + (shouldhighlight ? ' highlightRM':(shouldsemihighlight ? ' semihighlightRM':''));
+        // classstring = 'simpleClickable' + (issuppressed ? (' suppressedbufrRM': (shouldhighlight ? ' highlightRM':(shouldsemihighlight ? ' semihighlightRM':''))));
+        var classstring = 'simpleClickable' + (issuppressed ? ' suppressedbufrRM':(shouldhighlight ? ' highlightRM':(shouldsemihighlight ? ' semihighlightRM':'')));
         CVPortal.components.cvResourceManager.bufrformcount = (CVPortal.components.cvResourceManager.bufrformcount + 1);
         var thishtmlstring = "";
         thishtmlstring += "<tr class='" + classstring + "' onclick='CVPortal.components.cvResourceManager.selectResource(event);' ";
-        thishtmlstring += "offset='0' type='F' xref='" + thisdocid + "' ";
+        thishtmlstring += "offset='0' type='F' xref='" + thisdocid + "' issuppressed='" + issuppressed + "'";
         thishtmlstring += "annotid='" + bufrid + "' srcuser='" + thisUser + "' date='" + thisdate + "' s1diss='" + thisiss + "' ";
         thishtmlstring += "sys1='" + thissys1 + "' sys2='" + thissys2 + "' sys3='" + thissys3 + "' ";
         thishtmlstring += ">";
         // thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>"; // LAM:2022-06-14; removed per Mark and Stu
-        thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/bufr765.16.png") + "'></td>";
+        thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/" + 
+          (issuppressed ? 'bufr765suppressed.16.png':'bufr765.16.png')) + "'></td>";
         thishtmlstring += "<td style='vertical-align:top'>"; // + $("form-header form-id", $(this)).text();
         thishtmlstring += "<div><b class='bufrdmc'>" + thisdmc + "</b>: " + thisiss + "</div>";
         thishtmlstring += "<div class='bufrref'>\"<span class='bufrrefno'>" + thisref + "</span>\", ";
@@ -2671,6 +2822,36 @@ bbmf_cvResourceManager.prototype = {
     } else {
       cvResourceManager.prototype.deleteAllResources.call(this);
     }
+  },
+  
+  goToResource: function() {
+		var cvRM = this;
+		
+		if(this.currentResource != null) {
+			if(this.typeObj.type == "genericforms-SavedSearches") {
+				var instanceId = this.currentResource.getAttribute("xref");
+				var url = CVPortal.getURLwithBookParams() + "&target=forms&action=get_form&form_type=genforms&form_name=" + this.typeObj.form_name + "&instance_name=" + instanceId + "&instance_id=" + instanceId;
+				$.ajax({
+					method: "GET", url: url,
+					cache: false, async: false, dataType: "xml",
+					success: function(xml) {
+						CVPortal.components.cvSearch.restoreFromSavedSearchXML(xml);
+						cvRM.closeResourceManager(true);
+					}
+				});
+				return;
+			} else {
+        console.debug('this.typeObj.type? ' + this.typeObj.type);
+        if(this.typeObj.type == "bufr765forms") {
+          
+        }
+				CVPortal.components["cvDocHandler"].loadDocumentByDocId(this.currentResource.getAttribute("xref"));
+				this.closeResourceManager(true);
+				this.rMsyncTOC = true;
+			}
+		} else {
+			alert(CVPortal.getResource("alert.select.object.to.goto"));
+		}
   },
   
   viewResource: function(xml_flag) {

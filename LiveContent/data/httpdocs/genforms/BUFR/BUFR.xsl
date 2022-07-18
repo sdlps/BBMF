@@ -17,6 +17,7 @@
       <span>&#0160;</span>
       -->
       <input id="bufrClseBtn" class="ui-button ui-corner-all ui-widget" type="button" value="Close" onClick="CVPortal.components.cvDocHandler.closeBufrForm()" style="width:120px"/>
+      
       </center>
       <script><![CDATA[
         function disableChk3() {
@@ -29,6 +30,14 @@
           }
           CVPortal.components.cvDocHandler.setRequiredForms();
         }
+        function enablesuppress() {
+          var chk = $("#chk_suppressionreason").prop('checked');
+          if (chk) {
+            $("#txt_suppressionreason").attr('required','true');
+          } else {
+            $("#txt_suppressionreason").removeAttr('required');
+          }
+        }
         function disableChk4() {
           $("#chk_report4").prop({ 'checked': false });
           $("#txt_report4").css('background-color','#eee');
@@ -36,20 +45,39 @@
           $("#txt_report4").prop({ 'value': '' });
         }
         function enableSave()  { $("#bufrSaveBtn").button({ disabled: false }); }
+        function checkTextReport4() {
+          var t = $(this).val();
+          console.debug('checkTextreport4 1? ' + t);
+          $("#chk_report4").prop('checked',(t == '' ? false:true));
+          enableSave();
+        }
+        function checkTextSuppress() {
+          var t = $(this).val();
+          console.debug('checkTextreport4 1? ' + t);
+          $("#chk_suppressionreason").prop('checked',(t == '' ? false:true));
+          enableSave();
+        }
+
         $("#chk_report3").on("click", disableChk4);
         $("#chk_report4").on("click", disableChk3);
+        $("#chk_suppressionreason").on("click", enablesuppress);
+
         $("#txt_origReference").on("change", enableSave);
         $("#txt_docRefElementLevel").on("change", enableSave);
         $("#slt_AircraftMark").on("change", enableSave);
         $("#txt_AircraftMarkOther").on("change", enableSave);
         $("#ta_report1").on("change", enableSave);
         $("#ta_report2").on("change", enableSave);
-        $("#txt_report4").on("change", enableSave);
         $("#chk_report3").on("change", enableSave);
-        $("#chk_report4").on("change", enableSave);
         $("#txt_signature1").on("change", enableSave);
         $("#txt_signature2").on("change", enableSave);
         $("#txt_signature3").on("change", enableSave);
+
+        $("#txt_report4").on("change", checkTextReport4);
+        $("#chk_report4").on("change", enableSave);
+        $("#txt_suppressionreason").on("change", checkTextSuppress);
+        $("#chk_suppressionreason").on("change", enableSave);
+
       ]]></script>
     </div>
   </xsl:template>
@@ -77,7 +105,7 @@
       </td>
     </tr></tbody></table>
     
-    <div id="bufrformcontainer" style="padding:0; overflow:scroll; overflow-y:auto; overflow-x:hidden; height:600px; float:left; position:relative;">
+    <div id="bufrformcontainer" style="padding:0; overflow:scroll; overflow-y:auto; overflow-x:hidden; height:630px; float:left; position:relative;">
     <table width="100%" cellpadding="2" cellspacing="0" class="Form765" style="border-collapse:collapse;">
       <col width="50%"></col>
       <col width="50%"></col>
@@ -147,6 +175,9 @@
         <!--
         <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/>
         -->
+      </td></tr>
+      <tr><td style="border:2px solid #000; text-align:left;" colspan="2">
+        <div id="report4"><xsl:apply-templates select="content/div[@id='suppression']/confirm[@id='suppressionreason']"/></div>
       </td></tr>
 
       <!--
@@ -239,10 +270,19 @@
   <xsl:template match="div[@id='part3']/confirm[@id='report4']">
     <xsl:call-template name="makeconfirm">
       <xsl:with-param name="addtxt" select="true()"/>
-      <xsl:with-param name="required" select="false()"/>
+      <xsl:with-param name="required" select="true()"/>
+      <xsl:with-param name="disabled" select="true()"/>
     </xsl:call-template>
   </xsl:template>
-
+  <xsl:template match="div[@id='suppression']/confirm[@id='suppressionreason']">
+    <xsl:call-template name="makeconfirm">
+      <xsl:with-param name="addtxt" select="true()"/>
+      <xsl:with-param name="required" select="true()"/>
+      <xsl:with-param name="disabled" select="true()"/>
+      <xsl:with-param name="helpmsg">Mark this BUFR as archived, or suppressed and give a reason: duplicate, void, incorrect etc.</xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+  
   <xsl:template match="div[@id='part3']/text[@id='report5']">
     <div style="font-size:80%; margin-left:24px;"><xsl:apply-templates select="text()"/></div>
   </xsl:template>
@@ -279,11 +319,46 @@
     <xsl:param name="width">40%</xsl:param>
     <xsl:param name="addtxt" select="false()"/>
     <xsl:param name="required" select="true()"/>
+    <xsl:param name="disabled" select="false()"/>
+    <xsl:param name="helpmsg"></xsl:param>
+    <xsl:variable name="id" select="concat('chk_', ./@id)"/>
+    <table cellspacing="0" cellpadding="0" width="98%">
+    <col width="50%"></col>
+    <col width="50%"></col>
+    <tbody><tr>
+    <td><input type="checkbox" id="{$id}" label="{$id}" value="val_{./@id}" formtype="form765">
+      <xsl:if test="$required">
+        <xsl:attribute name="required">true</xsl:attribute>
+        <xsl:attribute name="pairedto">txt_<xsl:value-of select="./@id"/></xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$disabled"><xsl:attribute name="disabled">1</xsl:attribute></xsl:if>
+    </input><label for="{$id}" style="font-size:80%; width:250px;">
+      <xsl:if test="$helpmsg!=''">
+        <xsl:attribute name="class">helpmsg</xsl:attribute>
+        <xsl:attribute name="title"><xsl:value-of select="$helpmsg"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates select="text()"/>
+    </label></td>
+    <td><xsl:if test="$addtxt">
+      <input type="text" id="txt_{./@id}" style="width:98%;" formtype="form765">
+        <xsl:if test="$required">
+          <xsl:attribute name="required">true</xsl:attribute>
+          <xsl:attribute name="pairedto"><xsl:value-of select="$id"/></xsl:attribute>
+        </xsl:if>
+      </input>
+    </xsl:if></td>
+    </tr></tbody></table>
+  </xsl:template>
+
+  <xsl:template name="makeconfirmORIG">
+    <xsl:param name="width">40%</xsl:param>
+    <xsl:param name="addtxt" select="false()"/>
+    <xsl:param name="required" select="true()"/>
     <xsl:variable name="id" select="concat('chk_', ./@id)"/>
     <div><input type="checkbox" id="{$id}" label="{$id}" value="val_{./@id}" formtype="form765">
       <xsl:if test="$required"><xsl:attribute name="required">true</xsl:attribute></xsl:if>
     </input>
-    <label for="{$id}" style="font-size:80%"><xsl:apply-templates select="text()"/></label>
+    <label for="{$id}" style="font-size:80%; width:250px;"><xsl:apply-templates select="text()"/></label>
     <xsl:if test="$addtxt">
       <input type="text" id="txt_{./@id}" style="width:{$width};" formtype="form765">
         <xsl:if test="$required"><xsl:attribute name="required">true</xsl:attribute></xsl:if>

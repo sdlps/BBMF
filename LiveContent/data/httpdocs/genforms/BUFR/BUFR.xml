@@ -43,6 +43,9 @@
     <textinput id="signature4">Role email address</textinput><!--Defunct-->
     <textinput id="signature5">Date</textinput><!--Defunct-->
   </div>
+  <div id="suppression">
+    <confirm id="suppressionreason">BUFR should be archived. Give reason here:</confirm>
+  </div>
 	<!--
   <input onKeyDown="return false;" type="text" id="form_title" required="true" size="34"/>
   -->
