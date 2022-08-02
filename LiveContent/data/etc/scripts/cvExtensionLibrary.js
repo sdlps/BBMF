@@ -86,6 +86,7 @@ function bbmf_cvDocHandler() {
   this.form765maxct = 0;
   this.user = CVPortal.metaFactory().get("META_USER");
   this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
+  this.beamsbuilddate = '2022-07-25'; // CVPortal.components.cvDocHandler.beamsbuilddate;
 }
 
 bbmf_cvDocHandler.prototype = {
@@ -95,6 +96,39 @@ bbmf_cvDocHandler.prototype = {
     if (!CVPortal.components.cvResourceManager.isuseroffline) {
       CVPortal.controlFactory().updateCondition("Form765Enabled","false");
     }
+  },
+  
+  aboutBeams: function() {
+		var versionInfo = '';
+		$.ajax( {
+			method: "GET",
+			url: CVPortal.getURLwithBaseParams() + "&target=interface&action=config_item&item_name=ietm_version.value",
+			dataType: "xml",
+			success: function(xml) {
+        /* <results>
+        <status>SUCCESS</status>
+        <message>Success!!!</message>
+        <request name="config_item"><item-name>ietm_version.value</item-name></request>
+        <reply><config-info>Version 5.11</config-info></reply></results> */
+        versionInfo = $("config-info", xml).text();
+        console.debug('aboutBeams[' + versionInfo + ']' + CVPortal.components.cvDocHandler.getXmlString(xml));
+        var buttons = [ {"label":"OK", "id":"yayBtn"} ];
+        var msg = '';
+        msg = msg + '<table border="0" cellpadding="0" cellspacing="0"><tr>';
+        msg = msg + '<td><img style="width:120px; height:120px;" src="' + CVPortal.fetchSkinImage("aircraft/BEAMS_Logo_SVG_ISSUE_01.svg") + '"></td>';
+        msg = msg + '<td><div style="font-size:15px; font-variant:small-caps">BBMF Electronc Aircraft Manual System</div><br>';
+        msg = msg + '<div style="font-size:15px;">BEAMS application: ' + CVPortal.components.cvDocHandler.beamsbuilddate + '</div><br>';
+        msg = msg + '<div style="font-size:15px;">RWS LiveContent S1000D ' + versionInfo + '</div>';
+        msg = msg + '</td></tr></table>';
+        getModal('About BEAMS',msg,buttons,MSGBOXTYPEINF);
+        document.querySelector("#yayBtn").onclick = function() {
+          modalUI.remove();
+          return;
+        }
+			}, error: function(e) {
+        console.debug('Error aboutBeams:' + e);
+      }
+		});
   },
   
   getXmlDoc: function(xmlStr) {
@@ -208,6 +242,41 @@ bbmf_cvDocHandler.prototype = {
 		} else {
 		}
 		if (!goodtogo) {
+      var msg = '';
+      msg = '<b>';
+      switch(ug) {
+        case 'ADMINISTRATOR':
+        case 'SUPERUSER':
+        case 'SUPERUSEROFFLINE':
+          break;
+        case 'APPROVEDUSER':
+          msg = msg + 'As an APPROVED USER you have limited Data Module Access privileges.<br>';
+          msg = msg + 'You do not have access rights to this Data Module.<br>';
+          msg = msg + 'It is still in the authoring phase.';
+          break;
+        case 'VALIDATOR':
+          msg = msg + 'As a VALIDATOR you have limited Data Module Access privileges.<br>';
+          msg = msg + 'You do not have access rights to this Data Module.<br>';
+          msg = msg + 'It is not ready for Validation.';
+          break;
+        case 'USER':
+        case 'USEROFFLINE':
+          msg = msg + 'As a USER you have limited Data Module Access privileges.<br>';
+          msg = msg + 'You do not have access rights to this Data Module.<br>';
+          msg = msg + 'You will be granted access once it has completed Validation.';
+          break;
+        default:
+          break;
+      }
+      msg = msg + '</b>';
+      var buttons = [
+        {"label":"OK", "id":"yayBtn"},
+      ];
+      getModal('Data Module Access Control',msg,buttons,MSGBOXTYPEWRN);
+      document.querySelector("#yayBtn").onclick = function() {
+        modalUI.remove();
+        return;
+      }
 3		} else {
 			cvDocHandler.prototype.loadDocumentByCeId.call(this, docId, refStruct, noAuditFlag, isHistory);
       if (!CVPortal.components.cvResourceManager.isuseroffline) CVPortal.controlFactory().updateCondition("Form765Enabled","true");
@@ -751,7 +820,7 @@ bbmf_cvDocHandler.prototype = {
   },
   getTheRefNumber: function(txt) { // CVPortal.components.cvDocHandler.getTheRefNumber(txt);
     txt = txt.replaceAll('%2F','/');
-    console.debug('getTheRefNumber? ' + txt + ' : ' + parseInt(txt.split("/")[2],10));
+    // console.debug('getTheRefNumber? ' + txt + ' : ' + parseInt(txt.split("/")[2],10));
     return parseInt(txt.split("/")[2],10);
   },
   checkXmlInstances: function(doc) {
@@ -898,7 +967,7 @@ bbmf_cvDocHandler.prototype = {
         updateProgress("Checking BUFR form instances ...");
         var chk = CVPortal.components.cvDocHandler.checkXmlInstances(result);
       }, error: function(xhr, status, error) {
-        console.error(status + ' | ' + error);
+        console.error(status + ' | ' + error + ' | ' + CVPortal.components.cvDocHandler.getXmlString(xhr));
       }
     });
     //console.info('Kill off form765legacy...');
@@ -1114,7 +1183,6 @@ bbmf_cvDocHandler.prototype = {
     $("#hidden_lcsdmcxref").val($("#hidden_lcsdmcxref item", CVPortal.components.cvDocHandler.form765legacydoc).text()); // Need to be that special DMC with extra dashes...
     CVPortal.components.cvDocHandler.checkFormIsComplete();
     CVPortal.components.cvDocHandler.setFormAsReadonly();
-    CVPortal.components.cvDocHandler.enablePairedCheckBoxes();
   },
   
   presetForm765items: function(newinstance) {
@@ -1177,6 +1245,8 @@ bbmf_cvDocHandler.prototype = {
       }
       $("#bufrSaveBtn").button({ disabled: true });
       //CVPortal.components.cvDocHandler.setReportDivStyle(false);
+    } else {
+      CVPortal.components.cvDocHandler.enablePairedCheckBoxes();
     }
     $("#bufrPrt1Btn").button({ disabled: false });
     //$("#bufrPrt2Btn").button({ disabled: false });
@@ -1285,7 +1355,7 @@ bbmf_cvDocHandler.prototype = {
         {"label":"Yes", "id":"yayBtn"},
         {"label":"No", "id":"nayBtn"},
       ];
-      getModal('Reload existing BUFR form?',msg,buttons,MSGBOXTYPEQST);
+      getModal('Print Data Module aswell?',msg,buttons,MSGBOXTYPEQST);
       document.querySelector("#yayBtn").onclick = function() {
         modalUI.remove();
         CVPortal.components.cvDocHandler.printDMAswell(formData);
@@ -1419,7 +1489,7 @@ bbmf_cvDocHandler.prototype = {
             console.debug(a + ' : ' + p.id + ' is null...');
             return false;
           }
-          console.debug(a + ' pair ' + $(txt).attr('id') + '|' + $(chk).attr('id') + '|' + c + ' ## ' + p.id + '|' + v);
+          // console.debug(a + ' pair ' + $(txt).attr('id') + '|' + $(chk).attr('id') + '|' + c + ' ## ' + p.id + '|' + v);
         }
       }
     }
@@ -1764,9 +1834,9 @@ bbmf_cvDocHandler.prototype = {
         if (rscdoc) {
           // eid = $(rscdoc).attr("EID");
           eid = $(rscdoc).attr("REFID");
-          console.info("gettoc:eid:" + eid);
+          //console.debug("gettoc:eid:" + eid);
         } else {
-          console.info("gettoc:eid...");
+          //console.debug("gettoc:eid...");
         }
       }, error: function() {
         console.info("gettoc:error");
@@ -1853,9 +1923,32 @@ bbmf_cvDocHandler.prototype = {
       var metaUserGroup = $("#META_USERGROUPNAME").attr('content');
       var thisStyle = 'color:#fff; font-size:14px; font-weight:bold; top:6px; bottom:0; left:0; right:0; margin:auto; position:relative';
       $("#" + thisid).remove();
-      $(myTarget).before('<span id="' + thisid + '" style="' + thisStyle + '">Welcome: ' + metaUser + ', ' + metaUserGroup + '</span>');
+      $(myTarget).before('<span id="' + thisid + '" style="' + thisStyle + '">Welcome to BEAMS: ' + metaUser + ', ' + metaUserGroup + '</span>');
     }
-  }
+  },
+  
+   /*********************************************************************************
+    * DocHandler EXTENSION: getRefDmDoctype	(PROCNAV)
+    *********************************************************************************/
+   getRefDmTargetDoctype: function(element) { // Override
+      // Use xpath_query to get target document doctype
+      var dH = this;
+      var targetDmCode = element.getAttribute("LC_System_Get_Target_LinkType");
+      var query = new Array();
+      query.push(".");
+      var xml = dH.xpath_query(targetDmCode, query);
+      var target_doctype = element.getAttribute("TARGETDOCTYPE");
+			if (target_doctype == null) {
+				try {
+					 $("DOCUMENT", xml).each(function() {
+							target_doctype = this.getAttribute("DOCTYPE");
+					 });
+				} catch (err) {
+					 target_doctype = "notfound";
+				}
+			}
+      return target_doctype;
+   },
 
 };
 
@@ -3040,7 +3133,7 @@ bbmf_cvTOC.prototype = {
     }
     // <span class="normal" cvtoctitle="1" id="S_7296">External publications</span>
     var chapTitle = $("span[cvtoctitle]:first", pDiv).text().trim();
-    console.debug('toggleExpand "' + chapTitle + '"');
+    // console.debug('toggleExpand "' + chapTitle + '"');
     CVPortal.components.cvTOC.currentChapterTitle = chapTitle;
     cvTOC.prototype.toggleExpand.call(this, evt, element);
   },

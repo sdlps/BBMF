@@ -258,8 +258,7 @@ CV_panelFactory.prototype = {
 			$(primary.getElement()).addClass("resizable-v");
 			$(secondary.getElement()).height($(parentPanel.getElement()).height());
 			//create jQuery "resizable" object, bind splitter-style behavior to it
-			$(primary.getElement()).resizable(
-				{
+			$(primary.getElement()).resizable({
 				autoHide: false,
 				handles: 'e',
 				containment: "parent",
@@ -285,8 +284,7 @@ CV_panelFactory.prototype = {
 				stop: function(e, ui) {
 					var parent = ui.element.parent();
 					var divTwo = ui.element.next();
-					ui.element.css(
-					{
+					ui.element.css({
 					//width: ui.element.width()/parent.width()*100+"%",
 					width: ui.element.width(),
 					});
@@ -312,8 +310,7 @@ CV_panelFactory.prototype = {
 					var resizeEvent;
 					if (typeof window.Event == "function"){	//modern way of creating events: Edge, Firefox, Chrome only
 						resizeEvent = new UIEvent('resize');
-					}
-					else { 		//deprecated way of creating events: Internet Explorer only
+					} else { 		//deprecated way of creating events: Internet Explorer only
 						resizeEvent = document.createEvent("UIEvent");
 						resizeEvent.initUIEvent('resize', true, true, window, 1);
 					}
@@ -329,24 +326,20 @@ CV_panelFactory.prototype = {
 				$(secondary.getElement()).height($(parentPanel.getElement()).height() - $(primary.getElement()).height());
 			}
 			//create jQuery "resizable" object, bind splitter-style behavior to it
-			$(primary.getElement()).resizable(
-				{
+			$(primary.getElement()).resizable({
 				autoHide: false,
 				handles: 's',
 				containment: "parent",
-				resize: function(e, ui) 
-				{
+				resize: function(e, ui) {
 					var parent = ui.element.parent();
 					var remainingSpace = parent.height() - ui.element.outerHeight();
 					var divTwo = ui.element.next();
 					var divTwoHeight = (remainingSpace - (divTwo.outerHeight() - divTwo.height()))/parent.height()*100+"%";
 					divTwo.height(divTwoHeight);
 				},
-				stop: function(e, ui) 
-				{
+				stop: function(e, ui) {
 					var parent = ui.element.parent();
-					ui.element.css(
-					{
+					ui.element.css({
 					//height: ui.element.height()/parent.height()*100+"%",
 					height: ui.element.height(),
 					});
@@ -389,8 +382,7 @@ CV_panelFactory.prototype = {
 		var secondary;
 		if 	 (primary.relation){ 
 			secondary = this.getPanel(primary.relation.target);
-		}
-		else{ 
+		} else{ 
 			primary = this.getPanel(this.getPanel(primary.parent).element.firstChild.id);
 			secondary = this.getPanel(id);
 		}
@@ -456,8 +448,7 @@ CV_panelFactory.prototype = {
 		var resizeEvent;
 		if (typeof window.Event == "function"){	//modern way of creating events: Edge, Firefox, Chrome only
 			resizeEvent = new UIEvent('resize');
-		}
-		else { 		//deprecated way of creating events: Internet Explorer only
+		} else { 		//deprecated way of creating events: Internet Explorer only
 			resizeEvent = document.createEvent("UIEvent");
 			resizeEvent.initUIEvent('resize', true, true, window, 1);
 		}
@@ -470,8 +461,7 @@ CV_panelFactory.prototype = {
 		var parentPanel = CVPortal.panelFactory().getPanel(primary.getParent());
 		if 	 (primary.relation){ 
 			secondary = this.getPanel(primary.relation.target);
-		}
-		else{ 
+		} else{ 
 			secondary = this.getPanel(this.getPanel(primary.parent).element.firstChild.id);
 			primary = this.getPanel(id);
 		}
@@ -482,8 +472,7 @@ CV_panelFactory.prototype = {
 		var splitterElement;
 		if ($(primary.getElement()).hasClass("resizable-v") || $(primary.getElement()).hasClass("resizable-h")) {
 			splitterElement = primary;
-		}
-		else if ($(secondary.getElement()).hasClass("resizable-v") || $(secondary.getElement()).hasClass("resizable-h")) {
+		} else if ($(secondary.getElement()).hasClass("resizable-v") || $(secondary.getElement()).hasClass("resizable-h")) {
 			splitterElement = secondary;
 		}
 		$(splitterElement.getElement()).resizable("destroy");
@@ -495,8 +484,7 @@ CV_panelFactory.prototype = {
 				$(primary.getElement()).width(0);
 				$(primary.getElement()).hide();
 				if (primary.relation) $(secondary.getElement()).width($(rr.parentPanel.getElement()).width());
-			}
-			else {
+			} else {
 				$(primary.getElement()).height(0);
 				if (primary.relation) $(secondary.getElement()).height($(rr.parentPanel.getElement()).height());
 			}
@@ -572,8 +560,7 @@ CV_panelFactory.prototype = {
 			$("#rightPanel").show();
 			//$("#body_container").width($("#body_container").width() - 300);
 			//$("#body_container").trigger("resize");
-		}
-		else if(operation == "hide") {
+		} else if(operation == "hide") {
 			if ($("#rightPanel").is(":visible") == false) return;
 			$("#rightPanel").hide();
 			//restore media:
@@ -594,8 +581,7 @@ CV_panelFactory.prototype = {
 			}
 			//$("#body_container").width($("#body_container").width() + 300);
 			//$("#body_container").trigger("resize");
-		}
-		else {
+		} else {
 			if ($("#rightPanel").is(":visible") == false) {
 				$("#rightPanel").height($("#body_container").height());
 				$("#rightPanel").width($("#body_container").width());
@@ -615,8 +601,7 @@ CV_panelFactory.prototype = {
 				$("#rightPanel").show();
 				//$("#body_container").width($("#body_container").width() - 300);
 				//$("#body_container").trigger("resize");
-			}
-			else {
+			} else {
 				$("#rightPanel").hide();
 				//restore media:
 				if(this.hidMedia == 1) {
@@ -903,8 +888,7 @@ CV_panelFactory.prototype = {
 					CVPortal.debug(" {Panels} Setting Height to HALF of * Panel " + panel.id + " to " + ht);
 					calcH = panel.setPanelHeight(ht + "px");
 					
-				}
-				else {
+				} else {
 					CVPortal.debug(" {Panels} Setting Height of * Panel " + panel.id + " to " + calcH);
 					calcH = panel.setPanelHeight(calcH + "px");
 					//alert("GOING TO SET HEIGHT: " + pFac.safePanelIds[i] + " with height: " + calcH + " results in : " + panel.getPanelHeight());
@@ -917,8 +901,7 @@ CV_panelFactory.prototype = {
 					CVPortal.debug(" {Panels} Setting Width to HALF of * Panel " + panel.id + " to " + wd);
 					calcW = panel.setPanelWidth(wd + "px");
 
-				}
-				else {
+				} else {
 					CVPortal.debug(" {Panels} Setting Width of * Panel " + panel.id + " to " + calcW);
 					calcW = panel.setPanelWidth(calcW + "px");
 				}

@@ -463,7 +463,7 @@ cvMedia.prototype = {
 			if(this.mediaxml != null) {
 				var tString = "";
 				$("TITLE", this.mediaxml).each( function() {
-					var title =  CVPortal.getNodeText(this);
+					var title =  CVPortal.getNodeText(this, 1);
 					if(title != null) {
 						tString += title + ";";
 					}
@@ -783,15 +783,12 @@ cvMedia.prototype = {
 				//https://createjs.com/docs/easeljs/classes/Ticker.html
 				//removes the "tick" event that Adobe Animate's version of createjs uses for animation
 				createjs.Ticker.removeAllEventListeners();
-			}
-			else if (item == "/three.js") {
+			} else if (item == "/three.js") {
 				//disables the scene autoupdate, which should stop the animation from rendering further until the underlying function is removed
 				scene.autoUpdate = false;
-			}
-			else if (item == "/dvl.js" || item == "Loco.js" || item == "/Loco.js") {
+			} else if (item == "/dvl.js" || item == "Loco.js" || item == "/Loco.js") {
 				//these are already handled by the rhiCanvasClear method above
-			}
-			else {
+			} else {
 				//set the function to undefined, which stops it from running
 				window[item] = undefined;
 			}
@@ -977,7 +974,7 @@ cvMedia.prototype = {
 								addSVGController = 1;
 							}
 							//next, we check for HTML5 canvas graphics
-							else if (media.fileExt == "html" || "htm") {
+							else if (media.fileExt == "html" || media.fileExt == "htm") {
 								media.currentType="canvas";
 								html = media.createCanvasImage(html);
 							}
@@ -993,7 +990,6 @@ cvMedia.prototype = {
 								} else {
 									CVPortal.controlFactory().updateCondition("svgHotspots","true");
 								}		
-
 								// refactor this part to marge svg part for ie and webkit, FF
 								if (!document.getElementById("annotationIcon") && document.getElementById("redliningGroup")) {
 										media.redliningAnnotationPatternIcon();
@@ -1051,7 +1047,7 @@ cvMedia.prototype = {
 									specialMedia = true;
 								}
 								//otherwise, do nothing and follow the default logic of just inserting whatever HTML the server provides
-							} else if (media.fileExt == "html" || "htm") {
+							} else if (media.fileExt == "html" || media.fileExt == "htm") {
 								media.currentType = "canvas";
 								html = media.createCanvasImage(html);
 							}
@@ -1243,8 +1239,7 @@ cvMedia.prototype = {
 				this.rhiHsHandler(hsName, xidtype);
 			} else if (mediaType == "svg") {
 				this.highlightHotspotSVG(hsID, hsName, delay);
-			}
-			else if (mediaType != ""){
+			} else if (mediaType != ""){
 				CVPortal.debugAlert("Hotspot highlighting not implemented for type " + mediaType);
 			}
 		}
@@ -1466,12 +1461,10 @@ cvMedia.prototype = {
 							}
 						}
 					});
-					
 				} else {
 					$("g[webcgm\\:name=" + apsname +"]", this).each(function() {
 						mH.lightHotspotSVG(this);
 					});
-					
 					$("text[webcgm\\:name]", this).each(function() {
 						mH.resetTextHotspot(this);
 					});
@@ -1725,6 +1718,7 @@ cvMedia.prototype = {
 		}
 		CVPortal.components.cvMedia.svgLibrary.panBy(coordinates);
 	},
+
 	createCgmCanvas: function() {
 		if (document.getElementById('canvas3')) {
 			console.log("CGM viewer already loaded, using existing viewer")
@@ -1794,6 +1788,7 @@ cvMedia.prototype = {
 			setpanmode();
 		}
 	},
+
 	cgmPan: function(type) {
 		var x = 0;
 		var y = 0;
@@ -1990,10 +1985,8 @@ cvMedia.prototype = {
 		if (CVPortal.components.cvDocHandler) {
 			if (CVPortal.components.cvDocHandler.inHome == true) {
 				graphicPanel = document.getElementById("contentPanel");	
-			}
-			else graphicPanel = document.getElementById("graphic_content");
-		}
-		else graphicPanel = document.getElementById("graphic_content");
+			} else graphicPanel = document.getElementById("graphic_content");
+		} else graphicPanel = document.getElementById("graphic_content");
 		
 		if (canvasElement == null || graphicPanel == null) return;
 
@@ -2906,8 +2899,7 @@ cvMedia.prototype = {
 			var info = this.oDvl.Scene.RetrieveProcedures(this.oDvl.Renderer.GetAttachedScenePtr());
 			if (info.procedures.length == 1) {
 			return info.procedures[0].steps;
-		}
-			else {
+		} else {
 				var result = info.procedures[0].steps;
 				for (var i = 1; i < info.procedures.length; i++) {
 					result = result.concat(info.procedures[i].steps);
@@ -2953,30 +2945,28 @@ cvMedia.prototype = {
 				var sName = step.name;
 				if (sName == undefined) {
 					desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.orName.for.step") + " " + stepNo;
-				}
-				else {
-					desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.for.step") + " " + sName;
-				}
-			}
-		}
-		else {  
-			//SAP plugin
-		if (this.rhiInitContext()){
-			var html = "";
-			if (stepNo == -1){
-				//value after initial load
-				stepNo = 0;
-			}
-			var desc = this.scene.steps.GetByIndex(stepNo).Description;
-			if (desc == ""){
-				var sName = this.scene.steps.GetByIndex(stepNo).Name;
-				if (sName == ""){
-					desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.orName.for.step") + " " + stepNo;
 				} else {
 					desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.for.step") + " " + sName;
 				}
 			}
-			}
+		} else {  
+			//SAP plugin
+      if (this.rhiInitContext()){
+        var html = "";
+        if (stepNo == -1){
+          //value after initial load
+          stepNo = 0;
+        }
+        var desc = this.scene.steps.GetByIndex(stepNo).Description;
+        if (desc == ""){
+          var sName = this.scene.steps.GetByIndex(stepNo).Name;
+          if (sName == ""){
+            desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.orName.for.step") + " " + stepNo;
+          } else {
+            desc = CVPortal.getResource("text.rhiGetCurrStepDesc.no.description.for.step") + " " + sName;
+          }
+        }
+      }
 		}
 		//common functionality
 		if (desc != undefined) {
@@ -2998,8 +2988,7 @@ cvMedia.prototype = {
 				//flag 2 controls selection state
 				//flagoperation 0 sets flag to true, flagoperation 1 sets it to false
 				this.oDvl.Scene.ChangeNodeFlags(scene, nodeTarget, 2, 0);
-			}
-			else {
+			} else {
 				CVPortal.debugAlert("Part named " + linkName + " not found");
 			}
 		}
@@ -3126,8 +3115,7 @@ cvMedia.prototype = {
 										xref = this.rhiGetStepByNum(nextStep).name;
 									}
 								}
-							}
-							else if (this.rhiInitContext()) { //SAP plugin
+							} else if (this.rhiInitContext()) { //SAP plugin
 							if ((Media.scene) && (Media.scene.CurrentStep > -1)){
 								var stepCount = Media.scene.steps.Count;
 								var nextStep = Media.scene.CurrentStep + 1;
@@ -3454,12 +3442,10 @@ TURN OFF TOOLBARS: Available toolbar names are:
 				//this.oDvl.Scene.ActivateStep(this.oDvl.Renderer.GetAttachedScenePtr(), this.rhiGetCurrStepId(), false, true);
 				this.oDvl.Client.attachStepEvent(this.rhiPlayAllHandler, this);
 				this.rhiPlayCurrStep();
-			}
-			else if (this.rhiInitContext(true)) { //SAP plugin
+			} else if (this.rhiInitContext(true)) { //SAP plugin
 				this.rhiPlayNextStep();
 			}
-		}
-		else { //if not paused, then pause
+		} else { //if not paused, then pause
 			//common code
 			if (this.rhiGetNextStep(this.rhiGetCurrStepNum()) != -1){
 					// still more steps
@@ -3753,12 +3739,15 @@ TURN OFF TOOLBARS: Available toolbar names are:
 			success: function(xml) {
 				$("status", xml).each(function() {
 					if ($(this).text() == "true") {
-						media.filePath = $("imageurl", xml).first().text();
+						media.filePath = decodeURIComponent($("imageurl", xml).first().text());
+						// only for legacy LCS
 						var filePathArray = media.filePath.split('.');
 						if (filePathArray.length > 1) {
 							media.fileExt = filePathArray[filePathArray.length - 1].toLowerCase();
+						} else { //NextGen
+              media.fileExt = media.filePath.slice(media.filePath.lastIndexOf("/")+1, media.filePath.indexOf("?")).toLowerCase();
 						}
-					}
+          }
 				});
 			},
 			error: function(xml) {
@@ -4029,8 +4018,7 @@ TURN OFF TOOLBARS: Available toolbar names are:
 				mmObjectTag = "<div align=\"center\" valign=\"middle\" style='height: " + mmHeight + "; width: " + mmWidth+ "; overflow: hidden;'>";
 				if (mmAttributes.mmCatagory == "video") {
 					mmObjectTag += "<video src='" + this.filePath + "' height='" + mmHeight + "' width='" + mmWidth + "' controls>This media file is not supported in this browser!</video>";
-				}
-				else if (mmAttributes.mmCatagory == "audio") {
+				} else if (mmAttributes.mmCatagory == "audio") {
 					mmObjectTag += "<audio src='" + this.filePath + "' height='" + mmHeight + "' width='" + mmWidth + "' controls>This media file is not supported in this browser!</audio>";
 				}
 				mmObjectTag += "</div>";
@@ -4050,7 +4038,7 @@ TURN OFF TOOLBARS: Available toolbar names are:
 					if (mmAttributes.mmCodebase != "") {
 						mmObjectTag = "<div align=\"center\" valign=\"middle\" style=\"width:99%;height:99%;\"><object data='" + media_file + "' type='" + mmAttributes.mmType + "' codebase='" + mmAttributes.mmCodebase + "' height='" + mmHeight + "' width='" + mmWidth + "' >";
 					} else {
-						mmObjectTag = "<div align=\"center\" valign=\"middle\" style=\"width:99%;height:99%;\"><object data='" + media_file + "' type='" + mmAttributes.mmType + "' height='" + mmHeight + "' width='" + mmWidth + "' >";
+						mmObjectTag = "<div align=\"center\" valign=\"middle\" style=\"width:99%;height:99%;\"><object data='" + this.filePath + "' type='" + mmAttributes.mmType + "' height='" + mmHeight + "' width='" + mmWidth + "' >";
 					}
 				}
 				if (mmAttributes.mmExtension != "pdf" && mmAttributes.mmExtension != "svg") {

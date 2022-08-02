@@ -171,13 +171,12 @@ cvDocHandler.prototype = {
 			pubcode = pubcode.replace(/-/g, '_');
 			
 			// confirm that the pubcode matches a listed book
-			
 			if($("book-item[name='"+pubcode+"']", xml).length > 0) {
 				$("book-item[name='"+pubcode+"']", xml).each(function () {
 					// get the collection name from the XML (wietmsd.xml)
 					var collection = $(this.parentNode).attr("name");
 					// form the appropriate URL
-					var url = CVPortal.getURLwithMainSessIDParams("date") + "&target=main&action=host_win&book="+pubcode+"&collection="+collection;
+					var url = CVPortal.getURLwithMainSessIDParams() + "&target=main&action=host_win&book="+pubcode+"&collection="+collection;
 					
 					// if a specific document has been requested, add it to the URL:
 					if(refdm) {
@@ -235,9 +234,11 @@ cvDocHandler.prototype = {
 			argArray[2]=this.findUrl;
 			argArray[3]=ceid;
 			if (this.findDlg == null)	{
-				this.findDlg = showModalDialog(encodeURI(pageUrl), argArray, "dialogWidth=340px;dialogHeight=220px;center=yes;border=thin;help=no;status=no");
+				this.findDlg = showModalDialog(encodeURI(pageUrl), argArray, 
+          "dialogWidth=340px;dialogHeight=220px;center=yes;border=thin;help=no;status=no");
 			} else if (findDlg.closed == true) {
-				this.findDlg = showModalDialog(encodeURI(pageUrl), argArray, "dialogWidth=340px;dialogHeight=220px;center=yes;border=thin;help=no;status=no");
+				this.findDlg = showModalDialog(encodeURI(pageUrl), argArray, 
+          "dialogWidth=340px;dialogHeight=220px;center=yes;border=thin;help=no;status=no");
 			} else {
 				this.findDlg.focus();
 				this.findDlg.startSearchFor(searchFor) ;
@@ -370,17 +371,10 @@ cvDocHandler.prototype = {
    				//var trgTag = trgEl.getAttribute("TAGNAME") ;
 				var cEid = trgEl.getAttribute("CEID") ;
 				if (dH != undefined && dH.current != undefined && dH.current.eid != null && dH.current.eid == cEid){
-          console.debug('loadDocumentByDocId[2A]'); // LAM
 					if(dH.current.docType == "process") {
 						// for process DMs, links often go to the same place, so load it anyway:
-            console.debug('loadDocumentByDocId[2Aa]'); // LAM
 						dH.loadDocumentByCeId(cEid, refStruct, noAuditFlag);
-					} else {
-            console.debug('loadDocumentByDocId[2Ab]'); // LAM
-						// prevent links to the same document:
-						
-						// atrese - 9/23/2011 - removed alert because it is popped at times like opening bookmarks
-						//alert("Warning, link is to current document position");
+					} else { // prevent links to the same document:
             CVPortal.components.cvDocHandler.setUpBufrForm(); // LAM: Need to check for form, the document may already onep and not have ICON
 					}
 				} else {
@@ -406,7 +400,9 @@ cvDocHandler.prototype = {
 		}
 
 		$('#currceid').toggle();
-		$('#findDialog').toggle();
+		if (!CVPortal.getIsMobileApp()) {
+      $('#findDialog').toggle();
+		}
 		//LCS-5980 splitter overlays large table menu, so we need to change z-index value while large table menu is open 
 		if($('#findDialog').is(':visible')) {
 			$('#cvDocHandler.contentPanel').css('z-index', '101');
@@ -460,7 +456,7 @@ cvDocHandler.prototype = {
 		if ( ceidList==undefined) ceidList = pDiv.getAttribute("ceidlist");
 			var newCeid="";
 		if ( ceidList==undefined || ceidList==""){			
-				lturl=CVPortal.getURLwithBookParams("time") + "&target=text&action=get_tablesections&eid=" + firstcEID + "&idsonly=true";
+				lturl=CVPortal.getURLwithBookParams() + "&target=text&action=get_tablesections&eid=" + firstcEID + "&idsonly=true";
 			//idsonly will only return the ceid for all the sections docs
 			
 			$.ajax( {
@@ -548,7 +544,7 @@ cvDocHandler.prototype = {
 			}
 			if (!sectionExist){
 				//need to get the section from server
-				var url = CVPortal.getURLwithBookParams("time") + "&target=text&action=text&eid=" + newCeid + "&sectiontype=" + prevNext;
+				var url = CVPortal.getURLwithBookParams() + "&target=text&action=text&eid=" + newCeid + "&sectiontype=" + prevNext;
 				$.ajax( {
 					method: "GET",
 					async: false,
@@ -578,8 +574,8 @@ cvDocHandler.prototype = {
 							if (tbdy.style.display !="none" && tbdy.getAttribute("ceid")!=newCeid){
 								currShowntbdy = tbdy;
 								tbdy.style.display ="none"
-									pDiv.setAttribute("currceid",newCeid);
-									CVPortal.components['cvDocHandler'].updateNavigationSetting(pDiv,newEidIdx);
+                pDiv.setAttribute("currceid",newCeid);
+                CVPortal.components['cvDocHandler'].updateNavigationSetting(pDiv,newEidIdx);
 								if (newtbdyAdded) break;
 							}	
 /* 									if( !tbdy.nextSibling )
@@ -686,10 +682,9 @@ cvDocHandler.prototype = {
 			alert(CVPortal.getResource("alert.unable.toLoad.document.broken.link"));
 			return;
 		}
-
 		this.inHome = false;
 		var dH = this,
-		url = CVPortal.getURLwithBookParams("time") + "&target=text&action=text&eid=" + docId,
+		url = CVPortal.getURLwithBookParams() + "&target=text&action=text&eid=" + docId,
 			loaderTime = dH.getProp("loadingMsgDisplayTime") || 500, loadingTimeout;
 		$.ajax( {
 			type: "GET",
@@ -808,7 +803,10 @@ cvDocHandler.prototype = {
 					CVPortal.controlFactory().updateCondition("hasGraphic","true");
 				} else {
 					CVPortal.controlFactory().updateCondition("hasGraphic","false");
-				}
+					if ($("#graphicsPanel").is(":visible")) {
+						CVPortal.components.cvMedia.hideMediaPanel();
+					}
+        }
 				// if ( ! CVPortal.getIsTablet() && document.getElementById("REFMAT_DIV") != null ) {
 				if (document.getElementById("REFMAT_DIV") != null ) {
 					CVPortal.controlFactory().updateCondition("hasReferences","true");
@@ -826,10 +824,7 @@ cvDocHandler.prototype = {
 					dH.withLargeTable = true;
 				}
 
-				if(dH.showSecurityBanners === "1" && dH.classification !== "01" && dH.classification !== "u" && dH.classification !== "") {
-					dH.addDMSecurityBanner();
-				}
-				dH.addDMSecurityBanner();
+				dH.addDMSecurityBanner(); // LAM
         
 				// Sync TOC if user load DM from Resourse Manager
 				if (CVPortal.components.cvResourceManager && CVPortal.components.cvResourceManager.rMsyncTOC) {
@@ -840,7 +835,16 @@ cvDocHandler.prototype = {
 				
 				dH.scrollWithBtn = false;
 				dH.bindWCN();
-				CVPortal._panelFactory.resizeIpcTable();
+				CVPortal._panelFactory.resizeIpcTable(); // LAM
+				if (document.getElementsByClassName("non_applic").length==1){
+					var el =document.getElementById("CVCtrl_print");
+					if (el){						
+						$(el.parentNode).addClass("disableEvent");
+						$(el).removeClass("toolbar_button").removeClass("tbar_print").removeClass("iconized");
+						$(el).addClass("toolbar_button_disabled tbar_print_off dark");
+						
+					}
+				}
 			},
 			// Failed IN AJAX load:
 			error: function(xmlHttp, msg, excep) {
@@ -1057,8 +1061,8 @@ cvDocHandler.prototype = {
 					var refName = refStruct.refName;
 					this.callHotspotHandler(refName,refName,true,"hotspot");
 				}
-				
-				if(refStruct.documentTab) {
+				//don't load tab if it's Support Equipment
+				if(refStruct.documentTab && refStruct.documentTab !== "supteqt") {
 					this.selectDocumentInfo(refStruct.documentTab);
 				}				
 				if(refStruct.partIndex && refStruct.partIndex != 1) {
@@ -1211,10 +1215,11 @@ cvDocHandler.prototype = {
 			}
 
 			// NV Harmonization: Select proper document tab
-			if(refStruct && refStruct.documentTab) {
+			//don't load tab if it's Support Equipment
+			if(refStruct && refStruct.documentTab && refStruct.documentTab !== "supteqt") {
 				this.selectDocumentInfo(refStruct.documentTab);
 			}
-
+      
 			//	Manage History (Back / Forward) navigation
 			CVPortal.components["cvHistory"].updateHistoryButtons();
 
@@ -1279,7 +1284,7 @@ cvDocHandler.prototype = {
 					yaEl = this;
 				});
 				if(yaEl) {
-					yaEl.scrollIntoView();
+					CVPortal.scrollToElement(yaEl);
 				}
 			}
 	     			
@@ -1296,7 +1301,6 @@ cvDocHandler.prototype = {
 	***********************/
 	// stepID added to signature to allow RH step description to be added to yellow arrow during referencing
 	handle_xref: function(xrefid, xidtype, event, stepID, referredFragment) {
-    console.info('handle_xref[1]: ' + xrefid + ' : ' + xidtype + ' : ' + stepID + ' : ' + referredFragment);
 		var dH = this;
 		var evt;
 		var el = null;
@@ -1335,7 +1339,6 @@ cvDocHandler.prototype = {
 				xrefid = el.getAttribute("xrefid");
 			}
 		}
-    console.info('handle_xref[2]: ' + xrefid);
 
 		if(xrefid == null) { // still null?  error:
 			CVPortal.error(" {DocHandler} Failed to follow an XREF with the id " + xrefid + " and type " + xidtype);
@@ -1353,9 +1356,9 @@ cvDocHandler.prototype = {
 			auditObj.xrefid = xrefid;						
 			auditObj.xidtype = xidtype;						
 			if(el) { 		
-				auditObj.xrefText = $(el).text();	
+				auditObj.xrefText = el.innerText;	
 				// replace any bad characters in the text string with nice characters:
-				auditObj.xrefText = escape(auditObj.xrefText);				
+				auditObj.xrefText = encodeURIComponent(auditObj.xrefText);				
 			}			
 			
 			auditObj.docLoadId = this.docLoadId;						
@@ -1367,11 +1370,13 @@ cvDocHandler.prototype = {
 			}
 			CVPortal.debug(" {DocHandler} Attempting XREF ( " + xrefid + ") by Type (" + xidtype +").");
 			// FIGURES:
-			if(xidtype == "figure" || xidtype == "irtt01") {  //***: Figures:
+			if(xidtype == "figure" || xidtype == "irtt01" || xidtype == "irtt03") {  //***: Figures and irtt03
 				CVPortal.components["cvMedia"].selectGraphic(originalXREF);
 				dH.selectXrefText(el);
-			} else if(xidtype == "catalogSeqNumber" || xidtype == "table" || xidtype == "irtt02" || xidtype == "text" || xidtype == "step" || xidtype == "irtt08" || xidtype == "para" || 
-			          xidtype == "irtt07" || xidtype == "irtt12" || xidtype == "other" || xidtype == "item" || xidtype == "name" || xidtype == "prcitem") { //***: text refs
+			} else if(xidtype == "catalogSeqNumber" || xidtype == "table" || xidtype == "irtt02" ||
+                xidtype == "text" || xidtype == "step" || xidtype == "irtt08" || xidtype == "para" ||
+                xidtype == "irtt07" || xidtype == "irtt12" || xidtype == "other" ||
+                xidtype == "item" || xidtype == "name" || xidtype == "prcitem") { //***: text refs
 				var found = 0;
 				$("#" + xrefid).each(function() {
 					found = 1;
@@ -1387,7 +1392,6 @@ cvDocHandler.prototype = {
 							// Link to step
 							dH.linkProcedStep(this);
 						} else {
-							// this.currStepEID = null; this.nextStepEID = null;
 							dH.linkInternal(this,el,currentID,0)	// NV Harmonization
 						}
 					}
@@ -1423,7 +1427,6 @@ cvDocHandler.prototype = {
 						});
 					}
 				}
-        console.info('1367:handle_xref:xrefid=' + xrefid  + '; xidtype=' + xidtype + '; found=' + found);
 				if(found === 0) {
 					CVPortal.debugAlert("Unable to find XREF target: " + xrefid);
 				} 
@@ -1464,7 +1467,7 @@ cvDocHandler.prototype = {
 					refStruct.doSyncToc = true;
 					// figureId is new in LCS 5.3.1 so setting it here blindly
 					refStruct.figureId = target;
-					if(target_doctype == "description" || target_doctype == "descript" || target_doctype == "illustratedPartsCatalog" || target_doctype == "ipd" || referredFragment) {
+					if(target_doctype == "description" || target_doctype == "descript" || target_doctype == "illustratedPartsCatalog" || target_doctype == "ipd" || target_doctype == "crew" || target_doctype == "procedure" || referredFragment) {
 						// Attempt to get the target type (SDL 2013-05-16 tperry)
 						var target_type = null;
 						if(el) {          
@@ -1550,7 +1553,7 @@ cvDocHandler.prototype = {
 								CVPortal.components.cvMedia.selectFigureAndSheet(figureID , this.getAttribute("graphicIndex"));
 								//call HotspotHandler replaces direct call to highlightHotspot - handles different hotspot types
 								dH.callHotspotHandler(this.getAttribute("apsid"), this.getAttribute("apsname"),true, xidtype);
-								// Set the graphic index so the screen's are sync'd
+								// LAM: Set the graphic index so the screen's are sync'd
 								CVPortal.components.cvMedia.graphicIndex = (parseInt(this.getAttribute("graphicIndex"),10) - 1);
 							} else {
 								// Highlight the hotspot:
@@ -1629,16 +1632,14 @@ cvDocHandler.prototype = {
       var query = new Array();
       query.push(".");
       var xml = dH.xpath_query(targetDmCode, query);
-      var target_doctype = element.getAttribute("TARGETDOCTYPE");
-			if (target_doctype == null) {
-				try {
-					 $("DOCUMENT", xml).each(function() {
-							target_doctype = this.getAttribute("DOCTYPE");
-					 });
-				} catch (err) {
-					 target_doctype = "notfound";
-				}
-			}
+      var target_doctype = null;
+      try {
+         $("DOCUMENT", xml).each(function() {
+            target_doctype = this.getAttribute("DOCTYPE");
+         });
+      } catch (err) {
+         target_doctype = "notfound";
+      }
       return target_doctype;
    },
 
@@ -1744,7 +1745,7 @@ cvDocHandler.prototype = {
 
 	// load our XML document that
 	loadAuxInfo: function() {
-		var url = CVPortal.getURLwithBookParams("time") + "&target=text&action=onload&eid=" + this.current.ceid + "&act_ref=" + this.current.activityRef + "&docid=" + this.current.docId;
+		var url = CVPortal.getURLwithBookParams() + "&target=text&action=onload&eid=" + this.current.ceid + "&act_ref=" + this.current.activityRef + "&docid=" + this.current.docId;
 		if(this.current.tocRef) {
 			url += "&toc_ref=" + this.current.tocRef;
 		}
@@ -1800,7 +1801,6 @@ cvDocHandler.prototype = {
 			dh.current.docType = this.getAttribute("DOCTYPE");
 			dh.current.docId = this.getAttribute("DOCUMENT_ID");
 			
-			//alert(dh.current.docId);
 			CVPortal.info(" {DocHandler} dh.current.docId  was " + dh.current.docId);
 			if (dh.current.docId == "") {
 				CVPortal.info(" {DocHandler} Using dh.current.docId  was EMPTY. Using DMC");
@@ -1916,6 +1916,10 @@ cvDocHandler.prototype = {
     if ($("#prtMenu").is(":visible")) {
       this.hideMenu("prtMenu");
     }
+
+			if ($("#dmSecurityBanner").is(":visible")) {
+				$("#dmSecurityBanner").hide();
+			}
 
 		// disable all the tabs:
 		this.disableResourceInfo();
@@ -2077,6 +2081,13 @@ cvDocHandler.prototype = {
 	},
 
 	showMenu: function(selector) {
+		if (selector=="prtMenu"){
+			var nonApplicEls = document.getElementsByClassName("non_applic");
+			if (nonApplicEls && nonApplicEls.length == 1){
+				alert("Can't print non applicable data module.");
+				return;
+			}
+		}
 		var id = "#" + selector;
 		if (!$(id).is(":visible")) {
 			$(id).show();
@@ -2108,7 +2119,7 @@ cvDocHandler.prototype = {
 	loadPrimarySkin: function() {
 		if (CVPortal.metaFactory().get("META_SKIN_ALT")) {
 			var primarySkin = CVPortal.metaFactory().get("META_SKIN_ALT");
-			var url = CVPortal.getURLwithBookParams("time") + "&target=main&action=change_mode&skin_name=" + primarySkin + "&customer_mode=1";
+			var url = CVPortal.getURLwithBookParams() + "&target=main&action=change_mode&skin_name=" + primarySkin + "&customer_mode=1";
 			$.ajax( {
 				type: "GET",
 				url: url,
@@ -2147,7 +2158,7 @@ cvDocHandler.prototype = {
 		if (CVPortal.metaFactory().get("META_SKIN_ALT")) {
 			//var altSkin = CVPortal.metaFactory().get("META_SKIN_ALT");
 			var altSkin = "CarbonM";
-			var url = CVPortal.getURLwithBookParams("time") + "&target=main&action=change_mode&skin_name=" + altSkin + "&customer_mode=1";
+			var url = CVPortal.getURLwithBookParams() + "&target=main&action=change_mode&skin_name=" + altSkin + "&customer_mode=1";
 			$.ajax( {
 				type: "GET",
 				url: url,
@@ -2248,10 +2259,10 @@ cvDocHandler.prototype = {
 				
 				if (type == "activity") {
 					requestType = "html";
-					url = CVPortal.getURLwithBookParams("time") + "&target=text&action=" + type + "&server=1&eid=" + dh.current.ceid + "&refid=" + dh.current[type + "Ref"];
+					url = CVPortal.getURLwithBookParams() + "&target=text&action=" + type + "&server=1&eid=" + dh.current.ceid + "&refid=" + dh.current[type + "Ref"];
 				} else {
 					requestType = "xml";
-					url = CVPortal.getURLwithBookParams("time") + "&target=text&action=" + type + "&eid=" + dh.current.ceid + "&refid=" + dh.current[type + "Ref"];
+					url = CVPortal.getURLwithBookParams() + "&target=text&action=" + type + "&eid=" + dh.current.ceid + "&refid=" + dh.current[type + "Ref"];
 				}
 				$.ajax( {
 					type: "GET",
@@ -2569,9 +2580,9 @@ cvDocHandler.prototype = {
 	},
 	
 	editAnnotIcon: function(eidOffset,type, title, hasAttachments, visibility) {
+		var title = decodeURIComponent(title);
 		var dH = this;
 		var htmlString;
-		console.info('editAnnotIcon................');
 		if(type == "B") {
 			$("#BM_"+eidOffset, dH.docPanel.getElement(dH.id)).each(function() {
 				var annotImg;
@@ -2676,7 +2687,7 @@ cvDocHandler.prototype = {
 			$($(this.docPanel.getElement(this.id)).get(0)).highlight(term);
 		}
 		$(".highlight:eq(0)", this.docPanel.getElement(this.id)).each(function() {
-			this.scrollIntoView();
+			CVPortal.scrollToElement(this);
 		});
 	},
 
@@ -2831,7 +2842,7 @@ cvDocHandler.prototype = {
 	showPartButton: function(attr) {
 		var dH = this;
 		$("#itemNo", this.docPanel.getElement(this.id)).each(function() {
-			dH.showSinglePartByAttr(jQuery.trim(this.value), attr);
+			dH.showSinglePartByAttr(this.value.trim(), attr);
 		});
 	},
 
@@ -3013,7 +3024,7 @@ cvDocHandler.prototype = {
 		if($(step).attr("step_target") == "step" || $(step).attr("step_target") == "stepanchor") {
 			step.className = "stepLabelHighlight";
 			if(scroll && $(step).attr("step_target") == "step") {
-				step.scrollIntoView();
+				CVPortal.scrollToElement(step);
 				if(arrow) {
 					dH.addYellowArrow(step);
 				}
@@ -3035,7 +3046,7 @@ cvDocHandler.prototype = {
 					if(getParent.prev().hasClass("wcn-msg")) {
 						dH.popWCN();// show WCN popup if user navigates with NEXT/PREV btn when step was selected
 					}
-					this.scrollIntoView();
+					CVPortal.scrollToElement(this);
 					if(arrow) {
 						$(this).find(".stepAnchorLabel").each(function() {
 							dH.addYellowArrow(this);
@@ -3053,7 +3064,7 @@ cvDocHandler.prototype = {
 				$(this).show();
 			});
 			if(scroll) {
-				step.scrollIntoView();
+				CVPortal.scrollToElement(step);
 				if(arrow) {
 					dH.addYellowArrow(step);    
 				}
@@ -3158,17 +3169,14 @@ cvDocHandler.prototype = {
 				});
 			}
 			// The previous step in the step stack becomes the current step
-      var a1 = comp.prevStepStack.length;
 			var prevStepEID = comp.prevStepStack[comp.prevStepStack.length - 2];
 			// Pop the step stack
 			comp.prevStepStack.pop();
-      var a2 = comp.prevStepStack.length;
 			// The retrieved previous step now becomes the current step
 			comp.currStepEID = prevStepEID;
 			// Determine the new designated next step
 			comp.nextStepEID = comp.determineNextStep(comp.currStepEID);
 			// Select the current step
-      console.info('3399:prevProcedStep:selectProcStep:' + comp.currStepEID + ' > prevStepEID=' + prevStepEID + '|' + a1 + ':' + a2);
 			$("span[step_type='1'][eid='" + comp.currStepEID + "']").each(function() {
 				comp.selectProcStep(this,true,false);
 			});
@@ -3361,7 +3369,15 @@ cvDocHandler.prototype = {
 							title += text;
 						}
 					});
-
+					$("infoNameVariant", xml).each(function() {
+						var text = CVPortal.getNodeText(this);
+						if(text != "" && text != null) {
+							if(techname == 1) {
+								title += ", ";
+							}
+							title += text;
+						}
+					});
 					// insert the title into every element that was registered with this DMC
 					if(title != "") {
 						// replace any actual '<' characters with &lt; so they don't get treated as markup
@@ -3439,7 +3455,7 @@ cvDocHandler.prototype = {
 			dH.yellowArrowTarget = element;
 			$("#CV_YELLOW_ARROW", dH.docPanel.getElement(dH.id)).each(function() {
 				dH.yellowArrow = this;
-				this.scrollIntoView();
+				CVPortal.scrollToElement(this);
 			});
 			$("#CV_YELLOW_ARROW_TEXT", dH.docPanel.getElement(dH.id)).each(function() {
 				dH.yellowArrowText = this;
@@ -3449,7 +3465,7 @@ cvDocHandler.prototype = {
 			dH.yellowArrowTarget = element;
 			$("#CV_YELLOW_ARROW", dH.docPanel.getElement(dH.id)).each(function() {
 				dH.yellowArrow = this;
-				this.scrollIntoView();
+				CVPortal.scrollToElement(this);
 			});
 		}		
 	},
@@ -3606,7 +3622,7 @@ cvDocHandler.prototype = {
 			$("tbody[currentpage='" + this.currSection + "']").removeHighlight();
 			$("tbody[currentpage='" + this.currSection + "']").highlight(this.searchTerm);
 			this.searchIterator = 0;
-			$("span.highlight")[this.searchIterator].scrollIntoView();
+			CVPortal.scrollToElement($("span.highlight")[this.searchIterator]);
 		}
 		
 		
@@ -3719,7 +3735,7 @@ cvDocHandler.prototype = {
 
 			// hilight the found text
 			textRange.select() ;
-			textRange.scrollIntoView() ;
+			CVPortal.scrollToElement(textRange);
 
 		   //enableAction("lt_next");
 		   if (this.currSecOnly){
@@ -3849,7 +3865,7 @@ cvDocHandler.prototype = {
 
 			// hilight the found text
 			textRange.select() ;
-			textRange.scrollIntoView() ;
+			CVPortal.scrollToElement(textRange);
 			
 			enableAction("lt_next");
 		}
@@ -3903,7 +3919,7 @@ cvDocHandler.prototype = {
 			this.searchIterator++;
 			this.currPoint++;
 			$("#lt_searchresults").html(this.currPoint);//update the value
-			$("span.highlight")[this.searchIterator].scrollIntoView();
+			CVPortal.scrollToElement($("span.highlight")[this.searchIterator]);
 		} else {
 			$("tbody").removeHighlight();
 			this.searchIterator = 0;
@@ -3924,7 +3940,7 @@ cvDocHandler.prototype = {
 			CVPortal.components.cvDocHandler.showSelectedSection(tempCEID,"next");
 			CVPortal.components.cvDocHandler.resetCurrentSection(newIdx,"next");
 			$("tbody[currentpage='" + this.currSection + "']").highlight(this.searchTerm);
-			$("span.highlight")[this.searchIterator].scrollIntoView();
+			CVPortal.scrollToElement($("span.highlight")[this.searchIterator]);
 			
 		}
 		
@@ -3999,7 +4015,7 @@ cvDocHandler.prototype = {
 
 				// hilight the found text
 				textRange.select() ;
-				textRange.scrollIntoView() ;
+				CVPortal.scrollToElement(textRange);
 				if (parseInt($("#lt_searchresults").html()) != 1) enableAction("lt_prev");
 			}
 			enableAction("lt_next");
@@ -4048,7 +4064,7 @@ cvDocHandler.prototype = {
 				this.currPoint--;
 				this.searchIterator--;
 				$("#lt_searchresults").html(this.currPoint);//update the value
-				$("span.highlight")[this.searchIterator].scrollIntoView();
+				CVPortal.scrollToElement($("span.highlight")[this.searchIterator]);
 			} else {
 				$("tbody").removeHighlight();
 				var currCEID = document.getElementById("currceid").getAttribute("currceid");
@@ -4069,7 +4085,7 @@ cvDocHandler.prototype = {
 				this.currPoint--;
 				$("#lt_searchresults").html(this.currPoint);//update the value
 				$("tbody[currentpage='" + this.currSection + "']").highlight(this.searchTerm);
-				$("span.highlight")[this.searchIterator].scrollIntoView();
+				CVPortal.scrollToElement($("span.highlight")[this.searchIterator]);
 			}
 			
 			if(this.currPoint == 1) {
@@ -4116,7 +4132,7 @@ cvDocHandler.prototype = {
 
 		if (!sectionExist){
 			//need to get the section from server
-			var url = CVPortal.getURLwithBookParams("time") + "&target=text&action=text&eid=" + newCeid + "&sectiontype=" + prevNext;
+			var url = CVPortal.getURLwithBookParams() + "&target=text&action=text&eid=" + newCeid + "&sectiontype=" + prevNext;
 			$.ajax( {
 				method: "GET",
 				async: false,
@@ -4259,8 +4275,7 @@ cvDocHandler.prototype = {
 				break;
 			case "01":
 			case "u":
-				// securityClassficationLevel = CVPortal.getResource(docType + ".security.banner.classification.level01");
-				securityClassficationLevel = '';
+				securityClassficationLevel = CVPortal.getResource(docType + ".security.banner.classification.level01");
 				break;
 			case "":
 				securityClassficationLevel = "";
@@ -4272,7 +4287,7 @@ cvDocHandler.prototype = {
 		secInfoObject.classification = classificationVal;
 		secInfoObject.distRestrictionCaveat = caveatVal;
 		secInfoObject.handlingrestrictions = handlingrestrictions;
-		secInfoObject.securityClassficationMsg = handlingrestrictions ? ((securityClassficationLevel == '' ? '' : securityClassficationLevel + " - ") + handlingrestrictions) : securityClassficationLevel;
+		secInfoObject.securityClassficationMsg = handlingrestrictions ? securityClassficationLevel + " - " + handlingrestrictions : securityClassficationLevel;
 		secInfoObject.distRestrictionOtherhandling = caveatOther;
 
 		return secInfoObject;
@@ -4338,7 +4353,7 @@ cvDocHandler.prototype = {
 		// ======================================
 		//  store the update XML STATE TABLE:
 		// ======================================          
-		var setUrl = CVPortal.getURLwithBookParams("uniqid") + "&target=applicability&action=set_config";
+		var setUrl = CVPortal.getURLwithBookParams() + "&target=applicability&action=set_config";
 		// create an XML dom object for either IE or mozilla to send to the server:
 
 		// call CVPortal cross-browser functionality:
