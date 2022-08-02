@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--  -->
-<wietm>
-  <configuration>
-    <application>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--  --><wietm>
+	<configuration>
+		<application>
       <configitem name="IncludeISOEntities"><value>1</value></configitem>
       <configitem name="EntityDefLocation"><value>C:/LiveContentData/entities</value></configitem>
+
       <!-- HTTPS / SSL
       jetty.sslContext.keyStorePassword=OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4
       jetty.sslContext.keyManagerPassword=OBF:1u2u1wml1z7s1z7a1wnl1u2g
@@ -14,141 +13,457 @@
         Configuring LiveContent S1000D > 
           Using Client Certificate Authentication > 
             Setting Up Client Certificate Authentication for LiveContent S1000D
-      <configitem name="app.secure_connection"><value>1</value></configitem>
-      <configitem name="app.keystore_location"><value>./etc/keystore</value></configitem>
-      <configitem name="app.keystore_password"><value>OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v</value></configitem>
-      <configitem name="app.manager_password"><value>OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v</value></configitem>
-      <configitem name="app.port"><comments>Server port</comments><value>443</value></configitem>
       -->
       <!-- / HTTPS / SSL -->
+      <configitem name="app.secure_connection"><value>0</value></configitem>
+      <configitem name="app.keystore_location"><value>C:\Data\LiveContent\BBMF_IETP\data\etc/keystore</value></configitem>
+      <configitem name="app.keystore_password"><value>OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4</value></configitem>
+      <configitem name="app.manager_password"><value>OBF:1u2u1wml1z7s1z7a1wnl1u2g</value></configitem>
       <configitem name="app.port"><comments>Server port</comments><value>2245</value></configitem>
-      <!-- <configitem name="app.use_jetty_server"><value>1</value></configitem> -->
-      <!-- **********************************************					 Database and HTTP thread pools and connections			     ********************************************** -->			<!-- initial thread number -->
-      <configitem name="app.thread_number"><value>10</value></configitem>
-      <!-- maximum allowed threads -->
-      <configitem name="app.max_thread_number"><value>500</value></configitem>
-      <!-- Maximum number of connections to a single given database file (PDM) -->
-      <configitem name="app.max_connection_size"><value>1000</value></configitem>
-      <configitem name="app.timeout"><comments>Timeout in miliseconds</comments><value>10000</value></configitem>
-      <configitem name="app.session_timeout"><comments>Timeout in minutes</comments><value>0</value></configitem>
-      <configitem name="app.client_timeout"><comments>Timeout in minutes</comments><value>0</value></configitem>
-      <configitem name="app.docs_root"><comments>This is used to retrieve requested documents</comments><value>./etc</value></configitem>
-      <configitem name="app.verbal"><comments>Write diagnostic messages to the standard I/O device</comments><value>1</value></configitem>
-      <configitem name="app.extraverbal"><value>0</value></configitem>
-      <configitem name="app.xml_engine"><value>GDM</value></configitem>
-      <configitem name="app.httpd_root"><comments>Disk file root directory</comments><value>./httpdocs</value></configitem>
-      <configitem name="app.resource_jarname"><value>./wietmsd.jar</value></configitem>
-      <configitem name="app.resource_jarname_ext"><value>./wietmsd-etc.jar</value></configitem>
-      <configitem name="app.resource_jarname_misc"><value>./wietmsd-skin.jar</value></configitem>
-      <configitem name="app.httpd_prefix"><comments>Prefix for all disk file requests</comments><value>/wietmsd3</value></configitem>
-      <configitem name="app.httpd_name"><comments>Application name from the client calls</comments><value>/servlets3/wietmsd</value></configitem>
-      <configitem name="app.resource_root"><comments>Resource location</comments><value>wietm3/httpdocs</value></configitem>
-      <configitem name="app.etc_name"><comments>Etc folder location</comments><value>wietm3/etc</value></configitem>
-      <configitem name="app.title"><comments>Application title as it appears in the all windows</comments><value>LiveContent</value></configitem>
-      <configitem name="app.loadTeamate"><value>0</value></configitem>
-      <configitem name="app.loadLaunchApi"><value>1</value></configitem>
-      <configitem name="app.loadUserDB"><comments>Support for Users</comments><value>1</value></configitem>
-      <configitem name="app.dynamicTemplates"><comments>When this option is 0 the templates are cached in memory.	Otherwise they are not cached which is very slow but allowes to change templates without reloding the server</comments><value>1</value></configitem>
-      <configitem name="app.intro"><comments>Show the FLASH intro</comments><value>1</value></configitem>
-      <configitem name="app.id"><comments>Application ID is used to identify the server to the launch shell</comments><value>2085</value></configitem>
-      <configitem name="app.automap_reload"><comments>Automatically reload the map.conf file each time a document is requested</comments><value>0</value></configitem>
-      <configitem name="app.skin_name"><value>BBMFskin</value></configitem>
-      <configitem name="app.working_dir"><comments>Temporary working directory</comments><value>./working</value></configitem>
-      <configitem name="app.security_enabled"><comments>Flag that indicates that this application runs under SSL. Possible value: 1 - use SSL. 0 - use plain HTTP</comments><value>0</value></configitem>
-      <configitem name="app.fixup_static_url"><comments>Fix up the URL to the binary resourece. This is useful when application is setup under Tomcat server and the servlet access control is turned on</comments><value>false</value></configitem>
-      <configitem name="app.fixup_prefix"><comments>URL prefix used for fixup</comments><value>/wietmsd3</value></configitem>
-      <!-- update server defaults -->
-      <configitem name="UpdateServer.CompareInterval"><value>600</value></configitem>
-      <configitem name="UpdateServer.MessageInterval"><value>15</value></configitem>
-      <configitem name="pdf.remove_images"><value>0</value></configitem>
-      <configitem name="error.printFailure"><value>A failure occurred while attempting to create print output</value></configitem>
-    </application>
-    <pdom>
-      <configitem name="pdom.cache"><comments>cache - Set cachesize for PDOM engine (in pages of 128 DOM nodes) The cache is shared by all open documents Values: Integers between 20 and MAXINT (given you have that much memory) Default: 100</comments><value>1000</value></configitem>
-    </pdom>
-    <html>
-      <configitem name="html.login_logo"><comments>Filename of the login page image. html.login_logo=mhtlogin1_preview.gif</comments><value>XyLogo.jpg</value></configitem>
-      <configitem name="html.select_logo"><comments>Filename of the select page image. html.select_logo=mhtlogin2_preview.gif</comments><value>XyLogo.jpg</value></configitem>
-      <configitem name="html.btnbar_logo"><comments>Filename of the button bar image. html.btnbar_logo=mhtlogo_preview.gif</comments><value>XySmall.gif</value></configitem>
-    </html>
-    <ietm>
-      <configitem name="encode_type"><value>UTF-8</value></configitem>
+      <!--
+	<configitem name="app.port"><comments>Server port</comments><value>2245</value></configitem>
+	-->
+			
+			<!-- **********************************************
+
+					Database and HTTP thread pools and connections
+			
+			     ********************************************** -->
+			<!-- initial thread number -->
+			<configitem name="app.thread_number"><value>10</value></configitem>
+			<!-- maximum allowed threads -->
+			<configitem name="app.max_thread_number"><value>500</value></configitem>
+			<!-- Maximum number of connections to a single given database file (PDM) -->
+			<configitem name="app.max_connection_size"><value>1000</value></configitem>			
+			
+			<configitem name="app.timeout">
+				<comments>Timeout in miliseconds</comments>
+				<value>10000</value>
+			</configitem>
+			<configitem name="app.session_timeout">
+				<comments>Timeout in minutes</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="app.client_timeout">
+				<comments>Timeout in minutes</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="app.docs_root">
+				<comments>This is used to retrieve requested documents</comments>
+				<value>./etc</value>
+			</configitem>
+			<configitem name="app.verbal">
+				<comments>Write diagnostic messages to the standard I/O device</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="app.extraverbal">
+				<value>0</value>
+			</configitem>
+			<configitem name="app.xml_engine">
+				<value>GDM</value>
+			</configitem>
+			<configitem name="app.httpd_root">
+				<comments>Disk file root directory</comments>
+				<value>./httpdocs</value>
+			</configitem>
+			<configitem name="app.resource_jarname">
+				<value>./wietmsd.jar</value>
+			</configitem>
+			<configitem name="app.resource_jarname_ext">
+				<value>./wietmsd-etc.jar</value>
+			</configitem>
+			<configitem name="app.resource_jarname_misc">
+				<value>./wietmsd-skin.jar</value>
+			</configitem>
+			<configitem name="app.httpd_prefix">
+				<comments>Prefix for all disk file requests</comments>
+				<value>/wietmsd3</value>
+			</configitem>
+			<configitem name="app.httpd_name">
+				<comments>Application name from the client calls</comments>
+				<value>/servlets3/wietmsd</value>
+			</configitem>
+			<configitem name="app.resource_root">
+				<comments>Resource location</comments>
+				<value>wietm3/httpdocs</value>
+			</configitem>
+			<configitem name="app.etc_name">
+				<comments>Etc folder location</comments>
+				<value>wietm3/etc</value>
+			</configitem>
+			<configitem name="app.title">
+				<comments>Application title as it appears in the all windows</comments>
+				<value>LiveContent</value>
+			</configitem>
+			<configitem name="app.loadTeamate">
+				<value>0</value>
+			</configitem>
+			<configitem name="app.loadLaunchApi">
+				<value>1</value>
+			</configitem>
+			<configitem name="app.loadUserDB">
+				<comments>Support for Users</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="app.dynamicTemplates">
+				<comments>When this option is 0 the templates are cached in memory.	Otherwise they are not cached which is very slow but allowes to change templates without reloding the server</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="app.intro">
+				<comments>Show the FLASH intro</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="app.id">
+				<comments>Application ID is used to identify the server to the launch shell</comments>
+				<value>2085</value>
+			</configitem>
+			<configitem name="app.automap_reload">
+				<comments>Automatically reload the map.conf file each time a document is requested</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="app.skin_name">
+				<value>BBMFskin</value>
+			</configitem>
+			<configitem name="app.working_dir">
+				<comments>Temporary working directory</comments>
+				<value>./working</value>
+			</configitem>
+			<configitem name="app.security_enabled">
+				<comments>Flag that indicates that this application runs under SSL. Possible value: 1 - use SSL. 0 - use plain HTTP</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="app.fixup_static_url">
+				<comments>Fix up the URL to the binary resourece. This is useful when application is setup under Tomcat server and the servlet access control is turned on</comments>
+				<value>false</value>
+			</configitem>
+			<configitem name="app.fixup_prefix">
+				<comments>URL prefix used for fixup</comments>
+				<value>/wietmsd3</value>
+			</configitem>
+
+			<!-- update server defaults -->
+    			<configitem name="UpdateServer.CompareInterval">
+			      <value>600</value>
+			</configitem>  
+			<configitem name="UpdateServer.MessageInterval">
+      				<value>15</value>
+    			</configitem>  
+			<configitem name="pdf.remove_images"><value>0</value></configitem>
+
+			<configitem name="error.printFailure">
+				<value>A failure occurred while attempting to create print output</value>
+			</configitem>
+		</application>
+		<pdom>
+			<configitem name="pdom.cache">
+				<comments>cache - Set cachesize for PDOM engine (in pages of 128 DOM nodes) The cache is shared by all open documents Values: Integers between 20 and MAXINT (given you have that much memory) Default: 100</comments>
+				<value>1000</value>
+			</configitem>
+		</pdom>
+		<html>
+			<configitem name="html.login_logo">
+				<comments>Filename of the login page image. html.login_logo=mhtlogin1_preview.gif</comments>
+				<value>XyLogo.jpg</value>
+			</configitem> 
+			<configitem name="html.select_logo">
+				<comments>Filename of the select page image. html.select_logo=mhtlogin2_preview.gif</comments>
+				<value>XyLogo.jpg</value>
+			</configitem>
+ 			<configitem name="html.btnbar_logo">
+				<comments>Filename of the button bar image. html.btnbar_logo=mhtlogo_preview.gif</comments>
+				<value>XySmall.gif</value>
+			</configitem>
+		</html>
+		<ietm>
+			<configitem name="ietm.cgm_control">
+				<comments>Set the CGM control used by IETM to support CGM files. The supported values 1, 2 and 3. Default 1.  1 - Active CGM Control from Corel 2 - IsoView Control from ITEDO  3 - VizEx Control from Larson CGM</comments>
+				<value>2</value>
+			</configitem>
+			<configitem name="ietm.iso_view_release">
+				<comments>Set the CGM control used by IETM to support CGM files. In case when Iso View is setup as CGM graphics controls this setting tells the application to reset the engine each time the graphics window is closed. Defaults is 0.	 1 - Reset the engine each time 0 - Do nothing</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.help_url">
+				<comments>Location of the help file</comments>
+				<value>/help/index.htm</value>
+			</configitem>
+			<configitem name="ietm.about_url">
+				<comments>Location of the about this IETM file</comments>
+				<value>/help/about.html</value>
+			</configitem>
+			<configitem name="ietm.release_notes">
+				<comments>Location of the release notes</comments>
+				<value>releasenotes/releasenotes.html</value>
+			</configitem>
+			<configitem name="ietm.company_url">
+				<comments>Company URL available from the help menu</comments>
+				<value>http://www.sdl.com</value>
+			</configitem>
+			<configitem name="ietm.disable_wcn">
+				<comments>Disables pop-up windows for warnings, cautions and notes	if 0 - popups are enabled if 1 - popups are disabled</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.sw_version">
+				<comments>IETM Software version used for TPDR dialog</comments>
+				<value>Build 67892499</value>
+			</configitem>
+			<configitem name="ietm.full_width_img">
+				<comments>Show images in full width</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="ietm.full_height_img">
+				<comments>Show images in full height</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.smrcode">
+				<comments>name of file containing SMR codes</comments>
+				<value>smrtable.cgm</value>
+			</configitem>
+			<configitem name="ietm.filter_applic">
+				<value>1</value>
+			</configitem>
+			<!--<configitem name="ietm.AuditTrailSessionAdaptor">
+				<value>com.ais.ietm.AuditSessionAdaptor</value>
+			</configitem>
+			<configitem name="ietm.AuditTrailItemAdaptor">
+				<value>com.ais.ietm.AuditTrailAdaptor</value>
+			</configitem>
+			<configitem name="ietm.AuditTrailExportAdaptor">
+				<value>com.ais.ietm.AuditTrailExportAdaptor</value>
+			</configitem>-->
+			<configitem name="ietm.disable_anonymous_login">
+				<comments>Disable/Enable anonymous login. Possible values 0/1. Default value 0 (login enabled)</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.enable_exact_phrase">
+				<comments>Enable exact phrase filtering for full-text. Possible values 0/1. Default value 0</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.include_fragments">
+				<comments>Enable text fragments for full-text search. Possible values 0/1. Default value 0</comments>
+				<value>1</value>
+			</configitem>
+
 			<!-- entries to control search results -->
-      <configitem name="ietm.search_max_num"><value>1000</value></configitem>
-      <configitem name="ietm.search_max_num_opt"><value>1000</value></configitem>
-      <configitem name="ietm.needs_partition"><value>1</value></configitem>
-      <configitem name="ietm.partition_size"><value>10</value></configitem>
+			<configitem name="ietm.search_max_num">
+				<comments>Optional max num of hits to display for full-text searches</comments>
+				<value>100</value>
+			</configitem>
+			<configitem name="ietm.search_max_num_opt">
+				<comments>Optional max num of hits to display for categorical searches</comments>
+				<value>100</value>
+			</configitem>
+			<configitem name="ietm.needs_partition">
+				<comments>Request partioning of search results</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.partition_size">
+				<comments>Size of partition</comments>
+				<value>10</value>
+			</configitem>
 			<!-- End search entries -->
-      <configitem name="ietm.cgm_control"><comments>Set the CGM control used by IETM to support CGM files. The supported values 1, 2 and 3. Default 1.  1 - Active CGM Control from Corel 2 - IsoView Control from ITEDO  3 - VizEx Control from Larson CGM</comments><value>2</value></configitem>
-      <configitem name="ietm.iso_view_release"><comments>Set the CGM control used by IETM to support CGM files. In case when Iso View is setup as CGM graphics controls this setting tells the application to reset the engine each time the graphics window is closed. Defaults is 0.	 1 - Reset the engine each time 0 - Do nothing</comments><value>1</value></configitem>
-      <configitem name="ietm.help_url"><comments>Location of the help file</comments><value>/help/index.htm</value></configitem>
-      <configitem name="ietm.about_url"><comments>Location of the about this IETM file</comments><value>/help/about.html</value></configitem>
-      <configitem name="ietm.release_notes"><comments>Location of the release notes</comments><value>releasenotes/releasenotes.html</value></configitem>
-      <configitem name="ietm.company_url"><comments>Company URL available from the help menu</comments><value>http://www.sdl.com</value></configitem>
-      <configitem name="ietm.disable_wcn"><comments>Disables pop-up windows for warnings, cautions and notes	if 0 - popups are enabled if 1 - popups are disabled</comments><value>1</value></configitem>
-      <configitem name="ietm.sw_version"><comments>IETM Software version used for TPDR dialog</comments><value>Build 67892499</value></configitem>
-      <configitem name="ietm.full_width_img"><comments>Show images in full width</comments><value>0</value></configitem>
-      <configitem name="ietm.full_height_img"><comments>Show images in full height</comments><value>1</value></configitem>
-      <configitem name="ietm.smrcode"><comments>name of file containing SMR codes</comments><value>smrtable.cgm</value></configitem>
-      <configitem name="ietm.filter_applic"><value>1</value></configitem>
-      <!--<configitem name="ietm.AuditTrailSessionAdaptor"><value>com.ais.ietm.AuditSessionAdaptor</value></configitem>			<configitem name="ietm.AuditTrailItemAdaptor"><value>com.ais.ietm.AuditTrailAdaptor</value></configitem>			<configitem name="ietm.AuditTrailExportAdaptor"><value>com.ais.ietm.AuditTrailExportAdaptor</value></configitem>-->
-      <configitem name="ietm.disable_anonymous_login"><comments>Disable/Enable anonymous login. Possible values 0/1. Default value 0 (login enabled)</comments><value>1</value></configitem>
-      <configitem name="ietm.enable_exact_phrase"><comments>Enable exact phrase filtering for full-text. Possible values 0/1. Default value 0</comments><value>1</value></configitem>
-      <configitem name="ietm.include_fragments"><comments>Enable text fragments for full-text search. Possible values 0/1. Default value 0</comments><value>1</value></configitem>
 			<!-- Server-side TOC Processing -->
-      <configitem name="ietm.toc_transform"><comments>Turns on the server side TOC transformation</comments><value>1</value></configitem>
-      <configitem name="ietm.toc_transform_params"><comments>List of parameters for server-side TOC transformation</comments><value>app_name=app.httpd_name;httpd=app.httpd_prefix</value></configitem>
-      <configitem name="send_compressed_content"><comment>by defaults the file content will be sent out as it is. If this value is set to 1 it will be compressed before sending out</comment><value>1</value></configitem>
-      <configitem name="need_compress_content_file_type"><comment>list of the file extensions need to be compressed, like 'svg,txt,xml,doc'</comment><value>svg,html,xml,cgm,pdf,js</value></configitem>
-      <configitem name="min_file_size_kb"><comment>10 for 10kb</comment><value>5</value></configitem>
-      <!-- action complete indicator -->
-      <configitem name="ietm.show_steps_checkbox"><comment>0(default): no show, 1: show</comment><value>0</value></configitem>
-      <!-- security banners and content portion marking -->
-      <configitem name="ietm.show_security_banners"><comment>0(default): no show, 1: show</comment><value>0</value></configitem>
-      <configitem name="ietm.show_portion_marking"><comment>0(default): no show, 1: show</comment><value>0</value></configitem>
-    </ietm>
-    <pdf>
-      <!-- Default support for foldout TABLOID (11x17) or can be set to A3 (or TABLOID explicitly)				<configitem name="pdf.foldout_page_size"><comments>Page size for fold figure</comments><value>A3</value></configitem>			-->
-			<configitem name="pdf.page_size"><comments>Page size</comments><value>A4</value></configitem>
-      <configitem name="pdf.page_x_position"><comments>Page label position along X. This entry controls the horizontal position of the label Page NN of NN</comments><value>400</value></configitem>
-      <configitem name="pdf.page_y_position"><comments>Page label position along Y This entry controls the vertical position of the label Page NN of NN</comments><value>745</value></configitem>
-      <configitem name="pdf.label_y_position"><comments>Graphics label position along Y. Vertical position of the title for an image</comments><value>47</value></configitem>
-      <configitem name="pdf.label_y_position"><comments>Graphics extend Y. Vertical extend of the image on the page</comments><value>550.0</value></configitem>
-      <configitem name="pdf.param_list"><comments>This section defines the variables which can be used in the Headers/fotters. The name defines the parameter name in the template_pdf.xsl	The value will be passed by the application.	See the template_pdf.xsl for an example how to use those variables List of the parameters available for headers/footers</comments><value>ietm_version;ietm_date;pub_number;pub_date</value></configitem>
-      <configitem name="ietm_version.name"><value>IETMVersion</value></configitem>
-			<configitem name="ietm_version.value"><value>Version 5.11.0.0</value></configitem>
-			<configitem name="ietm_date.name"><value>IETMDate</value></configitem>
-			<configitem name="ietm_date.value"><value>December 15, 2021</value></configitem>
-      <configitem name="pub_number.name"><comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_version.value for example</comments><value>PubNumber</value></configitem>
-      <configitem name="pub_date.name"><comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_date.value for example</comments><value>PubDate</value></configitem>
-    </pdf>
-    <help>
-      <configitem name="help.show_help"><comments>Show the help button in the application</comments><value>0</value></configitem>
-      <configitem name="help.1000"><comments>Login prompt</comments><value>/help/Logging_into_LiveContent.htm</value></configitem>
-      <configitem name="help.1001"><comments>Book list</comments><value>/help/Choosing_a_Technical_Manual.htm</value></configitem>
-      <configitem name="help.1002"><comments>TOC frame</comments><value>/help/Using_TOC_Tab.htm</value></configitem>
-      <configitem name="help.1003"><comments>Activity frame</comments><value>/help/Using_Activity_Tab.htm</value></configitem>
-      <configitem name="help.1004"><comments>Figures frame</comments><value>/help/Using_Figures_Tab.htm</value></configitem>
-      <configitem name="help.1005"><comments>Tables frame</comments><value>/help/Using_Tables_Tab.htm</value></configitem>
-      <configitem name="help.1006"><comments>Search frame</comments><value>/help/Viewing_Search_Results.htm</value></configitem>
-      <configitem name="help.1007"><comments>History in nav frame</comments><value>/help/History.htm</value></configitem>
-      <configitem name="help.1008"><comments>Graphics area</comments><value>/help/Using_the_Graphics_Panel.htm</value></configitem>
-      <configitem name="help.1009"><comments>Text area</comments><value>/help/Text_Panel.htm</value></configitem>
-      <configitem name="help.1010"><comments>Reference Materials frame</comments><value>/help/Using_Data_Frame_Tabs.htm</value></configitem>
-      <configitem name="help.1011"><comments>Materials Required frame</comments><value>/help/Using_Data_Frame_Tabs.htm</value></configitem>
-      <configitem name="help.1012"><comments>Supporing Equipment frame</comments><value>/help/Using_Data_Frame_Tabs.htm</value></configitem>
-      <configitem name="help.1013"><comments>Invalid References report</comments><value>/help/Invalid_References.htm</value></configitem>
-      <configitem name="help.1014"><comments>Missing graphics report</comments><value>/help/Viewing_Missing_Images.htm</value></configitem>
-      <configitem name="help.1015"><comments>Add bookmark</comments><value>/help/Adding_Bookmarks.htm</value></configitem>
-      <configitem name="help.1016"><comments>Add note</comments><value>/help/Adding_a_Note.htm</value></configitem>
-      <configitem name="help.1017"><comments>Annotations  Manager</comments><value>/help/Resource_Manager.htm</value></configitem>
-      <configitem name="help.1018"><comments>TPDR manager</comments><value>/help/Resource_Manager.htm</value></configitem>
-      <configitem name="help.1019"><comments>Add TPDR</comments><value>/help/Creating_a_Deficiency_Record.htm</value></configitem>
-      <configitem name="help.1020"><comments>Preferences</comments><value>/help/User_Preferences.htm</value></configitem>
-      <configitem name="help.1021"><comments>Search Form</comments><value>/help/Using_the_Search_Tab.htm</value></configitem>
-      <configitem name="help.1022"><comments>Find Dialog</comments><value>/help/Using_Find_in_Page.htm</value></configitem>
-      <configitem name="help.1023"><comments>Advanced Search Dialog</comments><value>/help/Using_Advanced_Search_.htm</value></configitem>
-      <configitem name="help.1024"><comments>Install Updates Dialog</comments><value>/help/Installing_Updates.htm</value></configitem>
-    </help>
-  </configuration>
+			<configitem name="ietm.toc_transform">
+				<comments>Turns on the server side TOC transformation</comments>
+				<value>1</value>
+			</configitem>
+			<configitem name="ietm.toc_transform_params">
+				<comments>List of parameters for server-side TOC transformation</comments>
+				<value>app_name=app.httpd_name;httpd=app.httpd_prefix</value>
+			</configitem>
+			<configitem name="send_compressed_content">
+				<comment>by defaults the file content will be sent out as it is. If this value is set to 1 it will be compressed before sending out</comment>
+				<value>1</value>
+			</configitem>
+			<configitem name="need_compress_content_file_type">
+				<comment>list of the file extensions need to be compressed, like 'svg,txt,xml,doc'</comment>
+				<value>svg,html,xml,cgm,pdf,js</value>
+			</configitem>
+			<configitem name="min_file_size_kb">
+				<comment>10 for 10kb</comment>
+				<value>5</value>
+			</configitem>
+			<!-- action complete indicator -->
+			<configitem name="ietm.show_steps_checkbox">
+				<comment>0(default): no show, 1: show</comment>
+				<value>0</value>
+			</configitem>
+			<!-- security banners and content portion marking -->
+			<configitem name="ietm.show_security_banners">
+				<comment>0(default): no show, 1: show</comment>
+				<value>0</value>
+			</configitem>
+			<configitem name="ietm.show_portion_marking">
+				<comment>0(default): no show, 1: show</comment>
+				<value>0</value>
+			</configitem>
+		</ietm>
+		<pdf>
+			<!-- Default support for foldout TABLOID (11x17) or can be set to A3 (or TABLOID explicitly)	
+			<configitem name="pdf.foldout_page_size">
+				<comments>Page size for fold figure</comments>
+				<value>A3</value>
+			</configitem>
+			-->
+			<configitem name="pdf.page_x_position">
+				<comments>Page label position along X. This entry controls the horizontal position of the label Page NN of NN</comments><value>400</value>
+			</configitem>
+			<configitem name="pdf.page_y_position">
+				<comments>Page label position along Y This entry controls the vertical position of the label Page NN of NN</comments><value>745</value>
+			</configitem>
+			<configitem name="pdf.label_y_position">
+				<comments>Graphics label position along Y. Vertical position of the title for an image</comments><value>47</value>
+			</configitem>
+			<configitem name="pdf.label_y_position">
+				<comments>Graphics extend Y. Vertical extend of the image on the page</comments><value>550.0</value>
+			</configitem>
+			<configitem name="pdf.param_list">
+				<comments>This section defines the variables which can be used in the Headers/fotters. The name defines the parameter name in the template_pdf.xsl	The value will be passed by the application.	See the template_pdf.xsl for an example how to use those variables List of the parameters available for headers/footers</comments>
+				<value>ietm_version;ietm_date;pub_number;pub_date</value>
+			</configitem>
+      <!--2022-07-26
+      pdf.date_format, pdf.time_format
+      pdf.default_page_size, pdf.default_page_orientation
+      pdf.foldout_page_size, pdf.foldout_page_orientation
+      pdf.graphics_y_delta, pdf.label_y_position
+      pdf.watermark
+      pdf.img_watermark, pdf.img_watermark_x_position, pdf.img_watermark_y_position
+      pdf.page_x_position, pdf.page_y_position
+      pdf.param_list
+      pdf.remove_images
+      -->
+			<configitem name="pdf.default_page_size"><value>A4</value></configitem>
+			<configitem name="pdf.default_page_orientation"><value>portrait</value></configitem>
+			<configitem name="pdf.date_format"><value>yyyy-mm-dd</value></configitem>
+			<configitem name="pdf.time_format"><value>hh:mm:ss a</value></configitem>
+      <!--/ 2022-07-26-->
+
+			<configitem name="ietm_version.name">
+				<value>IETMVersion</value>
+			</configitem>
+			<configitem name="ietm_version.value">
+				<value>Version 5.11.0.0</value>
+			</configitem>
+			<configitem name="ietm_date.name">
+				<value>IETMDate</value>
+			</configitem>
+				<configitem name="ietm_date.value">
+				<value>Dec 21, 2022</value>
+			</configitem>
+			<configitem name="pub_number.name">
+				<comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_version.value for example</comments>
+				<value>PubNumber</value>
+			</configitem>
+			<configitem name="pub_date.name">
+				<comments>This variable only defines the name which will be used in the template_pdf.xsl style. The values are found in the book section see DEFAULT.BIKE.pub_date.value for example</comments>
+				<value>PubDate</value>
+			</configitem>
+		</pdf>
+		<help>
+			<configitem name="help.show_help">
+				<comments>Show the help button in the application</comments>
+				<value>0</value>
+			</configitem>
+			<configitem name="help.1000">
+				<comments>Login prompt</comments>
+				<value>/help/Logging_into_LiveContent.htm</value>
+			</configitem>
+			<configitem name="help.1001">
+				<comments>Book list</comments>
+				<value>/help/Choosing_a_Technical_Manual.htm</value>
+			</configitem>
+			<configitem name="help.1002">
+				<comments>TOC frame</comments>
+				<value>/help/Using_TOC_Tab.htm</value>
+			</configitem>
+			<configitem name="help.1003">
+				<comments>Activity frame</comments>
+				<value>/help/Using_Activity_Tab.htm</value>
+			</configitem>
+			<configitem name="help.1004">
+				<comments>Figures frame</comments>
+				<value>/help/Using_Figures_Tab.htm</value>
+			</configitem>
+			<configitem name="help.1005">
+				<comments>Tables frame</comments>
+				<value>/help/Using_Tables_Tab.htm</value>
+			</configitem>
+			<configitem name="help.1006">
+				<comments>Search frame</comments>
+				<value>/help/Viewing_Search_Results.htm</value>
+			</configitem>
+			<configitem name="help.1007">
+				<comments>History in nav frame</comments>
+				<value>/help/History.htm</value>
+			</configitem>
+			<configitem name="help.1008">
+				<comments>Graphics area</comments>
+				<value>/help/Using_the_Graphics_Panel.htm</value>
+			</configitem>
+			<configitem name="help.1009">
+				<comments>Text area</comments>
+				<value>/help/Text_Panel.htm</value>
+			</configitem>
+			<configitem name="help.1010">
+				<comments>Reference Materials frame</comments>
+				<value>/help/Using_Data_Frame_Tabs.htm</value>
+			</configitem>
+			<configitem name="help.1011">
+				<comments>Materials Required frame</comments>
+				<value>/help/Using_Data_Frame_Tabs.htm</value>
+			</configitem>
+			<configitem name="help.1012">
+				<comments>Supporing Equipment frame</comments>
+				<value>/help/Using_Data_Frame_Tabs.htm</value>
+			</configitem>
+			<configitem name="help.1013">
+				<comments>Invalid References report</comments>
+				<value>/help/Invalid_References.htm</value>
+			</configitem>
+			<configitem name="help.1014">
+				<comments>Missing graphics report</comments>
+				<value>/help/Viewing_Missing_Images.htm</value>
+			</configitem>
+			<configitem name="help.1015">
+				<comments>Add bookmark</comments>
+				<value>/help/Adding_Bookmarks.htm</value>
+			</configitem>
+			<configitem name="help.1016">
+				<comments>Add note</comments>
+				<value>/help/Adding_a_Note.htm</value>
+			</configitem>
+			<configitem name="help.1017">
+				<comments>Annotations  Manager</comments>
+				<value>/help/Resource_Manager.htm</value>
+			</configitem>
+			<configitem name="help.1018">
+				<comments>TPDR manager</comments>
+				<value>/help/Resource_Manager.htm</value>
+			</configitem>
+			<configitem name="help.1019">
+				<comments>Add TPDR</comments>
+				<value>/help/Creating_a_Deficiency_Record.htm</value>
+			</configitem>
+			<configitem name="help.1020">
+				<comments>Preferences</comments>
+				<value>/help/User_Preferences.htm</value>
+			</configitem>
+			<configitem name="help.1021">
+				<comments>Search Form</comments>
+				<value>/help/Using_the_Search_Tab.htm</value>
+			</configitem>
+			<configitem name="help.1022">
+				<comments>Find Dialog</comments>
+				<value>/help/Using_Find_in_Page.htm</value>
+			</configitem>
+			<configitem name="help.1023">
+				<comments>Advanced Search Dialog</comments>
+				<value>/help/Using_Advanced_Search_.htm</value>
+			</configitem>
+			<configitem name="help.1024">
+				<comments>Install Updates Dialog</comments>
+				<value>/help/Installing_Updates.htm</value>
+			</configitem>
+		</help>
+	</configuration>
 </wietm>
