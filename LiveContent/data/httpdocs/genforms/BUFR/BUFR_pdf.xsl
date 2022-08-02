@@ -190,9 +190,15 @@
       <!-- <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr" text-align="left" number-columns-spanned="2"><fo:block>
         <fo:block><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report3']"/></fo:block>
       </fo:block></fo:table-cell></fo:table-row> -->
+      <!--
       <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersl cellbordersr cellbordersb" text-align="left" number-columns-spanned="2"><fo:block>
         <fo:block><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report4']"/>
-        <!-- <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/> --></fo:block>
+        <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/>
+        </fo:block>
+      </fo:block></fo:table-cell></fo:table-row>
+      -->
+      <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" text-align="left" number-columns-spanned="2"><fo:block>
+        <fo:block><xsl:apply-templates select="content/div[@id='suppression']/confirm[@id='suppressionreason']"/></fo:block>
       </fo:block></fo:table-cell></fo:table-row>
 
       <!-- <fo:table-row><fo:table-cell xsl:use-attribute-sets="cell cellbordersall" text-align="left" number-columns-spanned="2"><fo:block>
@@ -326,6 +332,15 @@
       <fo:block xsl:use-attribute-sets="blockpara cellbordersall">
       <xsl:attribute name="background-color">#eee</xsl:attribute>
       <xsl:value-of select="$filtervars//cond[@id='txt_report4']/item"/>&#0160;</fo:block>
+    </fo:inline-container>
+  </xsl:template>
+
+  <xsl:template match="content/div[@id='suppression']/confirm[@id='suppressionreason']">
+    <xsl:call-template name="makecheckandbox"/><xsl:apply-templates/><xsl:text>&#0160;</xsl:text>
+    <fo:inline-container width="89mm" height="3mm">
+      <fo:block xsl:use-attribute-sets="blockpara cellbordersall">
+      <xsl:attribute name="background-color">#eee</xsl:attribute>
+      <xsl:value-of select="$filtervars//cond[@id='txt_suppression']/item"/>&#0160;</fo:block>
     </fo:inline-container>
   </xsl:template>
 

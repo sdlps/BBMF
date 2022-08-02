@@ -33,7 +33,7 @@
     <textinput id="report1">Unsatisfactory feature(s)</textinput>
     <textinput id="report2">Recommended Change</textinput><!--(use continuation sheet(s) if necessary)-->
     <confirm id="report3">I know of no other TI/Logistic Information System (ILS) that may be affected by this recommendation</confirm><!--Defunct-->
-    <confirm id="report4">BUFR Transferred to RESOLVE. F765 UFR Reference:</confirm>
+    <confirm id="report4">BUFR Transferred to RESOLVE. F765 UFR Reference:</confirm><!--Defunct-->
     <text id="report5">(eg MOD Form 765 or Remedy Record Ref) </text><!--Defunct-->
   </div>
   <div id="signature">

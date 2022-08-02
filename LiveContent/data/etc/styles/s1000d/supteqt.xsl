@@ -56,26 +56,29 @@
   <xsl:param name="mode">default</xsl:param>
   <div xsl:use-attribute-sets="standard">
     <h3 class="minor_section">
-    <xsl:if test="$mode!='default'">
-      <xsl:variable name="script">javascript:
-      var tbl=document.getElementById('TBL-NOSUPPORTEQUIPS');
-      var img=document.getElementById('DIV-REQSUPPLIES-IMG');
-      var imgbase='/servlets3/wietmsd?id=@SESSION_ID@&amp;target=resource&#38;action=image&#38;file_name=';
-      var img1='aircraft/arr1.png';
-      var img2='aircraft/arr2.png';
-      tbl.style.display = (tbl.style.display == 'none' ? 'block':'none');
-      img.src = (tbl.style.display == 'none' ? (imgbase + img1):(imgbase + img2));
-      </xsl:variable>
-      <span><a href="#" onclick="{$script}"><img id="DIV-REQSUPPLIES-IMG"
-        src="/servlets3/wietmsd?id=@SESSION_ID@&amp;target=resource&#38;action=image&#38;file_name=aircraft/arr1.png"/>
-      <xsl:text>&#160;</xsl:text></a></span>
-    </xsl:if>
-    <xsl:value-of select="$style.supteqt.supportequipment"/></h3>
+    <xsl:choose>
+      <xsl:when test="$mode!='default'">
+        <xsl:variable name="script">javascript:
+        var tbl=document.getElementById('TBL-NOSUPPORTEQUIPS');
+        var img=document.getElementById('DIV-NOSUPPORTEQUIPS-IMG');
+        var imgbase='/servlets3/wietmsd?id=@SESSION_ID@&amp;target=resource&#38;action=image&#38;file_name=';
+        var img1='aircraft/arr1.png';
+        var img2='aircraft/arr2.png';
+        tbl.style.display = (tbl.style.display == 'none' ? 'block':'none');
+        img.src = (tbl.style.display == 'none' ? (imgbase + img1):(imgbase + img2));
+        </xsl:variable>
+        <a class="minor_section" href="#" onclick="{$script}"><img id="DIV-NOSUPPORTEQUIPS-IMG"
+          src="/servlets3/wietmsd?id=@SESSION_ID@&amp;target=resource&#38;action=image&#38;file_name=aircraft/arr1.png"/>
+        <xsl:text>&#160;</xsl:text><xsl:value-of select="$style.supteqt.supportequipment"/></a>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$style.supteqt.supportequipment"/></xsl:otherwise>
+    </xsl:choose>
+    </h3>
     <xsl:variable name="div-display"><xsl:choose>
       <xsl:when test="$mode!='default'">none</xsl:when>
-      <xsl:otherwise>block</xsl:otherwise>
+      <xsl:otherwise>table</xsl:otherwise>
     </xsl:choose></xsl:variable>
-    <div id="TBL-NOSUPPORTEQUIPS" style="display:{div-display}"><hr size="1" noshade="noshade" color="black"/><xsl:value-of select="$style.general.none"/></div>
+    <div id="TBL-NOSUPPORTEQUIPS" style="display:{$div-display}"><hr size="1" noshade="noshade" color="black"/><xsl:value-of select="$style.general.none"/></div>
   </div>
 </xsl:template>
 

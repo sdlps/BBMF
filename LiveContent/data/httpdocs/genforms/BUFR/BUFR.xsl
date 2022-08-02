@@ -105,7 +105,7 @@
       </td>
     </tr></tbody></table>
     
-    <div id="bufrformcontainer" style="padding:0; overflow:scroll; overflow-y:auto; overflow-x:hidden; height:630px; float:left; position:relative;">
+    <div id="bufrformcontainer" style="padding:0; overflow:scroll; overflow-y:auto; overflow-x:hidden; height:600px; float:left; position:relative;">
     <table width="100%" cellpadding="2" cellspacing="0" class="Form765" style="border-collapse:collapse;">
       <col width="50%"></col>
       <col width="50%"></col>
@@ -170,14 +170,14 @@
       <!-- <tr><td style="border-left:2px solid #000; border-right:2px solid #000; text-align:left;" colspan="2">
         <div id="report3"><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report3']"/></div>
       </td></tr> -->
+      <!--
       <tr><td style="border:2px solid #000; text-align:left;" colspan="2">
         <div id="report4"><xsl:apply-templates select="content/div[@id='part3']/confirm[@id='report4']"/></div>
-        <!--
         <xsl:apply-templates select="content/div[@id='part3']/text[@id='report5']"/>
-        -->
       </td></tr>
+      -->
       <tr><td style="border:2px solid #000; text-align:left;" colspan="2">
-        <div id="report4"><xsl:apply-templates select="content/div[@id='suppression']/confirm[@id='suppressionreason']"/></div>
+        <div id="suppressionreason"><xsl:apply-templates select="content/div[@id='suppression']/confirm[@id='suppressionreason']"/></div>
       </td></tr>
 
       <!--

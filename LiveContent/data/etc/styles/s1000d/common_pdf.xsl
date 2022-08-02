@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id: XY/etc/FullSupport/etc/styles/s1000d/common_pdf.xsl 2.0 2019/05/23 20:30:40GMT milind Exp  $ -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
@@ -33,7 +33,7 @@
 
   <!-- Root template start here -->
   <xsl:template match="/">
-    <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial,Helvetica,Symbol,ZapfDingbats">
+    <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial,Helvetica,Symbol,ZapfDingbats" font-size="10pt">
       <fo:layout-master-set>
         <xsl:choose>
 
@@ -180,8 +180,74 @@
 
   <xsl:template match="DOCHEADER"/>
 
-  <xsl:template match="dmaddres|dmAddress">
-    <xsl:apply-templates select="dmtitle|dmAddressItems/dmTitle"/>
+  <!-- 2022-07-27:
+  Can we include the following:
+    DM Title:
+    DMC:
+    Issue No:
+    Issue Date:
+    Quality Assurance Status:
+    Copyright Statement: (In the 'Data Restrictions | Instructions | Distribution' field - suspect this will be required by the customer).
+    Applicable to:
+    Remarks: 
+<identAndStatusSection><dmAddress>
+	<dmIdent>
+		<dmCode .../><language countryIsoCode="US" languageIsoCode="en"/><issueInfo inWork="29" issueNumber="000"/>
+	</dmIdent>
+	<dmAddressItems>
+		<issueDate day="10" month="10" year="2019"/>
+		<dmTitle>...</dmTitle>
+	</dmAddressItems>
+</dmAddress><dmStatus issueType="new">
+	<security caveat="cv67" securityClassification="01"/>
+	<dataRestrictions>
+		<restrictionInstructions>
+			<dataDistribution>....</dataDistribution>
+		</restrictionInstructions>
+		<restrictionInfo>
+			<copyright><copyrightPara>...</copyrightPara></copyright>
+		</restrictionInfo>
+	</dataRestrictions>
+  <applic><displayText><simplePara>ALL</simplePara></displayText></applic>
+	<qualityAssurance><firstVerification verificationType="tabtop"/></qualityAssurance>
+  <remarks><simplePara>Baseline Bill of Materials (BoM) - IPC Data Capture - 2900 Hydraulics - Issue 4</simplePara></remarks>
+  <remarks><simplePara>EAGLE LSAR Data Reference - End Item: BBMF, IPB Figure Number: 292A, Date: May 26, 2022 12:26:14</simplePara></remarks>
+</dmStatus>
+</identAndStatusSection>
+
+  -->
+  <xsl:template match="identAndStatusSection">
+    <xsl:apply-templates select="dmAddress/dmAddressItems/dmTitle"/>
+    <fo:list-block space-after="15pt" font-size="10pt">
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Data Module Code:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmAddress/dmIdent/dmCode"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Issue No:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmAddress/dmIdent/issueInfo"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Issue Date:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmAddress/dmAddressItems/issueDate"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Applicability:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmStatus/applic"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Quality Assurance:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmStatus/qualityAssurance"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Copyright:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmStatus/dataRestrictions/restrictionInfo/copyright"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+      <fo:list-item provisional-label-separation="1mm" provisional-distance-between-starts="40mm" space-after="3pt">
+        <fo:list-item-label end-indent="label-end()"><fo:block font-weight="bold">Remarks:</fo:block></fo:list-item-label>
+        <fo:list-item-body start-indent="body-start()"><fo:block><xsl:apply-templates select="dmStatus/remarks"/></fo:block></fo:list-item-body>
+      </fo:list-item>
+    </fo:list-block>
   </xsl:template>
 
   <xsl:template match="dmc|dmIdent/dmCode">
@@ -209,6 +275,9 @@
 
   <xsl:template match="age|avee|dmCode">
     <fo:inline font-family="Arial,Helvetica,Symbol,ZapfDingbats"><!--color="blue"-->
+      <xsl:if test="not(./ancestor::entry)">
+        <xsl:attribute name="keep-together.within-line">always</xsl:attribute>
+      </xsl:if>
       <xsl:value-of select="modelic|@modelIdentCode"/><xsl:text>-</xsl:text>
       <xsl:value-of select="supeqvc|sdc|@systemDiffCode"/><xsl:text>-</xsl:text>
       <xsl:value-of select="ecscs|chapnum|@systemCode"/><xsl:text>-</xsl:text>
@@ -225,10 +294,10 @@
   </xsl:template>
 
   <xsl:template match="dmtitle|dmTitle">
-    <fo:block space-after="20pt" font-size="16pt"><!--color="blue"-->
+    <fo:block space-after="20pt" font-size="16pt" text-align="center" font-weight="bold"><!--color="blue"-->
       <xsl:if test="techname or techName">
         <xsl:apply-templates select="techname|techName"/>
-        <xsl:if test="infoname or infoName"> - </xsl:if>
+        <xsl:if test="infoname or infoName"> &#x2014; </xsl:if>
       </xsl:if>
       <xsl:if test="infoname or infoName">
         <xsl:apply-templates select="infoname|infoName"/>
@@ -239,7 +308,7 @@
   <xsl:template match="refdm/dmtitle|dmRef//dmTitle">
     <xsl:if test="techname or techName">
       <xsl:apply-templates select="techname|techName"/>
-      <xsl:if test="infoname or infoName"> - </xsl:if>
+      <xsl:if test="infoname or infoName"> &#x2014; </xsl:if>
     </xsl:if>
     <xsl:if test="infoname or infoName">
       <xsl:apply-templates select="infoname|infoName"/>
@@ -262,24 +331,18 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="issdate">
-    <fo:block space-after="5pt">
-      <xsl:value-of select="@month"/><xsl:text>-</xsl:text>
-      <xsl:value-of select="@day"/><xsl:text>-</xsl:text>
-      <xsl:value-of select="@year"/>
-    </fo:block>
+  <xsl:template match="dmAddress/dmIdent/issueInfo"><!--<issueInfo inWork="29" issueNumber="000"/>-->
+    <xsl:value-of select="@issueNumber"/>.<xsl:value-of select="@inWork"/>
+    <xsl:if test="//identAndStatusSection/dmStatus/@issueType='new'"> (<xsl:value-of select="$style.common.newdm"/>)</xsl:if>
   </xsl:template>
 
-  <!-- ********** DOCUMENT ADDRESS (INFORMATION) ************* -->
-  <xsl:template match="content">
-    <fo:block><xsl:apply-templates/></fo:block>
+  <xsl:template match="issdate|issueDate">
+    <xsl:value-of select="@year"/><xsl:text>-</xsl:text>
+    <xsl:value-of select="@month"/><xsl:text>-</xsl:text>
+    <xsl:value-of select="@day"/>
   </xsl:template>
 
   <!-- ********** STATUS INFORMATION ****************** -->
-  <xsl:template match="status|dmStatus">
-    <!--<fo:block><xsl:apply-templates select="*[local-name() != 'applic']"/></fo:block>-->
-  </xsl:template>
-
   <xsl:template match="security"/>
 
   <xsl:template match="datarest|dataRestrictions">
@@ -321,6 +384,11 @@
     </fo:block>
     <fo:block start-indent="15mm" space-before="15pt"><xsl:apply-templates/></fo:block>
   </xsl:template>
+  
+  <xsl:template match="//identAndStatusSection/dmStatus/dataRestrictions/restrictionInfo/copyright"><xsl:apply-templates/></xsl:template>
+  <xsl:template match="//identAndStatusSection/dmStatus/dataRestrictions/restrictionInfo/copyright/copyrightPara">
+    <fo:block space-after="3pt"><xsl:apply-templates/></fo:block>
+  </xsl:template>
 
   <xsl:template match="rpc|responsiblePartnerCompany">
     <!-- Removed<fo:block space-before="15pt"><fo:inline font-weight="bold">Responsible Partner Company:</fo:inline> <xsl:apply-templates/></fo:block>-->
@@ -337,10 +405,19 @@
 
   <xsl:template match="techStandard"/>
 
-  <xsl:template match="dmStatus//remarks"/>
+  <xsl:template match="dmStatus//remarks"><xsl:apply-templates/></xsl:template>
+  <xsl:template match="dmStatus//remarks/simplePara">
+    <fo:block space-after="3pt"><xsl:apply-templates/></fo:block>
+  </xsl:template>
 
   <xsl:template match="applic/type"/>
 
+  <xsl:template match="//identAndStatusSection/dmStatus/applic |
+                       //identAndStatusSection/dmStatus/applic/displayText |
+                       //identAndStatusSection/dmStatus/applic/displayText/simplePara" priority="100">
+    <xsl:apply-templates/>
+  </xsl:template>
+  
   <xsl:template match="skill"/>
 
   <xsl:template match="brexref|brexDmRef">
@@ -351,17 +428,39 @@
     <!-- Removed<fo:block space-before="15pt" font-weight="bold">Quality Assurance Status: <xsl:apply-templates/></fo:block>-->
   </xsl:template>
 
+  <xsl:template match="//identAndStatusSection/dmStatus/qualityAssurance">
+    <xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="//identAndStatusSection/dmStatus/qualityAssurance/firstVerification">
+    <xsl:text>1st Verification: </xsl:text><xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="//identAndStatusSection/dmStatus/qualityAssurance/secondVerification">
+    <xsl:text>2nd Verification: </xsl:text><xsl:apply-templates/>
+  </xsl:template>
+  <xsl:template match="firstVerification[@verificationType='tabtop']">1st Verification: Table top</xsl:template>
+  <xsl:template match="firstVerification[@verificationType='onobject']">1st Verification: On object</xsl:template>
+  <xsl:template match="firstVerification[@verificationType='ttandoo']">1st Verification: Table top and On object</xsl:template>
+  <xsl:template match="secondVerification[@verificationType='tabtop']">2nd Verification: Table top</xsl:template>
+  <xsl:template match="secondVerification[@verificationType='onobject']">2nd Verification: On object</xsl:template>
+  <xsl:template match="secondVerification[@verificationType='ttandoo']">2nd Verification: Table top and On object</xsl:template>
+  <xsl:template match="unverif|unverified">Unverified</xsl:template>
+
   <xsl:template match="unverif">
     <xsl:value-of select="$style.common.unverified"/>
   </xsl:template>
 
   <xsl:template match="rfu|reasonForUpdate"/>
   <!-- ********** ENDOF STATUS INFORMATION  ************* -->
+
+  <xsl:template match="content">
+    <fo:block><xsl:apply-templates/></fo:block>
+  </xsl:template>
+
   <!-- **************** XSL-FO STYLES ********************* -->
   <xsl:attribute-set name="h2">
     <xsl:attribute name="font-size">14pt</xsl:attribute>
     <xsl:attribute name="font-weight">bold</xsl:attribute>
-    <xsl:attribute name="color">blue</xsl:attribute>
+    <xsl:attribute name="color">black</xsl:attribute>
     <xsl:attribute name="space-before">10mm</xsl:attribute>
     <xsl:attribute name="text-align">center</xsl:attribute>
     <xsl:attribute name="font-family">sans-serif</xsl:attribute>
@@ -369,7 +468,7 @@
   <xsl:attribute-set name="h3">
     <xsl:attribute name="font-size">14pt</xsl:attribute>
     <xsl:attribute name="font-weight">bold</xsl:attribute>
-    <xsl:attribute name="color">brown</xsl:attribute>
+    <xsl:attribute name="color">black</xsl:attribute>
     <xsl:attribute name="space-before">5mm</xsl:attribute>
     <xsl:attribute name="text-align">left</xsl:attribute>
     <xsl:attribute name="font-family">sans-serif</xsl:attribute>
@@ -377,7 +476,7 @@
   <xsl:attribute-set name="h4">
     <xsl:attribute name="font-size">12pt</xsl:attribute>
     <xsl:attribute name="font-weight">bold</xsl:attribute>
-    <xsl:attribute name="color">brown</xsl:attribute>
+    <xsl:attribute name="color">black</xsl:attribute>
     <xsl:attribute name="space-before">5mm</xsl:attribute>
     <xsl:attribute name="text-align">left</xsl:attribute>
     <xsl:attribute name="font-family">sans-serif</xsl:attribute>
@@ -420,6 +519,7 @@
   <xsl:attribute-set name="wcn_div">
     <xsl:attribute name="padding">1.5mm</xsl:attribute>
     <xsl:attribute name="space-after">2mm</xsl:attribute>
+    <xsl:attribute name="keep-together.within-page">always</xsl:attribute>
   </xsl:attribute-set>
   <xsl:attribute-set name="wcn_title">
     <xsl:attribute name="margin">3mm</xsl:attribute>
@@ -430,6 +530,7 @@
     <xsl:attribute name="text-align">center</xsl:attribute>
     <xsl:attribute name="start-indent">60mm</xsl:attribute>
     <xsl:attribute name="end-indent">60mm</xsl:attribute>
+  <xsl:attribute name="keep-with-next">always</xsl:attribute>
   </xsl:attribute-set>
   <xsl:attribute-set name="wcn_table">
     <xsl:attribute name="margin-right">1mm</xsl:attribute>
@@ -442,6 +543,11 @@
 
   <xsl:template match="prelreqs|preliminaryRqmts">
     <fo:block xsl:use-attribute-sets="h2"><xsl:value-of select="$style.common.prelreqs"/></fo:block>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="closeup|closereqs|closeRqmts">
+    <fo:block xsl:use-attribute-sets="h2"><xsl:value-of select="$style.common.reqjobcomp"/></fo:block>
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -822,7 +928,7 @@
                 <fo:block><xsl:apply-templates select="nomen|name"/></fo:block>
               </fo:table-cell>
               <fo:table-cell xsl:use-attribute-sets="table_border_left">
-                <fo:block><xsl:apply-templates select="identno|identNumber"/></fo:block>
+                <fo:block><xsl:apply-templates select="identno|identNumber|csnref|catalogSeqNumberRef|nsn|natoStockNumber"/></fo:block>
               </fo:table-cell>
               <fo:table-cell xsl:use-attribute-sets="table_border_left">
                 <fo:block><xsl:apply-templates select="qty|reqQuantity"/>&#160;<xsl:value-of select="reqQuantity/@unitOfMeasure"/></fo:block>
@@ -835,8 +941,53 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="identNumber|csnref|catalogSeqNumberRef|nsn|natoStockNumber" priority="4">
+  <xsl:template match="identNumber" priority="4">
     <fo:block><xsl:apply-templates/></fo:block>
+  </xsl:template>
+  
+  <xsl:template match="csnref|catalogSeqNumberRef">
+    <fo:block><xsl:apply-templates/></fo:block>
+  </xsl:template>
+  <xsl:template match="catalogSeqNumberRef[./refs/dmRef]" priority="10">
+    <xsl:apply-templates select="./refs/dmRef">
+      <xsl:with-param name="csnref" select="."/>
+    </xsl:apply-templates>
+  </xsl:template>
+  <xsl:template match="catalogSeqNumberRef/refs/dmRef" priority="10">
+    <xsl:param name="csnref" select="../../catalogSeqNumberRef[1]"/>
+    <xsl:value-of select="$csnref/@systemCode"/>
+    <xsl:value-of select="$csnref/@subSystemCode"/>
+    <xsl:value-of select="$csnref/@subSubSystemCode"/>
+    <xsl:value-of select="$csnref/@assyCode"/>
+    <xsl:value-of select="$csnref/@figureNumber"/><xsl:value-of select="$csnref/@figureNumberVariant"/>
+    <xsl:text> Item </xsl:text><xsl:value-of select="$csnref/@item"/><xsl:value-of select="$csnref/@itemVariant"/>
+  </xsl:template>
+    
+  <xsl:template match="nsn|natoStockNumber" priority="4">
+    <fo:block><xsl:call-template name="get-nsn-text"/></fo:block>
+  </xsl:template>
+  
+  <xsl:template name="get-nsn-text">
+    <xsl:variable name="nsn" select="."/>
+    <xsl:if test="$nsn"><xsl:choose>
+      <xsl:when test="$nsn/@natoCodificationBureau">
+        <xsl:value-of select="$nsn/@natoSupplyClass"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="$nsn/@natoCodificationBureau"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($nsn/@natoItemIdentNumberCore,1,3)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($nsn/@natoItemIdentNumberCore,4)"/>
+      </xsl:when>
+      <xsl:when test="$nsn/fullNatoStockNumber">
+        <xsl:value-of select="$nsn/fullNatoStockNumber"/>
+      </xsl:when>
+      <!--TODO:nsn-->
+      <xsl:otherwise>
+        <xsl:variable name="str" select="$nsn//text()"/>
+        <xsl:value-of select="substring($str,1,4)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($str,5,6)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($str,7,9)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($str,10)"/>
+      </xsl:otherwise>
+    </xsl:choose></xsl:if>
   </xsl:template>
   
   <!-- <identNumber><manufacturerCode/><partAndSerialNumber><partNumber>DTD189A</partNumber></partAndSerialNumber></identNumber> -->  
@@ -845,7 +996,8 @@
   </xsl:template>
   
   <xsl:template match="natoStockNumber[not(.//text())]" priority="4"></xsl:template>
-  <!--<catalogSeqNumberRef systemCode="29" subSystemCode="0" subSubSystemCode="0" assyCode="01" item="001" figureNumber="01"></catalogSeqNumberRef>-->
+ 
+ <!--<catalogSeqNumberRef systemCode="29" subSystemCode="0" subSubSystemCode="0" assyCode="01" item="001" figureNumber="01"></catalogSeqNumberRef>-->
   <xsl:template match="catalogSeqNumberRef[./refs]" priority="4">
     <fo:block>
       <!--
@@ -978,9 +1130,11 @@
 
   <xsl:template match="para">
     <fo:block space-before="3mm">
+    <!--LAM:2022-07-27
       <xsl:if test="ancestor::thead">
         <xsl:attribute name="font-size">7pt</xsl:attribute>
       </xsl:if>
+    -->
       <xsl:call-template name="security_portion_mark"/>
       <!-- Test the security conditions -->
       <!-- <xsl:call-template name="formatClass01"/> --><xsl:apply-templates/></fo:block>
@@ -1000,7 +1154,7 @@
     </xsl:choose></xsl:variable>
     <!--<xsl:attribute name="xidtype"><xsl:value-of select="$xidtype"/></xsl:attribute><xsl:attribute name="xrefid"><xsl:value-of select="$our_xrefid"/></xsl:attribute>-->
     <!--<xsl:variable name="our_xrefid"><xsl:value-of select="@xrefid"/></xsl:variable>-->
-    <fo:inline font-style="italic" font-size="10pt" font-family="sans-serif" color="blue">
+    <fo:inline font-style="italic" font-size="10pt" font-family="sans-serif" color="black">
      <fo:basic-link internal-destination="{$our_xrefid}">
       <xsl:if test="self::node() =''">
         <xsl:choose>
@@ -1100,24 +1254,16 @@
 
   <xsl:template match="figure"/>
 
-  <xsl:template match="randlist|randomList">
+  <xsl:template match="randlist|randomList|seqlist|sequentialList">
     <xsl:if test="node()">
-      <fo:list-block provisional-label-separation="2mm" provisional-distance-between-starts="9mm">
+      <fo:block space-before="12pt" space-after="12pt"><fo:list-block provisional-label-separation="2mm" provisional-distance-between-starts="9mm">
         <xsl:apply-templates/>
-      </fo:list-block>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="seqlist|sequentialList">
-    <xsl:if test="node()">
-      <fo:list-block provisional-label-separation="2mm" provisional-distance-between-starts="9mm">
-        <xsl:apply-templates/>
-      </fo:list-block>
+      </fo:list-block></fo:block>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="item|listItem">
-    <fo:list-item space-before="5mm">
+    <fo:list-item space-before="3pt" space-after="3pt">
       <fo:list-item-label>
         <xsl:choose>
           <xsl:when test="ancestor::seqlist[2] or ancestor::sequentialList[2]">
@@ -1130,23 +1276,15 @@
         <fo:block>
           <xsl:choose>
             <xsl:when test="parent::seqlist or parent::sequentialList">
-              <xsl:number level="single" format="1. " count="item"/>
+              <xsl:number level="single" format="1." count="item|listItem"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:choose>
-                <xsl:when test="parent::randlist/@prefix = 'pf01'">
-                  <!-- nothing! -->
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:choose>
-                    <xsl:when test="number(count(ancestor::randlist)) mod 2 = 0">
-                      <fo:character character="&#8226;"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <fo:character character="&#8226;"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:otherwise>
+                <xsl:when test="parent::randlist/@prefix = 'pf01'"><!-- nothing! --></xsl:when>
+                <xsl:otherwise><xsl:choose>
+                  <xsl:when test="number(count(ancestor::randlist)) mod 2 = 0"><fo:character character="&#8226;"/></xsl:when>
+                  <xsl:otherwise><fo:character character="&#x2013;"/></xsl:otherwise>
+                </xsl:choose></xsl:otherwise>
               </xsl:choose>
             </xsl:otherwise>
           </xsl:choose>
@@ -1392,23 +1530,28 @@
   </xsl:template>
 
   <xsl:template match="safety/safetyRqmts | reqSafety/safetyRqmts">
-    <xsl:if test="@warningRefs or @cautionRefs">
-      <xsl:variable name="refwarns" select="//warningsAndCautions/warning"/>
-      <xsl:variable name="warnrefs" select="@warningRefs"/>
-      <xsl:for-each select="tokenize($warnrefs,' ')">
-        <xsl:variable name="warnref" select="normalize-space(.)"/>
-        <xsl:apply-templates select="$refwarns[@id=$warnref]"/>
-      </xsl:for-each>
-
-      <xsl:variable name="refcauts" select="//warningsAndCautions/caution"/>
-      <xsl:variable name="cautrefs" select="@cautionRefs"/>
-      <xsl:for-each select="tokenize($cautrefs,' ')">
-        <xsl:variable name="cautref" select="normalize-space(.)"/>
-        <xsl:apply-templates select="$refcauts[@id=$cautref]"/>
-      </xsl:for-each>
-    </xsl:if>
-    <xsl:apply-templates select="warning"/>
-    <xsl:apply-templates select="caution"/>
+    <xsl:choose>
+      <xsl:when test="@warningRefs">
+        <xsl:variable name="refwarns" select="./ancestor::dmodule[1]//warningsAndCautions/warning"/>
+        <xsl:variable name="warnrefs" select="@warningRefs"/>
+        <xsl:for-each select="tokenize($warnrefs,' ')">
+          <xsl:variable name="warnref" select="normalize-space(.)"/>
+          <xsl:apply-templates select="$refwarns[@id=$warnref]"/>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-templates select="warning"/></xsl:otherwise>
+    </xsl:choose>
+    <xsl:choose>
+      <xsl:when test="@cautionRefs">
+        <xsl:variable name="refcauts" select="./ancestor::dmodule[1]//warningsAndCautions/caution"/>
+        <xsl:variable name="cautrefs" select="@cautionRefs"/>
+        <xsl:for-each select="tokenize($cautrefs,' ')">
+          <xsl:variable name="cautref" select="normalize-space(.)"/>
+          <xsl:apply-templates select="$refcauts[@id=$cautref]"/>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise><xsl:apply-templates select="caution"/></xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates select="note"/>
   </xsl:template>
 
@@ -1518,10 +1661,50 @@
   </xsl:template>
 
   <xsl:template name="wcn-above-step">
+    <xsl:param name="ns" select="."/>
     <fo:list-item space-after="1mm">
       <fo:list-item-label><fo:block/></fo:list-item-label>
-      <fo:list-item-body start-indent="3mm"><fo:block><xsl:apply-templates select="."/></fo:block></fo:list-item-body>
+      <fo:list-item-body start-indent="3mm"><fo:block><xsl:apply-templates select="$ns"/></fo:block></fo:list-item-body>
     </fo:list-item>
   </xsl:template>
 
-</xsl:stylesheet>
+<xsl:template match="footnoteRemarks"> 
+		<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="ftnote|footnote" priority="11"></xsl:template>
+
+ <xsl:template match="ftnote|footnote" priority="11">
+	<xsl:variable name="incr">
+	<xsl:value-of select="count(preceding::ftnote) + count(preceding::footnote) + 1" />
+	</xsl:variable>
+	<fo:inline baseline-shift="super" font-size="8pt" color="black">
+	   <xsl:value-of select="$incr"/>.
+	</fo:inline>
+</xsl:template>
+
+<xsl:template match="ftnote|footnote" mode="table.footnote.mode" priority="11">
+     <xsl:call-template name="security_portion_mark">
+         <xsl:with-param name="override_node_text">yes</xsl:with-param>
+     </xsl:call-template>  
+	
+	<fo:list-block>
+		<xsl:variable name="inc">
+		 <xsl:value-of select="count(preceding::ftnote) + count(preceding::footnote) + 1" />
+		</xsl:variable>
+		<fo:list-item>
+		<fo:list-item-label>
+			<fo:block >
+				<fo:inline color="black" baseline-shift="super" font-family="sans-serif" font-size="8pt">
+					<xsl:value-of select="$inc"/>
+				</fo:inline>
+			</fo:block>
+		</fo:list-item-label>
+		<fo:list-item-body margin-left="0.15in">
+			<xsl:apply-templates/>
+ 		</fo:list-item-body>
+		</fo:list-item>
+	</fo:list-block>
+ </xsl:template>
+ 
+ </xsl:stylesheet>

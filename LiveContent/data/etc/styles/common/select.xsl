@@ -15,27 +15,45 @@
   <xsl:template match="configuration"/>
 
   <xsl:template match="collectionslist">
-    <br/><br/><br/>
+    <br/>
     <table cellspacing='0' cellpadding='10' width="100%">
     <col width="20%"/>
-    <col width="16%"/>
-    <col width="16%"/>
-    <col width="16%"/>
-    <col width="16%"/>
-    <col width="16%"/>
+    <col width="80%"/>
+    <tr>
+    <td valign="top"><img style="width:200px;">
+    <xsl:attribute name="SRC"><xsl:value-of select="$app_name"/>?target=resource&amp;action=image&amp;file_name=aircraft/raf-logo.jpg</xsl:attribute>
+    </img><br/><br/><img style="width:200px;">
+    <xsl:attribute name="SRC"><xsl:value-of select="$app_name"/>?target=resource&amp;action=image&amp;file_name=aircraft/Battle_of_Britain_Memorial_Flight_Crest.jpg</xsl:attribute>
+    </img>
+    </td>
+    <td valign="top"><table cellspacing='0' cellpadding='10' width="100%">
+    <col width="20%"/>
+    <col width="20%"/>
+    <col width="20%"/>
+    <col width="20%"/>
+    <col width="20%"/>
     <!--Battle_of_Britain_Memorial_Flight_Crest.jpg-->
     <tr>
+    <td colspan="5" style="text-align:center; background-color:#5d8aa8;"
+      ><span style="font-variant:small-caps; font-weight:bold; color:#fff;">BEAMS: BBMF Electronc Aircraft Manual System</span></td>
+    </tr>
+    <tr>
+    <!--
     <td valign="top"><img style="width:222px;height:300px">
     <xsl:attribute name="SRC"><xsl:value-of select="$app_name"/>?target=resource&amp;action=image&amp;file_name=aircraft/Battle_of_Britain_Memorial_Flight_Crest.jpg</xsl:attribute>
     </img><br/><br/><img style="width:222px;height:95px">
     <xsl:attribute name="SRC"><xsl:value-of select="$app_name"/>?target=resource&amp;action=image&amp;file_name=aircraft/raf-logo.jpg</xsl:attribute>
     </img></td>
+    -->
     <td valign="top"><xsl:apply-templates select="./collection/booklist/book[configitem[@name='bookModel']/value[.='SPITFIRE']]"/></td>
     <td valign="top"><xsl:apply-templates select="./collection/booklist/book[configitem[@name='bookModel']/value[.='HURRICANE']]"/></td>
     <td valign="top"><xsl:apply-templates select="./collection/booklist/book[configitem[@name='bookModel']/value[.='LANCASTER']]"/></td>
     <td valign="top"><xsl:apply-templates select="./collection/booklist/book[configitem[@name='bookModel']/value[.='DAKOTA']]"/></td>
     <td valign="top"><xsl:apply-templates select="./collection/booklist/book[configitem[@name='bookModel']/value[.='CHIPMUNK']]"/></td>
-    </tr></table>
+    </tr></table></td>
+    </tr>
+    </table>
+    
   </xsl:template>
 
   <xsl:template match="collection">

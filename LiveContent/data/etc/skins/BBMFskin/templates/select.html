@@ -61,9 +61,9 @@ function cvPortalInit() {
 	CVPortal.components.cvBookList.loadBooklist();
 	if (CVPortal.getBrowserType() == "WEBKIT") {
 		window.addEventListener("unload", function logData() {
-			var url = CVPortal.getURLwithBaseParams() + "&target=main&action=main_close";
-			navigator.sendBeacon(url, "");
-		});
+		var url = CVPortal.getURLwithBaseParams() + "&target=main&action=main_close";
+		navigator.sendBeacon(url, "");
+	});
 	} else {
 		window.addEventListener("beforeunload", function logData() {
 		CVPortal.unregisterBooklist();
@@ -78,46 +78,46 @@ function cvPortalInit() {
 <body class="front" onLoad="cvPortalInit()" onResize="CVPortal.clientResize();">
 
 
-<div class="front-header">
-	<img alt="RWS" class="LCS-logo" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=lcs_white_logo.png">
-</div>
+<div class="front-header"><div>
+<span><img style="width:120px;height:120px" alt="BEAMS" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=aircraft/BEAMS_Logo_Transparent_Background_ISSUE_01.png"></span>
+<span style="float:right; margin-top:25px; margin-right:12px;"
+	><span style="font-weight:bold;">Powered by</span><br><img alt="RWS" class="LCS-logo"
+		src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=lcs_white_logo.png"></span>
+</div></div>
 
 <div>
 	<center>
 		<!--<img SRC="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=XyLogo.JPG" style="margin-top:20px;border:2pt solid black;" ondrag="event.returnValue=false;"/><br/>-->
 
 	<table width="80%" border="0" cellspacing="0" cellpadding="0">
+	<!--
 		<tr>
 			<td align="center" colspan="2" valign="middle">
-				<!--<img src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=selectmodel.gif" ondrag="event.returnValue=false;"/>-->
 				<div id="updateServerLinkDiv" class="updateServerLinkBlock" style="display:none;">
 					<img id="CVCtrl_webupdate" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=webupdate.gif" class="simpleButton" onClick="javascript:CVPortal.components.cvBookList.openUpdateServerModal()"/>
 					<span id="updateServerLink" class="simpleButton" onClick="javascript:CVPortal.components.cvBookList.openUpdateServerModal()">Check the update server.  </span>
 				</div>
 			 </td>
 		</tr>
-				<tr>
-					<!-- replace the hard code by dynamic code that was create in Java code, MainHandler.java -->
-					<td class="BOOK-LIST">@BOOK_LIST@</td>
-					 <td valign="top">
-						<img valign="top" class="link" cvHelpButton="1" id="HELP" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=help.gif"
-								onmouseover="help_onmouseover(event)"
-								onmouseout="help_onmouseout(event)"
-								onclick="CVPortal.helpFactory().showHelp('1001')"
-								ondrag="event.returnValue=false;"
-								style="display:none;cursor:hand"/>
-					</td>
-				</tr>
-
-			</table>
-<br/>
-<br/>
-<div id="ERAC_MESSAGE_CONTAINER" style="display:none;" class="erac_message_container">
-	<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0">
-		<tr>
-			<td id="ERAC_MESSAGE" class="erac_message align-middle-v" align="center"></td>
-		</tr>
+	-->
+	<tr>
+		<!-- replace the hard code by dynamic code that was create in Java code, MainHandler.java -->
+		<td class="BOOK-LIST">@BOOK_LIST@</td>
+		 <td valign="top">
+			<img valign="top" class="link" cvHelpButton="1" id="HELP" src="@APPNAME@?id=@SESSION_ID@&amp;target=resource&action=image&file_name=help.gif"
+					onmouseover="help_onmouseover(event)"
+					onmouseout="help_onmouseout(event)"
+					onclick="CVPortal.helpFactory().showHelp('1001')"
+					ondrag="event.returnValue=false;"
+					style="display:none;cursor:hand"/>
+		</td>
+	</tr>
 	</table>
+<br/><br/>
+<div id="ERAC_MESSAGE_CONTAINER" style="display:none;" class="erac_message_container">
+<table border="0" width="100%" height="100%" cellspacing="0" cellpadding="0">
+<tr><td id="ERAC_MESSAGE" class="erac_message align-middle-v" align="center"></td></tr>
+</table>
 </div>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id: XY/etc/FullSupport/etc/styles/s1000d/common.xsl 1.12.1.15.2.79 2019/04/25 23:21:01GMT rdivecchia Exp  $ -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:saxon="http://saxon.sf.net/" version="2.0" extension-element-prefixes="saxon">
-<xsl:output  method="html" encoding="iso-8859-1"/>
+<xsl:output  method="html" encoding="UTF-8"/>
 
 <!-- ** Filtering Varibles; for Applicability and eventually process data modules ** -->
 <xsl:param name="filtervars" select="document($filter_location)/filter"/>
@@ -173,6 +173,7 @@
             var img2='aircraft/arr2.png';
             tbl.style.display = (tbl.style.display == 'none' ? 'block':'none');
             img.src = (tbl.style.display == 'none' ? (imgbase + img1):(imgbase + img2));
+            console.debug('tbl.style.display? ' + tbl.style.display + '; img.src? ' + img.src);
             </xsl:variable>
             <h2 id="DOCUMENT_TITLE" topic="1">
             <xsl:attribute name="EID"><xsl:value-of select="@EID"/></xsl:attribute>
@@ -765,12 +766,20 @@
   <xsl:if test="techname">
     <xsl:apply-templates select="techname | techName"/>
     <xsl:if test="infoname | infoName"> - </xsl:if>
+    <xsl:if test="infoNameVariant">, </xsl:if>
   </xsl:if>
   <xsl:if test="infoname | infoName">
     <xsl:apply-templates select="infoname | infoName"/>
   </xsl:if>
+  <xsl:if test="infoNameVariant">
+    <xsl:apply-templates select="infoNameVariant"/>
+  </xsl:if>
 </xsl:template>
 
+
+<xsl:template match="dmRef/dmTitle/infoNameVariant">
+<xsl:apply-templates/>
+</xsl:template>
 
 <xsl:template match="refdm/dmtitle/infoname | dmRef/dmTitle/infoName">
 <xsl:apply-templates/>
@@ -786,6 +795,12 @@
 
 <xsl:template match="status|dmStatus">
 	<xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="dmStatus/logo">
+</xsl:template>
+
+<xsl:template match="dmStatus//controlAuthority">
 </xsl:template>
 
 <xsl:template match="status/remarks|dmStatus/remarks">
@@ -1252,7 +1267,7 @@
       </xsl:if>
     </xsl:variable>
     <xsl:variable name="script"><xsl:if test="$target"
-      >var target = document.getElementById('<xsl:value-of select="$our_xrefid"/>');
+      >var target = document.getElementById('<xsl:value-of select="normalize-space($our_xrefid)"/>');
       if (target) {
         var parent = target.parentNode;
         if (parent) {
@@ -2390,4 +2405,53 @@
 	</span>
 </xsl:template>
 -->
+
+<xsl:template match="ftnref|footnoteRef" priority="11">
+   <xsl:variable name="xrefid">
+      <xsl:value-of select="@xrefid|@internalRefId"/>
+   </xsl:variable>
+   <xsl:for-each select="//ftnote[@id=$xrefid]|//footnote[@id=$xrefid]">
+      <xsl:variable name="inc">
+         <xsl:value-of select="count(preceding::ftnote) + count(preceding::footnote) + 1" />
+      </xsl:variable>
+      <a href="#{$xrefid}" name="f{$xrefid}">
+         <sup>[<span class="xref"><xsl:value-of select="$inc"/></span>]</sup>
+      </a>
+   </xsl:for-each>
+</xsl:template>
+
+<xsl:template match="ftnote|footnote" priority="11"></xsl:template>
+<xsl:template match="ftnote|footnote" mode="table.footnote.mode" priority="11">
+   <xsl:variable name="incr">
+      <xsl:value-of select="count(preceding::ftnote) + count(preceding::footnote) + 1" />
+   </xsl:variable>
+   <span class="ftnote">
+      <xsl:call-template name="security_portion_mark">
+         <xsl:with-param name="override_node_text">yes</xsl:with-param>
+      </xsl:call-template>  
+      <xsl:variable name="fid"><xsl:value-of select="@id"/></xsl:variable>
+      <xsl:variable name="hasref">
+         <xsl:for-each select="//ftnref[@xrefid=$fid]|//footnoteRef[@internalRefId=$fid]">
+            <xsl:text>yes</xsl:text>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:choose>
+         <xsl:when test="$hasref = 'yes'">
+            <a name="{$fid}">
+               <sup><span class="ftnum"><xsl:value-of select="$incr"/></span></sup>
+            </a>
+            <xsl:apply-templates select="./para"/>
+            <a name="f.back.{$fid}" href="#f{$fid}">
+               <sup>[back]</sup>
+            </a>
+         </xsl:when>
+         <xsl:otherwise>
+            <sup><span class="ftnum"><xsl:value-of select="$incr"/></span></sup>
+            <xsl:apply-templates select="./para"/>
+         </xsl:otherwise>
+      </xsl:choose>
+      <br/>
+   </span>
+</xsl:template>
+
 </xsl:stylesheet>

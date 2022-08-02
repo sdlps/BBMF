@@ -137,11 +137,26 @@
       </enabled>
       <onclick>CVPortal.components["cvDocHandler"].loadForm765();</onclick>
       <access>
-        <groupname>ALL</groupname><device>ALL</device><!--LAM:2021-02-16:device>DESKTOP</device-->
+        <!-- LAM:2022-07-15 remove access to SUPERUSEROFFLINE|USEROFFLINE
+        Allow ADMINISTRATOR|SUPERUSER|APPROVEDUSER|VALIDATOR|USER
+        <groupname>ALL</groupname>
+        -->
+        <groupname>ADMINISTRATOR</groupname><groupname>SUPERUSER</groupname><groupname>APPROVEDUSER</groupname><groupname>VALIDATOR</groupname><groupname>USER</groupname>
+        <device>ALL</device>
       </access>
       <text className="nav2ButtonText">ctrl.form765</text>
     </control>
     <!--/ LAM:2022-01-28-->
+
+    <!-- LAM:2022-07-22-->
+    <control id="CVCtrl_beams" type="icon" label="true">
+      <disabled className="tbar_about_beams toolbar_left toolbar_buttonM"/>
+      <enabled className="tbar_about_beams toolbar_left toolbar_buttonM" default="1"/>
+      <highlight className="tbar_about_beams toolbar_left toolbar_buttonM"/>
+      <onclick>CVPortal.components["cvDocHandler"].aboutBeams();</onclick>
+      <text className="nav2ButtonText">ctrl.beams</text>
+    </control>
+    <!--/ LAM:2022-07-22-->
 
     <!--LAM:2021-10-13
     <control id="CVCtrl_hideEmergencyProcedures" type="icon" label="true">
@@ -554,6 +569,14 @@
       <highlight className="toolbar_buttonM tbar_notes toolbar_left"/>
       <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('notes');</onclick>
       <text className="nav2ButtonText">ctrl.notes</text>
+      <access>
+        <!-- LAM:2022-07-15 remove access to SUPERUSEROFFLINE|USEROFFLINE
+        Allow ADMINISTRATOR|SUPERUSER|APPROVEDUSER|VALIDATOR|USER
+        <groupname>ALL</groupname>
+        -->
+        <groupname>ADMINISTRATOR</groupname><groupname>SUPERUSER</groupname><groupname>APPROVEDUSER</groupname><groupname>VALIDATOR</groupname><groupname>USER</groupname>
+        <device>ALL</device>
+      </access>
     </control>
     <control id="CV_attachments" type="icon" label="true" child="true">
       <disabled className="toolbar_button_disabledM tbar_notes_off toolbar_left"></disabled>
@@ -571,7 +594,14 @@
       <enabled className="toolbar_buttonM tbar_burf765 toolbar_left" default="1"></enabled>
       <highlight className="toolbar_buttonM tbar_burf765 toolbar_left"/>
       <onclick>CVPortal.components['cvResourceManager'].viewTabletResource('bufr765forms');</onclick>
-      <access><device>ALL</device></access>
+      <access>
+        <!-- LAM:2022-07-15 remove access to SUPERUSEROFFLINE|USEROFFLINE
+        Allow ADMINISTRATOR|SUPERUSER|APPROVEDUSER|VALIDATOR|USER
+        <groupname>ALL</groupname>
+        -->
+        <groupname>ADMINISTRATOR</groupname><groupname>SUPERUSER</groupname><groupname>APPROVEDUSER</groupname><groupname>VALIDATOR</groupname><groupname>USER</groupname>
+        <device>ALL</device>
+      </access>
       <text className="nav2ButtonText">ctrl.bufr765forms</text>
     </control>
 

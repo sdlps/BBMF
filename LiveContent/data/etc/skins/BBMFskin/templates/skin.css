@@ -1119,8 +1119,7 @@ textarea {
 }
 /* / LAM:2020-11-24 Shopping cart */
 
-/* LAM:2022-01-28 BUFR form 
-*/
+/* LAM:2022-01-28 BUFR form */
 .tbar_bufrform {
 	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/BUFRform.png) no-repeat;
 	background-position-x: center;
@@ -1131,8 +1130,15 @@ textarea {
 	background-position-x: center;
 	background-position: 19px 0px;
 }
-
 /* / LAM:2022-01-28 BUFR form */
+
+/* LAM:2022-07-22 About BEAMS */
+.tbar_about_beams {
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/BEAMS_Logo.32.png) no-repeat;
+	background-position-x: center;
+	background-position: 19px 0px;
+}
+/* / 2022-07-22 About BEAMS */
 
 .tbar_search {
 	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=visitor-context-search-keyword.16.mono-bright.png) no-repeat;
@@ -3690,9 +3696,9 @@ th.applicTable {
 }
 
 .front-header {
-	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=gradient_header.png);
+	background-image: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/grey-header-125.png);
 	width: 100%;
-	height: 75px;
+	height: 125px;
 	color: #fff;
 }
 
@@ -3911,8 +3917,10 @@ th.applicTable {
 }
 
 .LCS-logo {
+	/*
 	padding-top: 17px;
 	padding-left: 19px;
+	*/
 }
 
 #location-bar {
@@ -4779,7 +4787,7 @@ div#bufrformcontainer select:focus {
 #form765container {
 	position:absolute;
 	width:700px;
-	height:770px;
+	height:740px;
 	left:450px;
 	top:20px;
 	display:block;

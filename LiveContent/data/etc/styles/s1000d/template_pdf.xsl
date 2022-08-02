@@ -49,6 +49,17 @@
   <xsl:param name="t_page_orientation"/>
   <xsl:param name="foldout_page"/>
   
+  <xsl:variable name="PubDateUK"><!--/11/#/2022|07/11/2022-->
+    <xsl:choose><!--07/11/2022-->
+      <xsl:when test="substring($PubDate, 3,1)='/' and substring($PubDate, 6,1)='/'">
+        <xsl:value-of select="substring($PubDate, 7)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($PubDate, 1,2)"/><xsl:text>-</xsl:text>
+        <xsl:value-of select="substring($PubDate, 4,2)"/>
+      </xsl:when>
+      <xsl:otherwise><xsl:value-of select="$PubDate"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  
   <xsl:variable name="PubNumberStr"><xsl:choose>
     <xsl:when test="contains($PubNumber, '_')"><xsl:value-of select="substring-before($PubNumber, '_')"/></xsl:when>
     <xsl:otherwise><xsl:value-of select="$PubNumber"/></xsl:otherwise>
@@ -110,20 +121,47 @@
       <fo:page-sequence master-reference="template_pdf" initial-page-number="1" language="en" country="us">
         <!-- HEADER DEFINITION -->
         <xsl:if test="name($rootNode)='dmodule'"><fo:static-content flow-name="xsl-region-before">
-          <fo:table table-layout="fixed" width="191mm">
+          <fo:table table-layout="fixed" width="191mm" font-size="10pt">
           <fo:table-column column-width="191mm"/>
           <fo:table-body><fo:table-row>
           <fo:table-cell border-color="black" border-width="1pt" border-style="solid" padding="1.5mm"><fo:block><fo:table table-layout="fixed" width="188mm">
             <fo:table-column column-width="28mm"/><fo:table-column column-width="160mm"/>
             <fo:table-body>
               <fo:table-row>
-                <fo:table-cell font-size="10pt" number-columns-spanned="2"><fo:block text-align="center"><xsl:value-of select="$DM_class_str"/></fo:block></fo:table-cell>
+                <fo:table-cell number-columns-spanned="2"><fo:block text-align="center"><xsl:value-of select="$DM_class_str"/></fo:block></fo:table-cell>
               </fo:table-row><fo:table-row>
-                <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$style.template.note"/>:</fo:block></fo:table-cell>
-                <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$style.template.dataoutofdate"/></fo:block></fo:table-cell>
+                <fo:table-cell><fo:block>Access Control:</fo:block></fo:table-cell>
+                <fo:table-cell><fo:block>
+                <!--
+                /* <restrictionInstructions>
+                  Blank: Access To LiveContent = Administrators|Super Users
+                    <dataHandling></dataHandling>
+                  Approved User: Access To LiveContent = Administrators|Super Users|Approved Users
+                    <dataHandling>Approved User</dataHandling> or <dataHandling>ApprovedUser</dataHandling> or <dataHandling>AU</dataHandling> or <dataHandling>A</dataHandling>
+                  Validator: Access To LiveContent = Administrators|Super Users|Approved Users|Validators
+                    <dataHandling>Validator</dataHandling> or <dataHandling>V</dataHandling>
+                  User: Access To LiveContent = Administrators|Super Users|Approved Users|Validators|Users
+                    <dataHandling>User</dataHandling> or <dataHandling>U</dataHandling>
+                </restrictionInstructions> */
+
+                // ADMINISTRATOR|SUPERUSER|SUPERUSEROFFLINE|APPROVEDUSER|VALIDATOR|USER|USEROFFLINE
+
+                -->
+                <xsl:variable name="dataHandling" select="translate(//restrictionInstructions/dataHandling,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+                <xsl:text>VALIDATED FOR </xsl:text>
+                <xsl:choose>
+                  <xsl:when test="$dataHandling=''">SUPER USERS ONLY</xsl:when>
+                  <xsl:when test="$dataHandling='APPROVED USER' or $dataHandling='AU' or $dataHandling='A'">APPROVED USER ONLY</xsl:when>
+                  <xsl:when test="$dataHandling='Validator' or $dataHandling='V'">VALIDATORS OR APPROVED USER ONLY</xsl:when>
+                  <xsl:when test="$dataHandling='USER' or $dataHandling='U'">ALL USERS</xsl:when>
+                </xsl:choose>
+                </fo:block></fo:table-cell><!--2022-07-27-->
               </fo:table-row><fo:table-row>
-                <fo:table-cell font-size="10pt"><fo:block>DMC:</fo:block></fo:table-cell>
-                <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$objectId"/> (Issue: <xsl:value-of select="$issue_inwork"/>)</fo:block></fo:table-cell>
+                <fo:table-cell><fo:block><xsl:value-of select="$style.template.note"/>:</fo:block></fo:table-cell>
+                <fo:table-cell><fo:block>UNCONTROLLED COPY WHEN PRINTED</fo:block></fo:table-cell><!--2022-07-27-->
+              </fo:table-row><fo:table-row>
+                <fo:table-cell><fo:block>DMC:</fo:block></fo:table-cell>
+                <fo:table-cell><fo:block><xsl:value-of select="$objectId"/> (Issue: <xsl:value-of select="$issue_inwork"/>)</fo:block></fo:table-cell>
               </fo:table-row>
             </fo:table-body>
             </fo:table></fo:block></fo:table-cell>
@@ -149,7 +187,7 @@
                     <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$style.template.pubnumber"/>:</fo:block></fo:table-cell>
                     <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$PubNumberStr"/></fo:block></fo:table-cell>
                     <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$style.template.pubdate"/>:</fo:block></fo:table-cell>
-                    <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$PubDate"/></fo:block></fo:table-cell>
+                    <fo:table-cell font-size="10pt"><fo:block><xsl:value-of select="$PubDateUK"/></fo:block></fo:table-cell>
                   </fo:table-row>
                   <fo:table-row>
                     <fo:table-cell font-size="10pt"><fo:block>Printed By:</fo:block></fo:table-cell>
@@ -202,7 +240,7 @@
     <xsl:choose>
       <xsl:when test="$caveat_val='other'"><xsl:value-of select="$DistRestrictionOtherhandling"/></xsl:when>
       <xsl:when test="$caveat_val='none' or $caveat_val=''"><xsl:text/></xsl:when>
-      <xsl:when test="$caveat_val='cv67'"><xsl:text>DATA MODULE NOT YET VALIDATED</xsl:text></xsl:when>
+      <xsl:when test="$caveat_val='cv67'"><xsl:text>BBMF VALIDATION REQUIRED</xsl:text></xsl:when>
       <xsl:when test="$caveat_val='cv51'"><xsl:text>For Official Use Only</xsl:text></xsl:when>
       <xsl:when test="$caveat_val='cv56'"><xsl:text>US EYES ONLY</xsl:text></xsl:when>
       <xsl:when test="$caveat_val='cv57'"><xsl:text>Restricted Data</xsl:text></xsl:when>

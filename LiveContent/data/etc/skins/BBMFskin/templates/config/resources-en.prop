@@ -135,6 +135,7 @@ ctrl.emergencyProcedures=Emergency Procedures
 ctrl.leftPanel=Toggle Left Panel
 ctrl.shoppingCart=Shopping Cart
 ctrl.form765=BUFR Form
+ctrl.beams=About BEAMS
 
 ## troubleshooting steps
 ctrl.troubleshooting.next=Next Step
