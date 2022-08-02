@@ -130,30 +130,61 @@ function dragElement(el) {
 	if (!el) {
 		return;
 	} else {
+		// console.debug('dragElement: ' + (el ? el.nodeName : 'null...'));
 		el.onmousedown = dragMouseDown;
+		el.touchstart = dragMouseDown;
 	}
   var p1 = 0, p2 = 0, p3 = 0, p4 = 0;
+	var istablet = false;
+	
+	function getX(ev) {
+		istablet = (ev.changedTouches ? true:false);
+		return istablet ? ev.changedTouches[0].pageX : ev.clientX;
+	}
+	function getY(ev) {
+		return istablet ? ev.changedTouches[0].pageY : ev.clientY;
+	}
 
   function dragMouseDown(ev) {
     ev = ev || window.event;
-		var nm = ev.target.nodeName.toLowerCase();
+		var el = ev.target;
+		var nm = el.nodeName.toLowerCase();
 		if (nm == 'input' || nm == 'select' || nm == 'textarea' || nm == 'label') { // This messes up form fields
 			return;
 		}
 		ev.preventDefault();
-		p3 = ev.clientX;
-		p4 = ev.clientY;
-		document.onmouseup = closeDragElement;
+		p3 = getX(ev);
+		p4 = getY(ev);
+		/* try {
+			console.debug('dragMouseDown[1]ev: ' + ev.changedTouches[0].pageX + '|' + ev.type + '|' + istablet);
+		} catch(e) {
+			console.debug('dragMouseDown[2]ev: ' + ev.type + '|' + istablet);
+		} */
+
 		document.onmousemove = elementDrag;
+		//document.touchmove = elementDrag;
+		document.onmouseup = closeDragElement;
+		document.touchend = closeDragElement;
+		document.touchleave = closeDragElement;
+		// document.touchstart = elementDrag;
+		// document.touchcancel = handleCancel;
+		
+		el.addEventListener("touchmove", elementDrag, {capture: true});
+		el.addEventListener("touchend", closeDragElement, {capture: true});
+		el.addEventListener("touchleave", closeDragElement, {capture: true});
+
   }
 
   function elementDrag(ev) {
     ev = ev || window.event;
     ev.preventDefault();
-    p1 = p3 - ev.clientX;
-    p2 = p4 - ev.clientY;
-    p3 = ev.clientX;
-    p4 = ev.clientY;
+		var x = getX(ev);
+		var y = getY(ev);
+		//console.debug('elementDrag ev: ' + ev.type + '|' + istablet + '|' + x + '|' + y);
+    p1 = p3 - x;
+    p2 = p4 - y;
+    p3 = x;
+    p4 = y;
     el.style.top = (el.offsetTop - p2) + "px";
     el.style.left = (el.offsetLeft - p1) + "px";
   }
@@ -161,6 +192,9 @@ function dragElement(el) {
   function closeDragElement() {
     document.onmouseup = null;
     document.onmousemove = null;
+		document.touchmove = null;
+		document.touchend = null;
+		document.touchleave = null;
   }
 }
 </script>
