@@ -709,7 +709,10 @@
         <groupname>ALL</groupname>
         <device>ALL</device>
       </access>
+      <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.helpFactory().openHelpWindow('https://docs.sdl.com/LCS510UG');</onclick>
+      <!--LAM:2022-08-10
       <onclick>CVPortal.components.cvDocHandler.toggleInfoMenu();CVPortal.helpFactory().showUserGuide();</onclick>
+      -->
       <text className="nav2ButtonText">ctrl.userGuide</text>
     </control>
     <control id="CV_about" type="icon" label="true" child="true">
