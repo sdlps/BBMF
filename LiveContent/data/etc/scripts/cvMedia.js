@@ -12,11 +12,13 @@ function cvMedia() {
 	this.componentName = "CV Multimedia Handler Component";
 	this.current = null;
 	this.tearOffCount = 0;
+  this.hotspotsareon = false; // LAM:2022-80-08
 }
 cvMedia.prototype = {
 	init: function() {
 		this.isParent=true;
 		var media = this; // store!
+    this.hotspotsareon = false;
 		
 		// load our props:
 		this.resize_simple_images = this.getProp("resize_simple_images");
@@ -1513,7 +1515,9 @@ cvMedia.prototype = {
 
 	lightHotspotSVG: function(element) {
 		var mH = this;
-		$(element).children().each( function() {
+    console.debug('lightHotspotSVG:' + element.nodeName);
+		$(element).children().each( function(e,i) {
+      console.debug('lightHotspotSVG:' + i);
 			var subElem = this;
 			var oldClass = "";
 			if (this.hasOwnProperty("class")) {
@@ -1552,8 +1556,18 @@ cvMedia.prototype = {
 		} else {
 			hotspotsList = hotspotsLink.find('g[apsname]')
 		}
-
-		this.lightHotspotSVG(hotspotsList);	
+    // LAM:2022-08-08: Need to ensure we catch the text-based HSs as well
+    this.hotspotsareon = !this.hotspotsareon;
+    for (a in hotspotsList) {
+      if (hotspotsList[a].nodeName.toLowerCase() == 'text') {
+        if (this.hotspotsareon) this.lightTextHotspotSVG(hotspotsList[a]);
+        else                    this.resetTextHotspot(hotspotsList[a]);
+      } else {
+        this.lightHotspotSVG(hotspotsList[a]);	
+      }
+    }
+		// this.lightHotspotSVG(hotspotsList);	
+    // END LAM:2022-08-08: Need to ensure we catch the text-based HSs as well
 	},
 
 	hotspotClickedSVG: function(apsname) {
@@ -1746,7 +1760,11 @@ cvMedia.prototype = {
 		canvasString+='</div>';
 		$(this.graphic_content).html(canvasString);
 		initapp(width, height);
-		setpanmode();
+    try {
+      setpanmode();
+    } catch(e) {
+      console.trace('cvMedia.js:1752: ' + e);
+    }
 	},
 	
 	loadCgmGraphic: function(cgmUrl) {
@@ -1785,7 +1803,11 @@ cvMedia.prototype = {
 		if (!this.isRedliningActive) {
 			this.cgmRemoveHighlights();
 			startSelectionButton();
-			setpanmode();
+      try {
+        setpanmode();
+      } catch(e) {
+        console.trace('cvMedia.js:1795: ' + e);
+      }
 		}
 	},
 
@@ -1942,7 +1964,11 @@ cvMedia.prototype = {
 			}
 			this.cgmRemoveHighlights();
 			startSelectionButton();
-			setpanmode();
+      try {
+        setpanmode();
+      } catch(e) {
+        console.trace('cvMedia.js:1956: ' + e);
+      }
 
 			if (CVPortal.getIsTablet()) {
 				CVPortal.controlFactory().updateCondition("cgmRedliningActive", "false");
@@ -2113,7 +2139,11 @@ cvMedia.prototype = {
 
 
 		media.drawElem.on("panstart", function (event) {
-			setpanmode();
+      try {
+        setpanmode();
+      } catch(e) {
+        console.trace('cvMedia.js:2131: ' + e);
+      }
 			event.preventDefault();
 
 			var shape = getDrawObject();
