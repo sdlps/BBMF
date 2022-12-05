@@ -8,6 +8,7 @@
     <configitem name="app.resource_jarname"><value></value></configitem>
     <configitem name="app.working_dir"><value></value></configitem>
     <configitem name="app.log_directory"><value></value></configitem>
+    <configitem name="app.customer_mode"><value></value></configitem>
     <configitem name="app.skin_name"><value>BBMFskin</value></configitem>
     <configitem name="app.httpd_root"><value></value></configitem><!--{LiveContent Data Dir}\bbmfcustom\etc-->
     <configitem name="app.docs_root"><value></value></configitem><!-- {LiveContent Data Dir}\bbmfcustom\httpdocs -->
