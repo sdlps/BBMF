@@ -87,6 +87,7 @@ function bbmf_cvDocHandler() {
   this.user = CVPortal.metaFactory().get("META_USER");
   this.userGroup = CVPortal.metaFactory().get("META_USERGROUP");
   this.beamsbuilddate = '2022-07-25'; // CVPortal.components.cvDocHandler.beamsbuilddate;
+  this.beamspatchdate = '2022-08-11'; // CVPortal.components.cvDocHandler.beamspatchdate;
 }
 
 bbmf_cvDocHandler.prototype = {
@@ -116,8 +117,13 @@ bbmf_cvDocHandler.prototype = {
         var msg = '';
         msg = msg + '<table border="0" cellpadding="0" cellspacing="0"><tr>';
         msg = msg + '<td><img style="width:120px; height:120px;" src="' + CVPortal.fetchSkinImage("aircraft/BEAMS_Logo_SVG_ISSUE_01.svg") + '"></td>';
-        msg = msg + '<td><div style="font-size:15px; font-variant:small-caps">BBMF Electronc Aircraft Manual System</div><br>';
-        msg = msg + '<div style="font-size:15px;">BEAMS application: ' + CVPortal.components.cvDocHandler.beamsbuilddate + '</div><br>';
+        msg = msg + '<td><div style="font-size:15px; font-variant:small-caps">BBMF Electronic Aircraft Manual System</div><br>';
+        msg = msg + '<div style="font-size:15px;">BEAMS application: ' + CVPortal.components.cvDocHandler.beamsbuilddate + '</div>';
+        if ((CVPortal.components.cvDocHandler.beamspatchdate != '') ||
+            (CVPortal.components.cvDocHandler.beamspatchdate != CVPortal.components.cvDocHandler.beamsbuilddate)) {
+          msg = msg + '<div style="font-size:15px;">(Updated ' + CVPortal.components.cvDocHandler.beamspatchdate + ')</div>';
+        }
+        msg = msg + '<br>';
         msg = msg + '<div style="font-size:15px;">RWS LiveContent S1000D ' + versionInfo + '</div>';
         msg = msg + '</td></tr></table>';
         getModal('About BEAMS',msg,buttons,MSGBOXTYPEINF);
@@ -1925,30 +1931,7 @@ bbmf_cvDocHandler.prototype = {
       $("#" + thisid).remove();
       $(myTarget).before('<span id="' + thisid + '" style="' + thisStyle + '">Welcome to BEAMS: ' + metaUser + ', ' + metaUserGroup + '</span>');
     }
-  },
-  
-   /*********************************************************************************
-    * DocHandler EXTENSION: getRefDmDoctype	(PROCNAV)
-    *********************************************************************************/
-   getRefDmTargetDoctype: function(element) { // Override
-      // Use xpath_query to get target document doctype
-      var dH = this;
-      var targetDmCode = element.getAttribute("LC_System_Get_Target_LinkType");
-      var query = new Array();
-      query.push(".");
-      var xml = dH.xpath_query(targetDmCode, query);
-      var target_doctype = element.getAttribute("TARGETDOCTYPE");
-			if (target_doctype == null) {
-				try {
-					 $("DOCUMENT", xml).each(function() {
-							target_doctype = this.getAttribute("DOCTYPE");
-					 });
-				} catch (err) {
-					 target_doctype = "notfound";
-				}
-			}
-      return target_doctype;
-   },
+  }
 
 };
 
@@ -2616,8 +2599,7 @@ bbmf_cvResourceManager.prototype = {
         thishtmlstring += "sys1='" + thissys1 + "' sys2='" + thissys2 + "' sys3='" + thissys3 + "' ";
         thishtmlstring += ">";
         // thishtmlstring += "<td style='vertical-align:top' class='formNumber'></td>"; // LAM:2022-06-14; removed per Mark and Stu
-        thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/" + 
-          (issuppressed ? 'bufr765suppressed.16.png':'bufr765.16.png')) + "'></td>";
+        thishtmlstring += "<td style='vertical-align:top'><img src='" + CVPortal.fetchSkinImage("aircraft/" + (issuppressed ? 'bufr765suppressed.16.png':'bufr765.16.png')) + "'></td>";
         thishtmlstring += "<td style='vertical-align:top'>"; // + $("form-header form-id", $(this)).text();
         thishtmlstring += "<div><b class='bufrdmc'>" + thisdmc + "</b>: " + thisiss + "</div>";
         thishtmlstring += "<div class='bufrref'>\"<span class='bufrrefno'>" + thisref + "</span>\", ";
