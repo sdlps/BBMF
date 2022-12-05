@@ -35,7 +35,7 @@
     <!--Battle_of_Britain_Memorial_Flight_Crest.jpg-->
     <tr>
     <td colspan="5" style="text-align:center; background-color:#5d8aa8;"
-      ><span style="font-variant:small-caps; font-weight:bold; color:#fff;">BEAMS: BBMF Electronc Aircraft Manual System</span></td>
+      ><span style="font-variant:small-caps; font-weight:bold; color:#fff;">BEAMS: BBMF Electronic Aircraft Manual System</span></td>
     </tr>
     <tr>
     <!--
