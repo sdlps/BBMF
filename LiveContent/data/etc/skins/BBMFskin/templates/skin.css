@@ -1134,7 +1134,7 @@ textarea {
 
 /* LAM:2022-07-22 About BEAMS */
 .tbar_about_beams {
-	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/BEAMS_Logo.32.png) no-repeat;
+	background: url(@APPNAME@?id=@SESSION_ID@&target=resource&action=image&file_name=aircraft/BEAMS_Logo32_TransBg.png) no-repeat;
 	background-position-x: center;
 	background-position: 19px 0px;
 }
@@ -4894,4 +4894,9 @@ span#loaderMsgTxt {
   text-decoration:none;
   cursor:pointer;
 }
+p > img, div > img, span > img, td > img, body.login * img { /* LAM:2022-08-10 */
+	cursor:default;
+	_cursor:default;
+}
+
 /* / LAM overrides */
