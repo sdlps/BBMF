@@ -3,3 +3,4 @@ LiveContent/data/etc/scripts/fromv511/cvDocHandler.js
 LiveContent/data/etc/scripts/fromv511/cvExtensionLibrary.js
 LiveContent/data/etc/scripts/fromv511/cvMedia.js
 LiveContent/data/etc/scripts/fromv511/cvPanelFactory.js
+copyfiles.bat
